@@ -21,17 +21,23 @@
             var bodies = new Array();
             var meshes = new Array();
       
+            
+            
         
             initThree();
             initCannon();
             animate();
 
+            
+            
+            
             function initCannon(){
-              world = new CANNON.World();
+                //Create Cannon world 
+                world = new CANNON.World();
 
-              world.gravity.set(0,0,0);
-              world.broadphase = new CANNON.NaiveBroadphase();
-              world.solver.iterations = 10;
+                world.gravity.set(0,0,0);
+                world.broadphase = new CANNON.NaiveBroadphase();
+                world.solver.iterations = 10;
 
                 shape = new CANNON.Box(new CANNON.Vec3(1,1,1));
                 mass = 1;
@@ -50,6 +56,7 @@
             }
 
             function initThree(){
+                //Create Three scene to build the meshes  
                 scene = new THREE.Scene();
 
                 camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1 ,100000);
@@ -78,6 +85,9 @@
                 render();
             }
 
+            
+            
+            
             function onWindowResize(){
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
@@ -85,30 +95,36 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
+            
+            
+            
             function animate(){
-              requestAnimationFrame( animate );
-              updatePhysics();
-              render();
-              controls.update();
+                //Does most of the work
+                requestAnimationFrame(animate);
+                render();
+                controls.update();
+                updatePhysics();
             }
 
+            
+            
+            
             function updatePhysics() {
-
-              // Step the physics world
+              //Step for Cannon world
               world.step(timeStep);
 
               // Copy coordinates from Cannon.js to Three.js
-
                 for(var i = 0; i < numOfCubes; i++){
                     meshes[i].position.copy(bodies[i].position);
                     meshes[i].quaternion.copy(bodies[i].quaternion);
                 }
             }
 
-            function render() {
-
-              renderer.render( scene, camera );
-
+            
+            
+            
+            function render(){
+              renderer.render(scene, camera);
             }
         </script>
    </body>

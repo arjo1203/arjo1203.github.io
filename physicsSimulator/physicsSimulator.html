@@ -1,55 +1,60 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 
 <html>
-<head>
-    <meta name="viewport" content="minimal-ui">
-	<title>Jose R. Araujo Meza</title>
-</head>
-
-<body>
-
+    <head>
+        <meta name="viewport" content="minimal-ui">
+        <title>Jose R. Araujo Meza</title>
+        <style>
+            body{
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
         <script src="../THREE/three.min.js"></script>
         <script src="../THREE/TrackballControls.js"></script>
-        
+
         <script>
             var camera, scene, renderer, controls;
             var numParticles = 20, maxDis = 4000000, radius = 100000, numOfDomain = 1;
             var particles = new Array();
             var G = 6.67384 * Math.pow(10,-11);//6.67384 × 10-11 m3 kg-1 s-2
-            var F, A;
             var lastTime = new Date().getTime();
             var timeMult = 10;
 
-            init(animate);
             
+            init(animate);
+
             //onSuccess is called when init() is complete
             function init(onSuccess){
-                
+
                 camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1 ,1000000000);
                 camera.position.z = 4000000;
-                
+
                 controls = new THREE.TrackballControls(camera);
                 controls.addEventListener('change', render);
-                
+
                 scene = new THREE.Scene();
-                
+
                 createParticles();
                 console.log(particles);
                 renderer = new THREE.WebGLRenderer();
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 document.body.appendChild(renderer.domElement);
-                
+
                 window.addEventListener('resize', onWindowResize, false);
                 onSuccess();
             }
-            
-            
-            
-            
+
+
+
+
             function createParticle(radius, mesh, force, volume, mass, acceleration, velocity){
                 var geometry = new THREE.SphereGeometry(1,50,50);
                 var material = new THREE.MeshNormalMaterial();
-                
+
                 var newParticle = {};
                 newParticle.radius = radius || 1;
                 newParticle.mesh = new THREE.Mesh(geometry, material);
@@ -58,20 +63,19 @@
                 newParticle.mass = mass || 1;
                 newParticle.acceleration = acceleration || new THREE.Vector3(0,0,0);
                 newParticle.velocity = velocity || new THREE.Vector3(0,0,0);
-                
+
                 return newParticle;
             }
-            
-            
-            
-            
+
+
+
+
             function createParticles(){
-                
                 for(var i = 0; i < numParticles; i++){
                     var rand = Math.random();
                     var scaleOfNum = numOfDomain * rand;
                     var particle = createParticle();
-                    
+
                     particle.mesh.position.x = (Math.random() - 0.5) * maxDis;
                     particle.mesh.position.y = (Math.random() - 0.5) * maxDis;
                     particle.mesh.position.z = (Math.random() - 0.5) * maxDis;
@@ -86,25 +90,26 @@
 
                 }
             }
-            
-            
-            
-            
+
+
+
+
             function calcForces(){
+                var F, A;
                 
                 for(var i = 0; i < numParticles; i++){
                     var x1 = particles[i].mesh.position;
                     var mass1 = particles[i].mass;
                     var F_sum = new THREE.Vector3(0,0,0);
-                    
+
                     for(var j = 0; j < numParticles; j++){
-                        
+
                         if(particles[i] != particles[j]){
                             var x2 = particles[j].mesh.position;
                             var mass2 = particles[j].mass;
-                            
+
                             var d = Math.sqrt(Math.pow((x1.x-x2.x),2)+Math.pow((x1.y-x2.y),2)+Math.pow((x1.z-x2.z),2));//Distance between the two objects
-                            
+
                             if(d > (particles[i].mesh.scale.x + particles[j].mesh.scale.x) * .8){
                                 F = calcForce(mass1,mass2,d);//Determine Force
                                 var Fx = F * ((x1.x-x2.x)/ Math.sqrt(d));//Force in the x direction
@@ -120,39 +125,39 @@
                                     particles[j].mesh.position.y = (Math.random() - 0.5) * maxDis * 1000;
                                     particles[j].mesh.position.z = (Math.random() - 0.5) * maxDis * 1000; 
                             }
-                            
+
                         }//if 
-                        
+
                         particles[i].force = F_sum;
-                        
+
                     }//for j
-                    
-                    
+
+
                     particles[i].acceleration = calcAcceleration(particles[i].force,particles[i].mass);
 
                 }//for i
-                
+
             }//calcForces
-             
-            
-            
-            
+
+
+
+
             function calcForce(mass1, mass2, distance){
                 var force = -G*((mass1*mass2)/Math.pow(distance,2));
                 return force;
             }
-            
-            
-            
-            
+
+
+
+
             function merging(particle1, particle2){
                 var radius1Cubed, radius2Cubed, newRadius, scaleRadius, massSum;
-    
+
                 radius1Cubed = Math.pow(particle1.mesh.scale.x,3);
                 radius2Cubed = Math.pow(particle2.mesh.scale.x,3);
-                
+
                 scaleRadius = Math.pow(radius1Cubed + radius2Cubed, 1/3);
-            
+
                 particle1.mass =  particle1.mass + particle2.mass;
                 particle1.mesh.scale.x = scaleRadius;
                 particle1.mesh.scale.y = scaleRadius;
@@ -161,11 +166,11 @@
                 particle1.velocity.y = (particle1.mass * particle1.velocity.y + particle2.mass * particle2.velocity.y) / (particle1.mass + particle2.mass);
                 particle1.velocity.z = (particle1.mass * particle1.velocity.z + particle2.mass * particle2.velocity.z) / (particle1.mass + particle2.mass);
             }
-             
-            
-            
-            
-            
+
+
+
+
+
             function calcAcceleration(force, mass){
                 var A_x = force.x/mass;
                 var A_y = force.y/mass;
@@ -173,62 +178,59 @@
                 var acceleration = new THREE.Vector3(A_x, A_y, A_z);
                 return acceleration;
             }
-            
-            
-            
-            
+
+
+
+
             function moveParticles(T){
                 T = T * timeMult;
-                   for(var i = 0; i < particles.length; i++){
-                        particles[i].velocity.x += particles[i].acceleration.x * T;
-                        particles[i].velocity.y += particles[i].acceleration.y * T;
-                        particles[i].velocity.z += particles[i].acceleration.z * T;
-                        
-                        particles[i].mesh.position.x += particles[i].velocity.x * T;
-                        particles[i].mesh.position.y += particles[i].velocity.y * T;
-                        particles[i].mesh.position.z += particles[i].velocity.z * T;
-                   }
-            }
-            
-            
-            
-            
-            function onWindowResize(){
+                for(var i = 0; i < particles.length; i++){
+                    particles[i].velocity.x += particles[i].acceleration.x * T;
+                    particles[i].velocity.y += particles[i].acceleration.y * T;
+                    particles[i].velocity.z += particles[i].acceleration.z * T;
 
+                    particles[i].mesh.position.x += particles[i].velocity.x * T;
+                    particles[i].mesh.position.y += particles[i].velocity.y * T;
+                    particles[i].mesh.position.z += particles[i].velocity.z * T;
+                }
+            }
+
+
+
+
+            function onWindowResize(){
                 camera.updateProjectionMatrix();
-                
+
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
-            
-            
-            
-            
+
+
+
+
             function animate(){
-                
                 var time = (new Date()).getTime();
                 var deltaTime = (time - lastTime);
                 lastTime = time;
-                
+
                 //Makes sure that all cubes have been created before calculating calcSumVector and before moving cubes    
                 if(particles.length === numParticles){
                     calcForces();
                     moveParticles(deltaTime);
-                    
+
                 }
 
-                requestAnimationFrame( animate );
+                requestAnimationFrame(animate);
                 controls.update();
                 render();
             }
-            
-            
-            
-        
+
+
+
+
             function render(){
                 renderer.render(scene, camera);   
             }
-            
-        </script>
-   </body>
 
+        </script>
+    </body>
 </html>
