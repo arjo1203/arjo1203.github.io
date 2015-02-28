@@ -1,0 +1,115 @@
+<html>
+    <head>
+        <title>Jose R. Araujo Meza</title>
+        <meta name="viewport" content="minimal-ui">
+        <style>
+            body{
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="../THREE/three.min.js"></script>
+        <script src="../THREE/TrackballControls.js"></script>
+        <script src="../Cannon/cannon.js"></script>
+        <script>
+            var world, mass, body, shape, timeStep=1/60;
+            var camera, scene, renderer, geometry, material, mesh, controls;
+            var numOfCubes = 100, gap = 5;
+            var bodies = new Array();
+            var meshes = new Array();
+      
+        
+            initThree();
+            initCannon();
+            animate();
+
+            function initCannon(){
+              world = new CANNON.World();
+
+              world.gravity.set(0,0,0);
+              world.broadphase = new CANNON.NaiveBroadphase();
+              world.solver.iterations = 10;
+
+                shape = new CANNON.Box(new CANNON.Vec3(1,1,1));
+                mass = 1;
+
+                  for(var i = 0; i < numOfCubes; i++){
+                    body = new CANNON.Body({
+                        mass: 1
+                    });
+                    body.addShape(shape);
+                    body.position.set((Math.random() - 0.5) * gap, (Math.random() - 0.5)* gap, (Math.random() - 0.5) * gap);
+                    body.angularVelocity.set((Math.random() - 0.5) * 15,(Math.random() - 0.5)  * 15,(Math.random() - 0.5) * 15);
+                    body.angularDamping = 0;
+                    world.add(body);
+                    bodies[i] = body;
+                }
+            }
+
+            function initThree(){
+                scene = new THREE.Scene();
+
+                camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1 ,100000);
+                camera.position.z = 500;
+                scene.add( camera );
+
+                controls = new THREE.TrackballControls(camera);
+                controls.addEventListener('change', render);
+
+                geometry = new THREE.BoxGeometry( 10, 10, 10 );
+                material = new THREE.MeshNormalMaterial();
+
+
+
+                for(var i = 0; i < numOfCubes; i++){
+                    mesh = new THREE.Mesh( geometry, material );
+                    scene.add( mesh );
+                    meshes[i] = mesh;
+                }
+
+                renderer = new THREE.WebGLRenderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                window.addEventListener('resize', onWindowResize, false);
+                render();
+            }
+
+            function onWindowResize(){
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function animate(){
+              requestAnimationFrame( animate );
+              updatePhysics();
+              render();
+              controls.update();
+            }
+
+            function updatePhysics() {
+
+              // Step the physics world
+              world.step(timeStep);
+
+              // Copy coordinates from Cannon.js to Three.js
+
+                for(var i = 0; i < numOfCubes; i++){
+                    meshes[i].position.copy(bodies[i].position);
+                    meshes[i].quaternion.copy(bodies[i].quaternion);
+                }
+            }
+
+            function render() {
+
+              renderer.render( scene, camera );
+
+            }
+        </script>
+   </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>Jose R. Araujo Meza</title>
+    <style>
+        body{
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+       <script src="../THREE/three.min.js"></script>
+        <script src="../THREE/TrackballControls.js"></script>
+        
+        <script>
+            var camera, scene, renderer, controls;
+            
+            init();
+            animate();
+            
+            function init(){
+                camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 1 ,1000000);
+                camera.position.z = 500;
+                
+                controls = new THREE.TrackballControls(camera);
+                controls.addEventListener('change', render);
+                
+                scene = new THREE.Scene();
+                
+                var geometry = new THREE.CubeGeometry(500, 500, 500);
+                    var material = new THREE.MeshNormalMaterial();
+                    
+                
+                for( var i = 0; i < 10000; i++){
+                    var mesh = new THREE.Mesh( geometry, material);
+                    mesh.position.x = (Math.random() - 0.5) * 200000;
+                    mesh.position.y = (Math.random() - 0.5) * 200000;
+                    mesh.position.z = (Math.random() - 0.5) * 200000;
+                    scene.add(mesh);
+                }
+                
+                renderer = new THREE.WebGLRenderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                window.addEventListener('resize', onWindowResize, false);
+                render();
+            }
+            
+            function onWindowResize(){
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function animate(){
+                
+                requestAnimationFrame( animate );
+                controls.update();
+            }
+            
+            function render(){
+                renderer.render(scene, camera);   
+            }
+            
+        </script>
+   </body>
+</html>

@@ -1,0 +1,280 @@
+<html>  
+    <head>
+        <title>3d Terrain</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <link href="../assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" >
+        <link href="../bootstrap-slider/bootstrap-slider.css" rel="stylesheet">
+        <link href="../bootstrap-switch/bootstrap-switch.css" rel="stylesheet">
+        <link href="../archTool_1.0/CSS/simple-sidebar.css" rel="stylesheet">
+        <link href="../archTool_1.0/CSS/myStyle.css" rel="stylesheet" >
+    </head>
+    <body id="body"> 
+        <!-- NavBar -->
+        <nav id="mainHeader" class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div style="float: right;" class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainButtons">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">ArchTool_1.0</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="mainButtons">
+                    <form class="nav navbar-nav">
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="openJSON(displayToCanvases)">
+                            Open 
+                        </button>
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="">
+                            Save 
+                        </button>
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="saveAsJSON()">
+                            Save As
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        
+        <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <label style="float: left;">Work-Space Tools</label>
+                    <table class="table table-condensed">
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Drawing Tools
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="activateDrawingTool()">Line</a> 
+                                    </li>
+                                    <li>
+                                          <a href="#" onclick="activateFillTool()">Fill</a>  
+                                    </li>
+                                    <li>
+                                          <a href="#" onclick="activateGridTool()">Grid</a> 
+                                    </li>
+                                    <li>
+                                          <a href="#" onclick="activateEraserTool()">Eraser</a> 
+                                    </li>
+                                    <li>
+                                          <a href="#" onclick="activateProjectTool()">Pan</a> 
+                                    </li>
+                                  </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Color Options
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#" onclick="changePathColor('Black')">Black</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="changePathColor('Red')">Red</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="changePathColor('Blue')">Blue</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="changePathColor('Green')">Green</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="changePathColor('Yellow')">Yellow</a>  
+                                    </li>
+                                  </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p>
+                                    <input id="on_off" type="checkbox" checked>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background: rgb(200,200,200);" class="well">
+                                    <span style="float: left;">
+                                        Line Width (m):       
+                                        <span id="lineWidthVal">10</span>
+                                        
+                                    <input id="lineWidth" type="text" data-slider-min="0" data-slider-step="5" data-slider-max="100" data-slider-value="10" data="value: '10'" value="10" style="display: none;">
+                                    </span>
+                                    <span>
+                                        Line Opacity (%):       
+                                        <span id="lineOpacityVal">50</span>
+                                        
+                                    <input id="lineOpacity" type="text" data-slider-min="0" data-slider-step="2" data-slider-max="100" data-slider-value="50" data="value: '50'" value="50" style="display: none;">
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Geo-Located Maps Opacity
+                                <div id="mapOpacity" style="background: rgb(200,200,200);" class="well">
+                                    <span style="float: left;">
+                                        Terrain (%):       
+                                        <span id="terrainMapVal">100</span>
+                                        
+                                    <input id="terrainMap" type="text" data-slider-min="0" data-slider-step="2" data-slider-max="100" data-slider-value="100" data="value: '100'" value="100" style="display: none;">
+                                    </span>
+                                    <span>
+                                        Height (%):       
+                                        <span id="heightMapVal">0</span>
+                                        
+                                    <input id="heightMap" type="text" data-slider-min="0" data-slider-step="2" data-slider-max="100" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="clearPaper(_3dTerrainMapofWorkSpace)">
+                                    Clear Work-Space
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="changeTerrainMap()">
+                                    View on 3D Terrain
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Geo-Located Maps
+                                      <span class="caret"></span>
+                                  </button>
+                                  <ul id="mapOptions" class="dropdown-menu">
+                                  </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="background: rgb(200,200,200);" class="well">
+                                    <span>
+                                    Terrain's Relief (%):       
+                                    <span id="terrainReliefVal">50</span>
+
+                                    <input id="terrainRelief" type="text" data-slider-min="0" data-slider-step="2" data-slider-max="100" data-slider-value="50" data="value: '50'" value="50" style="display: none;">
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Tools</a>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Nav tabs -->
+    <div role="tabpanel">
+      <ul class="nav nav-tabs" role="tablist">
+        <li id="tab" role="presentation" class="active"><a href="#three" aria-controls="home" role="tab" data-toggle="tab">View</a></li>
+        <li id="tab" role="presentation"><a href="#paper" aria-controls="profile" role="tab" data-toggle="tab">Work-Space</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="three">
+            <canvas id="threejs"></canvas>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="paper">
+            <canvas id="paperjs"></canvas>
+        </div>
+      </div>
+
+    </div>
+        
+    <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.jsb"></script>
+    <script src="../bootstrap-switch/bootstrap-switch.js"></script>   
+    <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+    <script src="../PAPER/paper-full.js"></script>
+    <script src="../THREE/three.min.js"></script>
+    <script src="../THREE/TrackballControls.js"></script>
+    <script src="../Interact/interact.js"></script>
+    <script src="../archTool_1.0/scripts/navButtons.js"></script>
+    <script src="../archTool_1.0/scripts/sideGUIButtons.js"></script>
+    <script src="../archTool_1.0/scripts/_2d.js"></script>
+    <script src="../archTool_1.0/scripts/_3d.js"></script>
+        
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        $("#tab").click(function(e) {
+            _3dTerrainMapofWorkSpace();
+        });
+    </script>
+        
+    <script>
+        paper.install(window);
+
+        setupProgram();
+
+        //Global object for program
+        var programData = {};
+        var numOfRuns = 0;
+
+        function setupProgram(){
+            window.addEventListener('resize', onWindowResize, false);
+            
+            //Install paper on 2d canvas
+            paper.setup('paperjs');
+            paper.view.viewSize = [window.innerWidth, window.innerHeight];
+
+            //Create THREE.JS scene
+            //Assign 3d canvas to THREE.JS
+            createThreeEnviroment();
+        }
+        
+        
+        
+        function onWindowResize(){
+            paper.view.viewSize = [window.innerWidth, window.innerHeight];   
+            camera.aspect = window.innerWidth / window.innerHeight;
+            
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            render();
+        }
+    </script>
+    </body>        
+</html>
