@@ -16,6 +16,11 @@
         <script type="text/javascript" src="../PAPER/paper-full.js"></script>
         <script type="text/javascript" src="../Interact/interact.js"></script>
         <script type="text/javascript" src="../panZoom/multi-touchPanZoom.js"></script>
+        <script>
+            document.addEventListener('touchmove', function(event) {
+                event.preventDefault();
+            }, false);
+        </script>
     </body>
 </html>
 
