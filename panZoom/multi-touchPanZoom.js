@@ -38,6 +38,7 @@ function onMouseDown(event) {
     
     if(event.event.type == 'mousedown'){
 //        console.log('MouseEvent');
+        event.event.preventDefault();
 
         path = new Path();
         path.strokeColor = 'red';
@@ -86,6 +87,7 @@ function onMouseDown(event) {
  function onMouseDrag(event){
 //     console.log('moving');
 //     console.log(event);
+    event.event.preventDefault();
      
     path.add(event.point);
 }
@@ -95,6 +97,8 @@ function onMouseDown(event) {
 
 function onMouseUp(event){
 //    console.log('up');
+    event.event.preventDefault();
+    
     path.simplify();
     paths.push(path);
 }

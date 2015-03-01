@@ -25,6 +25,7 @@ function startup(){
 var paths = [];
 
 function touchStart(ev){
+    ev.preventDefault();
     var touches = ev.touches;
 
     //Create new path per touch
@@ -35,7 +36,8 @@ function touchStart(ev){
 }
 
 
-function touchmove(ev) {  
+function touchmove(ev){  
+    ev.preventDefault();
     var touches = ev.touches;
 
     //Prevents touch bubbling 
@@ -53,7 +55,8 @@ function touchmove(ev) {
 }
 
 
-function touchEnd(ev){   
+function touchEnd(ev){  
+    ev.preventDefault(); 
     var touches = ev.touches
 
     //Empth paths array to start process over
