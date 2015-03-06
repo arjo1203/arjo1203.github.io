@@ -1,12 +1,12 @@
 //PAPER.JS Globals
-var path, colors, opacities, thickness;//Global object that paperGUI uses
+var path, colors, opacities, thickness, fillColor;//Global object that paperGUI uses
 var paths = new Array();//Global object that paperGUI uses
 var pathPositions = new Array();
 var tools = {};//Global object that paperGUI uses
 var paperMaps = new Array();
 var target = document.getElementById('paperjs');
 var SCALE = 1;
-
+var numOfChildren, activeTool = 'drawing';
 
 
 target.addEventListener('mousewheel', zoom);
@@ -16,7 +16,6 @@ target.addEventListener('mousewheel', zoom);
 function setupPaper(){
     //fillColor will be a light version on the storkeColor
     //Initialize fillColor to gray since pathColor is initialized to black
-//    console.log(paper.project);
     
     fillColor = 'Gray';
 
@@ -32,25 +31,51 @@ function setupPaper(){
 
     opacities = {
         paths: .5   
-    }
+    };
     
     var div = document.getElementById("mapOpacity");
     var sliders = new Array();
+//    console.log(imgList);
     
     if(imgList.length > 2){//By default first 2 raster are Terrain and Height
+        
+        if(imgList.length > 3){//By default first 2 raster are Terrain and Height
+            var span1 = document.createElement("span");
+            span1.innerHTML = imgList[3] + " Opacity (%): ";
+    //                        span1.setAttribute("style","float: left;");
+
+            var span2 = document.createElement("span");
+            span2.id = "topoVal";
+            span2.innerHTML = "0";
+            span1.appendChild(span2);
+
+            var input = document.createElement("input");
+            input.id = "topo";
+            input.setAttribute("type", "text");
+            input.setAttribute("data-slider-min", "0");
+            input.setAttribute("data-slider-step", "2");
+            input.setAttribute("data-slider-max", "100");
+            input.setAttribute("data-slider-value", "0");
+            input.setAttribute("data", "value: '0'");
+            input.setAttribute("value", "0");
+            input.setAttribute("style", "display: none;");
+            span1.appendChild(input);
+            div.appendChild(span1);
+
+            sliders.push(input.id);
+        }
+        
         var span1 = document.createElement("span");
         span1.innerHTML = imgList[2] + " Opacity (%): ";
 //                        span1.setAttribute("style","float: left;");
         
         var span2 = document.createElement("span");
-        span2.id = 2 + "Val";
-        console.log(span2.id);
+        span2.id = "soilsVal";
         span2.innerHTML = "0";
         span1.appendChild(span2);
         
         var input = document.createElement("input");
-        input.id = 2;
-        console.log(input.id);
+        input.id = "soils";
         input.setAttribute("type", "text");
         input.setAttribute("data-slider-min", "0");
         input.setAttribute("data-slider-step", "2");
@@ -72,18 +97,29 @@ function setupPaper(){
     
     console.log(paper.project);
     
-    for(var i = 0; i < sliders.length; i++){
-        console.log(sliders[i]);
-        $("#" + sliders[i]).slider();
-        console.log("#" + sliders[i] + "Val");
-        $("#" + sliders[i]).on('slide', function(slideEvt){
-            $("#" + sliders[i] + "Val").text(slideEvt.value);
-            paper.project.activeLayer.children[2].opacity = slideEvt.value/100;
+    if(sliders.length > 0){
+        if(sliders.length > 1){
+            $("#" + sliders[1]).slider();
+            $("#" + sliders[1]).on('slide', function(slideEvt){
+                $("#" + sliders[1] + "Val").text(slideEvt.value);
+                paper.project.activeLayer.children[2].opacity = slideEvt.value/100;
+
+                _3dTerrainMapofWorkSpace();
+            });   
+        }
+        
+        $("#" + sliders[0]).slider();
+        $("#" + sliders[0]).on('slide', function(slideEvt){
+            $("#" + sliders[0
+                           ] + "Val").text(slideEvt.value);
+            paper.project.activeLayer.children[3].opacity = slideEvt.value/100;
 
             _3dTerrainMapofWorkSpace();
         });   
     }
-
+    
+    
+    
     createPaperTools();
 }
 
@@ -93,7 +129,6 @@ function setupPaper(){
 interact(target).gesturable({
   onstart: function(ev){
       deactivateAllTool();
-      console.log(paper.project);
   },
   onmove: function(ev){
             if(SCALE * (1 + ev.ds) >= 1 && SCALE * (1 + ev.ds) <= 5){
@@ -111,7 +146,23 @@ interact(target).gesturable({
             }
   },
   onend: function(ev){
-      activateDrawingTool();
+      switch(activeTool){
+        case "drawing":
+            activateDrawingTool();
+            break;
+        case "fill":
+            activateFillTool();
+            break;
+        case "eraser":
+            activateEraserTool();
+            break;
+        case "grid":
+            activateGridTool();
+            break;
+        case "pan":
+            activateProjectTool();
+            break;
+    }
   }
 });
 
@@ -119,6 +170,7 @@ interact(target).gesturable({
 
 
 function createPaperTools(){
+    numOfChildren = paper.project.activeLayer.children.length
     //Create Drawing Tool
     tools.drawing = new Tool();
     tools.drawing.onMouseDown = onMouseDown;
@@ -193,9 +245,6 @@ function onMouseDown(event) {
             path.strokeColor = colors.options;
             path.strokeWidth = thickness.pixel;
             path.opacity = opacities.paths;
-        }
-        else{
-//            console.log('panZoom');
         }
     }
 }
@@ -296,6 +345,7 @@ function activateDrawingTool(){
     tools.drawing.on('mousedrag', onMouseDrag);
     
     tools.drawing.activate();
+    activeTool = 'drawing';
 }
 
 
@@ -315,6 +365,7 @@ function activateFillTool(){
     tools.fill.on('mousedrag', onMouseDrag);
     
     tools.fill.activate();
+    activeTool = 'fill';
 }
 
 
@@ -330,6 +381,7 @@ function activateEraserTool(){
     tools.eraser.on('mousedrag', eraser);
     
     tools.eraser.activate();
+    activeTool = 'eraser';
 }
 
 
@@ -347,6 +399,7 @@ function activateGridTool(){
     tools.grid.on('mousedrag', moveGrid);
     
     tools.grid.activate();
+    activeTool = 'grid';
 }
 
 
@@ -362,6 +415,7 @@ function activateProjectTool(){
     tools.moveProject.on('mousedrag', moveProject);
     
     tools.moveProject.activate();
+    activeTool = 'pan';
 }
 
 
@@ -499,6 +553,8 @@ function createGrid(pixelsHozitonalDistance,pixelsVerticalDistance,frameColor,gr
 
     //Set the color and strokewidth of the frame and the grid lines
     for(var i = 0; i < lines.length; i++){
+        lines[i].name = 'grid'; 
+        
         if(i < 4){
             lines[i].strokeColor = frameColor; 
             lines[i].strokeWidth = .8; 
@@ -519,7 +575,6 @@ function createGrid(pixelsHozitonalDistance,pixelsVerticalDistance,frameColor,gr
     //Return the object
     return grid;
 }
-
 
 
 function gridVisible(grid, true_false){

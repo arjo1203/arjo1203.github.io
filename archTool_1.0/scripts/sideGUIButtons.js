@@ -61,9 +61,9 @@ $("#terrainRelief").on('slide', function(slideEvt) {
 
 
 
-$("#on_off").bootstrapSwitch('size', 'mini').on('switchChange.bootstrapSwitch', function(event, state){
-    gridVisible(Grid, state);
-});
+//$("#on_off").on('switchChange.bootstrapSwitch', function(event, state){
+//    gridVisible(Grid, state);
+//});
 
 
 
@@ -99,7 +99,7 @@ function changePathWidth(width){
 
 
 function changePathOpacity(opacity){
-    for(var i = 2; i < paper.project.activeLayer.children.length; i++){//j starts at 2 because the first 2 children are rasters
+    for(var i = numOfChildren; i < paper.project.activeLayer.children.length; i++){
         paper.project.activeLayer.children[i].opacity = opacity;
     }
 }
@@ -108,12 +108,47 @@ function changePathOpacity(opacity){
 
 
 function clearPaper(onSuccess){
-    for(var i = 2; i < paper.project.activeLayer.children.length; i++){//j starts at 2 because the first 2 children are rasters
-        paper.project.activeLayer.children[i].remove();
+    for(var i = imgList.length; i < paper.project.activeLayer.children.length; i++){
+        console.log(paper.project.activeLayer.children[i]);
+        
+        if(paper.project.activeLayer.children[i].name !== 'grid'){
+            console.log('hello');
+            paper.project.activeLayer.children[i].remove();    
+            paper.view.draw();
+        }
     }
 
-    paper.project.activeLayer.children.splice(2, paper.project.activeLayer.children.length);
-    paper.view.draw();
+    paper.project.activeLayer.children.splice(imgList.length, paper.project.activeLayer.children.length);
+
 
     onSuccess();
+}
+
+
+
+
+function undo(onSuccess){
+    if(paper.project.activeLayer.children.length > numOfChildren){
+        paper.project.activeLayer.children[paper.project.activeLayer.children.length-1].remove();
+    }
+    
+    onSuccess();
+}
+
+
+
+
+function gridOnOff(grid){
+    if(grid.children[0].visible == true){
+        for(var i = 0; i < lines.length; i++){
+            grid.children[i].visible = false;
+            window.paper.view.draw();
+        }
+    }
+    else{
+        for(var i = 0; i < lines.length; i++){
+            grid.children[i].visible = true;
+            window.paper.view.draw();
+        }
+    }
 }

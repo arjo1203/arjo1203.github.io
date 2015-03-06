@@ -3,11 +3,10 @@
         <title>3d Terrain</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta charset="UTF-8">
-        <link href="../assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" >
+        <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
         <link href="../bootstrap-slider/bootstrap-slider.css" rel="stylesheet">
-        <link href="../bootstrap-switch/bootstrap-switch.css" rel="stylesheet">
-        <link href="../archTool_1.0/CSS/simple-sidebar.css" rel="stylesheet">
-        <link href="../archTool_1.0/CSS/myStyle.css" rel="stylesheet" >
+        <link href="./CSS/simple-sidebar.css" rel="stylesheet">
+        <link href="./CSS/myStyle.css" rel="stylesheet" >
     </head>
     <body id="body"> 
         <!-- NavBar -->
@@ -51,62 +50,39 @@
                         <tr>
                             <td>
                                 <div class="btn-group">
-                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    Drawing Tools
-                                      <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" onclick="activateDrawingTool()">Line</a> 
-                                    </li>
-                                    <li>
-                                          <a href="#" onclick="activateFillTool()">Fill</a>  
-                                    </li>
-                                    <li>
-                                          <a href="#" onclick="activateGridTool()">Grid</a> 
-                                    </li>
-                                    <li>
-                                          <a href="#" onclick="activateEraserTool()">Eraser</a> 
-                                    </li>
-                                    <li>
-                                          <a href="#" onclick="activateProjectTool()">Pan</a> 
-                                    </li>
-                                  </ul>
+                                    <form class="nav navbar-btn navbar-left">
+                                        <button type="button" class="btn btn-primary navbar-btn" onclick="activateDrawingTool()">Line
+<!--                                        <span class="glyphicon glyphicon-unchecked"></span>-->
+                                        </button>
+                                        <button type="button" class="btn btn-primary navbar-btn" onclick="activateFillTool()">Fill</button>
+                                        <button type="button" class="btn btn-primary navbar-btn" onclick="activateEraserTool()">Eraser</button>
+                                        <button type="button" class="btn btn-primary navbar-btn" onclick="activateGridTool()">Grid</button>
+                                        <button type="button" class="btn btn-primary navbar-btn" onclick="activateProjectTool()">Pan</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="btn-group">
-                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                    Color Options
-                                      <span class="caret"></span>
-                                  </button>
-                                  <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" onclick="changePathColor('Black')">Black</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="changePathColor('Red')">Red</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="changePathColor('Blue')">Blue</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="changePathColor('Green')">Green</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="changePathColor('Yellow')">Yellow</a>  
-                                    </li>
-                                  </ul>
+                                    <form class="nav navbar-btn navbar-left">
+                                        <button id="black" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Black')">Black</button>
+                                        <button id="red" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Red')">Red</button>
+                                        <button id="green" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Green')">Green</button>
+                                        <button id="blue" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Blue')">Blue</button>
+                                        <button id="yellow" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Yellow')">Yellow</button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <p>
-                                    <input id="on_off" type="checkbox" checked>
-                                </p>
+                                <div class="btn-group">
+                                    <form class="nav navbar-btn navbar-left">
+                                        <button type="button" class="btn btn-primary navbar-btn" onclick="gridOnOff(Grid)">Grid on/off</button>
+                                        <button type="button" class="btn btn-primary" onclick="undo(_3dTerrainMapofWorkSpace)">Undo</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -121,7 +97,6 @@
                                     <span>
                                         Line Opacity (%):       
                                         <span id="lineOpacityVal">50</span>
-                                        
                                     <input id="lineOpacity" type="text" data-slider-min="0" data-slider-step="2" data-slider-max="100" data-slider-value="50" data="value: '50'" value="50" style="display: none;">
                                     </span>
                                 </div>
@@ -146,13 +121,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="btn btn-primary" onclick="clearPaper(_3dTerrainMapofWorkSpace)">
-                                    Clear Work-Space
-                                </button>
-                            </td>
-                        </tr>
+<!--
                         <tr>
                             <td>
                                 <button type="button" class="btn btn-primary" onclick="changeTerrainMap()">
@@ -172,6 +141,7 @@
                                 </div>
                             </td>
                         </tr>
+-->
                         <tr>
                             <td>
                                 <div style="background: rgb(200,200,200);" class="well">
@@ -202,8 +172,8 @@
     <!-- Nav tabs -->
     <div role="tabpanel">
       <ul class="nav nav-tabs" role="tablist">
-        <li id="tab" role="presentation" class="active"><a href="#three" aria-controls="home" role="tab" data-toggle="tab">View</a></li>
-        <li id="tab" role="presentation"><a href="#paper" aria-controls="profile" role="tab" data-toggle="tab">Work-Space</a></li>
+        <li id="threeTab" role="presentation" class="active"><a href="#three" aria-controls="home" role="tab" data-toggle="tab">View</a></li>
+        <li id="paperTab" role="presentation"><a href="#paper" aria-controls="profile" role="tab" data-toggle="tab">Work-Space</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -219,9 +189,7 @@
     </div>
         
     <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
-<!--    <script src="../assets/plugins/bootstrap/js/bootstrap.jsb"></script>-->    
-    <script src="../bootStrap/bootstrap.js"></script>    
-    <script src="../bootstrap-switch/bootstrap-switch.js"></script>   
+    <script src="../bootStrap/bootstrap.js"></script>
     <script src="../bootstrap-slider/bootstrap-slider.js"></script>
     <script src="../PAPER/paper-full.js"></script>
     <script src="../THREE/three.min.js"></script>
@@ -234,11 +202,20 @@
         
     <!-- Menu Toggle Script -->
     <script>
+        var zoomLevel = 1;//Ensures that when the first time paperTab is clicked, the paper.view.zoom level remains at 1
+        
         $("#menu-toggle").click(function(e) {
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
-        $("#tab").click(function(e) {
+        $("#paperTab").click(function(e){
+            paper.view.zoom = zoomLevel;
+            paper.view.draw();
+        });
+        $("#threeTab").click(function(e){
+            zoomLevel = paper.view.zoom;
+            paper.view.zoom = 1;
+            paper.view.draw();
             _3dTerrainMapofWorkSpace();
         });
     </script>

@@ -59,7 +59,7 @@ function setupThree(){
             
             render();
             animate();
-            createThreeGUI(imgList);
+//            createThreeGUI(imgList);
         } 
     }
 }
@@ -192,25 +192,25 @@ function getImageData(onSuccess){
 
 
 
-function createThreeGUI(imgList){
-//    console.log('createThreeGUI');
-    var mapList = document.getElementById("mapOptions");
-    
-    for(var i = 0; i < imgList.length; i++){
-        var li = document.createElement("li");
-        
-        var link = document.createElement("a");
-        link.href = '#';
-        link.innerHTML = imgList[i];
-        link.onclick = function(){
-            changeTerrainMap(this.innerHTML);
-        }
-        
-        li.appendChild(link);
-        
-        mapList.appendChild(li);
-    }
-}
+//function createThreeGUI(imgList){
+////    console.log('createThreeGUI');
+//    var mapList = document.getElementById("mapOptions");
+//    
+//    for(var i = 0; i < imgList.length; i++){
+//        var li = document.createElement("li");
+//        
+//        var link = document.createElement("a");
+//        link.href = '#';
+//        link.innerHTML = imgList[i];
+//        link.onclick = function(){
+//            changeTerrainMap(this.innerHTML);
+//        }
+//        
+//        li.appendChild(link);
+//        
+//        mapList.appendChild(li);
+//    }
+//}
 
 
 
