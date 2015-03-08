@@ -3,6 +3,7 @@
 <html>
     <head>
     <title>José R. Araújo Meza</title>
+<!--        This style will remove the default slider from html page-->
         <style>
         body{
             overflow: hidden;
@@ -16,41 +17,53 @@
         <script src="../THREE/TrackballControls.js"></script>
 
         <script>
+            //Global variables for THREE environment
             var camera, scene, renderer, controls;
             
             
+            //Initial function called
             init();
+            //Animates the THREE environment
             animate();
-
-            
             
             
             function init(){
+                //Creates THREE environment
+                scene = new THREE.Scene();
+                
+                //Creates camera for THREE environment
                 camera = new THREE.PerspectiveCamera(45, innerWidth / innerHeight, 1 ,1000000);
                 camera.position.z = 500;
 
+                //Adds mouse/touch controls to the camera
                 controls = new THREE.TrackballControls(camera);
                 controls.addEventListener('change', render);
 
-                scene = new THREE.Scene();
-
+                //Creates CubeGeometry and MeshNormalMaterial
                 var geometry = new THREE.CubeGeometry(500, 500, 500);
-                    var material = new THREE.MeshNormalMaterial();
+                var material = new THREE.MeshNormalMaterial();
 
-
-                for( var i = 0; i < 10000; i++){
-                    var mesh = new THREE.Mesh( geometry, material);
+                //Creates i number of meshes, all meshes in THREE need geometry and material
+                //Give all created meshes random position in THREE environment
+                //finally added them to the THREE environment
+                for(var i = 0; i < 10000; i++){
+                    var mesh = new THREE.Mesh(geometry, material);
                     mesh.position.x = (Math.random() - 0.5) * 200000;
                     mesh.position.y = (Math.random() - 0.5) * 200000;
                     mesh.position.z = (Math.random() - 0.5) * 200000;
                     scene.add(mesh);
                 }
 
+                //Creates renderer for THREE environment and appends to html document
                 renderer = new THREE.WebGLRenderer();
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 document.body.appendChild(renderer.domElement);
 
+                //Added eventListener for window resize
                 window.addEventListener('resize', onWindowResize, false);
+                
+                //After all component for the THREE environment are created 
+                //render the THREE environment
                 render();
             }
 
@@ -58,9 +71,11 @@
             
             
             function onWindowResize(){
+                //Update camera.aspect to the new window size
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
 
+                //Update renderer.setSize to the new window size
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
@@ -68,7 +83,8 @@
             
             
             function animate(){
-                requestAnimationFrame( animate );
+                //Updates the controls for the camera
+                requestAnimationFrame(animate);
                 controls.update();
             }
 
@@ -76,6 +92,7 @@
             
             
             function render(){
+                //Renders the THREE environment
                 renderer.render(scene, camera);   
             }
         </script>

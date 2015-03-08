@@ -1,7 +1,8 @@
 <html>
     <head>
         <meta name="viewport" content="minimal-ui">
-    <title>José R. Araújo Meza</title>
+        <title>José R. Araújo Meza</title>
+<!--        This style will remove the default slider from html page-->
         <style>
             body{
                 overflow: hidden;
@@ -15,34 +16,50 @@
         <script src="../THREE/TrackballControls.js"></script>
 
         <script>
+            //Global variables for THREE environment
             var camera, scene, renderer, controls;
-            var numParticles = 20, maxDis = 4000000, radius = 100000, numOfDomain = 1;
+            var numParticles = 20, maxDis = 4000000, radius = 100000, numOfDomain = 1, timeMult = 10;
             var particles = new Array();
-            var G = 6.67384 * Math.pow(10,-11);//6.67384 × 10-11 m3 kg-1 s-2
+            var G = 6.67384 * Math.pow(10,-11);//6.67384 × 10-11 m3 kg-1 s-2 gravitional constant
             var lastTime = new Date().getTime();
-            var timeMult = 10;
 
             
+            
+            
+            //Initial function called, passing animate
             init(animate);
 
-            //onSuccess is called when init() is complete
+            
+            
+            
             function init(onSuccess){
-
+                //Creates THREE environment
+                scene = new THREE.Scene();
+                
+                //Creates camera for THREE environment
                 camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1 ,1000000000);
                 camera.position.z = 4000000;
 
+                //Adds mouse/touch controls to the camera
                 controls = new THREE.TrackballControls(camera);
                 controls.addEventListener('change', render);
-
-                scene = new THREE.Scene();
-
+                
+                //Creates the particle for the THREE environment
                 createParticles();
-                console.log(particles);
+
+                //Creates renderer for THREE environment and appends to html document
                 renderer = new THREE.WebGLRenderer();
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 document.body.appendChild(renderer.domElement);
 
+                //Added eventListener for window resize
                 window.addEventListener('resize', onWindowResize, false);
+                
+                //After all component for the THREE environment are created 
+                //render the THREE environment
+                render();
+                
+                //Called when init has completed
                 onSuccess();
             }
 
@@ -50,9 +67,12 @@
 
 
             function createParticle(radius, mesh, force, volume, mass, acceleration, velocity){
+                //Create SphereGeometry and MeshNormalMaterial 
                 var geometry = new THREE.SphereGeometry(1,50,50);
                 var material = new THREE.MeshNormalMaterial();
 
+                //newParticle object needs all of these properties
+                //to be accurate and precise about gravitional interaction
                 var newParticle = {};
                 newParticle.radius = radius || 1;
                 newParticle.mesh = new THREE.Mesh(geometry, material);
@@ -69,6 +89,8 @@
 
 
             function createParticles(){
+                //Creates i number of particles with random position, size, volume, mass
+                //Then adds particle to THREE environment and to particles array
                 for(var i = 0; i < numParticles; i++){
                     var rand = Math.random();
                     var scaleOfNum = numOfDomain * rand;
@@ -83,9 +105,10 @@
                     particle.mesh.scale.z = scaleOfNum * radius;
                     particle.volume = (4/3)*Math.PI*Math.pow(particle.mesh.scale.x,3);
                     particle.mass = particle.volume;
+                    
                     scene.add(particle.mesh);
+                    
                     particles[i] = particle;
-
                 }
             }
 
@@ -95,43 +118,58 @@
             function calcForces(){
                 var F, A;
                 
+                //Nested for loop to compare all particle to each other but itself
                 for(var i = 0; i < numParticles; i++){
+                    //Position and mass of the particles[i]
                     var x1 = particles[i].mesh.position;
                     var mass1 = particles[i].mass;
+                    
+                    //Temp variable to calculate total force on the particles[i]
                     var F_sum = new THREE.Vector3(0,0,0);
 
                     for(var j = 0; j < numParticles; j++){
-
+                        //As long as particles[i] and particles[j] are NOT the same
                         if(particles[i] != particles[j]){
+                            //Position and mass of the particles[j]
                             var x2 = particles[j].mesh.position;
                             var mass2 = particles[j].mass;
 
-                            var d = Math.sqrt(Math.pow((x1.x-x2.x),2)+Math.pow((x1.y-x2.y),2)+Math.pow((x1.z-x2.z),2));//Distance between the two objects
+                            //Distance between the two particles
+                            var d = Math.sqrt(Math.pow((x1.x-x2.x),2)+Math.pow((x1.y-x2.y),2)+Math.pow((x1.z-x2.z),2));
 
+                            //Calculate the force between the particles
+                            //but if the two particles are close enough the particles will merge
                             if(d > (particles[i].mesh.scale.x + particles[j].mesh.scale.x) * .8){
-                                F = calcForce(mass1,mass2,d);//Determine Force
+                                F = calcForce(mass1,mass2,d);//Calculates the force bewteen the two particles
+                                
                                 var Fx = F * ((x1.x-x2.x)/ Math.sqrt(d));//Force in the x direction
                                 var Fy = F * ((x1.y-x2.y)/ Math.sqrt(d));//Force in the y direction
                                 var Fz = F * ((x1.z-x2.z)/ Math.sqrt(d));//Force in the z direction
+                                
                                 F_sum.x += Fx;//Determining the sum of all forces in the x direction
                                 F_sum.y += Fy;//Determining the sum of all forces in the y direction
                                 F_sum.z += Fz;//Determining the sum of all forces in the z direction
                             }
                             else{
-                                    merging(particles[i], particles[j]);
-                                    particles[j].mesh.position.x = (Math.random() - 0.5) * maxDis * 1000;
-                                    particles[j].mesh.position.y = (Math.random() - 0.5) * maxDis * 1000;
-                                    particles[j].mesh.position.z = (Math.random() - 0.5) * maxDis * 1000; 
+                                //Modifies particles[i] so that it has both itself and particles[j] properties
+                                merging(particles[i], particles[j]);
+                                
+                                //Moves particles[j] far from all other particles
+                                //Gives the illusion of merging
+                                particles[j].mesh.position.x = (Math.random() - 0.5) * maxDis * 1000;
+                                particles[j].mesh.position.y = (Math.random() - 0.5) * maxDis * 1000;
+                                particles[j].mesh.position.z = (Math.random() - 0.5) * maxDis * 1000; 
                             }
 
                         }//if 
 
+                        //Sets particles[i].force property
                         particles[i].force = F_sum;
 
                     }//for j
 
-
-                    particles[i].acceleration = calcAcceleration(particles[i].force,particles[i].mass);
+                    //Sets particles[i].acceleration property
+                    particles[i].acceleration = calcAcceleration(particles[i].force, particles[i].mass);
 
                 }//for i
 
@@ -141,7 +179,8 @@
 
 
             function calcForce(mass1, mass2, distance){
-                var force = -G*((mass1*mass2)/Math.pow(distance,2));
+                //Kinematic equation learned at the university
+                var force = -G*((mass1*mass2)/Math.pow(distance, 2));
                 return force;
             }
 
@@ -149,17 +188,25 @@
 
 
             function merging(particle1, particle2){
-                var radius1Cubed, radius2Cubed, newRadius, scaleRadius, massSum;
+                //If two particle are close enough, they should merge becoming one new particle
+                //The new particle will have the porperties of the prior two particles
+                var radius1Cubed, radius2Cubed, scaleRadius, massSum;
 
-                radius1Cubed = Math.pow(particle1.mesh.scale.x,3);
-                radius2Cubed = Math.pow(particle2.mesh.scale.x,3);
+                //Getting the radius for both particle
+                radius1Cubed = Math.pow(particle1.mesh.scale.x, 3);
+                radius2Cubed = Math.pow(particle2.mesh.scale.x, 3);
 
+                //Calculate the scale for the new particle
                 scaleRadius = Math.pow(radius1Cubed + radius2Cubed, 1/3);
 
+                //Add masses for the new particle
                 particle1.mass =  particle1.mass + particle2.mass;
+                //Scale the particle
                 particle1.mesh.scale.x = scaleRadius;
                 particle1.mesh.scale.y = scaleRadius;
                 particle1.mesh.scale.z = scaleRadius;
+                
+                //Used momentum to calculate the velocity for the new particle
                 particle1.velocity.x = (particle1.mass * particle1.velocity.x + particle2.mass * particle2.velocity.x) / (particle1.mass + particle2.mass);
                 particle1.velocity.y = (particle1.mass * particle1.velocity.y + particle2.mass * particle2.velocity.y) / (particle1.mass + particle2.mass);
                 particle1.velocity.z = (particle1.mass * particle1.velocity.z + particle2.mass * particle2.velocity.z) / (particle1.mass + particle2.mass);
@@ -170,10 +217,13 @@
 
 
             function calcAcceleration(force, mass){
+                //Kinematic equation learned at the university
                 var A_x = force.x/mass;
                 var A_y = force.y/mass;
                 var A_z = force.z/mass;
+                
                 var acceleration = new THREE.Vector3(A_x, A_y, A_z);
+                
                 return acceleration;
             }
 
@@ -181,7 +231,10 @@
 
 
             function moveParticles(T){
+                //T being the variable that modify time, faster or slower
+                //Kinematic equation learned at the university
                 T = T * timeMult;
+                
                 for(var i = 0; i < particles.length; i++){
                     particles[i].velocity.x += particles[i].acceleration.x * T;
                     particles[i].velocity.y += particles[i].acceleration.y * T;
@@ -197,8 +250,11 @@
 
 
             function onWindowResize(){
+                //Update camera.aspect to the new window size
+                camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
 
+                //Update renderer.setSize to the new window size
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
 
@@ -206,19 +262,27 @@
 
 
             function animate(){
+                //Called every frame
+                requestAnimationFrame(animate);
+                
+                //Calculating the amount of time bewteen frames 
                 var time = (new Date()).getTime();
                 var deltaTime = (time - lastTime);
                 lastTime = time;
 
                 //Makes sure that all cubes have been created before calculating calcSumVector and before moving cubes    
                 if(particles.length === numParticles){
+                    //Calculate the forces
                     calcForces();
+                    
+                    //Then move the particles
                     moveParticles(deltaTime);
-
                 }
 
-                requestAnimationFrame(animate);
+                //Update the controls for the camera
                 controls.update();
+                
+                //Renders the THREE environment
                 render();
             }
 
@@ -226,7 +290,8 @@
 
 
             function render(){
-                renderer.render(scene, camera);   
+                //Renders the THREE environment
+                renderer.render(scene, camera); 
             }
 
         </script>
