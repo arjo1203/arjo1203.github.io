@@ -33,7 +33,7 @@ var paper = new joint.dia.Paper({
 });
 
 // zoom the viewport by 50%
-paper.scale(1.5,1.5);
+paper.scale(1.25, 1.25);
 
 function toggleLive(model, signal) {
     // add 'live' class to the element if there is a positive signal
