@@ -1,26 +1,26 @@
 var pixHeightDis, pixWidthDis, imgList, Grid, numOfRuns = 0;
-var heightData = new Array();
+var heightData = [];
 
 
-function openJSON(onSuccess){
-    var body = document.getElementById('body');
+function openJSON(onSuccess) {
+    var body = document.getElementById('body'),
+        file = document.createElement('input');
     
-    var file = document.createElement('input');
     file.type = 'file';
     file.click();
 
-    file.addEventListener('change', function(){
+    file.addEventListener('change', function () {
         var reader = new FileReader();
-        reader.onloadstart = function(){
+        reader.onloadstart = function () {
 //            body.style.cursor = 'progress';   
-        }
-        reader.onprogress = function(){
+        };
+        reader.onprogress = function () {
 //            window.style.cursor = 'progress';   
-        }
-        reader.onloadend = function(){
+        };
+        reader.onloadend = function () {
 //            body.style.cursor = 'default';   
-        }
-        reader.onload = function(e){
+        };
+        reader.onload = function (e) {
             //Create paperjs project from saved paperjs project
             var inputFile = JSON.parse(e.target.result);
 //            console.log(inputFile);
@@ -28,12 +28,12 @@ function openJSON(onSuccess){
             paper.project.importJSON(inputFile[1]);
             pixWidthDis = inputFile[2];
             pixHeightDis = inputFile[3];
-            heightData = inputFile[4]
+            heightData = inputFile[4];
             Grid = createGrid(pixWidthDis, pixHeightDis, 'White', 'Yellow');
             onSuccess();
-        }
+        };
         reader.readAsText(file.files[0]);
-        }, 
+    }, 
     false);
 }
 
