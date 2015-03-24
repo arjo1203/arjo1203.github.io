@@ -1,3 +1,5 @@
+var inputCounter = 1, outputCounter = 1;
+
 var graph = new joint.dia.Graph;
 
 var paper = new joint.dia.Paper({
@@ -32,7 +34,7 @@ var paper = new joint.dia.Paper({
     }
 });
 
-// zoom the viewport by 50%
+// zoom the viewport by 25%
 paper.scale(1.25, 1.25);
 
 function toggleLive(model, signal) {
@@ -72,25 +74,6 @@ joint.shapes.logic.Gate.prototype.onSignal = function(signal, handler) { handler
 joint.shapes.logic.Repeater.prototype.onSignal = function(signal, handler) { _.delay(handler, 400, signal) }
 // Output element just marks itself as alive.
 joint.shapes.logic.Output.prototype.onSignal = function(signal) { toggleLive(this, signal); }
-
-// diagramm setup
-var gates = {
-//    repeater: new joint.shapes.logic.Repeater({ position: { x: 350, y: 150 }}),
-    or: new joint.shapes.logic.Or({ position: { x: 250, y: 0 }}),
-    and: new joint.shapes.logic.And({ position: { x: 370, y: 0 }}),
-    not: new joint.shapes.logic.Not({ position: { x: 490, y: 0 }}),
-    nand: new joint.shapes.logic.Nand({ position: { x: 600, y: 0 }}),
-    nor: new joint.shapes.logic.Nor({ position: { x: 710, y: 0 }}),
-    xor: new joint.shapes.logic.Xor({ position: { x: 820, y: 0 }}),
-    xnor: new joint.shapes.logic.Xnor({ position: { x: 930, y: 0 }}),
-    input: new joint.shapes.logic.Input({ position: { x: 120, y: 20 }}),
-    output: new joint.shapes.logic.Output({ position: { x: 40, y: 0 }})
-}
-gates.input.rotate(90);
-
-// add gates and wires to the graph
-graph.addCells(_.toArray(gates));
-//_.each(wires, function(attributes) { graph.addCell(new joint.shapes.logic.Wire(attributes)) });
 
 graph.on('change:source change:target', function(model, end) {
 
@@ -135,47 +118,90 @@ graph.on('change:signal', function(wire, signal) {
 var current = initializeSignal();
 
 function makeOrGate(){
-    var temp = new joint.shapes.logic.Or({ position: { x: 250, y: 0 }});
+    var temp = new joint.shapes.logic.Or({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
 
 function makeAndGate(){
-    var temp = new joint.shapes.logic.And({ position: { x: 370, y: 0 }});
+    var temp = new joint.shapes.logic.And({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
 
 function makeNotGate(){
-    var temp = new joint.shapes.logic.Not({ position: { x: 490, y: 0 }});
+    var temp = new joint.shapes.logic.Not({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
 
 function makeNandGate(){
-    var temp = new joint.shapes.logic.Nand({ position: { x: 600, y: 0 }});
+    var temp = new joint.shapes.logic.Nand({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
 
 function makeNorGate(){
-    var temp = new joint.shapes.logic.Nor({ position: { x: 710, y: 0 }});
+    var temp = new joint.shapes.logic.Nor({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
 
 function makeXorGate(){
-    var temp = new joint.shapes.logic.Xor({ position: { x: 820, y: 0 }});
+    var temp = new joint.shapes.logic.Xor({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
 
 function makeXnorGate(){
-    var temp = new joint.shapes.logic.Xnor({ position: { x: 930, y: 0 }});
+    var temp = new joint.shapes.logic.Xnor({ position: { x: 20, y: 0 }});
     graph.addCell(temp);
 }
+
+
+
 
 function makeInput(){
-    var temp = new joint.shapes.logic.Input({ position: { x: 120, y: 20 }});
+    var name = window.prompt('Please name your input: ');
+    
+    var temp = new joint.shapes.logic.Input({ position: { x: 20, y: 20 }});
+    temp.attr({
+        text: { 
+            fill: 'black',
+            ref: '.body', 'ref-x': .5, 'ref-y': .5, 'y-alignment': 'middle',
+            'text-anchor': 'middle',
+            'font-weight': 'bold',
+            'font-variant': 'small-caps', 
+            'text-transform': 'capitalize',
+            'font-size': '14px',
+            text: name
+        }
+    });
+    temp.id = name;
     temp.rotate(90);
+    
     graph.addCell(temp);
+    
+    inputCounter++;
 }
 
+
+
+
+
+
 function makeOutput(){
-    var temp = new joint.shapes.logic.Output({ position: { x: 40, y: 40 }});
+    var temp = new joint.shapes.logic.Output({ position: { x: 40, y: 20 }});
+    
+    temp.attr({
+        text: { 
+            fill: 'black',
+            ref: '.body', 'ref-x': .5, 'ref-y': .5, 'y-alignment': 'middle',
+            'text-anchor': 'middle',
+            'font-weight': 'bold',
+            'font-variant': 'small-caps', 
+            'text-transform': 'capitalize',
+            'font-size': '14px',
+            text: 'output ' + outputCounter.toString()
+        }
+    });
+    temp.id = 'OUTPUT ' + outputCounter.toString();
+    
     graph.addCell(temp);
+    
+    outputCounter++;
 }
