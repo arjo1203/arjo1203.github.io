@@ -1,0 +1,11 @@
+#backGround {
+
+}
+#sideBar {
+    position: absolute;
+    width: 150px;
+    height: 100%;
+    z-index: -1;
+    background-color: rgb(200,200,200);
+    right: 0;
+}
