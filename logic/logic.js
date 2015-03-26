@@ -162,6 +162,34 @@ paper.on('cell:pointerdblclick', function (evt) {
             });
             makeOutput();
             break;
+        case 'logic.Or':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
+        case 'logic.And':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
+        case 'logic.Not':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
+        case 'logic.Nand':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
+        case 'logic.Nor':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
+        case 'logic.Xor':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
+        case 'logic.Xnor':
+            var rotate = window.prompt('Would you like to rotate? Please enter enter the amount of rotation in degrees! Click Cancel to reset the rotation!');
+            cell.rotate(parseInt(rotate));
+            break;
     }
 });
 
