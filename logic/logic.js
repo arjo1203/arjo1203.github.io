@@ -37,17 +37,19 @@ var paper = new joint.dia.Paper({
 // zoom the viewport by 25%
 paper.scale(1.25, 1.25);
 
+var addPosition = 20;
+
 var gates = {
 //    repeater: new joint.shapes.logic.Repeater({ position: { x: 1245, y: 0 }}),
-    or: new joint.shapes.logic.Or({ position: { x: 10, y: 90 }}),
-    and: new joint.shapes.logic.And({ position: { x: 10, y: 130 }}),
-    not: new joint.shapes.logic.Not({ position: { x: 10, y: 170 }}),
-    nand: new joint.shapes.logic.Nand({ position: { x: 10, y: 210 }}),
-    nor: new joint.shapes.logic.Nor({ position: { x: 10, y: 250 }}),
-    xor: new joint.shapes.logic.Xor({ position: { x: 10, y: 290 }}),
-    xnor: new joint.shapes.logic.Xnor({ position: { x: 10, y: 330 }}),
-    input: new joint.shapes.logic.Input({ position: { x: 10, y: 10 }}),
-    output: new joint.shapes.logic.Output({ position: { x: 40, y: 50 }})
+    or: new joint.shapes.logic.Or({ position: { x: 15, y: 170 + addPosition }}),
+    and: new joint.shapes.logic.And({ position: { x: 15, y: 230 + addPosition }}),
+    not: new joint.shapes.logic.Not({ position: { x: 15, y: 290 + addPosition }}),
+    nand: new joint.shapes.logic.Nand({ position: { x: 15, y: 350 + addPosition }}),
+    nor: new joint.shapes.logic.Nor({ position: { x: 15, y: 410 + addPosition }}),
+    xor: new joint.shapes.logic.Xor({ position: { x: 15, y: 470 + addPosition }}),
+    xnor: new joint.shapes.logic.Xnor({ position: { x: 15, y: 530 + addPosition }}),
+    input: new joint.shapes.logic.Input({ position: { x: 10, y: 80 + addPosition }}),
+    output: new joint.shapes.logic.Output({ position: { x: 45, y: 120 + addPosition }})
 }
 graph.addCells(_.toArray(gates));
 
@@ -228,7 +230,7 @@ paper.on('cell:pointerup', function (evt) {
 
 
 function makeOrGate(){
-    var temp = new joint.shapes.logic.Or({ position: { x: 10, y: 90 }});
+    var temp = new joint.shapes.logic.Or({ position: { x: 15, y: 90 }});
     graph.addCell(temp);
 }
 
@@ -236,7 +238,7 @@ function makeOrGate(){
 
 
 function makeAndGate(){
-    var temp = new joint.shapes.logic.And({ position: { x: 10, y: 130 }});
+    var temp = new joint.shapes.logic.And({ position: { x: 15, y: 130 }});
     graph.addCell(temp);
 }
 
@@ -244,7 +246,7 @@ function makeAndGate(){
 
 
 function makeNotGate(){
-    var temp = new joint.shapes.logic.Not({ position: { x: 10, y: 170 }});
+    var temp = new joint.shapes.logic.Not({ position: { x: 15, y: 170 }});
     graph.addCell(temp);
 }
 
@@ -252,7 +254,7 @@ function makeNotGate(){
 
 
 function makeNandGate(){
-    var temp = new joint.shapes.logic.Nand({ position: { x: 10, y: 210 }});
+    var temp = new joint.shapes.logic.Nand({ position: { x: 15, y: 210 }});
     graph.addCell(temp);
 }
 
@@ -260,7 +262,7 @@ function makeNandGate(){
 
 
 function makeNorGate(){
-    var temp = new joint.shapes.logic.Nor({ position: { x: 10, y: 250 }});
+    var temp = new joint.shapes.logic.Nor({ position: { x: 15, y: 250 }});
     graph.addCell(temp);
 }
 
@@ -268,7 +270,7 @@ function makeNorGate(){
 
 
 function makeXorGate(){
-    var temp = new joint.shapes.logic.Xor({ position: { x: 10, y: 290 }});
+    var temp = new joint.shapes.logic.Xor({ position: { x: 15, y: 290 }});
     graph.addCell(temp);
 }
 
@@ -276,7 +278,7 @@ function makeXorGate(){
 
 
 function makeXnorGate(){
-    var temp = new joint.shapes.logic.Xnor({ position: { x: 10, y: 330 }});
+    var temp = new joint.shapes.logic.Xnor({ position: { x: 15, y: 330 }});
     graph.addCell(temp);
 }
 
@@ -294,6 +296,6 @@ function makeInput(){
 
 
 function makeOutput(){
-    var temp = new joint.shapes.logic.Output({ position: { x: 40, y: 50 }});
+    var temp = new joint.shapes.logic.Output({ position: { x: 45, y: 50 }});
     graph.addCell(temp);
 }
