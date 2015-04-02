@@ -1,5 +1,3 @@
-var iW = window.innerWidth;
-
 var graph = new joint.dia.Graph;
 
 var paper = new joint.dia.Paper({

@@ -1,0 +1,160 @@
+<htmL>
+    <head>
+        <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+        <link href="./paperOverlaySidebar.css" rel="stylesheet">
+        <link href="./paperOverlay.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div>
+            <!-- Wrapper -->
+            <div id="wrapper">
+
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-brand">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <button id="button" type="button" class="btn btn-primary navbar-btn" onclick="onOff()">Draw on/off</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="btn-group">
+                                            <form class="nav navbar-btn navbar-left">
+                                                <button id="black" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Black')">Black</button>
+                                                <button id="red" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Red')">Red</button>
+                                                <button id="green" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Green')">Green</button>
+                                                <button id="blue" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Blue')">Blue</button>
+                                                <button id="yellow" type="button" class="btn btn-primary navbar-btn" onclick="changePathColor('Yellow')">Yellow</button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <form >
+                                            <input id="website" type="text" class="form-control" placeholder="Please enter URL:">
+                                            <button type="button" class="btn btn-primary navbar-btn" onclick="goToWebsite()">Go to URL</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+
+                <!-- Page Content -->
+                <div id="page-content-wrapper" style="position: fixed; height: 0;"></div>
+                <!-- /#page-content-wrapper -->
+
+            </div>
+            <!-- /#wrapper -->
+            <a href="#menu-toggle" type="button" class="btn btn-danger" id="menu-toggle" onclick="changeInnerHtml()">Close</a>
+            <div id="iframeContainer">
+                <!--<iframe id="iframe" src="" width="0" height="0"></iframe>-->
+            </div>
+        </div>
+
+
+        <canvas id="myCanvas"></canvas>
+
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../PAPER/paper-full.js"></script>
+        <script src="../sideBar/sideBar.js"></script>
+        <script type="text/javascript">
+
+            paper.install(window);
+
+            var tools, path, counter = 0, color = 'black', onOffCounter = 0;
+            var button = document.getElementById('menu-toggle');
+
+            //Install paper on 2d canvas
+            paper.setup('myCanvas');
+            paper.view.viewSize = [window.innerWidth, window.innerHeight];
+
+            createPaperTools();
+
+            function createPaperTools() {
+                //Create Drawing Tool
+                tools.drawing = new Tool();
+                tools.drawing.onMouseDown = onMouseDown;
+                tools.drawing.onMouseDrag = onMouseDrag;
+                tools.drawing.minDistance = 5;
+                tools.drawing.maxDistance = 10;
+            }
+
+
+
+            function onMouseDown(event){
+                path = new Path();
+                path.strokeColor = color;
+                path.strokeWidth = 4;
+
+                path.add(event.point);
+            }
+
+
+
+            function onMouseDrag(event){
+                path.add(event.point);
+            }
+
+
+
+            var canvas = document.getElementById('myCanvas');
+            function onOff() {
+                if(counter % 2 == 0){
+                    tools.drawing.off('mousedown', onMouseDown);
+                    tools.drawing.off('mousedrag', onMouseDrag);
+                    canvas.style.pointerEvents = 'none';
+                }
+                else{
+                    tools.drawing.on('mousedown', onMouseDown);
+                    tools.drawing.on('mousedrag', onMouseDrag);
+                    canvas.style.pointerEvents = 'auto';
+                }
+                counter++;
+            }
+
+
+
+
+            function changePathColor(hue){
+                color = hue;
+            }
+
+
+
+            function goToWebsite(){
+                var div = document.getElementById('iframeContainer');
+                if(div.children.length > 0){
+                    div.removeChild(div.lastChild);
+                }
+
+                var website = document.getElementById('website').value;
+                var iframe = document.createElement('iframe');
+                iframe.src = website;
+                iframe.width = '100%';
+                iframe.height = '100%';
+                div.appendChild(iframe);
+            }
+
+
+
+            function changeInnerHtml(){
+                if(onOffCounter % 2 == 0){
+                    button.innerHTML = 'Open';
+                }
+                else{
+                    button.innerHTML = 'Close';
+                }
+
+                onOffCounter++;
+            }
+        </script>
+    </body>
+</htmL>
