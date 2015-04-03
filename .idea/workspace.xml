@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/andGate.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/ditigalLogicScreenShot.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/graphPaper.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/graphPaper.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/logicGates.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/nandGate.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/not-gate-md.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/orGate.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/logic/xnorGate.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -38,8 +29,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33684212" vertical-offset="1424" max-vertical-offset="6016">
-              <caret line="109" column="113" selection-start-line="109" selection-start-column="113" selection-end-line="109" selection-end-column="113" />
+            <state vertical-scroll-proportion="0.48842105" vertical-offset="1216" max-vertical-offset="6016">
+              <caret line="105" column="47" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -352,8 +343,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33684212" vertical-offset="1424" max-vertical-offset="6016">
-          <caret line="109" column="113" selection-start-line="109" selection-start-column="113" selection-end-line="109" selection-end-column="113" />
+        <state vertical-scroll-proportion="0.48842105" vertical-offset="1216" max-vertical-offset="6016">
+          <caret line="105" column="47" selection-start-line="105" selection-start-column="47" selection-end-line="105" selection-end-column="47" />
           <folding />
         </state>
       </provider>
