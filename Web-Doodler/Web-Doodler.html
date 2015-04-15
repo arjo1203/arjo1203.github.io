@@ -5,7 +5,17 @@
         <link href="./Web-Doodler.css" rel="stylesheet">
     </head>
     <body>
+        <system.webServer>
+            ...
 
+            <httpProtocol>
+                <customHeaders>
+                    <add name="X-Frame-Options" value="SAMEORIGIN" />
+                </customHeaders>
+            </httpProtocol>
+
+            ...
+        </system.webServer>
         <div>
             <!-- Wrapper -->
             <div id="wrapper">
@@ -16,6 +26,14 @@
                         <li class="sidebar-brand">
                             <h2 class="page-header">Web-Doodler</h2>
                             <table class="table table-condensed">
+                                <tr>
+                                    <td>
+                                        <form>
+                                            <input id="website" type="text" class="form-control" placeholder="Please enter URL">
+                                            <button type="button" class="btn btn-primary navbar-btn" onclick="goToWebsite()">Go to URL</button>
+                                        </form>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <div class="btn-group">
@@ -39,14 +57,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        <form >
-                                            <input id="website" type="text" class="form-control" placeholder="Please enter URL:">
-                                            <button type="button" class="btn btn-primary navbar-btn" onclick="goToWebsite()">Go to URL</button>
-                                        </form>
-                                    </td>
-                                </tr>
                             </table>
                         </li>
                     </ul>
@@ -59,9 +69,8 @@
 
             </div>
             <!-- /#wrapper -->
-            <a href="#menu-toggle" type="button" class="btn btn-danger" id="menu-toggle" onclick="changeInnerHtml()">Close</a>
+            <a href="#menu-toggle" type="button" class="btn btn-danger" id="menu-toggle">Close</a>
             <div id="iframeContainer">
-                <!--<iframe id="iframe" src="" width="0" height="0"></iframe>-->
             </div>
         </div>
 
@@ -70,134 +79,6 @@
 
         <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
         <script src="../PAPER/paper-full.js"></script>
-        <script src="../sideBar/sideBar.js"></script>
-        <script type="text/javascript">
-
-            paper.install(window);
-
-            var tools, path, counter = 0, color = 'black', onOffCounter = 0;
-            var button = document.getElementById('menu-toggle');
-
-            //Install paper on 2d canvas
-            paper.setup('myCanvas');
-            paper.view.viewSize = [window.innerWidth, window.innerHeight];
-
-            createPaperTools();
-
-            function createPaperTools() {
-                //Create Drawing Tool
-                tools.drawing = new Tool();
-                tools.drawing.onMouseDown = onMouseDown;
-                tools.drawing.onMouseDrag = onMouseDrag;
-                tools.drawing.minDistance = 5;
-                tools.drawing.maxDistance = 10;
-
-                //Create Eraser Tool
-                tools.eraser = new Tool();
-                tools.eraser.onMouseDrag = eraser;
-            }
-
-
-
-            function onMouseDown(event){
-                path = new Path();
-                path.strokeColor = color;
-                path.strokeWidth = 4;
-
-                path.add(event.point);
-            }
-
-
-
-            function onMouseDrag(event){
-                path.add(event.point);
-            }
-
-
-
-            var canvas = document.getElementById('myCanvas');
-            var drawButton = document.getElementById('drawButton');
-            function onOff() {
-                if(counter % 2 == 0){
-                    tools.drawing.off('mousedown', onMouseDown);
-                    tools.drawing.off('mousedrag', onMouseDrag);
-                    canvas.style.pointerEvents = 'none';
-                    drawButton.innerHTML = 'Draw Off';
-                }
-                else{
-                    tools.drawing.on('mousedown', onMouseDown);
-                    tools.drawing.on('mousedrag', onMouseDrag);
-                    canvas.style.pointerEvents = 'auto';
-                    drawButton.innerHTML = 'Draw On';
-                }
-                counter++;
-            }
-
-
-
-
-            function changePathColor(hue){
-                color = hue;
-            }
-
-
-
-            function goToWebsite(){
-                var div = document.getElementById('iframeContainer');
-                if(div.children.length > 0){
-                    div.removeChild(div.lastChild);
-                }
-
-                var website = document.getElementById('website').value;
-                var iframe = document.createElement('iframe');
-                iframe.src = website;
-                iframe.width = '100%';
-                iframe.height = '100%';
-                div.appendChild(iframe);
-            }
-
-
-
-            function changeInnerHtml(){
-                if(onOffCounter % 2 == 0){
-                    button.innerHTML = 'Open';
-                }
-                else{
-                    button.innerHTML = 'Close';
-                }
-
-                onOffCounter++;
-            }
-
-
-
-            function undo(){
-                paper.project.activeLayer.children[paper.project.activeLayer.children.length-1].remove();
-                window.paper.view.draw();
-            }
-
-
-
-
-            function eraser(event){
-                var hitOptions = {
-                    segments: true,
-                    tolerance: 20
-                };
-
-                var hitResult = project.hitTest(event.point, hitOptions);
-                if (hitResult) {
-                    path = hitResult.item;
-                    if (hitResult.type == 'segment') {
-                        for(var i = 0; i < paths.length; i++){
-                            if(hitResult.item == paths[i]){
-                                hitResult.item.remove();
-                                removePath(hitResult.item);
-                            }//if
-                        }//for
-                    }//if
-                }//if
-            }//fn
-        </script>
+        <script src="./Web-Doolder.js"></script>
     </body>
 </htmL>
