@@ -1,0 +1,68 @@
+.homeButtons{
+    position: relative;
+    padding: 60px 60px;
+    font-size: 40px;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #B81414;
+    border-color: #B81414;
+    -webkit-text-fill-color: white;
+}
+
+.SCSULogo{
+    width: 300px;
+    height: 200px;
+}
+
+#homeButtonsContainer{
+    position: absolute;
+    width: 100%;
+    top: 35%;
+}
+
+#body{
+    background-color: #B81414;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#By{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    -webkit-text-fill-color: white;
+}
+
+.panel-default > .panel-heading{
+    background:
+linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+    -webkit-text-fill-color: white;
+}
+
+.panel-default > .panel-body{
+    background-color: #f5f5f5;
+    background-size:16px 16px;
+}
+
+.panelBorder{
+    border-color: #080808;
+}
+
+#vizHeader{
+    position: relative;
+    width: 100%;
+    /*left: 30%;*/
+    font-size: 50px;
+}
+
+#vizBody{
+    background-image: url('./scsuCode.jpg');
+}

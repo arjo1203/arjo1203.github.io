@@ -105,7 +105,7 @@ function goToWebsite(){
 //Toggle for sidebar
 menu_toggle.click(function(e) {
     e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
+    //$("#wrapper").toggleClass("toggled");
     //console.log($("#wrapper"));
 
     if(onOffCounter % 2 == 0){
