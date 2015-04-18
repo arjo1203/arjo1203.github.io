@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/ISELFMap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/aboutVizGroup.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/campusMap.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/dean.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/main.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/scsu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/video.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web-Doodler/Web-Doodler.html" afterPath="$PROJECT_DIR$/Web-Doodler/Web-Doodler.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web-Doodler/Web-Doolder.js" afterPath="$PROJECT_DIR$/Web-Doodler/Web-Doolder.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/quadraticSurfaces/quadraticSurface.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.html" afterPath="$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.js" afterPath="$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,8 +74,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6905263" vertical-offset="2304" max-vertical-offset="6336">
-              <caret line="185" column="125" selection-start-line="185" selection-start-column="125" selection-end-line="185" selection-end-column="125" />
+            <state vertical-scroll-proportion="0.47157896" vertical-offset="2304" max-vertical-offset="6336">
+              <caret line="172" column="129" selection-start-line="172" selection-start-column="129" selection-end-line="172" selection-end-column="129" />
               <folding />
             </state>
           </provider>
@@ -867,8 +856,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6905263" vertical-offset="2304" max-vertical-offset="6336">
-          <caret line="185" column="125" selection-start-line="185" selection-start-column="125" selection-end-line="185" selection-end-column="125" />
+        <state vertical-scroll-proportion="0.47157896" vertical-offset="2304" max-vertical-offset="6336">
+          <caret line="172" column="129" selection-start-line="172" selection-start-column="129" selection-end-line="172" selection-end-column="129" />
           <folding />
         </state>
       </provider>
