@@ -16,7 +16,7 @@ $("#xScale").slider();
 $("#xScale").on('slide', function(slideEvt) {
     $("#xScaleVal").text(slideEvt.value);
     if(slideEvt.value != 0){
-        HyperbolicParaboloid.scale.x = 1 / Math.pow(slideEvt.value, 2);
+        GRAPH.scale.x = 1 / Math.pow(slideEvt.value, 2);
         render();
     }
 });
@@ -25,16 +25,18 @@ $("#yScale").slider();
 $("#yScale").on('slide', function(slideEvt) {
     $("#yScaleVal").text(slideEvt.value);
     if(slideEvt.value != 0){
-        HyperbolicParaboloid.scale.y = 1 / Math.pow(slideEvt.value, 2);
+        GRAPH.scale.y = 1 / Math.pow(slideEvt.value, 2);
         render();
     }
 });
 
 //Global variables for THREE environment
 var camera, scene, renderer, controls;
-var PLANE, HyperbolicParaboloid;
+var PLANE, GRAPH;
 var menu_toggle = $("#menu-toggle"), onOffCounter = 0, planeOnOff = 0, planeOnOffButton = $('#planeOnOff');
-var passPos = [0];
+var Hyperboloid1Button = $('#Hyperboloid1'), Hyperboloid2Button = $('#Hyperboloid2'), ConeButton = $('#Cone'),
+    EllipticParaboloidButton = $('#EllipticParaboloid'), HyperbolicParaboloidButton = $('#HyperbolicParaboloid'),
+    graphName = $('#graphName'), graphFn = $('#graphFn');
 
 
 
@@ -61,10 +63,10 @@ function init(onSuccess){
     //Assigns the 'change' eventListener to render whenever you move the camera
     controls.addEventListener('change', render);
 
-    HyperbolicParaboloid = makeHyperbolicParaboloid();
+    GRAPH = makeHyperbolicParaboloid();
     //HyperbolicParaboloid.position.x = 20;
-    HyperbolicParaboloid.id = 'HyperbolicParaboloid';
-    scene.add(HyperbolicParaboloid);
+    GRAPH.id = 'HyperbolicParaboloid';
+    scene.add(GRAPH);
 
     //var EllipticParaboloid = makeEllipticParaboloid();
     //EllipticParaboloid.position.x = -20;
@@ -157,9 +159,275 @@ function makeEllipticParaboloid(){
 
 
 
+function makeCone(){
+    var cone = new THREE.Object3D();
+    var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 50;
+    var zFunc = function(a, b){
+        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2), .5);
+        return result;
+    };
+    meshFunction = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc(x,y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
+    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
+    graphMesh.doubleSided = true;
+    cone.add(graphMesh);
+
+    var zFunc2 = function(a, b){
+        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2), .5);
+        return result;
+    };
+    meshFunction2 = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
+    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
+    graphMesh2.doubleSided = true;
+    cone.add(graphMesh2);
+
+    return cone;
+}
+
+
+
+function makeHyperboloid1(){
+    var hyperboloid = new THREE.Object3D();
+    var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 40;
+    var zFunc = function(a, b){
+        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - 1, .5);
+        return result;
+    };
+    meshFunction = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc(x, y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
+    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
+    graphMesh.doubleSided = true;
+    hyperboloid.add(graphMesh);
+
+    var zFunc2 = function(a, b){
+        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - 1, .5);
+        return result;
+    };
+    meshFunction2 = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
+    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
+    graphMesh2.doubleSided = true;
+    hyperboloid.add(graphMesh2);
+
+    return hyperboloid;
+}
+
+
+
+function makeHyperboloid2(){
+    var hyperboloid = new THREE.Object3D();
+    var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 40;
+    var zFunc = function(a, b){
+        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + 1, .5);
+        return result;
+    };
+    meshFunction = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc(x, y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
+    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
+    graphMesh.doubleSided = true;
+    hyperboloid.add(graphMesh);
+
+    var zFunc2 = function(a, b){
+        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + 1, .5);
+        return result;
+    };
+    meshFunction2 = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
+    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
+    graphMesh2.doubleSided = true;
+    hyperboloid.add(graphMesh2);
+
+    return hyperboloid;
+}
+
+
+
+function makeEllipsoid(){
+    var ellipsoid = new THREE.Object3D();
+    var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 40;
+    var zFunc = function(a, b){
+        var result = Math.pow(-Math.pow(a, 2) - Math.pow(b, 2), .5);
+        return result;
+    };
+    meshFunction = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc(x, y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
+    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
+    graphMesh.doubleSided = true;
+    ellipsoid.add(graphMesh);
+
+    var zFunc2 = function(a, b){
+        var result = -Math.pow(-Math.pow(a, 2) - Math.pow(b, 2), .5);
+        return result;
+    };
+    meshFunction2 = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
+        if ( isNaN(z) )
+            return new THREE.Vector3(0,0,0); // TODO: better fix
+        else
+            return new THREE.Vector3(x, y, z);
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
+    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
+    graphMesh2.doubleSided = true;
+    ellipsoid.add(graphMesh2);
+
+    return ellipsoid;
+}
+
+
+
 function degInRad(deg) {
     return deg * Math.PI / 180;
 }
+
+
+
+HyperbolicParaboloidButton.click(function() {
+    graphName[0].innerHTML = 'Hyperbolic Paraboloid';
+    graphFn[0].innerHTML = 'z = (x^2/a^2) - (y^2/b^2)';
+
+    scene.remove(GRAPH);
+
+    GRAPH = makeHyperbolicParaboloid();
+    scene.add(GRAPH);
+
+    render();
+});
+
+
+
+ConeButton.click(function() {
+    graphName[0].innerHTML = 'Cone';
+    graphFn[0].innerHTML = 'z^2 = (x^2/a^2) + (y^2/b^2)';
+
+    scene.remove(GRAPH);
+
+    GRAPH = makeCone();
+    scene.add(GRAPH);
+
+    render();
+});
+
+
+
+
+Hyperboloid1Button.click(function() {
+    graphName[0].innerHTML = 'Hyperboloid 1 Sheet';
+    graphFn[0].innerHTML = '(x^2/a^2) + (y^2/b^2) - z^2 = 1';
+
+    scene.remove(GRAPH);
+
+    GRAPH = makeHyperboloid1();
+    scene.add(GRAPH);
+
+    render();
+});
+
+
+
+
+Hyperboloid2Button.click(function() {
+    graphName[0].innerHTML = 'Hyperboloid 2 Sheet';
+    graphFn[0].innerHTML = '-(x^2/a^2) - (y^2/b^2) + z^2 = 1';
+
+    scene.remove(GRAPH);
+
+    GRAPH = makeHyperboloid2();
+    scene.add(GRAPH);
+
+    render();
+});
 
 
 
@@ -177,6 +445,19 @@ planeOnOffButton.click(function() {
         planeOnOffButton[0].innerHTML = 'Turn Plane Off';
     }
     planeOnOff++;
+});
+
+
+EllipticParaboloidButton.click(function() {
+    graphName[0].innerHTML = 'Elliptic Paraboloid';
+    graphFn[0].innerHTML = 'z = (x^2/a^2) + (y^2/b^2)';
+
+    scene.remove(GRAPH);
+
+    GRAPH = makeEllipticParaboloid();
+    scene.add(GRAPH);
+
+    render();
 });
 
 

@@ -39,36 +39,15 @@
     <div id="sidebar-wrapper">
             <div class="row" style="position: relative; width: 100%; padding: 0 20px;">
                 <div>
-                    <h3>Hyperbolic Paraboloid</h3>
-                    <label>z = (x^2/a^2) - (y^2/b^2)</label>
-                </div>
-            </div>
-            <div class="row" style="padding: 10px 20px;">
-                <button id="planeOnOff" class="btn btn-primary navbar-btn">Turn Plane On</button>
-                <div>
-                    <span style="float: left;">
-                        Plane Tilt (degrees):
-                        <span id="planeTiltVal">0</span>
-
-                    <input id="planeTilt" type="text" data-slider-min="-90" data-slider-step="1" data-slider-max="90" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
-            </div>
-            <div class="row" style="padding: 10px 20px;">
-                <div>
-                    <span style="float: left;">
-                        Plane Position:
-                        <span id="planePosVal">0</span>
-
-                    <input id="planePos" type="text" data-slider-min="-100" data-slider-step="1" data-slider-max="100" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
+                    <h3 id="graphName">Hyperbolic Paraboloid</h3>
+                    <label id="graphFn">z = (x^2/a^2) - (y^2/b^2)</label>
                 </div>
             </div>
             <div class="row" style="padding: 10px 20px;">
                 <div>
                         <span style="float: left;">
                             Parameter a:
-                            <span id="xScaleVal">1</span>
+                            1 / <span id="xScaleVal">1</span>^2
 
                         <input id="xScale" type="text" data-slider-min="0" data-slider-step=".05" data-slider-max="1" data-slider-value="1" data="value: '1'" value="1" style="display: none;">
                         </span>
@@ -78,11 +57,39 @@
                 <div>
                         <span style="float: left;">
                             Parameter b:
-                            <span id="yScaleVal">1</span>
+                            1 / <span id="yScaleVal">1</span>^2
 
                         <input id="yScale" type="text" data-slider-min="0" data-slider-step=".05" data-slider-max="1" data-slider-value="1" data="value: '1'" value="1" style="display: none;">
                         </span>
                 </div>
+            </div>
+            <div class="row" style="padding: 10px 20px;">
+                <button id="planeOnOff" class="btn btn-primary navbar-btn">Turn Plane On</button>
+                <div>
+                        <span style="float: left;">
+                            Plane Tilt (degrees):
+                            <span id="planeTiltVal">0</span>
+
+                        <input id="planeTilt" type="text" data-slider-min="-90" data-slider-step="1" data-slider-max="90" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                </div>
+            </div>
+            <div class="row" style="padding: 10px 20px;">
+                <div>
+                        <span style="float: left;">
+                            Plane Position:
+                            <span id="planePosVal">0</span>
+
+                        <input id="planePos" type="text" data-slider-min="-100" data-slider-step="1" data-slider-max="100" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                </div>
+            </div>
+            <div class="row" style="padding: 10px 20px;">
+                <button id="HyperbolicParaboloid" class="btn btn-primary navbar-btn">Hyperbolic Paraboloid</button>
+                <button id="EllipticParaboloid" class="btn btn-primary navbar-btn">Elliptic Paraboloid</button>
+                <button id="Cone" class="btn btn-primary navbar-btn">Cone</button>
+                <button id="Hyperboloid1" class="btn btn-primary navbar-btn">Hyperboloid 1 Sheet</button>
+                <button id="Hyperboloid2" class="btn btn-primary navbar-btn">Hyperboloid 2 Sheet</button>
             </div>
     </div>
     <!-- /#sidebar-wrapper -->
