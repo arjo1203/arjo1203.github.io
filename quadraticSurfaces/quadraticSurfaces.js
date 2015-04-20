@@ -58,28 +58,22 @@ function init(onSuccess){
     camera.position.set(0, -400, 100);
     camera.lookAt(scene.position);
 
+    //Creates renderer for THREE environment, sets the size of the renderer, and appends the renderer to html document
+    renderer = new THREE.WebGLRenderer({canvas: threejs});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    //document.body.appendChild(renderer.domElement);
+
     //Adds mouse/touch controls to the camera
-    controls = new THREE.TrackballControls(camera);
+    controls = new THREE.TrackballControls(camera, renderer.domElement);
     //Assigns the 'change' eventListener to render whenever you move the camera
     controls.addEventListener('change', render);
 
     GRAPH = makeHyperbolicParaboloid();
-    //HyperbolicParaboloid.position.x = 20;
     GRAPH.id = 'HyperbolicParaboloid';
     scene.add(GRAPH);
 
-    //var EllipticParaboloid = makeEllipticParaboloid();
-    //EllipticParaboloid.position.x = -20;
-    //scene.add(EllipticParaboloid);
-
-    //Creates renderer for THREE environment, sets the size of the renderer, and appends the renderer to html document
-    renderer = new THREE.WebGLRenderer({canvas: threejs});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
     //Assigns the 'resize' eventListener to call the onWindowResize function whenever the window's size has changed
     window.addEventListener('resize', onWindowResize, false);
-
 
     //After all components have been created and added to the THREE enviroment, render the THREE environment
     render();
