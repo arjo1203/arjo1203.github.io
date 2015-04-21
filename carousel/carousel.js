@@ -42,19 +42,15 @@ function onPlayerStateChange(event) {
         switch (currentVideoIndex){
             case 1:
                 $('#button2').click();
-                currentVideoIndex = 2;
                 break;
             case 2:
                 $('#button3').click();
-                currentVideoIndex = 3;
                 break;
             case 3:
                 $('#button4').click();
-                currentVideoIndex = 4;
                 break;
             case 4:
                 $('#button1').click();
-                currentVideoIndex = 1;
                 break;
         }
     }
