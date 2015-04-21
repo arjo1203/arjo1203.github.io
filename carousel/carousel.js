@@ -1,5 +1,5 @@
 
-var currentVideoIndex = 1;
+var currentVideoIndex = 1, innerHeight = window.innerHeight *.7, innerWidth = window.innerWidth *.7;
 var button1 = $('#button1'), button2 = $('#button2'), button3 = $('#button3'), button4 = $('#button4');
 
 // 2. This code loads the IFrame Player API code asynchronously.
@@ -14,8 +14,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: window.innerHeight *.7,
-        width: window.innerWidth *.7,
+        height: innerHeight,
+        width: innerWidth,
         videoId: '6-mH38nPEyg',
         playerVars: {'controls': 0, 'autohide': 1},
         events: {
@@ -76,8 +76,8 @@ function changeSrc(string){
 
 function makeNewPlayer(src){
     player = new YT.Player('player', {
-        height: window.innerWidth *.7,
-        width: window.innerWidth *.7,
+        height: innerHeight,
+        width: innerWidth,
         controls: 0,
         videoId: src,
         playerVars: {'controls': 0, 'autohide': 1},
