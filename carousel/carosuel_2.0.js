@@ -37,6 +37,7 @@ function onPlayerReady(event) {
 //    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
+    console.log($('#carosuel'));
     if (event.data == 0) {
         var index = currentIndex();
         switchVideo(index);

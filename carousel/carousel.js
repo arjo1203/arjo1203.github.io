@@ -1,63 +1,54 @@
-
-var currentVideoIndex = 1, innerHeight = window.innerHeight *.7, innerWidth = window.innerWidth *.7;
-var button1 = $('#button1'), button2 = $('#button2'), button3 = $('#button3'), button4 = $('#button4');
-
-// 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
-
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
+var player, innerHeight = window.innerHeight *.7, innerWidth = window.innerWidth *.7;
+var buttons = [$('#button0'), $('#button1'), $('#button2'), $('#button3')];
+
+
 function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: innerHeight,
-        width: innerWidth,
-        videoId: '6-mH38nPEyg',
-        playerVars: {'controls': 0, 'autohide': 1},
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
+    makeNewPlayer('6-mH38nPEyg');
 }
 
-// 4. The API will call this function when the video player is ready.
+
 function onPlayerReady(event) {
     event.target.playVideo();
-    console.log(player);
-
 }
 
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-var done = false;
+
 function onPlayerStateChange(event) {
-    console.log(event);
     if (event.data == 0) {
-        switch (currentVideoIndex){
-            case 1:
-                $('#button2').click();
-                break;
-            case 2:
-                $('#button3').click();
-                break;
-            case 3:
-                $('#button4').click();
-                break;
-            case 4:
-                $('#button1').click();
-                break;
-        }
+        var index = currentIndex();
+        switchVideo(index);
     }
 }
 
 
-function changeSrc(string){
+function currentIndex() {
+    var currentIndex;
+
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i][0].className == 'border'){
+            currentIndex = i;
+        }
+    }
+
+    return currentIndex;
+}
+
+
+function switchVideo(index) {
+    if(index < buttons.length - 1){
+        buttons[index + 1].click();
+    }
+    else{
+        buttons[0].click();
+    }
+}
+
+
+function changeSrc(string) {
     var container = document.getElementById("container");
     container.removeChild(container.children[0]);
 
@@ -69,8 +60,7 @@ function changeSrc(string){
 }
 
 
-
-function makeNewPlayer(src){
+function makeNewPlayer(src) {
     player = new YT.Player('player', {
         height: innerHeight,
         width: innerWidth,
@@ -86,57 +76,57 @@ function makeNewPlayer(src){
 }
 
 
-
-
-button1.click(function(){
-    currentVideoIndex = 1;
-
-    button2.removeClass('border');
-    button3.removeClass('border');
-    button4.removeClass('border');
+buttons[0].click(function() {
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i] != buttons[0]){
+            buttons[i].removeClass('border');
+        }
+        else{
+            buttons[0].addClass('border');
+        }
+    }
 
     changeSrc('6-mH38nPEyg');
-    button1.addClass('border');
 });
 
 
-
-
-button2.click(function(){
-    currentVideoIndex = 2;
-
-    button1.removeClass('border');
-    button3.removeClass('border');
-    button4.removeClass('border');
+buttons[1].click(function() {
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i] != buttons[1]){
+            buttons[i].removeClass('border');
+        }
+        else{
+            buttons[1].addClass('border');
+        }
+    }
 
     changeSrc('E_5o7FdxvOs');
-    button2.addClass('border');
 });
 
 
-
-
-button3.click(function(){
-    currentVideoIndex = 3;
-
-    button1.removeClass('border');
-    button2.removeClass('border');
-    button4.removeClass('border');
+buttons[2].click(function() {
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i] != buttons[2]){
+            buttons[i].removeClass('border');
+        }
+        else{
+            buttons[2].addClass('border');
+        }
+    }
 
     changeSrc('nnVlM9XIijI');
-    button3.addClass('border');
 });
 
 
-
-
-button4.click(function(){
-    currentVideoIndex = 4;
-
-    button1.removeClass('border');
-    button2.removeClass('border');
-    button3.removeClass('border');
+buttons[3].click(function() {
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i] != buttons[3]){
+            buttons[i].removeClass('border');
+        }
+        else{
+            buttons[3].addClass('border');
+        }
+    }
 
     changeSrc('E_5o7FdxvOs');
-    button4.addClass('border');
 });
