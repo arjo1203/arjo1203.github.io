@@ -3,7 +3,7 @@
     width: 100px;
     height: 100px;
 }
-#mainContianer{
+#mainContainer{
     position: absolute;
     left: 15%;
     top: 5%;
@@ -32,4 +32,7 @@ body {
     height: 250px;
     left: 0;
     top: 0;
+}
+#container{
+    pointer-events: none;
 }
