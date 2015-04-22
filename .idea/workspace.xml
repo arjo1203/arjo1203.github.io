@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projectEuler/projectEuler.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,8 +71,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45473683" vertical-offset="1216" max-vertical-offset="6496">
-              <caret line="103" column="150" selection-start-line="103" selection-start-column="150" selection-end-line="103" selection-end-column="150" />
+            <state vertical-scroll-proportion="0.3873684" vertical-offset="1280" max-vertical-offset="6496">
+              <caret line="103" column="98" selection-start-line="103" selection-start-column="98" selection-end-line="103" selection-end-column="98" />
               <folding />
             </state>
           </provider>
@@ -692,8 +690,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45473683" vertical-offset="1216" max-vertical-offset="6496">
-          <caret line="103" column="150" selection-start-line="103" selection-start-column="150" selection-end-line="103" selection-end-column="150" />
+        <state vertical-scroll-proportion="0.3873684" vertical-offset="1280" max-vertical-offset="6496">
+          <caret line="103" column="98" selection-start-line="103" selection-start-column="98" selection-end-line="103" selection-end-column="98" />
           <folding />
         </state>
       </provider>
