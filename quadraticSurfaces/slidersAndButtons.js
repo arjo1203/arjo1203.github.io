@@ -71,7 +71,7 @@ ConeButton.click(function() {
 
     scene.remove(GRAPH);
 
-    GRAPH = makeCone();
+    GRAPH = makeCone(0);
     GRAPH.scale.x = xScale;
     GRAPH.scale.y = yScale;
     scene.add(GRAPH);
@@ -90,7 +90,7 @@ Hyperboloid1Button.click(function() {
 
     scene.remove(GRAPH);
 
-    GRAPH = makeHyperboloid1();
+    GRAPH = makeHyperboloid1(1);
     GRAPH.scale.x = xScale;
     GRAPH.scale.y = yScale;
     scene.add(GRAPH);
@@ -109,7 +109,7 @@ Hyperboloid2Button.click(function() {
 
     scene.remove(GRAPH);
 
-    GRAPH = makeHyperboloid2();
+    GRAPH = makeHyperboloid2(1);
     GRAPH.scale.x = xScale;
     GRAPH.scale.y = yScale;
     scene.add(GRAPH);

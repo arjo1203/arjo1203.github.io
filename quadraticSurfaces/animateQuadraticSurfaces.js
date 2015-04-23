@@ -1,5 +1,5 @@
 //Global variables for THREE environment
-var camera, scene, renderer, controls, PLANE, GRAPH;
+var camera, scene, renderer, controls, light, light2, PLANE, GRAPH;
 
 
 
@@ -21,16 +21,27 @@ function init(onSuccess){
     camera.position.set(0, -400, 100);
     camera.lookAt(scene.position);
 
+    light = new THREE.PointLight( 0xffffff,.8 ,100);
+    light.position.set( 0, -50, 0 );
+    light.lookAt(scene.position);
+    scene.add(light);
+
+    light2 = new THREE.PointLight( 0xffffff,.8 ,100);
+    light2.position.set( 0, 50, 0 );
+    light2.lookAt(scene.position);
+    scene.add(light2);
+
     //Creates renderer for THREE environment, sets the size of the renderer, and appends the renderer to html document
     renderer = new THREE.WebGLRenderer({canvas: threejs});
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor('white',1);
 
     //Adds mouse/touch controls to the camera
     controls = new THREE.TrackballControls(camera, renderer.domElement);
     //Assigns the 'change' eventListener to render whenever you move the camera
     controls.addEventListener('change', render);
 
-    GRAPH = makeHyperbolicParaboloid();
+    GRAPH = makeCone(0);
     scene.add(GRAPH);
 
     //Assigns the 'resize' eventListener to call the onWindowResize function whenever the window's size has changed
@@ -60,10 +71,10 @@ function makePlane(){
 
 
 
-function makeHyperbolicParaboloid(){
+function makeHyperbolicParaboloid(w){
     var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 40;
     var zFunc = function(a, b){
-        var result = Math.pow(a, 2) - Math.pow(b, 2);
+        var result = Math.pow(a, 2) - Math.pow(b, 2) + Math.pow(w, 2);
         return result;
     };
 
@@ -120,10 +131,10 @@ function makeEllipticParaboloid(){
 
 
 
-function makeCone(){
+function makeCone(w){
     var cone = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 40;
     var zFunc = function(a, b){
-        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2), .5);
+        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + w, .5);
         return result;
     };
 
@@ -131,22 +142,23 @@ function makeCone(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc(x,y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc(x,y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
     var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
-    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var wireMaterial = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(255, 0, 0)")
+    } );
     var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
     graphMesh.doubleSided = true;
     cone.add(graphMesh);
 
     var zFunc2 = function(a, b){
-        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2), .5);
+        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + w, .5);
         return result;
     };
 
@@ -154,19 +166,21 @@ function makeCone(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc2(x,y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
     var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
-    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var wireMaterial2 = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(255, 0, 0)")
+    } );
     var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
     graphMesh2.doubleSided = true;
     cone.add(graphMesh2);
+    cone.id = 'cone';
 
     return cone;
 }
@@ -174,10 +188,11 @@ function makeCone(){
 
 
 
-function makeHyperboloid1(){
-    var hyperboloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 40;
+function makeHyperboloid1(w){
+    var hyperboloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 60;
     var zFunc = function(a, b){
-        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - 1, .5);
+        //console.log(a, b, w);
+        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(w, 2), .5);
         return result;
     };
 
@@ -185,22 +200,23 @@ function makeHyperboloid1(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc(x, y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc(x, y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
     var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
-    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var wireMaterial = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(255, 0, 0)")
+    } );
     var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
     graphMesh.doubleSided = true;
     hyperboloid.add(graphMesh);
 
     var zFunc2 = function(a, b){
-        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - 1, .5);
+        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(w, 2), .5);
         return result;
     };
 
@@ -208,19 +224,21 @@ function makeHyperboloid1(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc2(x,y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
     var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
-    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var wireMaterial2 = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(255, 0, 0)")
+    } );
     var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
     graphMesh2.doubleSided = true;
     hyperboloid.add(graphMesh2);
+    hyperboloid.id = 'Hyperboloid1';
 
     return hyperboloid;
 }
@@ -228,10 +246,11 @@ function makeHyperboloid1(){
 
 
 
-function makeHyperboloid2(){
-    var hyperboloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 40;
+function makeHyperboloid2(w){
+    console.log(w, Math.pow(w, 2));
+    var hyperboloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 60;
     var zFunc = function(a, b){
-        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + 1, .5);
+        var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(w, 2), .5);
         return result;
     };
 
@@ -239,22 +258,23 @@ function makeHyperboloid2(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc(x, y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc(x, y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
     var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
-    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var wireMaterial = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(255, 0, 0)")
+    } );
     var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
     graphMesh.doubleSided = true;
     hyperboloid.add(graphMesh);
 
     var zFunc2 = function(a, b){
-        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + 1, .5);
+        var result = -Math.pow(Math.pow(a, 2) + Math.pow(b, 2) + Math.pow(w, 2), .5);
         return result;
     };
 
@@ -262,19 +282,21 @@ function makeHyperboloid2(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc2(x,y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
     var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
-    var wireMaterial2 = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+    var wireMaterial2 = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(255, 0, 0)")
+    } );
     var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
     graphMesh2.doubleSided = true;
     hyperboloid.add(graphMesh2);
+    hyperboloid.id = 'Hyperboloid2';
 
     return hyperboloid;
 }
@@ -293,11 +315,9 @@ function makeEllipsoid(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc(x, y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc(x, y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
@@ -316,11 +336,9 @@ function makeEllipsoid(){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc2(x,y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
-            return new THREE.Vector3(x, y, z);
+        var z = zFunc2(x,y);
+
+        return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
@@ -355,23 +373,65 @@ function onWindowResize(){
 
 
 var animateaGARPH = false;
-
+var countingState = 'UP', clock = 0;
+var x = 0;
 function animate(){
-    var rand1 = 4, rand2 = 4;
-
     //Called every frame
     requestAnimationFrame(animate);
 
     //Update the controls for the camera
     controls.update();
 
+    var rand1 = 4, rand2 = 4;
+
+    if(clock % 20 == 0){
+        countingState = toggleState(countingState);
+    }
+
     if(animateaGARPH){
-        GRAPH.scale.x += (1 / Math.pow(rand1, 2));
-        GRAPH.scale.y += (1 / Math.pow(rand1, 2));
+        scene.remove(GRAPH);
+
+        if(countingState == 'UP'){
+            x += 1;
+        }
+        else if(countingState == 'DOWN'){
+            x -= 1;
+        }
+
+        switch (GRAPH.id){
+            case 'cone':
+                GRAPH = makeCone(x * 10);
+                break;
+            case 'Hyperboloid1':
+                GRAPH = makeHyperboloid1(x);
+                break;
+            case 'Hyperboloid2':
+                GRAPH = makeHyperboloid2(x);
+                break;
+        }
+        scene.add(GRAPH);
+    }
+    else{
+        x = 0;
     }
 
     //Renders the THREE environment
     render();
+
+    clock++;
+}
+
+
+
+function toggleState(state){
+    if(state == 'UP'){
+        state = 'DOWN'
+    }
+    else{
+        state = 'UP';
+    }
+
+    return state;
 }
 
 

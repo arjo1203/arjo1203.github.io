@@ -4,7 +4,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player, innerHeight = window.innerHeight *.7, innerWidth = window.innerWidth *.7;
-var buttons = [$('#button0'), $('#button1'), $('#button2'), $('#button3')];
+var buttons = [$('#button0'), $('#button1'), $('#button2'), $('#button3'), $('#button4')];
 
 
 function onYouTubeIframeAPIReady() {
@@ -129,4 +129,18 @@ buttons[3].click(function() {
     }
 
     changeSrc('E_5o7FdxvOs');
+});
+
+
+buttons[4].click(function() {
+    for(var i = 0; i < buttons.length; i++){
+        if(buttons[i] != buttons[4]){
+            buttons[i].removeClass('border');
+        }
+        else{
+            buttons[4].addClass('border');
+        }
+    }
+
+    changeSrc('rxUokFBAaAc');
 });
