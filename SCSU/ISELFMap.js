@@ -22,7 +22,7 @@ function createThreeEnviroment(){
     scene.add(pointlight2);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, .001, 1000000);
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 10000);
     camera.position.set(0, 1200, 3000);
     camera.lookAt(scene.position);
 
@@ -58,10 +58,11 @@ function loadBuilding(model, material, modelName, visbility) {
 
 
 
-        scene.add(myobject);
         myobject.position.x = -1200;
         myobject.position.z = -1200;
         $Buildings[modelName] = myobject;
+
+        scene.add(myobject);
         render();
 
 
