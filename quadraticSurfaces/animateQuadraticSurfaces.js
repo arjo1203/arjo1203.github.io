@@ -21,12 +21,12 @@ function init(onSuccess){
     camera.position.set(0, -400, 100);
     camera.lookAt(scene.position);
 
-    light = new THREE.PointLight( 0xffffff,.8 ,100);
+    light = new THREE.PointLight( 0xffffff, 1, 100);
     light.position.set( 0, -50, 0 );
     light.lookAt(scene.position);
     scene.add(light);
 
-    light2 = new THREE.PointLight( 0xffffff,.8 ,100);
+    light2 = new THREE.PointLight( 0xffffff, 1, 100);
     light2.position.set( 0, 50, 0 );
     light2.lookAt(scene.position);
     scene.add(light2);
@@ -70,11 +70,11 @@ function makePlane(){
 
 
 
-
+var hyperbolicArray = [ ];
 function makeHyperbolicParaboloid(w){
-    var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 40;
+    var paraoloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 60, zPre, zPre2;
     var zFunc = function(a, b){
-        var result = Math.pow(a, 2) - Math.pow(b, 2) + Math.pow(w, 2);
+        var result = Math.pow(Math.pow(a, 2) + (b * w), .5);
         return result;
     };
 
@@ -82,21 +82,107 @@ function makeHyperbolicParaboloid(w){
     {
         x = xRange * u + xMin;
         y = yRange * v + yMin;
-        var z = zFunc(x,y); //= Math.cos(x) * Math.sqrt(y);
-        if ( isNaN(z) )
-            return new THREE.Vector3(0,0,0); // TODO: better fix
-        else
+        var z = zFunc(x,y);
+        //console.log(z);
+        if( isNaN(z) ){
+            return new THREE.Vector3(x, y, zPre);
+        }
+        else{
             return new THREE.Vector3(x, y, z);
+            zPre = z;
+        }
     };
 
     // true => sensible image tile repeat...
     var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
-    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+
+    //for (var i = 0, l = graphGeometry.vertices.length; i < l; i++) {
+    //    if(graphGeometry.vertices[i].z == 0){
+    //        graphGeometry.vertices[i].z = 3;
+    //        graphGeometry.faces[i].vertexColors = new THREE.Color("rgb(255, 0, 0)");
+    //        //hyperbolicArray.push(graphGeometry.vertices[i].z);
+    //    }
+    //}
+
+
+    //for(var i = 0; i < hyperbolicArray.length; i++){
+    //    var max = hyperbolicArray[0];
+    //    if(hyperbolicArray[0].x <= hyperbolicArray[i].x){
+    //        max =
+    //    }
+    //}
+
+    var wireMaterial = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(0, 255, 0)"),
+        wireframe: true
+    } );
     var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
     graphMesh.doubleSided = true;
+    paraoloid.add(graphMesh);
 
-    return graphMesh;
+    var zFunc2 = function(a, b){
+        var result = -Math.pow(Math.pow(a, 2) + (b * w), .5);
+        return result;
+    };
+
+    meshFunction2 = function(u, v)
+    {
+        x = xRange * u + xMin;
+        y = yRange * v + yMin;
+        var z = zFunc2(x,y);
+        if( isNaN(z) ){
+            return new THREE.Vector3(x, y, zPre2);
+        }
+        else{
+            return new THREE.Vector3(x, y, z);
+            zPre2 = z;
+        }
+    };
+
+    // true => sensible image tile repeat...
+    var graphGeometry2 = new THREE.ParametricGeometry( meshFunction2, segments, segments, true );
+    var wireMaterial2 = new THREE.MeshLambertMaterial( {
+        side:THREE.DoubleSide,
+        color: new THREE.Color("rgb(0, 255, 0)"),
+        wireframe: true
+    } );
+    var graphMesh2 = new THREE.Mesh( graphGeometry2, wireMaterial2 );
+    graphMesh2.doubleSided = true;
+    paraoloid.add(graphMesh2);
+
+    paraoloid.id = 'paraoloid';
+    return paraoloid;
 }
+
+
+
+
+//function makeHyperbolicParaboloid(w){
+//    var x, y, xMin = -10, yMin = -10, xRange = 20, yRange = 20, segments = 40;
+//    var zFunc = function(a, b){
+//        var result = Math.pow(a, 2) - Math.pow(b, 2) + Math.pow(w, 2);
+//
+//        return result;
+//    };
+//
+//    meshFunction = function(u, v)
+//    {
+//        x = xRange * u + xMin;
+//        y = yRange * v + yMin;
+//        var z = zFunc(x,y);
+//
+//        return new THREE.Vector3(x, y, z);
+//    };
+//
+//    // true => sensible image tile repeat...
+//    var graphGeometry = new THREE.ParametricGeometry( meshFunction, segments, segments, true );
+//    var wireMaterial = new THREE.MeshNormalMaterial( { side:THREE.DoubleSide } );
+//    var graphMesh = new THREE.Mesh( graphGeometry, wireMaterial );
+//    graphMesh.doubleSided = true;
+//
+//    return graphMesh;
+//}
 
 
 
@@ -189,7 +275,7 @@ function makeCone(w){
 
 
 function makeHyperboloid1(w){
-    var hyperboloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 60;
+    var hyperboloid = new THREE.Object3D(), x, y, xMin = -20, yMin = -20, xRange = 40, yRange = 40, segments = 60, zPre;
     var zFunc = function(a, b){
         //console.log(a, b, w);
         var result = Math.pow(Math.pow(a, 2) + Math.pow(b, 2) - Math.pow(w, 2), .5);
@@ -201,8 +287,16 @@ function makeHyperboloid1(w){
         x = xRange * u + xMin;
         y = yRange * v + yMin;
         var z = zFunc(x, y);
+        //console.log(z);
+        //if ( isNaN(z) ) {
+        //    return new THREE.Vector3(x, y, 1);
+        //}
+        //else{
+        //    zPre = z;
+            return new THREE.Vector3(x, y, z);
+        //}
 
-        return new THREE.Vector3(x, y, z);
+        //return new THREE.Vector3(x, y, z);
     };
 
     // true => sensible image tile repeat...
@@ -392,10 +486,10 @@ function animate(){
         scene.remove(GRAPH);
 
         if(countingState == 'UP'){
-            x += 1;
+            x += .2;
         }
         else if(countingState == 'DOWN'){
-            x -= 1;
+            x -= .2;
         }
 
         switch (GRAPH.id){
@@ -407,6 +501,9 @@ function animate(){
                 break;
             case 'Hyperboloid2':
                 GRAPH = makeHyperboloid2(x);
+                break;
+            case 'paraoloid':
+                GRAPH = makeHyperbolicParaboloid(x);
                 break;
         }
         scene.add(GRAPH);

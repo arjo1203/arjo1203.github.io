@@ -5,12 +5,29 @@
     <meta charset="UTF-8">
     <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
     <link href="./main.css" rel="stylesheet" >
+    <style>
+        #threejs{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        #back{
+            position: relative;
+        }
+    </style>
 </head>
-<body id="body">
+<body>
 
-<a href="./home.html"><img src="./backArrow.png" class="img-rounded"></a>
+<canvas id="threejs"></canvas>
+<a id="back" href="./home.html"><img src="./backArrow.png" class="img-rounded"></a>
 
 <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
 <script src="../bootStrap/bootstrap.js"></script>
+<script src="../THREE/three.min.js"></script>
+<script src="../THREE/TrackballControls.js"></script>
+<script src="../THREE/MTLLoader.js"></script>
+<script src="../THREE/OBJMTLLoader.js"></script>
+<script src="./ISELFMap.js"></script>
 </body>
 </html>

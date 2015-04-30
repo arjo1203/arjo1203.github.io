@@ -51,7 +51,7 @@ HyperbolicParaboloidButton.click(function() {
 
     scene.remove(GRAPH);
 
-    GRAPH = makeHyperbolicParaboloid();
+    GRAPH = makeHyperbolicParaboloid(0);
     GRAPH.scale.x = xScale;
     GRAPH.scale.y = yScale;
     scene.add(GRAPH);
