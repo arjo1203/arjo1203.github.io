@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELFMap.html" afterPath="$PROJECT_DIR$/SCSU/ISELFMap.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELFMap.js" afterPath="$PROJECT_DIR$/SCSU/ISELFMap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/CampusPage/campusMap.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELFMap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELFMap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_1stfloor.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_1stfloor.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_2ndfloor.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_2ndfloor.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_3rdfloor.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_3rdfloor.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/maps/ISELF_Floor1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/maps/ISELF_Floor2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/maps/ISELF_Floor3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/campusMap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/map_Main13.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.html" afterPath="$PROJECT_DIR$/SCSU/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,24 +42,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ISELFMap.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELFMap.html">
+      <file leaf-file-name="campusMap.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75789475" vertical-offset="0" max-vertical-offset="976">
-              <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="576">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="campusMap.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4923077" vertical-offset="128" max-vertical-offset="1296">
+              <caret line="38" column="86" selection-start-line="38" selection-start-column="86" selection-end-line="38" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ISELFMap.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.52" vertical-offset="33" max-vertical-offset="992">
+              <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="25" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="ISELFMap.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELFMap.js">
+        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1937" max-vertical-offset="3216">
-              <caret line="134" column="13" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="448" max-vertical-offset="1968">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_3d.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="5104">
+              <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="81" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -95,9 +137,14 @@
         <option value="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
         <option value="$PROJECT_DIR$/THREE/DDSLoader.js" />
         <option value="$PROJECT_DIR$/THREE/OBJMTLLoader.js" />
-        <option value="$PROJECT_DIR$/SCSU/home.html" />
         <option value="$PROJECT_DIR$/SCSU/ISELFMap.js" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_GUI.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELFMap.html" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html" />
+        <option value="$PROJECT_DIR$/SCSU/home.html" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" />
+        <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.html" />
+        <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.js" />
       </list>
     </option>
   </component>
@@ -159,7 +206,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="THREE" />
+              <option name="myItemId" value="SCSU" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -176,18 +223,8 @@
               <option name="myItemId" value="SCSU" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="physicsSimulator" />
+              <option name="myItemId" value="ISELF_Page" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -201,7 +238,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="carousel" />
+              <option name="myItemId" value="SCSU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CampusPage" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="quadraticSurfaces" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -323,13 +378,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Web-Doodler/Web-Doodler.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1424">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web-Doodler/Web-Doolder.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2288">
@@ -408,13 +456,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/dean.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.101052634" vertical-offset="0" max-vertical-offset="950">
-          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/campusMap.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.101052634" vertical-offset="0" max-vertical-offset="950">
           <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
@@ -544,6 +585,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1018" max-vertical-offset="1968">
           <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -569,18 +621,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2656" max-vertical-offset="6208">
-          <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quadraticSurfaces/slidersAndButtons.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="352" max-vertical-offset="3040">
           <caret line="37" column="56" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -596,14 +641,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.36" vertical-offset="650" max-vertical-offset="1984">
           <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5104">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -656,14 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22857143" vertical-offset="0" max-vertical-offset="980">
-          <caret line="14" column="65" selection-start-line="14" selection-start-column="65" selection-end-line="14" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/carousel/carousel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.72" vertical-offset="0" max-vertical-offset="496">
@@ -680,22 +709,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELFMap.js">
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1937" max-vertical-offset="3216">
-          <caret line="134" column="13" selection-start-line="134" selection-start-column="13" selection-end-line="134" selection-end-column="13" />
+        <state vertical-scroll-proportion="-2.52" vertical-offset="33" max-vertical-offset="992">
+          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="25" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELFMap.html">
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75789475" vertical-offset="0" max-vertical-offset="976">
-          <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="448" max-vertical-offset="1968">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.6" vertical-offset="0" max-vertical-offset="496">
+          <caret line="15" column="62" selection-start-line="15" selection-start-column="62" selection-end-line="15" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2656" max-vertical-offset="6208">
+          <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="576">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="5104">
+          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="81" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4923077" vertical-offset="128" max-vertical-offset="1296">
+          <caret line="38" column="86" selection-start-line="38" selection-start-column="86" selection-end-line="38" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>

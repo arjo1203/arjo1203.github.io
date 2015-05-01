@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>St. Cloud State University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <link href="../../bootStrap/bootstrap.min.css" rel="stylesheet" >
+    <link href="../main.css" rel="stylesheet" >
+    <style>
+        #threejs{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        #back{
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="threejs"></canvas>
+<a id="back" href="../home.html"><img src="../backArrow.png" class="img-rounded"></a>
+
+<script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
+<script src="../../bootStrap/bootstrap.js"></script>
+<script src="../../THREE/three.min.js"></script>
+<script src="../../THREE/TrackballControls.js"></script>
+<script src="./campusMap.js"></script>
+</body>
+</html>
