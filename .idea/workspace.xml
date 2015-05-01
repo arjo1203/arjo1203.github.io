@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/CampusPage/campusMap.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELFMap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELFMap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_1stfloor.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_1stfloor.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_2ndfloor.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_2ndfloor.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_3rdfloor.mtl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_3rdfloor.obj" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/maps/ISELF_Floor1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/maps/ISELF_Floor2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/ISELF_Floors/maps/ISELF_Floor3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/campusMap.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/map_Main13.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.html" afterPath="$PROJECT_DIR$/SCSU/home.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bootStrap/progressBar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" afterPath="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -42,51 +29,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="campusMap.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.html">
+      <file leaf-file-name="fibonacciSequence.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequence.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="576">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state vertical-scroll-proportion="-2.56" vertical-offset="672" max-vertical-offset="2928">
+              <caret line="46" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="campusMap.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.js">
+      <file leaf-file-name="fibonacciSequenceOp.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4923077" vertical-offset="128" max-vertical-offset="1296">
-              <caret line="38" column="86" selection-start-line="38" selection-start-column="86" selection-end-line="38" selection-end-column="86" />
+            <state vertical-scroll-proportion="14.08" vertical-offset="736" max-vertical-offset="3200">
+              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISELFMap.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
+      <file leaf-file-name="progressBar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.52" vertical-offset="33" max-vertical-offset="992">
-              <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="25" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISELFMap.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="448" max-vertical-offset="1968">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_3d.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="5104">
-              <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="81" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.5726316" vertical-offset="1040" max-vertical-offset="6656">
+              <caret line="99" column="121" selection-start-line="99" selection-start-column="121" selection-end-line="99" selection-end-column="121" />
               <folding />
             </state>
           </provider>
@@ -121,7 +98,6 @@
         <option value="$PROJECT_DIR$/fotorama/example.html" />
         <option value="$PROJECT_DIR$/carousel/carosuel_2.0.js" />
         <option value="$PROJECT_DIR$/carousel/carousel_2.0.html" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/projectEuler/projectEuler.html" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.html" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.js" />
@@ -134,7 +110,6 @@
         <option value="$PROJECT_DIR$/projectEuler/fibonacciSequence_2.0.html" />
         <option value="$PROJECT_DIR$/archTool_1.0/scripts/_3d.js" />
         <option value="$PROJECT_DIR$/projectEuler/fibonacciSequence.html" />
-        <option value="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
         <option value="$PROJECT_DIR$/THREE/DDSLoader.js" />
         <option value="$PROJECT_DIR$/THREE/OBJMTLLoader.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELFMap.js" />
@@ -145,6 +120,9 @@
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" />
         <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.html" />
         <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.js" />
+        <option value="$PROJECT_DIR$/bootStrap/progressBar.js" />
+        <option value="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -206,57 +184,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SCSU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SCSU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ISELF_Page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SCSU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CampusPage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="quadraticSurfaces" />
+              <option name="myItemId" value="projectEuler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,13 +306,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Web-Doodler/Web-Doolder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1888" max-vertical-offset="2288">
-          <caret line="118" column="3" selection-start-line="118" selection-start-column="3" selection-end-line="118" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/archTool_1.0/archTool_1.0.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3258" max-vertical-offset="4208">
@@ -546,13 +467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3873684" vertical-offset="1280" max-vertical-offset="6496">
-          <caret line="103" column="189" selection-start-line="103" selection-start-column="189" selection-end-line="103" selection-end-column="189" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/carousel/carousel_2.0.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6631579" vertical-offset="586" max-vertical-offset="1760">
@@ -607,13 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/projectEuler/projectEuler.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.88" vertical-offset="0" max-vertical-offset="816">
-          <caret line="17" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Web-Doodler/Web-Doodler.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-30.32" vertical-offset="314" max-vertical-offset="1264">
@@ -641,22 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.36" vertical-offset="650" max-vertical-offset="1984">
           <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequence.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.56" vertical-offset="672" max-vertical-offset="2928">
-          <caret line="46" column="5" selection-start-line="46" selection-start-column="5" selection-end-line="138" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-30.32" vertical-offset="618" max-vertical-offset="3488">
-          <caret line="86" column="26" selection-start-line="86" selection-start-column="26" selection-end-line="86" selection-end-column="26" />
           <folding />
         </state>
       </provider>
@@ -717,14 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="448" max-vertical-offset="1968">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.6" vertical-offset="0" max-vertical-offset="496">
@@ -749,18 +632,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4923077" vertical-offset="128" max-vertical-offset="1296">
+          <caret line="38" column="86" selection-start-line="38" selection-start-column="86" selection-end-line="38" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13128205" vertical-offset="448" max-vertical-offset="1968">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="528" max-vertical-offset="5104">
+        <state vertical-scroll-proportion="0.7548718" vertical-offset="528" max-vertical-offset="5104">
           <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="81" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/CampusPage/campusMap.js">
+    <entry file="file://$PROJECT_DIR$/projectEuler/projectEuler.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4923077" vertical-offset="128" max-vertical-offset="1296">
-          <caret line="38" column="86" selection-start-line="38" selection-start-column="86" selection-end-line="38" selection-end-column="86" />
+        <state vertical-scroll-proportion="-10.88" vertical-offset="0" max-vertical-offset="816">
+          <caret line="17" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequence.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.56" vertical-offset="672" max-vertical-offset="2928">
+          <caret line="46" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="14.08" vertical-offset="736" max-vertical-offset="3200">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5726316" vertical-offset="1040" max-vertical-offset="6656">
+          <caret line="99" column="121" selection-start-line="99" selection-start-column="121" selection-end-line="99" selection-end-column="121" />
           <folding />
         </state>
       </provider>
