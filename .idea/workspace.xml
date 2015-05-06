@@ -2,9 +2,120 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bootStrap/progressBar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D_GUI.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/Facade.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/Facade.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/ISELF_exterior.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/ISELF_exterior.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/Terrain.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/Terrain.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/WSB_ext.mtl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/WSB_ext.obj" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/1stfloor.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/1stfloorplan.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/2ndfloorplan.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/3rdfloorplan.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/E1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/E2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/Google_E.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELFSE1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELFSE2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELFSE3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELFSE4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELFSE5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELF_Floor1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELF_Floor2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELF_Floor3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/ISELFnE1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/Marble_Beige_tile_texture_sketchup_warehouse_type12.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/Seamless wall white paint stucco plaster texture.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WBSAn_1stFloor.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WBSAn_1stFloor.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WBSAn_2ndFloor.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WBSAn_2ndFloor.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WBSAn_3rdFloor.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WBSAn_3rdFloor.psd" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WE1 .jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB!.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB4.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB5.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB6.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB7.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB8.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_Def.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_Ent2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_Greenhouse2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_Skyway1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_conc2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_glass1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/WSB_roof1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/base_texture.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/basemap.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/brick.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/greenhouse1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/greenhouse2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/hack_tree.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/hack_tree.tga" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/hackberry.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/hackberry.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/hackberrya.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/hackberrya.tga" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/metalSiding1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/pent1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/roof.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/scbase2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/scsuterrain1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/scsuterrain3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0078.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0079.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0080.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0082.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0087.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0100.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0101.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0116.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0117.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0119.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0121.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0122.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0124.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0129.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0139.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0140.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0156.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0157.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0158.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0159.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0160.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0161.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0162.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0163.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0165.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0166.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0167.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0176.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0179.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0198.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0201.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0203.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0212.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0213.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0214.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/stcl0219.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/tree2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/tree3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/tree4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/wsb_2ndFloor.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/wsb_3rdFloor.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/maps/wsb_side2.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" afterPath="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -29,41 +140,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="fibonacciSequence.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequence.html">
+      <file leaf-file-name="campus_3D.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.56" vertical-offset="672" max-vertical-offset="2928">
-              <caret line="46" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="177" selection-end-column="7" />
+            <state vertical-scroll-proportion="-21.76" vertical-offset="0" max-vertical-offset="768">
+              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="35" selection-end-column="97" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fibonacciSequenceOp.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html">
+      <file leaf-file-name="campus_3d.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="14.08" vertical-offset="736" max-vertical-offset="3200">
-              <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="2032">
+              <caret line="74" column="91" selection-start-line="74" selection-start-column="91" selection-end-line="75" selection-end-column="115" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="progressBar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
+      <file leaf-file-name="ISELFMap.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
-              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2048">
+              <caret line="77" column="134" selection-start-line="77" selection-start-column="120" selection-end-line="77" selection-end-column="134" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="ISELF_GUI.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5726316" vertical-offset="1040" max-vertical-offset="6656">
-              <caret line="99" column="121" selection-start-line="99" selection-start-column="121" selection-end-line="99" selection-end-column="121" />
+            <state vertical-scroll-proportion="0.14769231" vertical-offset="32" max-vertical-offset="1504">
+              <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ISELFMap.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-25.6" vertical-offset="0" max-vertical-offset="1008">
+              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -115,14 +236,18 @@
         <option value="$PROJECT_DIR$/SCSU/ISELFMap.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Floors/ISELF_GUI.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELFMap.html" />
-        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html" />
         <option value="$PROJECT_DIR$/SCSU/home.html" />
-        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" />
         <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.html" />
         <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.js" />
         <option value="$PROJECT_DIR$/bootStrap/progressBar.js" />
-        <option value="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
+        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D_GUI.js" />
+        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
+        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js" />
       </list>
     </option>
   </component>
@@ -184,7 +309,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="projectEuler" />
+              <option name="myItemId" value="SCSU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SCSU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ISELF_Page" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SCSU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Campus_3D" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,34 +467,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/archTool_1.0/archTool_1.0.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3258" max-vertical-offset="4208">
-          <caret line="241" column="9" selection-start-line="241" selection-start-column="9" selection-end-line="241" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_2d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3648" max-vertical-offset="9440">
-          <caret line="266" column="24" selection-start-line="266" selection-start-column="24" selection-end-line="267" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sideBar/sideBar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2160">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logic/myLogicCSS.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logic/logic.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
@@ -600,14 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.52" vertical-offset="33" max-vertical-offset="992">
-          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="25" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.6" vertical-offset="0" max-vertical-offset="496">
@@ -640,14 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13128205" vertical-offset="448" max-vertical-offset="1968">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7548718" vertical-offset="528" max-vertical-offset="5104">
@@ -672,26 +789,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="14.08" vertical-offset="736" max-vertical-offset="3200">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.5726316" vertical-offset="1040" max-vertical-offset="6656">
+          <caret line="99" column="121" selection-start-line="99" selection-start-column="121" selection-end-line="99" selection-end-column="121" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+        <state vertical-scroll-proportion="0.19692308" vertical-offset="0" max-vertical-offset="975">
           <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5726316" vertical-offset="1040" max-vertical-offset="6656">
-          <caret line="99" column="121" selection-start-line="99" selection-start-column="121" selection-end-line="99" selection-end-column="121" />
+        <state vertical-scroll-proportion="-23.28" vertical-offset="250" max-vertical-offset="3168">
+          <caret line="52" column="53" selection-start-line="52" selection-start-column="53" selection-end-line="52" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D_GUI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="1296">
+          <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.76" vertical-offset="0" max-vertical-offset="768">
+          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="35" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="2032">
+          <caret line="74" column="91" selection-start-line="74" selection-start-column="91" selection-end-line="75" selection-end-column="115" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2048">
+          <caret line="77" column="134" selection-start-line="77" selection-start-column="120" selection-end-line="77" selection-end-column="134" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.6" vertical-offset="0" max-vertical-offset="1008">
+          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14769231" vertical-offset="32" max-vertical-offset="1504">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
           <folding />
         </state>
       </provider>

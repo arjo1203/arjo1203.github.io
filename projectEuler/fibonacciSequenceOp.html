@@ -19,8 +19,8 @@
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button" onclick="findNumber(input[0].value)">Go!</button>
               </span>
-            </div><!-- /input-group -->
-        </div><!-- /.col-lg-6 -->
+            </div>
+        </div>
     </div>
     <div>
         <p id="alertMessage"></p>
@@ -44,11 +44,13 @@
 
         while (container[0].length != lengthOfDigit) {
             container = addTwoIndices(container);
+
+            numOfExecutions += 2;//Tracks Fibonacci term
         }
 
         time = (new Date().getTime()) - start;
-        message[0].innerHTML = 'It takes ' + numOfExecutions + ' executions to obtain the first term in the Fibonacci sequence to contain ' + lengthOfDigit + ' digits!' +
-        ' Execution time: ' + time / 1000 + ' seconds!';
+
+        message[0].innerHTML = 'Number of executions: ' + numOfExecutions + '! Execution time: ' + time / 1000 + ' seconds!';
         div[0].innerHTML = 'The number is ' + container[0];
     }
 
@@ -61,6 +63,7 @@
         newArray = [num1, num2];
         return newArray;
     }
+
 
     function addHugeNumbers(a, b){
         var carry = 0, maxNum, minNum, numSum = '';
@@ -91,8 +94,6 @@
         }
 
         numSum = removeLeadingZeros(numSum);//Removes added zeros if no overflow occurred
-
-        numOfExecutions++;//Tracks Fibonacci term
 
         return numSum;
     }
@@ -132,6 +133,7 @@
 
         var i = 0;
         while(!found){
+
             if(string1[i] > string2[i]){
                 max = string1;
                 found = true;
@@ -144,7 +146,7 @@
                 equalityCheck++;
 
                 if(equalityCheck == string1.length){//numbers are equal
-                    return string1;
+                    max = string1;
                     found = true;
                 }
             }
@@ -158,12 +160,8 @@
 
     //Makes the strings the same length by leading zeros to the smaller number
     function makeSameLength(max, min){
-        var zero = '0';
-
-        var i = 0;
-
         while(max.length != min.length){
-            min = zero + min;
+            min = '0' + min;
         }
 
         return min;

@@ -22,7 +22,7 @@ function createThreeEnviroment(){
     scene.add(pointlight2);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 100000);
+    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000000);
     camera.position.set(0, 1200, 3000);
     camera.lookAt(scene.position);
 
@@ -35,8 +35,8 @@ function createThreeEnviroment(){
 
     renderer.setClearColor('white',1);
 
-    loadBuildings();
-    //console.log($Buildings);
+    loadScene();
+    console.log($Buildings);
 
     window.addEventListener('resize', onWindowResize, false);
 
@@ -47,7 +47,7 @@ function createThreeEnviroment(){
 
 
 
-function loadBuilding(model, material, modelName, visbility) {
+function loadObject(model, material, modelName, visbility) {
     var loader = new THREE.OBJMTLLoader();
 
 
@@ -70,12 +70,11 @@ function loadBuilding(model, material, modelName, visbility) {
 
 
 
-}function loadBuildings() {
-    loadBuilding('ISELF_Floors/ISELF_1stfloor.obj', 'ISELF_Floors/ISELF_1stfloor.mtl', 'ISELF_1stfloor', true);
-    loadBuilding('ISELF_Floors/ISELF_2ndfloor.obj', 'ISELF_Floors/ISELF_2ndfloor.mtl', 'ISELF_2ndfloor', true);
-    loadBuilding('ISELF_Floors/ISELF_3rdfloor.obj', 'ISELF_Floors/ISELF_3rdfloor.mtl', 'ISELF_3rdfloor', true);
-    loadBuilding('../Campus_3D/campusBuildings/Terrain.obj', '../Campus_3D/campusBuildings/Terrain.mtl', 'Terrain', true);
-    loadBuilding('../Campus_3D/campusBuildings/ISELF_exterior.obj', '../Campus_3D/campusBuildings/ISELF_exterior.mtl', 'ISELF_exterior', true);
+}function loadScene() {
+    loadObject('campusBuildings/Terrain.obj', 'campusBuildings/Terrain.mtl', 'Terrain', true);
+    loadObject('campusBuildings/Facade.obj', 'campusBuildings/Facade.mtl', 'Facade', true);
+    loadObject('campusBuildings/ISELF_exterior.obj', 'campusBuildings/ISELF_exterior.mtl', 'ISLEF_exterior', true);
+    loadObject('campusBuildings/WSB_ext.obj', 'campusBuildings/WSB_ext.mtl', 'Facade', true);
 }
 
 

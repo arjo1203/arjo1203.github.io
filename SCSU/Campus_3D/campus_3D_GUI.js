@@ -1,17 +1,4 @@
 var buttons = [$('#firstFloor'), $('#secondFloor'), $('#thirdFloor'), $('#allFloors')];
-var exterior = $('#exterior');
-
-
-exterior.click( function() {
-    toggleClass(exterior, exterior[0].className);
-
-    if(exterior[0].className == 'btn btn-success'){
-        $Buildings.ISELF_exterior.visible = true;
-    }
-    else{
-        $Buildings.ISELF_exterior.visible = false;
-    }
-});
 
 buttons[0].click( function() {
     toggleClass(buttons[0], buttons[0][0].className);
