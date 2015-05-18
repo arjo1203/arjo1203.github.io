@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Video Carousel</title>
+    <meta charset="utf-8">
+
+    <meta http-equiv="cleartype" content="on">
+    <meta name="MobileOptimized" content="320">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="http://www.iconj.com/ico/q/t/qtagit3rc6.ico" type="image/x-icon" />
+
+    <link href="./carosuel_3.0SideBar.css" rel="stylesheet"/>
+    <link href="./carousel_3.0.css" rel="stylesheet"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="../bootStrap/bootstrap.min.css">
+
+
+
+</head>
+
+
+<body class="body">
+
+<!--DOOOOOOOOODDDBLLLLESSS BARRRSSSSSSS-->
+<body>
+<div>
+    <!-- Wrapper -->
+    <div style="position: fixed; bottom: 0;" id="wrapper">
+
+
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <h2 class="page-header">Video Playlist</h2>
+
+            <div id="buttons">
+
+                <!--videos are stored here -->
+            </div>
+
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper" style="position: fixed; height: 0;"></div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <a href="#menu-toggle" type="button" class="btn btn-danger" id="menu-toggle">Close</a>
+    <div id="iframeContainer">
+    </div>
+</div>
+
+
+
+
+<!--Jquery-->
+<script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+<script src="../sideBar/sideBar.js" type="text/javascript"></script>
+<script src="./carousel_3.0.js" type="text/javascript"></script>
+
+<!-- mini bootstrap -->
+<script src="../bootStrap/bootstrap.js"></script>
+<script>
+
+    //sidebar script
+    var counter = 0,onOffCounter = 0;
+
+    var menu_toggle = $("#menu-toggle");
+
+    //Toggle for sidebar
+    menu_toggle.click(function(e) {
+        e.preventDefault();
+
+
+        if(onOffCounter % 2 == 0){
+            menu_toggle[0].innerHTML = 'Playlist';//change label of button when clicked
+        }
+        else{
+            menu_toggle[0].innerHTML = 'Close';
+        }
+
+        onOffCounter++;
+    });
+
+
+
+</script>
+
+<!--container keeps uer from touching player -->
+<div id="container">
+    <!--youtube player -->
+    <div id="player"></div>
+
+</div>
+
+
+<!--player buttons-->
+<menu class="small">
+    <button class="rw"></button>
+    <button class="play"></button>
+    <button class="pause"></button>
+    <button class="stop"></button>
+    <button class="ff"></button>
+</menu>
+
+
+
+</body>
+</html>

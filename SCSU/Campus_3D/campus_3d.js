@@ -102,17 +102,41 @@ function onWindowResize(){
 }
 
 
-
+var i = 0;
+var end = new THREE.Vector3(0, 0, 0);
+moveCamera(camera, end);
 function animate(){
-    if(camera.position.y <= 10){
-        camera.position.y = 10;
-    }
+    //
+    //camera.position.x = currentPos.x;
+    //camera.position.y = currentPos.y;
+    //camera.position.z = currentPos.z;
+    ////camera.position = lerp(start, end, i/5);
+    //
+    //if(camera.position.y <= 10){
+    //    camera.position.y = 10;
+    //}
 
     requestAnimationFrame( animate );
     controls.update();
 
     //Renders the THREE environment
     render();
+    i++;
+}
+
+
+function moveCamera(mesh, end) {
+    //console.log(a, b);
+    //console.log('hello');
+    var f = 0;
+
+    while(f < 300){
+        mesh.x = mesh.x + f * (end.x - mesh.x);
+        mesh.x = mesh.x + f * (end.y - mesh.y);
+        mesh.z = mesh.z + f * (end.z - mesh.z);
+
+        f++;
+    }
 }
 
 

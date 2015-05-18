@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.html" afterPath="$PROJECT_DIR$/SCSU/home.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carousel/carosuel_3.0SideBar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carousel/carousel_3.0.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carousel/carousel_3.0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carousel/carousel_3.0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/carousel/scrollableDiv.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/videoCarousel/videoCarousel.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/videoCarousel/videoCarousel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,62 +36,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="campus_3D.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
+      <file leaf-file-name="videoCarousel.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.76" vertical-offset="0" max-vertical-offset="768">
-              <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="35" selection-end-column="97" />
+            <state vertical-scroll-proportion="-6.4" vertical-offset="0" max-vertical-offset="752">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="campus_3d.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="2032">
-              <caret line="74" column="91" selection-start-line="74" selection-start-column="91" selection-end-line="75" selection-end-column="115" />
+            <state vertical-scroll-proportion="0.42105263" vertical-offset="1344" max-vertical-offset="6816">
+              <caret line="109" column="116" selection-start-line="109" selection-start-column="116" selection-end-line="109" selection-end-column="116" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISELFMap.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
+      <file leaf-file-name="videoCarousel.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2048">
-              <caret line="77" column="134" selection-start-line="77" selection-start-column="120" selection-end-line="77" selection-end-column="134" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ISELF_GUI.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js">
+      <file leaf-file-name="videoCarousel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="1504">
-              <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SCSU/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42105263" vertical-offset="0" max-vertical-offset="950">
-              <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ISELFMap.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.6" vertical-offset="0" max-vertical-offset="1008">
-              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="593" max-vertical-offset="1632">
+              <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,16 +86,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sideBar/sideBar.css" />
-        <option value="$PROJECT_DIR$/paperOverlay/paperOverlaySidebar.css" />
-        <option value="$PROJECT_DIR$/paperOverlay/paperOverlay.css" />
-        <option value="$PROJECT_DIR$/paperOverlay/paperOverlay.html" />
-        <option value="$PROJECT_DIR$/SCSU/scsu.html" />
-        <option value="$PROJECT_DIR$/SCSU/dean.html" />
-        <option value="$PROJECT_DIR$/SCSU/campusMap.html" />
-        <option value="$PROJECT_DIR$/SCSU/video.html" />
         <option value="$PROJECT_DIR$/SCSU/main.css" />
-        <option value="$PROJECT_DIR$/SCSU/aboutVizGroup.html" />
         <option value="$PROJECT_DIR$/sideBar/sideBar.html" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/sideBar.css" />
         <option value="$PROJECT_DIR$/Web-Doodler/Web-Doolder.js" />
@@ -135,15 +118,25 @@
         <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.html" />
         <option value="$PROJECT_DIR$/SCSU/CampusPage/campusMap.js" />
         <option value="$PROJECT_DIR$/bootStrap/progressBar.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/projectEuler/fibonacciSequenceOp.html" />
         <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D_GUI.js" />
-        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
-        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.html" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page/ISELF_GUI.js" />
         <option value="$PROJECT_DIR$/SCSU/home.html" />
+        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
+        <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
+        <option value="$PROJECT_DIR$/carousel/scrollableDiv.html" />
+        <option value="$PROJECT_DIR$/carousel/carousel_3.0.css" />
+        <option value="$PROJECT_DIR$/carousel/carousel_3.0.js" />
+        <option value="$PROJECT_DIR$/carousel/carosuel_3.0SideBar.css" />
+        <option value="$PROJECT_DIR$/carousel/carousel_3.0.html" />
+        <option value="$PROJECT_DIR$/SCSU/aboutVizGroup.html" />
+        <option value="$PROJECT_DIR$/hideShow/hideShow.html" />
+        <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.css" />
+        <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.js" />
+        <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -177,6 +170,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -205,7 +199,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SCSU" />
+              <option name="myItemId" value="videoCarousel" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -220,52 +214,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="SCSU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ISELF_Page" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SCSU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CampusPage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SCSU" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Campus_3D" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -279,14 +232,19 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/paperOverlay" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -294,10 +252,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -353,11 +307,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -381,94 +335,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/logic/logic.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/navButtons.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1952">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web-Doodler/Web-DoodlerSidebar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1825641" vertical-offset="1185" max-vertical-offset="2160">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/physicsSimulator/physicsSimulator.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.52" vertical-offset="0" max-vertical-offset="384">
-          <caret line="18" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cubes/cubes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1680">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/scsu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/dean.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.101052634" vertical-offset="0" max-vertical-offset="950">
-          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/video.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.101052634" vertical-offset="0" max-vertical-offset="950">
-          <caret line="6" column="46" selection-start-line="6" selection-start-column="46" selection-end-line="6" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sideBar/sideBar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.88" vertical-offset="0" max-vertical-offset="608">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="23" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archTool_1.0/CSS/simple-sidebar.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2080">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="145" max-vertical-offset="1168">
           <caret line="66" column="29" selection-start-line="66" selection-start-column="29" selection-end-line="66" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/aboutVizGroup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.04" vertical-offset="0" max-vertical-offset="608">
-          <caret line="11" column="104" selection-start-line="11" selection-start-column="104" selection-end-line="11" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/archTool_1.0/CSS/myStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1264">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -546,17 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1018" max-vertical-offset="1968">
           <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -579,7 +438,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="352" max-vertical-offset="3040">
           <caret line="37" column="56" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -595,7 +453,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.36" vertical-offset="650" max-vertical-offset="1984">
           <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -603,7 +460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50945276" vertical-offset="1360" max-vertical-offset="5936">
           <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -611,7 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37448978" vertical-offset="2737" max-vertical-offset="4208">
           <caret line="194" column="49" selection-start-line="194" selection-start-column="49" selection-end-line="195" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -619,22 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2817" max-vertical-offset="3856">
           <caret line="237" column="0" selection-start-line="237" selection-start-column="0" selection-end-line="237" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/physicsSimulator/physicsSimulator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3763" max-vertical-offset="4768">
-          <caret line="280" column="22" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/carousel/carousel.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.72" vertical-offset="0" max-vertical-offset="496">
-          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -651,7 +490,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2656" max-vertical-offset="6208">
           <caret line="188" column="8" selection-start-line="188" selection-start-column="8" selection-end-line="188" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -659,7 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.16" vertical-offset="0" max-vertical-offset="576">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -667,7 +504,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4923077" vertical-offset="128" max-vertical-offset="1296">
           <caret line="38" column="86" selection-start-line="38" selection-start-column="86" selection-end-line="38" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,7 +511,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7548718" vertical-offset="528" max-vertical-offset="5104">
           <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="81" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,7 +518,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.88" vertical-offset="0" max-vertical-offset="816">
           <caret line="17" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="45" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -695,19 +529,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5726316" vertical-offset="1040" max-vertical-offset="6656">
-          <caret line="99" column="121" selection-start-line="99" selection-start-column="121" selection-end-line="99" selection-end-column="121" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19692308" vertical-offset="0" max-vertical-offset="975">
           <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,31 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="1296">
           <caret line="75" column="1" selection-start-line="75" selection-start-column="1" selection-end-line="75" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.76" vertical-offset="0" max-vertical-offset="768">
-          <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="35" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1057" max-vertical-offset="2032">
-          <caret line="74" column="91" selection-start-line="74" selection-start-column="91" selection-end-line="75" selection-end-column="115" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="913" max-vertical-offset="2048">
-          <caret line="77" column="134" selection-start-line="77" selection-start-column="120" selection-end-line="77" selection-end-column="134" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -755,7 +555,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-25.6" vertical-offset="0" max-vertical-offset="1008">
           <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -763,14 +562,165 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="1504">
           <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page/ISELFMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3271795" vertical-offset="913" max-vertical-offset="2048">
+          <caret line="77" column="134" selection-start-line="77" selection-start-column="120" selection-end-line="77" selection-end-column="134" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/physicsSimulator/physicsSimulator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.905641" vertical-offset="672" max-vertical-offset="4768">
+          <caret line="280" column="22" selection-start-line="280" selection-start-column="22" selection-end-line="280" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/physicsSimulator/physicsSimulator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2" vertical-offset="0" max-vertical-offset="384">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="720">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1385" max-vertical-offset="2416">
+          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carousel/scrollableDiv.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="160" max-vertical-offset="528">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="52" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42105263" vertical-offset="0" max-vertical-offset="950">
+        <state vertical-scroll-proportion="-16.0" vertical-offset="0" max-vertical-offset="496">
           <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carousel/carousel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.8" vertical-offset="0" max-vertical-offset="496">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="21" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sideBar/sideBar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2160">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="129" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/aboutVizGroup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="608">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="32" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carousel/carosuel_3.0SideBar.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2160">
+          <caret line="29" column="38" selection-start-line="29" selection-start-column="37" selection-end-line="29" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carousel/carousel_3.0.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-52.48" vertical-offset="208" max-vertical-offset="1936">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="100" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carousel/carousel_3.0.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="6.5148716" vertical-offset="0" max-vertical-offset="6448">
+          <caret line="397" column="0" selection-start-line="397" selection-start-column="0" selection-end-line="397" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/carousel/carousel_3.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1525" max-vertical-offset="3504">
+          <caret line="158" column="23" selection-start-line="158" selection-start-column="23" selection-end-line="159" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/archTool_1.0/CSS/myStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1264">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="975">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="593" max-vertical-offset="1632">
+          <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.4" vertical-offset="0" max-vertical-offset="752">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42105263" vertical-offset="1344" max-vertical-offset="6816">
+          <caret line="109" column="116" selection-start-line="109" selection-start-column="116" selection-end-line="109" selection-end-column="116" />
           <folding />
         </state>
       </provider>
