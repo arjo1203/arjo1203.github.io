@@ -16,7 +16,7 @@ var player;
 function onYouTubeIframeAPIReady(){
 
     player = new YT.Player('player', {
-        height: '100%',
+        height: '85%',
         width: '100%',
         //playlistId: 'PL1DD10E84B9B08A35'
         //videoId: '_nQDU7HOStc', //player.loadVideoById(videoId:String, startSeconds:Number, suggestedQuality:String):Void
