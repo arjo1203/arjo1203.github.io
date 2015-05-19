@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/videoCarousel/videoCarousel.css" afterPath="$PROJECT_DIR$/videoCarousel/videoCarousel.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/videoCarousel/videoCarousel.html" afterPath="$PROJECT_DIR$/videoCarousel/videoCarousel.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/videoCarousel/videoCarousel.js" afterPath="$PROJECT_DIR$/videoCarousel/videoCarousel.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -42,41 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="progressBar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
-              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="videoCarousel.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="videoCarousel.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1040">
+            <state vertical-scroll-proportion="0.32820514" vertical-offset="0" max-vertical-offset="1040">
               <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="videoCarousel.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="videoCarousel.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5897436" vertical-offset="817" max-vertical-offset="3456">
-              <caret line="87" column="37" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_2d.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_2d.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6496" max-vertical-offset="9440">
-              <caret line="454" column="7" selection-start-line="454" selection-start-column="7" selection-end-line="454" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="3456">
+              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -139,8 +118,8 @@
         <option value="$PROJECT_DIR$/hideShow/hideShow.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.html" />
-        <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.css" />
         <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.js" />
+        <option value="$PROJECT_DIR$/videoCarousel/videoCarousel.css" />
       </list>
     </option>
   </component>
@@ -729,14 +708,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.6" vertical-offset="0" max-vertical-offset="880">
@@ -749,18 +720,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.css">
+    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1040">
-          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="3456">
+          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.js">
+    <entry file="file://$PROJECT_DIR$/bootStrap/progressBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5897436" vertical-offset="817" max-vertical-offset="3456">
-          <caret line="87" column="37" selection-start-line="87" selection-start-column="37" selection-end-line="87" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/videoCarousel/videoCarousel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32820514" vertical-offset="0" max-vertical-offset="1040">
+          <caret line="20" column="1" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
           <folding />
         </state>
       </provider>

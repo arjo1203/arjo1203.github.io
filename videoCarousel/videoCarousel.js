@@ -30,7 +30,7 @@ go.click( function(){
         playerVars: {
             listType:'playlist',
             list: inputPlayList.value, //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-
-            'controls': 1,
+            'controls': 0,
             'autohide': 1,
             'rel': 0
         },
@@ -52,7 +52,7 @@ function onYouTubeIframeAPIReady(){
         playerVars: {
             listType:'playlist',
             list: 'PLc9N-_6px7KFVrwxkVbgaAvvnjVGFF053', //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-, PL1DD10E84B9B08A35
-            'controls': 1,
+            'controls': 0,
             'autohide': 1,
             'rel': 0
         },
