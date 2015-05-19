@@ -1,6 +1,10 @@
 //THREE.JS Globals
 var camera, scene, renderer, controls;
 var $Buildings = {};
+var proirx = {}, cameraUp = true;
+proirx.x = 0;
+proirx.y = 1200;
+proirx.z = 3000;
 
 
 createThreeEnviroment();
@@ -104,10 +108,39 @@ function onWindowResize(){
 
 
 
-function animate(){
-    if(camera.position.y <= 10){
-        camera.position.y = 10;
+function checkFn(int){
+    if(int > 0){
+        return false;
     }
+    else{
+        return true;
+    }
+}
+
+
+
+
+function animate(){
+    var x1, x2, deltax;
+    x1 = camera.position.y;
+    //console.log(proirx);
+    deltax = proirx.y - x1;
+
+    cameraUp = checkFn(deltax);
+    //console.log(cameraUp);
+
+    if(cameraUp !== true){
+        if(camera.position.y <= 0){
+            camera.position.y = 0;
+            camera.position.x = proirx.x;
+            camera.position.z = proirx.z;
+        }
+
+    }
+
+    proirx.x = camera.position.x;
+    proirx.y = camera.position.y;
+    proirx.z = camera.position.z;
 
     requestAnimationFrame( animate );
     controls.update();
