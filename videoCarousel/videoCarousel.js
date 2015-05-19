@@ -5,7 +5,45 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player, videosDiv = document.getElementById('videos'), videos = $('#videos')[0];
+var inputPlayList = document.getElementById('playList'), go = $('#Go');
 
+
+//Install paper on window to use like regular javascript
+paper.install(window);
+
+//Install paper on 2d canvas and set the size
+paper.setup('myCanvas');
+paper.view.viewSize = [window.innerWidth, window.innerHeight];
+
+
+
+go.click( function(){
+    inputPlayList.placeholder = inputPlayList.value;
+    console.log(inputPlayList);
+    var container = document.getElementById("container");
+    container.removeChild(container.children[0]);
+
+    var div = document.createElement('div');
+    div.id = 'player';
+    container.appendChild(div);
+    player = new YT.Player('player', {
+        height: '85%',
+        width: '100%',
+        playerVars: {
+            listType:'playlist',
+            list: inputPlayList.value, //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-
+            'controls': 1,
+            'autohide': 1,
+            'rel': 0
+        },
+        events:{
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange,
+        }
+    });
+
+    first = 0;
+});
 
 
 
@@ -16,7 +54,7 @@ function onYouTubeIframeAPIReady(){
         width: '100%',
         playerVars: {
             listType:'playlist',
-            list: 'PL1DD10E84B9B08A35', //'PLwyv96l14uwm0HoKlOgfJ7vX7oJAEQssf' //'PL1DD10E84B9B08A35'
+            list: 'PL1DD10E84B9B08A35', //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-
             'controls': 1,
             'autohide': 1,
             'rel': 0
@@ -45,15 +83,20 @@ function onPlayerStateChange(event){
     if (event.data == YT.PlayerState.PLAYING){
         //loads the videoplaylist after the playlist has started playing
         if(first == 0){
+            if(videosDiv.children.length > 0){
+                while(videosDiv.children.length > 0){
+                    videosDiv.removeChild(videosDiv.lastChild);
+                }
+            }
+
+
             addElement();
         }
         first++;
     }
     if(event.data == 0){
-        var ended = event.data;
+        //Video has ended
         changeVideo();
-        //console.log("vid ended " + ended);
-        //console.log(videosDiv);
     }
 
 }
@@ -64,7 +107,7 @@ function onPlayerStateChange(event){
 function addElement() {
     var playerList = player.getPlaylist();
     //console.log(playerList);
-    videosDiv.style.width = (playerList.length * 150).toString() + 'px';
+    videosDiv.style.width = (playerList.length * (window.innerWidth * .10)).toString() + 'px';
 
 
     for (var j = 0; j < playerList.length; j++) {
@@ -73,8 +116,8 @@ function addElement() {
         input.type = 'image';
         input.id = j.toString();
         input.src = 'http://img.youtube.com/vi/' + playerList[j] + '/0.jpg';
-        input.style.width = '150px';
-        input.style.height = '150px';
+        input.style.width = (window.innerWidth * .15).toString() + 'px';
+        input.style.height = (window.innerHeight * .15).toString() + 'px';
         input.onclick = function(){
 
             for(var i = 0; i < videos.children.length; i++){
@@ -126,4 +169,30 @@ function findVideo(div){
     }
 
     return index;
+}
+
+
+window.addEventListener('resize', onWindowResize, false);
+
+
+
+function onWindowResize(){
+    paper.view.viewSize = [window.innerWidth, window.innerHeight];
+    innerWidth = window.innerWidth;
+    console.log(window.innerWidth);
+    console.log(innerWidth);
+}
+
+
+// Create a raster item using the image tag with id='mona'
+var backGround = new Raster('../SCSU/scsuCode.jpg');
+
+// Move the raster to the center of the view
+backGround.position = view.center;
+backGround.opacity = .2;
+
+
+
+function onFrame(event){
+    console.log(event.time);
 }
