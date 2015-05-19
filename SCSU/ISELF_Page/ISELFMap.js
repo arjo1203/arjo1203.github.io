@@ -121,6 +121,17 @@ function checkFn(int){
 
 
 function animate(){
+
+    requestAnimationFrame( animate );
+    controls.update();
+
+    //Renders the THREE environment
+    render();
+}
+
+
+
+function render(){
     var y, deltay;
     y = camera.position.y;
     //console.log(proirx);
@@ -141,16 +152,6 @@ function animate(){
     proirx.x = camera.position.x;
     proirx.y = camera.position.y;
     proirx.z = camera.position.z;
-
-    requestAnimationFrame( animate );
-    controls.update();
-
-    //Renders the THREE environment
-    render();
-}
-
-
-
-function render(){
+    
     renderer.render(scene, camera);
 }
