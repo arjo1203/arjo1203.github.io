@@ -4,30 +4,28 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player, videosDiv = document.getElementById('videos'), videos = $('#videos')[0];
-var inputPlayList = document.getElementById('playList'), go = $('#Go');
+var player, videosDiv = document.getElementById('videos'), videos = $('#videos')[0], mainDiv = document.getElementById('container');
+var inputPlayList = document.getElementById('playList'), go = $('#Go'), logoDiv = $('#logoDiv'), logo = $('#logoImg');
 
 
-//Install paper on window to use like regular javascript
-paper.install(window);
-
-//Install paper on 2d canvas and set the size
-paper.setup('myCanvas');
-paper.view.viewSize = [window.innerWidth, window.innerHeight];
+window.addEventListener('resize', onWindowResize, false);
 
 
 
 go.click( function(){
+    first = true;
+
     inputPlayList.placeholder = inputPlayList.value;
-    console.log(inputPlayList);
+    //console.log(inputPlayList);
     var container = document.getElementById("container");
     container.removeChild(container.children[0]);
 
     var div = document.createElement('div');
     div.id = 'player';
     container.appendChild(div);
+
     player = new YT.Player('player', {
-        height: '85%',
+        height: '82%',
         width: '100%',
         playerVars: {
             listType:'playlist',
@@ -41,8 +39,7 @@ go.click( function(){
             'onStateChange': onPlayerStateChange,
         }
     });
-
-    first = 0;
+    //console.log(player.getPlaylist());
 });
 
 
@@ -50,11 +47,11 @@ go.click( function(){
 function onYouTubeIframeAPIReady(){
 
     player = new YT.Player('player', {
-        height: '85%',
+        height: '82%',
         width: '100%',
         playerVars: {
             listType:'playlist',
-            list: 'PL1DD10E84B9B08A35', //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-
+            list: 'PLc9N-_6px7KFVrwxkVbgaAvvnjVGFF053', //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-, PL1DD10E84B9B08A35
             'controls': 1,
             'autohide': 1,
             'rel': 0
@@ -72,33 +69,29 @@ function onYouTubeIframeAPIReady(){
 //API will call this function when player is ready
 function onPlayerReady(event){
     event.target.playVideo();
+    //console.log(event);
 }
 
 
 
 
-first = 0;
+var first = true;
 //API calls when player state changes
 function onPlayerStateChange(event){
-    if (event.data == YT.PlayerState.PLAYING){
-        //loads the videoplaylist after the playlist has started playing
-        if(first == 0){
-            if(videosDiv.children.length > 0){
-                while(videosDiv.children.length > 0){
-                    videosDiv.removeChild(videosDiv.lastChild);
-                }
-            }
-
-
-            addElement();
+    //console.log(event);
+    //loads the videoplaylist after the playlist has started playing
+    if(first == true){
+        while(videosDiv.children.length > 0){
+            videosDiv.removeChild(videosDiv.lastChild);
         }
-        first++;
+        //console.log(player.getPlaylist());
+        setTimeout(addElement, 1000);
+        first = false;
     }
     if(event.data == 0){
         //Video has ended
         changeVideo();
     }
-
 }
 
 
@@ -107,37 +100,45 @@ function onPlayerStateChange(event){
 function addElement() {
     var playerList = player.getPlaylist();
     //console.log(playerList);
-    videosDiv.style.width = (playerList.length * (window.innerWidth * .10)).toString() + 'px';
+    if(!playerList){
+        console.log('error');
+        promptError();
+    }
+    else{
+        videosDiv.style.width = (playerList.length * (window.innerWidth * .15)).toString() + 'px';
+
+        var inWidth = Math.round(window.innerWidth * .15), inHeight = Math.round(window.innerHeight * .15);
 
 
-    for (var j = 0; j < playerList.length; j++) {
-        var input = document.createElement('input');
+        for (var j = 0; j < playerList.length; j++) {
+            var input = document.createElement('input');
 
-        input.type = 'image';
-        input.id = j.toString();
-        input.src = 'http://img.youtube.com/vi/' + playerList[j] + '/0.jpg';
-        input.style.width = (window.innerWidth * .15).toString() + 'px';
-        input.style.height = (window.innerHeight * .15).toString() + 'px';
-        input.onclick = function(){
+            input.type = 'image';
+            input.id = j.toString();
+            input.src = 'http://img.youtube.com/vi/' + playerList[j] + '/0.jpg';
+            input.style.width = (inWidth).toString() + 'px';
+            input.style.height = (inHeight).toString() + 'px';
+            input.onclick = function(){
 
-            for(var i = 0; i < videos.children.length; i++){
-                if(videos.children[i].id != this.id){
-                    $('#' + videos.children[i].id).removeClass('border');
+                for(var i = 0; i < videos.children.length; i++){
+                    if(videos.children[i].id != this.id){
+                        $('#' + videos.children[i].id).removeClass('border');
+                    }
+                    else{
+                        $('#' + videos.children[i].id).addClass('border');
+                    }
                 }
-                else{
-                    $('#' + videos.children[i].id).addClass('border');
-                }
+
+                player.loadVideoById(playerList[parseInt(this.id)]);
+            };
+
+            if(j == 0){
+                //console.log(input);
+                input.className = 'border';
             }
 
-            player.loadVideoById(playerList[parseInt(this.id)]);
-        };
-
-        if(j == 0){
-            //console.log(input);
-            input.className = 'border';
+            videosDiv.appendChild(input);
         }
-
-        videosDiv.appendChild(input);
     }
 }
 
@@ -172,27 +173,39 @@ function findVideo(div){
 }
 
 
-window.addEventListener('resize', onWindowResize, false);
-
-
 
 function onWindowResize(){
-    paper.view.viewSize = [window.innerWidth, window.innerHeight];
-    innerWidth = window.innerWidth;
-    console.log(window.innerWidth);
-    console.log(innerWidth);
+    var inWidth = window.innerWidth * .15;
+    videosDiv.style.width = (videosDiv.children.length * inWidth).toString() + 'px';
+    for (var j = 0; j < videosDiv.children.length; j++) {
+        videosDiv.children[j].style.width = (inWidth).toString() + 'px';
+    }
+
+    setlogoDiv(logoDiv);
 }
 
 
-// Create a raster item using the image tag with id='mona'
-var backGround = new Raster('../SCSU/scsuCode.jpg');
 
-// Move the raster to the center of the view
-backGround.position = view.center;
-backGround.opacity = .2;
+function setlogoDiv(div){
+    //console.log(div);
+    var width = div[0].clientWidth, height = div[0].clientHeight, deltaHeight, deltaWidth;
+    var inHeight = window.innerHeight * .85, inWidth = window.innerWidth;
+    //console.log(width, height);
+
+    //img.style.position.x = Math.round(inWidth - deltaWidth);
+    div[0].style.top = Math.round(inHeight - height).toString() + 'px';
+    div[0].style.right = '0';
+}
 
 
 
-function onFrame(event){
-    console.log(event.time);
+setlogoDiv(logoDiv);
+logo[0].style.opacity = '.8';
+
+
+
+
+function promptError(){
+    window.alert('Could not find Youtube Playlist. Please enter another Youtube Playlist.');
+    inputPlayList.value = 'Enter a VALID Youtube Playlist, then click \'Watch!\'';
 }
