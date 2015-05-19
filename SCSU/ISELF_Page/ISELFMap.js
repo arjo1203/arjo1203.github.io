@@ -121,16 +121,16 @@ function checkFn(int){
 
 
 function animate(){
-    var x1, x2, deltax;
+    var x1, x2, deltay;
     x1 = camera.position.y;
     //console.log(proirx);
-    deltax = proirx.y - x1;
+    deltay = proirx.y - x1;
 
-    cameraUp = checkFn(deltax);
+    cameraUp = checkFn(deltay);
     //console.log(cameraUp);
 
     if(cameraUp !== true){
-        if(camera.position.y <= 0){
+        if(camera.position.y <= 1){
             camera.position.y = 0;
             camera.position.x = proirx.x;
             camera.position.z = proirx.z;
