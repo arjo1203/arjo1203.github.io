@@ -1,0 +1,10 @@
+#clock{
+    position: absolute;
+    right: 0;
+    top: 5%;
+    width: 400px;
+}
+#logo{
+    position: absolute;
+    top: 2%;
+}

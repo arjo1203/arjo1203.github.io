@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
     <link href="./main.css" rel="stylesheet" >
+    <link href="../flipClock/flipclock.css" rel="stylesheet">
+    <link href="./home.css" rel="stylesheet">
 </head>
 <body id="body">
 
 <div>
-    <a href="./aboutVizGroup.html"><img src="./scsuLogo.png" class="img-rounded SCSULogo"></a>
+    <a id="logo" href="./aboutVizGroup.html"><img src="./scsuLogo.png" class="img-rounded SCSULogo"></a>
     <div id="homeButtonsContainer" class="form-group">
             <a class="col-md-3 homeButtons" href="VideosPage/video.html">Videos</a>
             <a class="col-md-3 homeButtons" href="./ISELF_Page/ISELFMap.html">ISELF Map</a>
@@ -19,8 +21,11 @@
 
     <a href="./aboutVizGroup.html"><h3 id="By">By the Visualization Lab</h3></a>
 </div>
+<div id="clock"></div>
 
 <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+<script src="../flipClock/flipclock.min.js"></script>
 <script src="../bootStrap/bootstrap.js"></script>
+<script src="./home.js"></script>
 </body>
 </html>

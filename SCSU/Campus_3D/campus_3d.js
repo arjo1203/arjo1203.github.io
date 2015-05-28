@@ -1,11 +1,82 @@
-//THREE.JS Globals
-var camera, scene, renderer, controls;
-var $Buildings = {};
+//*****EVENTLISTENERS & FUNCTIONS*****
+var flyCamera = false,
+    $Buildings = {},
+    targets = new THREE.Object3D(),
+    currentPos = new THREE.Vector3(0, 6000, 12000),
+    endPos = new THREE.Vector3(0, 0, 0),
+    distancePercent,
+    percentage = 0,
+    firstClick = true;
 
 
-createThreeEnviroment();
+window.addEventListener( 'mousedown', onMouseDown, false );
+window.addEventListener('resize', onWindowResize, false);
 
-function createThreeEnviroment(){
+
+
+function onMouseDown( event ) {
+    event.preventDefault();
+
+    if(firstClick == true){
+        loadTargets();
+        firstClick = false;
+    }
+
+
+    // calculate mouse position in normalized device coordinates
+    // (-1 to +1) for both components
+
+    mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+    mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+    raycaster.setFromCamera( mouse, camera );
+
+    var intersects = raycaster.intersectObjects( targets.children);
+
+    if ( intersects.length > 0 ) {
+        var intersect = intersects[0];
+
+        currentPos.x = camera.position.x;
+        currentPos.y = camera.position.y;
+        currentPos.z = camera.position.z;
+        endPos = intersect.point;
+
+        distancePercent = Math.round(((intersect.distance - 3000) / intersect.distance) * 100);
+
+        flyCamera = true;
+    }
+}
+
+
+
+function onWindowResize(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    render();
+}
+//*****EVENTLISTENERS*****
+
+//************************************************************************************************
+
+//*******3D CAMPUS********
+var camera,
+    scene,
+    renderer,
+    controls,
+    raycaster = new THREE.Raycaster(),
+    mouse = new THREE.Vector2();
+
+
+
+init();
+
+
+
+function init(){
     //Getting existing canvas and setting it to threejs
     var threejs = document.getElementById('threejs');
 
@@ -23,8 +94,8 @@ function createThreeEnviroment(){
 
     //Creating camera, setting it's position, and then making it look at the scene position
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000000);
-    camera.position.set(0, 1200, 3000);
-    camera.lookAt(scene.position);
+    camera.position.set(0, 6000, 12000);
+    camera.lookAt(endPos);
 
     controls = new THREE.OrbitControls(camera);
     controls.addEventListener('change', render);
@@ -35,13 +106,78 @@ function createThreeEnviroment(){
 
     renderer.setClearColor('white',1);
 
+
     loadScene();
-    console.log($Buildings);
-
-    window.addEventListener('resize', onWindowResize, false);
-
     render();
     animate();
+}
+
+
+
+
+function animate(){
+    requestAnimationFrame( animate );
+
+    if(flyCamera){
+        if(percentage < distancePercent){
+            var nextPos = LERP(currentPos, endPos, percentage / 100);
+            camera.position.set(nextPos.x, nextPos.y, nextPos.z);
+
+            percentage += 1;
+            render();
+        }
+        else{
+            percentage = 0;
+            flyCamera = false;
+        }
+    }
+
+    controls.center.set(endPos.x, endPos.y, endPos.z);
+    controls.update();
+
+    camera.lookAt(endPos);
+
+    //Renders the THREE environment
+    render();
+}
+
+
+
+function render(){
+    renderer.render(scene, camera);
+}
+
+
+
+function LERP(start, end, percent) {
+    var finalPos = new THREE.Vector3(0, 0, 0), dX = end.x - start.x, dY = end.y - start.y, dZ = end.z - start.z;
+
+    finalPos.x = start.x + percent * dX;
+    finalPos.y = start.y + percent * dY;
+    finalPos.z = start.z  + percent * dZ;
+
+    return finalPos;
+}
+
+
+
+function loadTargets(){
+    for(var child in $Buildings.Facade.children){
+        targets.add($Buildings.Facade.children[child]);
+    }
+
+
+    for(var child in $Buildings.WSB_ext.children){
+        targets.add($Buildings.WSB_ext.children[child]);
+    }
+
+
+    for(var child in $Buildings.ISELF_exterior.children){
+        targets.add($Buildings.ISELF_exterior.children[child]);
+    }
+
+
+    scene.add(targets);
 }
 
 
@@ -50,31 +186,24 @@ function createThreeEnviroment(){
 function loadObject(model, material, modelName, visbility) {
     var loader = new THREE.OBJMTLLoader();
 
-
-
-    loader.load(model, material, function (myobject) {
-
+    loader.load(model, material, function(myobject) {
         SetVisibility(myobject, visbility);
 
-
-
-        myobject.position.x = -1200;
-        myobject.position.z = -1200;
+        myobject.name = modelName;
         $Buildings[modelName] = myobject;
 
         scene.add(myobject);
         render();
-
-
     });
+}
 
 
 
-}function loadScene() {
+function loadScene() {
     loadObject('campusBuildings/Terrain.obj', 'campusBuildings/Terrain.mtl', 'Terrain', true);
     loadObject('campusBuildings/Facade.obj', 'campusBuildings/Facade.mtl', 'Facade', true);
-    loadObject('campusBuildings/ISELF_exterior.obj', 'campusBuildings/ISELF_exterior.mtl', 'ISLEF_exterior', true);
-    loadObject('campusBuildings/WSB_ext.obj', 'campusBuildings/WSB_ext.mtl', 'Facade', true);
+    loadObject('campusBuildings/ISELF_exterior.obj', 'campusBuildings/ISELF_exterior.mtl', 'ISELF_exterior', true);
+    loadObject('campusBuildings/WSB_ext.obj', 'campusBuildings/WSB_ext.mtl', 'WSB_ext', true);
 }
 
 
@@ -88,59 +217,4 @@ function SetVisibility(object, value) {
     });
 
 }
-
-
-
-function onWindowResize(){
-    camera.aspect = window.innerWidth / window.innerHeight;
-
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    render();
-}
-
-
-var i = 0;
-var end = new THREE.Vector3(0, 0, 0);
-moveCamera(camera, end);
-function animate(){
-    //
-    //camera.position.x = currentPos.x;
-    //camera.position.y = currentPos.y;
-    //camera.position.z = currentPos.z;
-    ////camera.position = lerp(start, end, i/5);
-    //
-    //if(camera.position.y <= 10){
-    //    camera.position.y = 10;
-    //}
-
-    requestAnimationFrame( animate );
-    controls.update();
-
-    //Renders the THREE environment
-    render();
-    i++;
-}
-
-
-function moveCamera(mesh, end) {
-    //console.log(a, b);
-    //console.log('hello');
-    var f = 0;
-
-    while(f < 300){
-        mesh.x = mesh.x + f * (end.x - mesh.x);
-        mesh.x = mesh.x + f * (end.y - mesh.y);
-        mesh.z = mesh.z + f * (end.z - mesh.z);
-
-        f++;
-    }
-}
-
-
-
-function render(){
-    renderer.render(scene, camera);
-}
+//*******3D CAMPUS********
