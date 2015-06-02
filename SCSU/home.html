@@ -1,31 +1,27 @@
-<html>
-<head>
-    <title>St. Cloud State University</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta charset="UTF-8">
-    <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
-    <link href="./main.css" rel="stylesheet" >
-    <link href="../flipClock/flipclock.css" rel="stylesheet">
-    <link href="./home.css" rel="stylesheet">
-</head>
-<body id="body">
+<htmL>
+    <head>
+        <link href="../flipClock/flipclock.css" rel="stylesheet">
+        <link href="../VizLab/viz.css" rel="stylesheet">
+    </head>
+    <body>
+        <img class="homeBackGround" src="./images/Background.png"></img>
+        <img class="homeLogo" src="./images/vizLogo.png"></img>
 
-<div>
-    <a id="logo" href="./aboutVizGroup.html"><img src="./scsuLogo.png" class="img-rounded SCSULogo"></a>
-    <div id="homeButtonsContainer" class="form-group">
-            <a class="col-md-3 homeButtons" href="VideosPage/video.html">Videos</a>
-            <a class="col-md-3 homeButtons" href="./ISELF_Page/ISELFMap.html">ISELF Map</a>
-            <a class="col-md-3 homeButtons" href="./Campus_3D/campus_3D.html">Campus Map</a>
-            <a class="col-md-3 homeButtons" href="./dean.html">Dean's Message</a>
-    </div>
+        <div id="clock"></div>
 
-    <a href="./aboutVizGroup.html"><h3 id="By">By the Visualization Lab</h3></a>
-</div>
-<div id="clock"></div>
+        <div class="nav">
+            <a class="link" href="./VideosPage/video.html">Videos</a>
+            <a class="link floatMiddle" href="./ISELF_Page2.0/ISELF.html">ISELF</a>
+            <a class="link floatRight" href="./Campus_3D/campus_3D.html">Campus</a>
+        </div>
 
-<script src="../assets/plugins/jquery-1.11.2.min.js"></script>
-<script src="../flipClock/flipclock.min.js"></script>
-<script src="../bootStrap/bootstrap.js"></script>
-<script src="./home.js"></script>
-</body>
-</html>
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../flipClock/flipclock.min.js"></script>
+        <script>
+            var clock = $('#clock').FlipClock({
+                clockFace: 'TwelveHourClock',
+                showSeconds: false
+            });
+        </script>
+    </body>
+</htmL>

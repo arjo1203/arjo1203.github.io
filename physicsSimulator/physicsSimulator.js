@@ -137,7 +137,7 @@ function calcForces(){
 
                 //Calculate the force between the particle, but if the two particles are close enough the particles will merge
                 if(d > (particles[i].mesh.scale.x + particles[j].mesh.scale.x) * threshold){
-                    F = calcForce(mass1,mass2,d);//Calculates the force bewteen the two particles
+                    F = calcForce(mass1,mass2,d);//Calculates the force between the two particles
 
                     var Fx = F * ((x1.x-x2.x)/ Math.sqrt(d));//Force in the x direction
                     var Fy = F * ((x1.y-x2.y)/ Math.sqrt(d));//Force in the y direction

@@ -1,0 +1,27 @@
+<htmL>
+    <head>
+        <link href="../../flipClock/flipclock.css" rel="stylesheet">
+        <link href="../../VizLab/viz.css" rel="stylesheet">
+    </head>
+    <body>
+        <img class="homeBackGround" src="../images/Background.png"></img>
+        <img class="homeLogo" src="../images/vizLogo.png"></img>
+
+        <div id="clock"></div>
+
+        <div class="nav">
+            <a class="link" href="../VideosPage/video.html">Videos</a>
+            <a class="link floatMiddle" href="../ISELF_Page2.0/ISELF.html">ISELF</a>
+            <a class="link floatRight" href="../Campus_3D/campus_3D.html">Campus</a>
+        </div>
+
+        <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../../flipClock/flipclock.min.js"></script>
+        <script>
+            var clock = $('#clock').FlipClock({
+                clockFace: 'TwelveHourClock',
+                showSeconds: false
+            });
+        </script>
+    </body>
+</htmL>

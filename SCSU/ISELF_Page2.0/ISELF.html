@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>St. Cloud State University</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <link href="../../VizLab/viz.css" rel="stylesheet">
+</head>
+<body>
+    <a href="../homePage/homePage.html"><img src="../images/Vector-Smart-Object.png" class="backArrow"></img></a>
+    <img src="../images/logo.png" class="BR"></img>
+
+    <div class="GUI TR">
+        <img src="../images/GUI.png" class="TR"></img>
+        <div class="btnGroup" id="floors">
+            <button id="first" class="top btn on">1st</button>
+            <button id="second" class="btn on">2nd</button>
+            <button id="third" class="btn on">3rd</button>
+            <button id="ext" class="bottom btn on">Ext.</button>
+        </div>
+    </div>
+
+    <canvas id="threejs"></canvas>
+
+    <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
+    <script src="../../THREE/three.min.js"></script>
+    <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/OrbitControls.js"></script>
+    <script src="../../THREE/MTLLoader.js"></script>
+    <script src="../../THREE/OBJMTLLoader.js"></script>
+    <script src="./ISELF_GUI.js"></script>
+    <script src="./ISELF.js"></script>
+</body>
+</html>

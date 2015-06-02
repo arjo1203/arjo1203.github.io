@@ -1,39 +1,37 @@
 <html>
-<head>
-    <title>St. Cloud State University</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta charset="UTF-8">
-    <link href="../../bootStrap/bootstrap.min.css" rel="stylesheet" >
-    <link href="./video.css" rel="stylesheet" >
-</head>
-<body id="body">
-
-<div id="main">
-    <a id="arrowLink" href="../home.html"><img id="arrowImg" src="../redArrow.png" class="img-rounded"></a>
-    <!--container keeps uer from touching player -->
-    <div id="container">
-        <!--youtube player -->
-        <div id="player"></div>
-    </div>
-
-    <div id="sideBar">
-        <div id="sideBar-Context">
-            <div id="videos">
-                <!--videos are stored here -->
+    <head>
+        <title>St. Cloud State University</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta charset="UTF-8">
+        <link href="../../bootStrap/bootstrap.min.css" rel="stylesheet" >
+        <link href="../../VizLab/viz.css" rel="stylesheet">
+    </head>
+    <body id="body">
+        <a href="../homePage/homePage.html"><img src="../images/Vector-Smart-Object.png" class="backArrow"></img></a>
+    
+        <div id="main">
+            <!--container keeps uer from touching player -->
+            <div id="container">
+                <!--youtube player -->
+                <div id="player"></div>
+            </div>
+            <div id="sideBar">
+                <div id="sideBar-Context">
+                    <div id="videos">
+                        <!--videos are stored here -->
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <div id="logoDiv">
+            <img src="../images/vizLogo.png" class="BR halfOp"></img>
+        </div>
 
-<div id="logoDiv">
-    <img id="logoImg" src="../saintc_watermark.png">
-</div>
+        <canvas id="myCanvas"></canvas>
 
-<canvas id="myCanvas"></canvas>
-
-<script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
-<script src="../../bootStrap/bootstrap.js"></script>
-<script src="./video.js"></script>
-</body>
+        <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../../bootStrap/bootstrap.js"></script>
+        <script src="./video.js"></script>
+    </body>
 </html>
