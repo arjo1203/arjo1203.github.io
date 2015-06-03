@@ -4,17 +4,54 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta charset="UTF-8">
         <link href="../../VizLab/viz.css" rel="stylesheet">
+        <style>
+            #flyBtn{
+            }
+            .btn2{
+                padding: 5px 10px 5px 10px;
+                font-size : 20px;
+            }
+            #zoomGUI{
+                position: absolute;
+                left: 47%;
+                top: 0;
+                width: 90px;
+            }
+            #zoom{
+                position: absolute;
+                width: 90px;
+            }
+            #zoomIn{
+                position: absolute;
+                right: 0;
+                width: 45px;
+            }
+            #zoomOut{
+                position: absolute;
+                left: 0;
+                width: 45px;
+            }
+        </style>
     </head>
     <body>
-        <a href="../homePage/homePage.html"><img src="../images/Vector-Smart-Object.png" class="backArrow"></img></a>
+    <div id="zoomGUI">
+        <div>
+            <button class="btn2" id="flyBtn">Fly to...</button>
+        </div>
+        <div id="zoom">
+            <button class="btn2" id="zoomOut">-</button>
+            <button class="btn2" id="zoomIn">+</button>
+        </div>
+    </div>
+        <a href="../homePage/homePage.html"><img src="../images/Vector-Smart-Object.png" class="backArrow"></a>
 
         <canvas id="threejs"></canvas>
 
-        <img src="../images/logo.png" class="BR"></img>
+        <img src="../images/logo.png" class="BR">
 
         <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
         <script src="../../THREE/three.min.js"></script>
-        <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/OrbitControls.js"></script>
+        <script src="../../THREE/OrbitControls.js"></script>
         <script src="../../THREE/MTLLoader.js"></script>
         <script src="../../THREE/OBJMTLLoader.js"></script>
         <script src="./fonts/helvetiker_regular.typeface.js"></script>
