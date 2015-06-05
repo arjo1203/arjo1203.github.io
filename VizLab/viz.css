@@ -90,17 +90,6 @@ body{
     top: 20px;
     z-index: 10;
 }
-.homeLogo{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-repeat: no-repeat;
-    width: 380px;
-    height: 380px;
-    /*left: 150px;*/
-    /*top: 150px;*/
-    z-index: 10;
-}
 .homeBackGround{
     position: absolute;
     z-index: -10;
@@ -237,12 +226,22 @@ body{
     position: absolute;
     width: 380px;
     height: 380px;
-    /*background-color: #080808;*/
+}
+.homeLogo{
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 380px;
+    height: 380px;
+    /*left: 150px;*/
+    /*top: 150px;*/
+    z-index: 10;
 }
 #clickMe{
     position: absolute;
+    width: 80px;
+    height: 80px;
+    bottom: 400px;
     left: 130px;
-    bottom: 500px;
 }
 #pic{
     position: absolute;

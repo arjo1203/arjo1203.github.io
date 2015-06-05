@@ -5,11 +5,11 @@
         <link href="./slideOutToCorners.css" rel="stylesheet">
     </head>
     <body class="homeBackGround">
-
-        <!--<div id="glow">-->
-            <!--<img src="../images/glowingBackground.png">-->
-        <!--</div>-->
         <div class="logoContainer">
+            <div>
+                <img id="clickMe" src="../images/hand.png">
+            </div>
+
             <div id="logo">
                 <img id="homeLogo" class="homeLogo" src="../images/NewBtn.png">
             </div>
@@ -28,7 +28,6 @@
                     <a class="link2" id="newProjects" href="#">Projects</a>
                 </div>
             </div>
-
         </div>
 
         <div id="clock"></div>
@@ -44,7 +43,7 @@
             });
 
             var videos = $('#videos'), ISELF = $('#ISELF'), Campus = $('#Campus'), Projects = $('#Projects'), logo = $('#homeLogo'), counter = 0;
-            var clickMe = $('#clickMe');
+            var clickMe = $('#clickMe'), logoDiv = $('.logoContainer');
 
             logo.click(function(){
                 if(counter % 2 == 0){
@@ -65,11 +64,11 @@
 
             centerLogo();
             function centerLogo(){
-                var logoDiv = $('.logoContainer'), glow = $('#glow'), width = window.innerWidth, height = window.innerHeight;
-                console.log(logoDiv);
+                var width = window.innerWidth, height = window.innerHeight;
+                console.log(logoDiv[0].clientHeight);
 
-                logoDiv[0].style.left = ((width / 2) - 190).toString() + 'px';
-                logoDiv[0].style.top = ((height / 2) - 190).toString() + 'px';
+                logoDiv[0].style.left = ((width / 2) - (logoDiv[0].clientWidth / 2)).toString() + 'px';
+                logoDiv[0].style.top = ((height / 2) - (logoDiv[0].clientHeight / 2)).toString() + 'px';
             }
 
 
@@ -132,8 +131,8 @@
                 }, 450);
             }
 
-//            animateClickMe();
-//            setInterval(animateClickMe, 5000);
+            animateClickMe();
+            setInterval(animateClickMe, 5000);
 
 //            animateLogo();
 //            setInterval(animateLogo, 2000);
@@ -141,38 +140,43 @@
 
 
             function animateClickMe(){
-                grow(clickMe, '150px', '150px', 1000);
+                grow(clickMe, '150px', '150px', '100px', '0', 1000);
 
                 setTimeout(function(){
-                    shrink(clickMe, '80px', '80px', 1000);
+                    shrink(clickMe, '80px', '80px', '130px', '0', 1000);
                 }, 1000);
             }
 
 
 
             function animateLogo(){
-                grow(logo, '450px', '450px', 2000);
+                grow(logo, '450px', '450px', '0', '0', '0', '0', 2000);
 
                 setTimeout(function(){
-                    shrink(logo, '350px', '350px', 2000);
+                    shrink(logo, '380px', '380px', '0', '0', '0', '0', 1000);
                 }, 1000);
             }
 
 
 
-            function grow(element, width, height, time){
+            function grow(element, width, height, left, right, time){
                 element.animate({
                     width: width,
-                    height: height
+                    height: height,
+                    left: left,
+                    right: right
                 }, time);
             }
 
-            function shrink(element, width, height, time){
+            function shrink(element, width, height, left, right, time){
                 element.animate({
                     width: width,
-                    height: height
+                    height: height,
+                    left: left,
+                    right: right
                 }, time);
             }
+
 
 
 
