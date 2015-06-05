@@ -97,8 +97,8 @@ body{
     background-repeat: no-repeat;
     width: 380px;
     height: 380px;
-    left: 15px;
-    top: 15px;
+    /*left: 150px;*/
+    /*top: 150px;*/
     z-index: 10;
 }
 .homeBackGround{
@@ -233,10 +233,11 @@ body{
     position: absolute;
     left: 10px;
 }
-#logoContainer{
+.logoContainer{
     position: absolute;
     width: 380px;
     height: 380px;
+    /*background-color: #080808;*/
 }
 #clickMe{
     position: absolute;
@@ -247,4 +248,10 @@ body{
     position: absolute;
     width: 100px;
     height: 100px;
+}
+#glow{
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    z-index: 9;
 }

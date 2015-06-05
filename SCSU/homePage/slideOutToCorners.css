@@ -46,9 +46,9 @@
 }
 .rotateForward{
     animation-name: rotateForward;
-    animation-duration: .3s;
+    animation-duration: .8s;
 }
 .rotateBackward{
     animation-name: rotateBackward;
-    animation-duration: .3s;
+    animation-duration: .8s;
 }

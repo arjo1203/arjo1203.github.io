@@ -6,12 +6,15 @@
     </head>
     <body class="homeBackGround">
 
-        <div  id="logoContainer">
-            <div class="link2" id="clickMe">
-                <img id="pic" src="../images/hand.png">
-            </div>
-            <div>
+        <!--<div id="glow">-->
+            <!--<img src="../images/glowingBackground.png">-->
+        <!--</div>-->
+        <div class="logoContainer">
+            <div id="logo">
                 <img id="homeLogo" class="homeLogo" src="../images/NewBtn.png">
+            </div>
+
+            <div id="buttons">
                 <div class="btnDiv" id="videos">
                     <a class="link2" id="newVideo" href="../VideosPage/video.html">Videos</a>
                 </div>
@@ -25,6 +28,7 @@
                     <a class="link2" id="newProjects" href="#">Projects</a>
                 </div>
             </div>
+
         </div>
 
         <div id="clock"></div>
@@ -40,6 +44,7 @@
             });
 
             var videos = $('#videos'), ISELF = $('#ISELF'), Campus = $('#Campus'), Projects = $('#Projects'), logo = $('#homeLogo'), counter = 0;
+            var clickMe = $('#clickMe');
 
             logo.click(function(){
                 if(counter % 2 == 0){
@@ -60,7 +65,7 @@
 
             centerLogo();
             function centerLogo(){
-                var logoDiv = $('#logoContainer'), width = window.innerWidth, height = window.innerHeight;
+                var logoDiv = $('.logoContainer'), glow = $('#glow'), width = window.innerWidth, height = window.innerHeight;
                 console.log(logoDiv);
 
                 logoDiv[0].style.left = ((width / 2) - 190).toString() + 'px';
@@ -73,77 +78,100 @@
                 videos.animate({
                     left: '500px',
                     top: 0
-                }, 250);
+                }, 400);
 
-                ISELF.animate({
-                    left: '500px',
-                    top: '350px'
-                }, 250);
+                setTimeout(function(){
+                    ISELF.animate({
+                        left: '500px',
+                        top: '350px'
+                    }, 400);
+                }, 150);
 
-                Campus.animate({
-                    right: '500px',
-                    top: 0
-                }, 250);
+                setTimeout(function(){
+                    Projects.animate({
+                        right: '500px',
+                        top: '350px'
+                    }, 400);
+                }, 300);
 
-                Projects.animate({
-                    right: '500px',
-                    top: '350px'
-                }, 250);
+                setTimeout(function(){
+                    Campus.animate({
+                        right: '500px',
+                        top: 0
+                    }, 400);
+                }, 450);
             }
 
 
 
             function slideIn(){
-                videos.animate({
-                    left: '150px',
-                    top: '150px'
-                });
-
-                ISELF.animate({
-                    left: '150px',
-                    top: '150px'
-                });
-
                 Campus.animate({
                     right: '150px',
                     top: '150px'
-                });
+                }, 400);
 
-                Projects.animate({
-                    right: '150px',
-                    top: '150px'
-                });
+                setTimeout(function(){
+                    Projects.animate({
+                        right: '150px',
+                        top: '150px'
+                    }, 400);
+                }, 150);
+
+                setTimeout(function(){
+                    ISELF.animate({
+                        left: '150px',
+                        top: '150px'
+                    }, 400);
+                }, 300);
+
+                setTimeout(function(){
+                    videos.animate({
+                        left: '150px',
+                        top: '150px'
+                    }, 400);
+                }, 450);
             }
 
-            animateClickMe();
-            setInterval(animateClickMe, 5000);
+//            animateClickMe();
+//            setInterval(animateClickMe, 5000);
+
+//            animateLogo();
+//            setInterval(animateLogo, 2000);
 
 
 
             function animateClickMe(){
-                grow();
+                grow(clickMe, '150px', '150px', 1000);
 
-                setTimeout(shrink, 1000);
-            }
-
-
-
-            function grow(){
-                var clickMe = $('#pic');
-
-                clickMe.animate({
-                    width: '150px',
-                    height: '150px'
+                setTimeout(function(){
+                    shrink(clickMe, '80px', '80px', 1000);
                 }, 1000);
             }
 
-            function shrink(){
-                var clickMe = $('#pic');
 
-                clickMe.animate({
-                    width: '80px',
-                    height: '80px'
+
+            function animateLogo(){
+                grow(logo, '450px', '450px', 2000);
+
+                setTimeout(function(){
+                    shrink(logo, '350px', '350px', 2000);
                 }, 1000);
+            }
+
+
+
+            function grow(element, width, height, time){
+                element.animate({
+                    width: width,
+                    height: height
+                }, time);
+            }
+
+            function shrink(element, width, height, time){
+                element.animate({
+                    width: width,
+                    height: height
+                }, time);
             }
 
 

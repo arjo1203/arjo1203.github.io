@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.html" afterPath="$PROJECT_DIR$/SCSU/home.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/homePage/homePage.html" afterPath="$PROJECT_DIR$/SCSU/homePage/homePage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css" afterPath="$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VizLab/viz.css" afterPath="$PROJECT_DIR$/VizLab/viz.css" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -28,21 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="homePage.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="homePage.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SCSU/homePage/homePage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.84" vertical-offset="0" max-vertical-offset="2576">
-              <caret line="6" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SCSU/home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42105263" vertical-offset="112" max-vertical-offset="2576">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.61263156" vertical-offset="1514" max-vertical-offset="3024">
+              <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -51,8 +41,8 @@
       <file leaf-file-name="viz.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3041" max-vertical-offset="4080">
-              <caret line="249" column="1" selection-start-line="249" selection-start-column="1" selection-end-line="249" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2961" max-vertical-offset="4192">
+              <caret line="240" column="1" selection-start-line="240" selection-start-column="1" selection-end-line="240" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -62,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="944">
-              <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+              <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -123,10 +113,10 @@
         <option value="$PROJECT_DIR$/marchingCubes/marchingCubes.js" />
         <option value="$PROJECT_DIR$/SCSU/homePage/homePage.css" />
         <option value="$PROJECT_DIR$/SCSU/homePage/slideOut.css" />
-        <option value="$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css" />
-        <option value="$PROJECT_DIR$/VizLab/viz.css" />
-        <option value="$PROJECT_DIR$/SCSU/homePage/homePage.html" />
         <option value="$PROJECT_DIR$/SCSU/home.html" />
+        <option value="$PROJECT_DIR$/VizLab/viz.css" />
+        <option value="$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css" />
+        <option value="$PROJECT_DIR$/SCSU/homePage/homePage.html" />
       </list>
     </option>
   </component>
@@ -714,34 +704,34 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css">
+    <entry file="file://$PROJECT_DIR$/SCSU/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="944">
-          <caret line="45" column="1" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.53894734" vertical-offset="0" max-vertical-offset="2576">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3041" max-vertical-offset="4080">
-          <caret line="249" column="1" selection-start-line="249" selection-start-column="1" selection-end-line="249" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2961" max-vertical-offset="4192">
+          <caret line="240" column="1" selection-start-line="240" selection-start-column="1" selection-end-line="240" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="944">
+          <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/homePage/homePage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.84" vertical-offset="0" max-vertical-offset="2576">
-          <caret line="6" column="33" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42105263" vertical-offset="112" max-vertical-offset="2576">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.61263156" vertical-offset="1514" max-vertical-offset="3024">
+          <caret line="131" column="21" selection-start-line="131" selection-start-column="21" selection-end-line="131" selection-end-column="21" />
           <folding />
         </state>
       </provider>
