@@ -2,26 +2,217 @@
     <head>
         <link href="../../flipClock/flipclock.css" rel="stylesheet">
         <link href="../../VizLab/viz.css" rel="stylesheet">
+        <link href="./slideOutToCorners.css" rel="stylesheet">
+        <style>
+            #videos{
+                left : 150px;
+                top : 150px;
+            }
+            #ISELF{
+                left : 150px;
+                top : 150px;
+            }
+            #campus{
+                right: 150px;
+                top : 150px;
+            }
+            #Projects{
+                right: 150px;
+                top : 150px;
+            }
+            .link2{
+                font-family : Source Sans Pro, sans-serif;
+                font-style : italic;
+                position: absolute;
+                font-size: 40px;
+                background-color: #0D1E49;
+                border: 0;
+                color : #FFFFFF;
+                color : rgb(255, 255, 255);
+                text-shadow : 4px 5px 5px rgba(35, 31, 32, 0.75);
+                text-decoration: none;
+            }
+            #newVideo{
+                position: absolute;
+                left: 22px;
+            }
+            #newISELF{
+                position: absolute;
+                left: 31px;
+            }
+            #newCampus{
+                position: absolute;
+                left: 8px;
+            }
+            #newProjects{
+                position: absolute;
+                left: 10px;
+            }
+            #logoContainer{
+                position: absolute;
+                width: 380px;
+                height: 380px;
+            }
+            #clickMe{
+                position: absolute;
+                left: 130px;
+                bottom: 500px;
+            }
+            #pic{
+                position: absolute;
+                width: 100px;
+                height: 100px;
+            }
+        </style>
     </head>
-    <body>
-        <img class="homeBackGround" src="../images/Background.png"></img>
-        <img class="homeLogo" src="../images/vizLogo.png"></img>
+    <body class="homeBackGround">
+        <!--<img class="homeBackGround" src="../images/Background.png"></img>-->
+
+        <div  id="logoContainer">
+            <div class="link2" id="clickMe">
+                <img id="pic" src="../images/hand.png">
+            </div>
+            <div>
+                <img id="homeLogo" class="homeLogo" src="../images/NewBtn.png">
+                <div class="btnDiv" id="videos">
+                    <a class="link2" id="newVideo" href="../VideosPage/video.html">Videos</a>
+                </div>
+                <div class="btnDiv" id="ISELF">
+                    <a class="link2" id="newISELF" href="../ISELF_Page2.0/ISELF.html">ISELF</a>
+                </div>
+                <div class="btnDiv" id="Campus">
+                    <a class="link2" id="newCampus" href="../Campus_3D/campus_3D.html">Campus</a>
+                </div>
+                <div class="btnDiv" id="Projects">
+                    <a class="link2" id="newProjects" href="#">Projects</a>
+                </div>
+            </div>
+        </div>
 
         <div id="clock"></div>
-
-        <div class="nav">
-            <a class="link" href="../VideosPage/video.html">Videos</a>
-            <a class="link floatMiddle" href="../ISELF_Page2.0/ISELF.html">ISELF</a>
-            <a class="link floatRight" href="../Campus_3D/campus_3D.html">Campus</a>
-        </div>
 
         <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
         <script src="../../flipClock/flipclock.min.js"></script>
         <script>
+            window.addEventListener('resize', onWindowResize, false);
+
             var clock = $('#clock').FlipClock({
                 clockFace: 'TwelveHourClock',
                 showSeconds: false
             });
+
+            var videos = $('#videos'), ISELF = $('#ISELF'), Campus = $('#Campus'), Projects = $('#Projects'), logo = $('#homeLogo'), counter = 0;
+
+            logo.click(function(){
+                if(counter % 2 == 0){
+                    logo.removeClass('rotateBackward');
+                    logo.addClass('rotateForward');
+                    slideOut();
+                }
+                else{
+                    console.log('in');
+                    logo.removeClass('rotateForward');
+                    logo.addClass('rotateBackward');
+                    slideIn();
+                }
+
+                counter++;
+            });
+
+
+            centerLogo();
+            function centerLogo(){
+                var logoDiv = $('#logoContainer'), width = window.innerWidth, height = window.innerHeight;
+                console.log(logoDiv);
+
+                logoDiv[0].style.left = ((width / 2) - 190).toString() + 'px';
+                logoDiv[0].style.top = ((height / 2) - 190).toString() + 'px';
+            }
+
+
+
+            function slideOut(){
+                videos.animate({
+                    left: '500px',
+                    top: 0
+                }, 250);
+
+                ISELF.animate({
+                    left: '500px',
+                    top: '350px'
+                }, 250);
+
+                Campus.animate({
+                    right: '500px',
+                    top: 0
+                }, 250);
+
+                Projects.animate({
+                    right: '500px',
+                    top: '350px'
+                }, 250);
+            }
+
+
+
+            function slideIn(){
+                videos.animate({
+                    left: '150px',
+                    top: '150px'
+                });
+
+                ISELF.animate({
+                    left: '150px',
+                    top: '150px'
+                });
+
+                Campus.animate({
+                    right: '150px',
+                    top: '150px'
+                });
+
+                Projects.animate({
+                    right: '150px',
+                    top: '150px'
+                });
+            }
+
+            animateClickMe();
+            setInterval(animateClickMe, 5000);
+
+
+
+            function animateClickMe(){
+                grow();
+
+                setTimeout(shrink, 1000);
+            }
+
+
+
+            function grow(){
+                var clickMe = $('#pic');
+
+                clickMe.animate({
+                    width: '150px',
+                    height: '150px'
+                }, 1000);
+            }
+
+            function shrink(){
+                var clickMe = $('#pic');
+
+                clickMe.animate({
+                    width: '80px',
+                    height: '80px'
+                }, 1000);
+            }
+
+
+
+            function onWindowResize(){
+                centerLogo();
+            }
         </script>
     </body>
 </htmL>

@@ -10,17 +10,19 @@ var flyCamera = false,
     flyBtn = $('#flyBtn'),
     zoomIn = $('#zoomIn'),
     zoomOut = $('#zoomOut'),
+    all = $('#all'),
     ZOOMOUT = false,
-    ZOOMIN = false;
+    ZOOMIN = false,
+    intersect;
 
 
 
 
 
-var proirx = {}, cameraUp = true;
-proirx.x = 0;
-proirx.y = 600;
-proirx.z = 12000;
+var proirPos = {}, cameraUp = true;
+proirPos.x = 0;
+proirPos.y = 600;
+proirPos.z = 12000;
 
 window.addEventListener( 'mousedown', onMouseDown, false );
 window.addEventListener( 'mouseup', onMouseUp, false );
@@ -31,7 +33,7 @@ window.addEventListener('resize', onWindowResize, false);
 
 flyBtn.click(function() {
     flyCamera = true;
-    distancePercent = Math.round(((intersect.distance - 3000) / intersect.distance) * 100);
+    distancePercent = Math.round(((intersect.distance - 5000) / intersect.distance) * 100);
 });
 
 
@@ -51,7 +53,60 @@ zoomOut.click(function(evt) {
 });
 
 
-var intersect;
+var activeLabel;
+all.click(function(evt) {
+    evt.stopPropagation();
+
+    if(all[0].innerHTML == 'Show'){
+        activeLabel = findActiveLabel();
+
+        showLabels();
+
+        all[0].innerHTML= 'Hide';
+    }
+    else{
+        hideLabels(activeLabel);
+
+        all[0].innerHTML= 'Show';
+    }
+});
+
+
+
+function findActiveLabel(){
+    var activeIndex;
+    for(var i = 0; i < labels.length; i++){
+        if(labels[i].visible == true){
+            activeIndex = i;
+        }
+    }
+
+    return activeIndex;
+}
+
+
+
+
+function showLabels(){
+    for(var i = 0; i < labels.length; i++){
+        labels[i].visible = true;
+    }
+}
+
+
+
+
+function hideLabels(activeIndex){
+    for(var i = 0; i < labels.length; i++){
+        if(i !== activeIndex){
+            labels[i].visible = false;
+        }
+    }
+}
+
+
+
+
 function onMouseDown( event ) {
     event.preventDefault();
 
@@ -72,27 +127,71 @@ function onMouseDown( event ) {
     var intersects = raycaster.intersectObjects( targets.children);
 
     if ( intersects.length > 0 ){
+        //Intersected object
         intersect = intersects[0];
-        turnOffLabel();
 
+        //targetLabel is the closest label to the interested object
+        var targetLabel = findLabel(intersect.point);
+
+        //activeLabel keeps track of the label that is on
+        activeLabel = targetLabel;
+
+        //Turn activeLabel label on
+        //Turn off all other labels beside the activeLabel one
+        labels[activeLabel].visible = true;
+        hideLabels(activeLabel);
+
+        //Due to this intersection all labels will be reset
+        //so reset the button as well
+        all[0].innerHTML= 'Show';
+
+        //Store the camera's position
         currentPos.x = camera.position.x;
         currentPos.y = camera.position.y;
         currentPos.z = camera.position.z;
-        endPos = intersect.point;
-        console.log(intersect.point);
-         
-        var targetLabel = findLabel(intersect.point);
-        labels[targetLabel].visible = true;
+
+        //Store the closest label's position from activeLabel
+        endPos.x = labels[activeLabel].position.x;
+        endPos.y = labels[activeLabel].position.y;
+        endPos.z = labels[activeLabel].position.z;
     }
 }
 
 
-
-function onMouseUp( event ){
+//When controls are used set the currentPos to the camera's position
+//When the user has finished using the controls
+function onMouseUp(){
     currentPos.x = camera.position.x;
     currentPos.y = camera.position.y;
     currentPos.z = camera.position.z;
 }
+
+
+
+//Finds the closest label to a point in space
+//By figuring out the label with the shortest
+//Distance from the point in space
+function findLabel(point){
+    var dis, minDis, dX, dY, dZ, index = 0;
+    for(var i = 0; i < labels.length; i ++){
+        dX = labels[i].position.x - point.x;
+        dY = labels[i].position.y - point.y;
+        dZ = labels[i].position.z - point.z;
+        dis = Math.pow((Math.pow(dX, 2) + Math.pow(dY, 2) + Math.pow(dZ, 2)), .5);
+        if(i == 0){
+            minDis = dis;
+            index = 0;
+        }
+
+        if(minDis > dis){
+            minDis = dis;
+            index = i;
+        }
+    }
+
+    return index;
+}
+
 
 
 
@@ -116,7 +215,8 @@ var camera,
     controls,
     raycaster = new THREE.Raycaster(),
     mouse = new THREE.Vector2(),
-    labels = [];
+    labels = [ ];
+
 
 
 
@@ -161,38 +261,33 @@ function init(){
     animate();
 }
 
-function checkFn(int){
-    if(int > 0){
-        return false;
-    }
-    else{
-        return true;
-    }
-}
-
 
 
 
 function animate(){
     requestAnimationFrame( animate );
-    var y, deltay;
-    y = camera.position.y;
-    deltay = proirx.y - y;
 
-    cameraUp = checkFn(deltay);
+    //Prevents user from going under the scene
+        var y, deltay;
 
-    if(cameraUp !== true){
-        if(camera.position.y <= 10){
-            camera.position.y = 0;
-            camera.position.x = proirx.x;
-            camera.position.z = proirx.z;
+        y = camera.position.y;
+        deltay = proirPos.y - y;
+
+        cameraUp = checkFn(deltay);
+
+        if(cameraUp !== true){
+            if(camera.position.y <= 10){
+                camera.position.y = 0;
+                camera.position.x = proirPos.x;
+                camera.position.z = proirPos.z;
+            }
+
         }
 
-    }
-
-    proirx.x = camera.position.x;
-    proirx.y = camera.position.y;
-    proirx.z = camera.position.z;
+        proirPos.x = camera.position.x;
+        proirPos.y = camera.position.y;
+        proirPos.z = camera.position.z;
+    //Prevents from going under the scene
 
     if(flyCamera){
         if(percentage < distancePercent){
@@ -249,15 +344,19 @@ function animate(){
         }
     }
 
-    controls.center.set(endPos.x, endPos.y, endPos.z);
-    controls.update();
-
+    //Makes camera look at the building that was hit
     camera.lookAt(endPos);
+
+    //Makes labels follow the camera
     if(labels.length > 0){
         for(var i = 0; i < labels.length; i++){
             labels[i].lookAt(camera.position);
         }
     }
+
+    //Resets the controls center and updates changes
+    controls.center.set(endPos.x, endPos.y, endPos.z);
+    controls.update();
 
     //Renders the THREE environment
     render();
@@ -265,14 +364,26 @@ function animate(){
 
 
 
-
+//Renders the scene
 function render(){
     renderer.render(scene, camera);
 }
 
 
 
+//Used to determing if the camera is moving up or down
+function checkFn(int){
+    if(int > 0){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
 
+
+
+//Linear Interpolation
 function LERP(start, end, percent, forward) {
     var finalPos = new THREE.Vector3(0, 0, 0), dX = end.x - start.x, dY = end.y - start.y, dZ = end.z - start.z;
 
@@ -292,23 +403,8 @@ function LERP(start, end, percent, forward) {
 
 
 
-
-function calcAcceleration(force, mass){
-    //Kinematic equation learned at the university
-    var A_x = force.x/mass;
-    var A_y = force.y/mass;
-    var A_z = force.z/mass;
-
-    var acceleration = new THREE.Vector3(A_x, A_y, A_z);
-
-    return acceleration;
-}
-
-
-
-
-
-
+//Adds all building assets to an array format versus an object format
+//so that the raycaster can recognize the buildings
 function loadTargets(){
     for(var child in $Buildings.Facade.children){
         targets.add($Buildings.Facade.children[child]);
@@ -326,232 +422,71 @@ function loadTargets(){
 
 
     scene.add(targets);
-    loadLabels();
 }
 
 
 
+//Adds the label on top of the buildings
 function loadLabels(){
-    var ISELFLabel,//ISELF
-        WSBLabel,//Robert H. Wick Science Building 
-        EdLabel,//Education Building 
-        ECCLabel,//Engineering and Computing Center 
-        RiverviewLabel,//Riverview 
-        ShoeLabel,//Shoemaker Hall 
-        EastmanLabel,//Eastman Hall 
-        HeadleyLabel,//Headley Hall 
-        BrownLabel,//Brown Hall 
-        MillerLabel,//James W. Miller Learning Resources Center 
-        AdminLabel,//Administrative Services 
-        CentennialLabel,//Centennial Hall  
-        ArtLabel,//Performing Arts Center 
-        AtwoodLabel,//Atwood Memorial Center 
-        MitchellLabel,//Mitchell Hall 
-        WhitneyLabel,//Whitney House 
-        KiehleLabel,//Kiehle Visual Arts Center 
-        LawrenceLabel,//Lawrence Hall 
-        StewartLabel,//Stewart Hall 
-        FiftyOneLabel,//51 Building 
-        NBentonLabel,//Benton Hall North 
-        BentonLabel,//Benton Hall 
-        ErvinLabel,//Ervin House
-        ShurburneLabel,//Sherburne Hall
-        GarveyLabel,//Garvey Commons 
-        HillLabel,//Hill Hall 
-        CaseLabel,//Case Hall
-        StearnsLabel,//Stearns Hall 
-        HolesLabel,//Holes Hall
-        NStateviewLabel,//Stateview Apartments North 
-        SStateviewLabel,//Stateview Apartments South
-        ParkingLable,//Parking Ramp
-        StuffLabel,//Stateview Apartments South
-        HockeyLabel;//Hockey Center
+    var buildingInfo = labelData();
 
-    ISELFLabel = createLabel('ISELF');
-    ISELFLabel.position.set(1000, 1250, 1000);
-    ISELFLabel.lookAt(camera.position);
-    labels.push(ISELFLabel);
-    
-    WSBLabel = createLabel('WSB');
-    WSBLabel.position.set(5200, 1250, 1300);
-    WSBLabel.lookAt(camera.position);
-    labels.push(WSBLabel);
-    
-    EdLabel = createLabel('Education');
-    EdLabel.position.set(-4000, 1250, 1600);
-    EdLabel.lookAt(camera.position);
-    labels.push(EdLabel);
-    
-    ECCLabel = createLabel('ECC');
-    ECCLabel.position.set(300, 1250, 5162);
-    ECCLabel.lookAt(camera.position);
-    labels.push(ECCLabel);
-    
-    RiverviewLabel = createLabel('Riverview');
-    RiverviewLabel.position.set(9175, 1250, 775);
-    RiverviewLabel.lookAt(camera.position);
-    labels.push(RiverviewLabel);
-    
-    ShoeLabel = createLabel('Shoemaker');
-    ShoeLabel.position.set(3000, 1250, 7545);
-    ShoeLabel.lookAt(camera.position);
-    labels.push(ShoeLabel);
-    
-    EastmanLabel = createLabel('Eastman');
-    EastmanLabel.position.set(8600, 1250, 3150);
-    EastmanLabel.lookAt(camera.position);
-    labels.push(EastmanLabel);
-    
-    HeadleyLabel = createLabel('Headley');
-    HeadleyLabel.position.set(550, 1250, -2050);
-    HeadleyLabel.lookAt(camera.position);
-    labels.push(HeadleyLabel);
-    
-    BrownLabel = createLabel('Brown');
-    BrownLabel.position.set(5100, 1250, -1730);
-    BrownLabel.lookAt(camera.position);
-    labels.push(BrownLabel);
-    
-    MillerLabel = createLabel('Miller Center');
-    MillerLabel.position.set(-5430, 1250, -7450);
-    MillerLabel.lookAt(camera.position);
-    labels.push(MillerLabel);
-    
-    AdminLabel = createLabel('Administrative');
-    AdminLabel.position.set(-1740, 1250, -4770);
-    AdminLabel.lookAt(camera.position);
-    labels.push(AdminLabel);
-    
-    CentennialLabel = createLabel('Centennial');
-    CentennialLabel.position.set(3000, 1250, -4800);
-    CentennialLabel.lookAt(camera.position);
-    labels.push(CentennialLabel);
-    
-    ArtLabel = createLabel('Art');
-    ArtLabel.position.set(820, 1250, -7880);
-    ArtLabel.lookAt(camera.position);
-    labels.push(ArtLabel);
-    
-    AtwoodLabel = createLabel('Atwood');
-    AtwoodLabel.position.set(5460, 1250, -8080);
-    AtwoodLabel.lookAt(camera.position);
-    labels.push(AtwoodLabel);
-    
-    MitchellLabel = createLabel('Mitchell');
-    MitchellLabel.position.set(9014, 1250, -14370);
-    MitchellLabel.lookAt(camera.position);
-    labels.push(MitchellLabel);
-    
-    WhitneyLabel = createLabel('Whitney');
-    WhitneyLabel.position.set(8730, 1250, -11000);
-    WhitneyLabel.lookAt(camera.position);
-    labels.push(WhitneyLabel);
-    
-    KiehleLabel = createLabel('Kiehle');
-    KiehleLabel.position.set(10500, 1250, -10500);
-    KiehleLabel.lookAt(camera.position);
-    labels.push(KiehleLabel);
-    
-    LawrenceLabel = createLabel('Lawrence');
-    LawrenceLabel.position.set(10465, 1250, -7770);
-    LawrenceLabel.lookAt(camera.position);
-    labels.push(LawrenceLabel);
-    
-    StewartLabel = createLabel('Stewart');
-    StewartLabel.position.set(8930, 1250, -5105);
-    StewartLabel.lookAt(camera.position);
-    labels.push(StewartLabel);
-    
-    FiftyOneLabel = createLabel('51');
-    FiftyOneLabel.position.set(11200, 1250, -3400);
-    FiftyOneLabel.lookAt(camera.position);
-    labels.push(FiftyOneLabel);
-    
-    NBentonLabel = createLabel('N. Benton');
-    NBentonLabel.position.set(4430, 1250, -19230);
-    NBentonLabel.lookAt(camera.position);
-    labels.push(NBentonLabel);
-    
-    BentonLabel = createLabel('Benton');
-    BentonLabel.position.set(4910, 1250, -16180);
-    BentonLabel.lookAt(camera.position);
-    labels.push(BentonLabel);
-    
-    ErvinLabel = createLabel('Ervin');
-    ErvinLabel.position.set(6130, 1250, -17410);
-    ErvinLabel.lookAt(camera.position);
-    labels.push(ErvinLabel);
-    
-    ShurburneLabel = createLabel('Sherburne');
-    ShurburneLabel.position.set(2800, 1800, -13845);
-    ShurburneLabel.lookAt(camera.position);
-    labels.push(ShurburneLabel);
-    
-    GarveyLabel = createLabel('Garvey');
-    GarveyLabel.position.set(5490, 1250, -12180);
-    GarveyLabel.lookAt(camera.position);
-    labels.push(GarveyLabel);
-    
-    HillLabel = createLabel('Hill');
-    HillLabel.position.set(1525, 1250, -11520);
-    HillLabel.lookAt(camera.position);
-    labels.push(HillLabel);
-    
-    CaseLabel = createLabel('Case');
-    CaseLabel.position.set(-70, 1250, -13360);
-    CaseLabel.lookAt(camera.position);
-    labels.push(CaseLabel);
-    
-    StearnsLabel = createLabel('Stearns');
-    StearnsLabel.position.set(1730, 1250, -15960);
-    StearnsLabel.lookAt(camera.position);
-    labels.push(StearnsLabel);
-    
-    HolesLabel = createLabel('Holes');
-    HolesLabel.position.set(-50, 1250, -18130);
-    HolesLabel.lookAt(camera.position);
-    labels.push(HolesLabel);
-    
-    NStateviewLabel = createLabel('N. Stateview');
-    NStateviewLabel.position.set(-4470, 1250, -19060);
-    NStateviewLabel.lookAt(camera.position);
-    labels.push(NStateviewLabel);
-    
-    SStateviewLabel = createLabel('S. Stateview');
-    SStateviewLabel.position.set(-4360, 1250, -16145);
-    SStateviewLabel.lookAt(camera.position);
-    labels.push(SStateviewLabel);
-
-    ParkingLabel = createLabel('Parking');
-    ParkingLabel.position.set(-3200, 1250, -12960);
-    ParkingLabel.lookAt(camera.position);
-    labels.push(ParkingLabel);
-
-    StuffLabel = createLabel('Stuff');
-    StuffLabel.position.set(1740, 1250, 11350);
-    StuffLabel.lookAt(camera.position);
-    labels.push(StuffLabel);
-
-    HockeyLabel = createLabel('Hockey Center');
-    HockeyLabel.position.set(-3280, 1250, 20540);
-    HockeyLabel.lookAt(camera.position);
-    labels.push(HockeyLabel);
+    for(var i = 0; i < buildingInfo.length; i++){
+        var label = createLabel(buildingInfo[i][0]);
+        label.position.set(buildingInfo[i][1].x, buildingInfo[i][1].y, buildingInfo[i][1].z);
+        label.lookAt(camera.position);
+        labels.push(label);
+    }
 
     render();
 }
 
 
 
-function turnOffLabel(){
-    for(var i= 0; i < labels.length; i++){
-        if(labels[i].visible == true){
-             labels[i].visible = false;  
-        }
-    }
+//Hard coded info
+function labelData(){
+    var info = [
+        ['ISELF', new THREE.Vector3(1000, 1250, 1000)],
+        ['WSB', new THREE.Vector3(5200, 1250, 1300)],
+        ['Education', new THREE.Vector3(-4000, 1250, 1600)],
+        ['ECC', new THREE.Vector3(300, 1250, 5162)],
+        ['Riverview', new THREE.Vector3(9175, 1250, 775)],
+        ['Shoemaker', new THREE.Vector3(3000, 1250, 7545)],
+        ['Eastman', new THREE.Vector3(8600, 1250, 3150)],
+        ['Headley', new THREE.Vector3(550, 1250, -2050)],
+        ['Brown', new THREE.Vector3(5100, 1250, -1730)],
+        ['Miller', new THREE.Vector3(-5430, 1250, -7450)],
+        ['Admin', new THREE.Vector3(-1740, 1250, -4770)],
+        ['Centennial', new THREE.Vector3(3000, 1250, -4800)],
+        ['Art', new THREE.Vector3(820, 1250, -7880)],
+        ['Atwood', new THREE.Vector3(5460, 1250, -8080)],
+        ['Mitchell', new THREE.Vector3(9014, 1250, -14370)],
+        ['Whitney', new THREE.Vector3(8730, 1250, -11000)],
+        ['Kiehle', new THREE.Vector3(10500, 1250, -10500)],
+        ['Lawrence', new THREE.Vector3(10465, 1250, -7770)],
+        ['Stewart', new THREE.Vector3(8930, 1250, -5105)],
+        ['51', new THREE.Vector3(11200, 1250, -3400)],
+        ['NBenton', new THREE.Vector3(4430, 1250, -19230)],
+        ['Benton', new THREE.Vector3(4910, 1250, -16180)],
+        ['Ervin', new THREE.Vector3(6130, 1250, -17410)],
+        ['Sherburne', new THREE.Vector3(2800, 1800, -13845)],
+        ['Garvey', new THREE.Vector3(5490, 1250, -12180)],
+        ['Hill', new THREE.Vector3(1525, 1250, -11520)],
+        ['Case', new THREE.Vector3(-70, 1250, -13360)],
+        ['Stearns', new THREE.Vector3(1730, 1250, -15960)],
+        ['Holes', new THREE.Vector3(-50, 1250, -18130)],
+        ['N. Stateview', new THREE.Vector3(-4470, 1250, -19060)],
+        ['S. Stateview', new THREE.Vector3(-4360, 1250, -16145)],
+        ['Parking', new THREE.Vector3(-3200, 1250, -12960)],
+        ['Stuff', new THREE.Vector3(1740, 1250, 11350)],
+        ['Hockey Center', new THREE.Vector3(-3280, 1250, 20540)]
+    ];
+
+    return info;
 }
 
 
 
+//Creates 3d text
 function createLabel(message){
     var geo, mat, label;
     var geo = new THREE.TextGeometry( message, {
@@ -574,30 +509,7 @@ function createLabel(message){
 
 
 
-function findLabel(point){
-    var dis, minDis, dX, dY, dZ, index = 0;
-    for(var i = 0; i < labels.length; i ++){
-        dX = labels[i].position.x - point.x;
-        dY = labels[i].position.y - point.y;
-        dZ = labels[i].position.z - point.z;
-        dis = Math.pow((Math.pow(dX, 2) + Math.pow(dY, 2) + Math.pow(dZ, 2)), .5);
-        if(i == 0){
-            minDis = dis;
-            index = 0;
-        }
-        
-        if(minDis > dis){
-            minDis = dis;
-            index = i;
-        }
-    }
-    
-    return index;
-}
-
-
-
-
+//Loader fn for the building and terrain
 function loadObject(model, material, modelName, visbility) {
     var loader = new THREE.OBJMTLLoader();
 
@@ -614,72 +526,23 @@ function loadObject(model, material, modelName, visbility) {
 
 
 
-
+//Creates the scene objects
 function loadScene() {
     loadObject('campusBuildings/Terrain.obj', 'campusBuildings/Terrain.mtl', 'Terrain', true);
     loadObject('campusBuildings/Facade.obj', 'campusBuildings/Facade.mtl', 'Facade', true);
     loadObject('campusBuildings/ISELF_exterior.obj', 'campusBuildings/ISELF_exterior.mtl', 'ISELF_exterior', true);
     loadObject('campusBuildings/WSB_ext.obj', 'campusBuildings/WSB_ext.mtl', 'WSB_ext', true);
+
+    loadLabels();
 }
 
 
 
-
-function SetVisibility(object, value) {
-    // use this to set the visiblity of objects
-    // in webgl, the model is a child of the object, and setting the visbility of the parent
-    // doesn't autocamtically affect the visibility of the child.
+//Changes the visible property of an object
+function SetVisibility(object, value){
     object.traverse(function (child) {
-
         child.visible = value;
     });
 
-}
-
-
-//Work on
-var FMag = 0,
-    cam = {};
-cam.acceleration = new THREE.Vector3(0, 0, 0);
-cam.velocity = new THREE.Vector3(0, 0, 0);
-cam.position = new THREE.Vector3(0, 0, 0);
-function SLERP(start, end, percentOfDis){
-    var dX = end.x - start.x,
-        dY = end.y - start.y,
-        dZ = end.z - start.z,
-        dis = Math.pow(Math.pow(dX, 2) + Math.pow(dY, 2) + Math.pow(dZ, 2), .5),
-        dir,
-        A;
-
-    if(percentOfDis <= 50){
-        FMag = -50000;
-    }
-    else{
-        FMag = 50000;
-    }
-
-    //FMag = 3;
-
-    dir = new THREE.Vector3((dX/dis) * FMag, (dY/dis) * FMag, (dZ/dis) * FMag);
-
-    A = calcAcceleration(dir, 1);
-    //console.log(dir);
-
-    cam.acceleration = A;
-    cam.velocity = new THREE.Vector3(0, 0, 0);
-    cam.position = new THREE.Vector3(0, 0, 0);
-
-    cam.velocity.x += cam.acceleration.x;
-    cam.velocity.y += cam.acceleration.y;
-    cam.velocity.z += cam.acceleration.z;
-
-    ///Vector3.add(cam.velocity,cam.acceleration);
-
-    cam.position.x = start.x + cam.velocity.x;
-    cam.position.y = start.y + cam.velocity.y;
-    cam.position.z = start.z + cam.velocity.z;
-
-    console.log(cam);
-    return cam.position;
 }
 //*******3D CAMPUS********

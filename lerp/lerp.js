@@ -48,6 +48,7 @@ function init(){
 
 
 
+
 function makeSpheres(){
     var spheres = new THREE.Object3D(),
         sphere1,
@@ -79,21 +80,11 @@ function animate(){
     //Called every frame
     requestAnimationFrame(animate);
 
-    //if(MOVE){
-    //    if(percentage < 100){
-    //        var a = LERP(SPHERES.children[0].position, SPHERES.children[1].position, percentage / 100);
-    //        camera.position.set(a.x, a.y, a.z);
-    //        //console.log(camera.position);
-    //    }
-    //}
-
     //Update the controls for the camera
     controls.update();
 
     //Renders the THREE environment
     render();
-
-    //percentage += .5;
 }
 
 
@@ -115,51 +106,31 @@ function render(){
 }
 
 
-var percentage = 0;
+
 function moveCamera(){
-    requestAnimationFrame(moveCamera);
-
-
-    if(percentage < 100){
-        var a = LERP(SPHERES.children[0].position, SPHERES.children[1].position, percentage / 100);
-        camera.position.set(a.x, a.y, a.z);
-        //console.log(camera.position);
-    }
-
-    percentage += .5;
-
+    var initial = new THREE.Vector3(camera.position.x, camera.position.y, camera.position.z),
+        final = new THREE.Vector3(SPHERES.children[0].position.x, SPHERES.children[0].position.y, SPHERES.children[0].position.z);
+    console.log(initial, final);
     render();
 }
 
 
 
-function LERP2 (a,b) {
-    var ret = new THREE.Vector3();
-    var d = 0;
+function LERP(start, end, percent, forward) {
+    var finalPos = new THREE.Vector3(0, 0, 0), dX = end.x - start.x, dY = end.y - start.y, dZ = end.z - start.z;
 
-    while(d < 100){
-        ret.x = a.x + (d/100) * b.x - a.x;
-        ret.y = a.y + (d/100) * b.y - a.y;
-        ret.z = a.z + (d/100) * b.z - a.z;
-        //console.log(ret);
-        camera.position.set(ret.x, ret.y, ret.z);
-        render();
-
-        d += .1;
+    if(forward){
+        finalPos.x = start.x + percent * dX;
+        finalPos.y = start.y + percent * dY;
+        finalPos.z = start.z + percent * dZ;
     }
-}
+    else{
+        finalPos.x = start.x - percent * dX;
+        finalPos.y = start.y - percent * dY;
+        finalPos.z = start.z - percent * dZ;
+    }
 
-
-
-function LERP (a,b,p) {
-    var ret = new THREE.Vector3();
-
-    ret.x = a.x + p * b.x - a.x;
-    ret.y = a.y + p * b.y - a.y;
-    ret.z = a.z + p * b.z - a.z;
-
-    //console.log(a, b, ret);
-    return ret;
+    return finalPos;
 }
 
 
