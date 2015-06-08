@@ -172,19 +172,17 @@ body{
     position : absolute ;
     width : 150px;
     height : 50px;
-    border: 2px solid #00afea;
-    box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);
-    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;
+    /*border: 2px solid #00afea;*/
+    /*box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);*/
+    /*filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;*/
     /*opacity: .5;*/
 }
 /*viz styling Start*/
-#videos{
-    left : 150px;
-    top : 150px;
-}
 #ISELF{
     left : 150px;
     top : 150px;
+    /*left : 470px;*/
+    /*top : 318px;*/
 }
 #campus{
     right: 150px;
@@ -232,8 +230,6 @@ body{
     background-repeat: no-repeat;
     width: 380px;
     height: 380px;
-    /*left: 150px;*/
-    /*top: 150px;*/
     z-index: 10;
 }
 #clickMe{
@@ -250,7 +246,46 @@ body{
 }
 #glow{
     position: absolute;
-    width: 420px;
-    height: 420px;
+    background-repeat: no-repeat;
+    /*bottom: 0;*/
+    /*left: 0;*/
+    width: 470px;
+    height: 470px;
+    z-index: 9;
+}
+#glowDiv{
+    position: absolute;
+    background-repeat: no-repeat;
+    /*bottom: 0;*/
+    /*left: 0;*/
+    width: 470px;
+    height: 470px;
+    z-index: 9;
+}
+/*.GUI{*/
+    /*position: absolute;*/
+    /*width: 1700px;*/
+    /*height: 1000px;*/
+    /*right: 80px;*/
+    /*bottom: 50px;*/
+    /*z-index: 9;*/
+    /*opacity: 0;*/
+/*}*/
+#videos{
+    left : 150px;
+    top : 150px;
+}
+#TR{
+    /*position: absolute;*/
+    /*width: 300px;*/
+    /*height: 150px;*/
+    /*z-index: 9;*/
+}
+#VideoGUI{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    right: 250px;
+    top: 200px;
     z-index: 9;
 }

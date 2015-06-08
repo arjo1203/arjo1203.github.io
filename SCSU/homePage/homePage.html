@@ -3,26 +3,36 @@
         <link href="../../flipClock/flipclock.css" rel="stylesheet">
         <link href="../../VizLab/viz.css" rel="stylesheet">
         <link href="./slideOutToCorners.css" rel="stylesheet">
+        <style>
+            #GUI{
+                position: absolute;
+                width: 1700px;
+                height: 985px;
+                /*background-color: #080808;*/
+            }
+        </style>
     </head>
     <body class="homeBackGround">
-        <div class="logoContainer">
-            <div>
-                <img id="clickMe" src="../images/hand.png">
-            </div>
+        <div id="clock"></div>
 
+        <div id="glowDiv">
+            <img id="glow" src="../images/OuterGlow.png">
+        </div>
+
+        <div class="logoContainer">
             <div id="logo">
-                <img id="homeLogo" class="homeLogo" src="../images/NewBtn.png">
+                <img id="homeLogo" class="homeLogo" src="../images/noGlow.png">
             </div>
 
             <div id="buttons">
                 <div class="btnDiv" id="videos">
-                    <a class="link2" id="newVideo" href="../VideosPage/video.html">Videos</a>
+                    <a class="link2" id="newVideo" href="./VideosPage/video.html">Videos</a>
                 </div>
                 <div class="btnDiv" id="ISELF">
-                    <a class="link2" id="newISELF" href="../ISELF_Page2.0/ISELF.html">ISELF</a>
+                    <a class="link2" id="newISELF" href="./ISELF_Page2.0/ISELF.html">ISELF</a>
                 </div>
                 <div class="btnDiv" id="Campus">
-                    <a class="link2" id="newCampus" href="../Campus_3D/campus_3D.html">Campus</a>
+                    <a class="link2" id="newCampus" href="./Campus_3D/campus_3D.html">Campus</a>
                 </div>
                 <div class="btnDiv" id="Projects">
                     <a class="link2" id="newProjects" href="#">Projects</a>
@@ -30,7 +40,9 @@
             </div>
         </div>
 
-        <div id="clock"></div>
+        <!--<div>-->
+            <!--<img id="GUI" src="../images/2dgui.png">-->
+        <!--</div>-->
 
         <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
         <script src="../../flipClock/flipclock.min.js"></script>
@@ -43,16 +55,20 @@
             });
 
             var videos = $('#videos'), ISELF = $('#ISELF'), Campus = $('#Campus'), Projects = $('#Projects'), logo = $('#homeLogo'), counter = 0;
-            var clickMe = $('#clickMe'), logoDiv = $('.logoContainer');
+            var clickMe = $('#clickMe'), logoDiv = $('.logoContainer'), glowDiv = $('#glowDiv'), TR = $('#TR'), BR = $('#BR'), TL = $('#TL'), BL = $('#BL');
+            var glowing;
+
+
 
             logo.click(function(){
                 if(counter % 2 == 0){
+                    stopGlowing();
                     logo.removeClass('rotateBackward');
                     logo.addClass('rotateForward');
                     slideOut();
                 }
                 else{
-                    console.log('in');
+                    animateGlow();
                     logo.removeClass('rotateForward');
                     logo.addClass('rotateBackward');
                     slideIn();
@@ -62,6 +78,8 @@
             });
 
 
+
+
             centerLogo();
             function centerLogo(){
                 var width = window.innerWidth, height = window.innerHeight;
@@ -69,34 +87,38 @@
 
                 logoDiv[0].style.left = ((width / 2) - (logoDiv[0].clientWidth / 2)).toString() + 'px';
                 logoDiv[0].style.top = ((height / 2) - (logoDiv[0].clientHeight / 2)).toString() + 'px';
+
+                glowDiv[0].style.left = ((width / 2) - (glowDiv[0].clientWidth / 2)).toString() + 'px';
+                glowDiv[0].style.top = ((height / 2) - (glowDiv[0].clientHeight / 2)).toString() + 'px';
             }
+
 
 
 
             function slideOut(){
                 videos.animate({
-                    left: '500px',
-                    top: 0
+                    left: '470px',
+                    top: '15px'
                 }, 400);
 
                 setTimeout(function(){
                     ISELF.animate({
-                        left: '500px',
-                        top: '350px'
+                        left: '470px',
+                        top: '318px'
                     }, 400);
                 }, 150);
 
                 setTimeout(function(){
                     Projects.animate({
-                        right: '500px',
-                        top: '350px'
+                        right: '485px',
+                        top: '318px'
                     }, 400);
                 }, 300);
 
                 setTimeout(function(){
                     Campus.animate({
-                        right: '500px',
-                        top: 0
+                        right: '483px',
+                        top: '15px'
                     }, 400);
                 }, 450);
             }
@@ -131,8 +153,8 @@
                 }, 450);
             }
 
-            animateClickMe();
-            setInterval(animateClickMe, 5000);
+//            animateClickMe();
+//            setInterval(animateClickMe, 5000);
 
 //            animateLogo();
 //            setInterval(animateLogo, 2000);
@@ -168,6 +190,9 @@
                 }, time);
             }
 
+
+
+
             function shrink(element, width, height, left, right, time){
                 element.animate({
                     width: width,
@@ -177,6 +202,27 @@
                 }, time);
             }
 
+
+
+            animateGlow();
+            function animateGlow(){
+                glow();
+                glowing = setInterval(glow, 2000);
+            }
+
+
+            function stopGlowing(){
+                clearInterval(glowing);
+                glowDiv.fadeTo(500, 1);
+            }
+
+            function glow(){
+                glowDiv.fadeTo(1000, 0);
+
+                setTimeout(function(){
+                    glowDiv.fadeTo(1000, 1);
+                }, 1000);
+            }
 
 
 
