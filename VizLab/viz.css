@@ -251,21 +251,6 @@ body{
     height: 470px;
     z-index: 9;
 }
-/*.GUI{*/
-    /*position: absolute;*/
-    /*width: 1700px;*/
-    /*height: 1000px;*/
-    /*right: 80px;*/
-    /*bottom: 50px;*/
-    /*z-index: 9;*/
-    /*opacity: 0;*/
-/*}*/
-#TR{
-    /*position: absolute;*/
-    /*width: 300px;*/
-    /*height: 150px;*/
-    /*z-index: 9;*/
-}
 #videoPanel{
     position: absolute;
     width: 600px;
