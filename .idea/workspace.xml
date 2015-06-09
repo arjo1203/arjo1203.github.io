@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.html" afterPath="$PROJECT_DIR$/SCSU/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/VideosPage/video.html" afterPath="$PROJECT_DIR$/SCSU/VideosPage/video.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.js" afterPath="$PROJECT_DIR$/SCSU/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/homePage/homePage.html" afterPath="$PROJECT_DIR$/SCSU/homePage/homePage.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/marchingCubes/marchingCubes.js" afterPath="$PROJECT_DIR$/marchingCubes/marchingCubes.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VizLab/viz.css" afterPath="$PROJECT_DIR$/VizLab/viz.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -33,18 +34,28 @@
       <file leaf-file-name="homePage.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SCSU/homePage/homePage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.56" vertical-offset="0" max-vertical-offset="3824">
-              <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="12" selection-end-column="16" />
+            <state vertical-scroll-proportion="-29.44" vertical-offset="0" max-vertical-offset="3424">
+              <caret line="46" column="0" selection-start-line="6" selection-start-column="33" selection-end-line="46" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="home.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="home.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SCSU/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15157895" vertical-offset="0" max-vertical-offset="3744">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+            <state vertical-scroll-proportion="-35.2" vertical-offset="0" max-vertical-offset="1008">
+              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="home.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SCSU/home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.9015385" vertical-offset="1649" max-vertical-offset="2624">
+              <caret line="158" column="1" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -53,8 +64,28 @@
       <file leaf-file-name="viz.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3761" max-vertical-offset="4736">
-              <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5601" max-vertical-offset="6576">
+              <caret line="243" column="1" selection-start-line="243" selection-start-column="1" selection-end-line="252" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="marchingCubes.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="416">
+              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="marchingCubes.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1409" max-vertical-offset="5408">
+              <caret line="110" column="31" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -63,7 +94,7 @@
       <file leaf-file-name="slideOutToCorners.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="944">
+            <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="944">
               <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
               <folding />
             </state>
@@ -100,7 +131,6 @@
         <option value="$PROJECT_DIR$/lerp/lerp.html" />
         <option value="$PROJECT_DIR$/clock/clock.html" />
         <option value="$PROJECT_DIR$/clock/clock.js" />
-        <option value="$PROJECT_DIR$/SCSU/home.js" />
         <option value="$PROJECT_DIR$/weather/sugar.js" />
         <option value="$PROJECT_DIR$/weather/weather.js" />
         <option value="$PROJECT_DIR$/weather/weather.html" />
@@ -122,13 +152,14 @@
         <option value="$PROJECT_DIR$/SCSU/homePage/homePage.css" />
         <option value="$PROJECT_DIR$/SCSU/homePage/slideOut.css" />
         <option value="$PROJECT_DIR$/SCSU/homePage/slideOutToCorners.css" />
-        <option value="$PROJECT_DIR$/marchingCubes/marchingCubes.js" />
-        <option value="$PROJECT_DIR$/VizLab/viz.css" />
-        <option value="$PROJECT_DIR$/SCSU/homePage/homePage.html" />
         <option value="$PROJECT_DIR$/SCSU/VideosPage/video.html" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" />
         <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
+        <option value="$PROJECT_DIR$/SCSU/homePage/homePage.html" />
+        <option value="$PROJECT_DIR$/VizLab/viz.css" />
+        <option value="$PROJECT_DIR$/marchingCubes/marchingCubes.js" />
         <option value="$PROJECT_DIR$/SCSU/home.html" />
+        <option value="$PROJECT_DIR$/SCSU/home.js" />
       </list>
     </option>
   </component>
@@ -194,6 +225,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -216,14 +261,10 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <method />
-    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -231,6 +272,10 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -299,18 +344,18 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.114285715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -589,32 +634,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04923077" vertical-offset="0" max-vertical-offset="975">
-          <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/images/BR.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="416">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2000" max-vertical-offset="5408">
-          <caret line="140" column="52" selection-start-line="140" selection-start-column="49" selection-end-line="140" selection-end-column="52" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/images/NewBtnNoGlow.png">
@@ -632,10 +654,24 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3441" max-vertical-offset="4736">
-          <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
+        <state vertical-scroll-proportion="-5.12" vertical-offset="0" max-vertical-offset="592">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-25.56" vertical-offset="193" max-vertical-offset="1168">
+          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/VideosPage/video.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15157895" vertical-offset="0" max-vertical-offset="950">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -648,42 +684,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="416">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1409" max-vertical-offset="5408">
+          <caret line="110" column="31" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/homePage/homePage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.56" vertical-offset="0" max-vertical-offset="3824">
-          <caret line="4" column="62" selection-start-line="4" selection-start-column="62" selection-end-line="12" selection-end-column="16" />
+        <state vertical-scroll-proportion="-29.44" vertical-offset="0" max-vertical-offset="3424">
+          <caret line="46" column="0" selection-start-line="6" selection-start-column="33" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html">
+    <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.12" vertical-offset="0" max-vertical-offset="592">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.56" vertical-offset="193" max-vertical-offset="1168">
-          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/VideosPage/video.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15157895" vertical-offset="0" max-vertical-offset="950">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5601" max-vertical-offset="6576">
+          <caret line="243" column="1" selection-start-line="243" selection-start-column="1" selection-end-line="252" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SCSU/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15157895" vertical-offset="0" max-vertical-offset="3744">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="30" selection-end-line="9" selection-end-column="30" />
+        <state vertical-scroll-proportion="-35.2" vertical-offset="0" max-vertical-offset="1008">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9015385" vertical-offset="1649" max-vertical-offset="2624">
+          <caret line="158" column="1" selection-start-line="158" selection-start-column="1" selection-end-line="158" selection-end-column="1" />
           <folding />
         </state>
       </provider>

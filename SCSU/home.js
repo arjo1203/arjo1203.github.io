@@ -1,4 +1,159 @@
-var clock = $('#clock').FlipClock({
-    clockFace: 'TwelveHourClock',
-    showSeconds: false
-});
+//For centering logo
+var logoDiv = $('.logoContainer'), glowDiv = $('#glowDiv');
+
+//For animation
+var videos = $('#videos'), ISELF = $('#ISELF'), Campus = $('#Campus'), Projects = $('#Projects'), logo = $('#homeLogo'),
+    videoLine = $('.videoLine'), ISELFLine = $('.ISELF_Line'), CampusLine = $('.CampusLine'), ProjectLine = $('.projectLine');
+var glowing, counter = 0, speedInOut = 400, glowingSpeed = 1000, riverSpeed = [150, 300, 450], fadeInSpeed = 200, fadeOutSpeed = 200;//all speeds in milliseconds
+
+
+
+
+init();
+
+function init(){
+    logo.click(function(){
+        if(counter % 2 == 0){
+            stopGlowing();
+            logo.removeClass('rotateBackward');
+            logo.addClass('rotateForward');
+            slideOut();
+        }
+        else{
+            animateGlow();
+            logo.removeClass('rotateForward');
+            logo.addClass('rotateBackward');
+            slideIn();
+        }
+
+        counter++;
+    });
+
+
+    centerLogo();
+    animateGlow();
+    window.addEventListener('resize', onWindowResize, false);
+}
+
+
+
+
+function slideOut(){
+    videos.animate({
+        left: '445px',
+        top: '0'
+    }, speedInOut);
+    setTimeout(function(){
+        videoLine.fadeTo(fadeOutSpeed, 1);
+    }, speedInOut / 2);
+
+    setTimeout(function(){
+        ISELF.animate({
+            left: '445px',
+            bottom: '0'
+        }, speedInOut);
+    }, riverSpeed[0]);
+
+    setTimeout(function(){
+        ISELFLine.fadeTo(fadeOutSpeed, 1);
+    }, (speedInOut / 2) + riverSpeed[0]);
+
+    setTimeout(function(){
+        Projects.animate({
+            right: '445px',
+            bottom: '0'
+        }, speedInOut);
+    }, riverSpeed[1]);
+
+    setTimeout(function(){
+        ProjectLine.fadeTo(fadeOutSpeed, 1);
+    }, (speedInOut / 2) + riverSpeed[1]);
+
+    setTimeout(function(){
+        Campus.animate({
+            right: '445px',
+            top: '0'
+        }, speedInOut);
+    }, riverSpeed[2]);
+
+    setTimeout(function(){
+        CampusLine.fadeTo(fadeOutSpeed, 1);
+    }, (speedInOut / 2) + riverSpeed[2]);
+}
+
+
+
+function slideIn(){
+    CampusLine.fadeTo(fadeInSpeed, 0);
+    Campus.animate({
+        right: '0',
+        top: '150px'
+    }, speedInOut);
+
+    setTimeout(function(){
+        ProjectLine.fadeTo(fadeInSpeed, 0);
+        Projects.animate({
+            right: '0',
+            bottom: '150px'
+        }, speedInOut);
+    }, riverSpeed[0]);
+
+    setTimeout(function(){
+        ISELFLine.fadeTo(fadeInSpeed, 0);
+        ISELF.animate({
+            left: '0',
+            bottom: '150px'
+        }, speedInOut);
+    }, riverSpeed[1]);
+
+    setTimeout(function(){
+        videoLine.fadeTo(fadeInSpeed, 0);
+        videos.animate({
+            left: '0',
+            top: '150px'
+        }, speedInOut);
+    }, riverSpeed[2]);
+}
+
+
+
+
+function animateGlow(){
+    glow();
+    glowing = setInterval(glow, glowingSpeed * 2);
+}
+
+
+function stopGlowing(){
+    clearInterval(glowing);
+    glowDiv.fadeTo(glowingSpeed / 2, 1);
+}
+
+
+
+function glow(){
+    glowDiv.fadeTo(glowingSpeed, 0);
+
+    setTimeout(function(){
+        glowDiv.fadeTo(glowingSpeed, 1);
+    }, glowingSpeed);
+}
+
+
+
+function onWindowResize(){
+    centerLogo();
+}
+
+
+
+
+function centerLogo(){
+    var width = window.innerWidth, height = window.innerHeight;
+
+    logoDiv[0].style.left = ((width / 2) - (logoDiv[0].clientWidth / 2)).toString() + 'px';
+    logoDiv[0].style.top = ((height / 2) - (logoDiv[0].clientHeight / 2)).toString() + 'px';
+
+    glowDiv[0].style.left = ((width / 2) - (glowDiv[0].clientWidth / 2)).toString() + 'px';
+    glowDiv[0].style.top = ((height / 2) - (glowDiv[0].clientHeight / 2)).toString() + 'px';
+}

@@ -131,6 +131,11 @@ body{
     right: 0;
     z-index: 10;
 }
+.BL{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 .halfOp{
     opacity: .5;
 }
@@ -172,26 +177,12 @@ body{
     position : absolute ;
     width : 150px;
     height : 50px;
-    /*border: 2px solid #00afea;*/
-    /*box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);*/
-    /*filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;*/
+    border: 2px solid #00afea;
+    box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;
     /*opacity: .5;*/
 }
 /*viz styling Start*/
-#ISELF{
-    left : 150px;
-    top : 150px;
-    /*left : 470px;*/
-    /*top : 318px;*/
-}
-#campus{
-    right: 150px;
-    top : 150px;
-}
-#Projects{
-    right: 150px;
-    top : 150px;
-}
 .link2{
     font-family : Source Sans Pro, sans-serif;
     font-style : italic;
@@ -232,6 +223,13 @@ body{
     height: 380px;
     z-index: 10;
 }
+#glowDiv{
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 470px;
+    height: 470px;
+    z-index: 9;
+}
 #clickMe{
     position: absolute;
     width: 80px;
@@ -253,15 +251,6 @@ body{
     height: 470px;
     z-index: 9;
 }
-#glowDiv{
-    position: absolute;
-    background-repeat: no-repeat;
-    /*bottom: 0;*/
-    /*left: 0;*/
-    width: 470px;
-    height: 470px;
-    z-index: 9;
-}
 /*.GUI{*/
     /*position: absolute;*/
     /*width: 1700px;*/
@@ -271,15 +260,23 @@ body{
     /*z-index: 9;*/
     /*opacity: 0;*/
 /*}*/
-#videos{
-    left : 150px;
-    top : 150px;
-}
 #TR{
     /*position: absolute;*/
     /*width: 300px;*/
     /*height: 150px;*/
     /*z-index: 9;*/
+}
+#videoPanel{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    left : 50%;
+    top : 0;
+}
+#videos{
+    position: absolute;
+    top: 150px;
+    left: 0;
 }
 #VideoGUI{
     position: absolute;
@@ -288,4 +285,122 @@ body{
     right: 250px;
     top: 200px;
     z-index: 9;
+}
+.videoDiv{
+    background : #0D1E49;
+    background : rgba(13, 30, 73, 1);
+    position : absolute ;
+    width : 150px;
+    height : 50px;
+    border: 2px solid #00afea;
+    box-shadow : -4px 2px 7px rgba(80, 226, 242, 1);
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-4, OffY=2, Color='#50E2F2') ;
+}
+.videoLine{
+    width: 470px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    -webkit-transform:
+    translateY(125px)
+    translateX(-10px)
+    rotate(-18deg);
+    position: absolute;
+    opacity: 0;
+}
+#ISELF_Panel{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    left : 50%;
+    bottom : 0;
+}
+.ISELF_Line{
+    width: 470px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    -webkit-transform:
+    translateY(74px)
+    translateX(-10px)
+    rotate(18deg);
+    position: absolute;
+    opacity: 0;
+}
+.ISELF_Div{
+    background : #0D1E49;
+    background : rgba(13, 30, 73, 1);
+    position : absolute ;
+    width : 150px;
+    height : 50px;
+    border: 2px solid #00afea;
+    box-shadow : -4px -2px 7px rgba(80, 226, 242, 1);
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-4, OffY=-2, Color='#50E2F2') ;
+}
+#ISELF{
+    position: absolute;
+    bottom: 150px;
+    left: 0;
+}
+#CampusPanel{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    right : 50%;
+    top : 0;
+}
+.CampusLine{
+    width: 470px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    -webkit-transform:
+    translateY(125px)
+    translateX(140px)
+    rotate(18deg);
+    position: absolute;
+    opacity: 0;
+}
+.campusDiv{
+    background : #0D1E49;
+    background : rgba(13, 30, 73, 1);
+    position : absolute ;
+    width : 150px;
+    height : 50px;
+    border: 2px solid #00afea;
+    box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;
+}
+#campus{
+    right: 0;
+    top : 150px;
+}
+#projectPanel{
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    right : 50%;
+    bottom : 0;
+}
+.projectLine{
+    width: 470px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    -webkit-transform:
+    translateY(78px)
+    translateX(140px)
+    rotate(-18deg);
+    position: absolute;
+    opacity: 0;
+}
+.projectDiv{
+    background : #0D1E49;
+    background : rgba(13, 30, 73, 1);
+    position : absolute ;
+    width : 150px;
+    height : 50px;
+    border: 2px solid #00afea;
+    box-shadow : 4px -2px 7px rgba(80, 226, 242, 1);
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=-2, Color='#50E2F2') ;
+}
+#Projects{
+    right: 0;
+    bottom : 150px;
 }

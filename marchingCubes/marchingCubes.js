@@ -34,7 +34,7 @@ function init()
     renderer = new THREE.WebGLRenderer({canvas: threejs});
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    var graph = graphFn(40, -20, 20, 2, '2');
+    var graph = graphFn(40, -20, 20, 3, 'Ellipsoid');
     graph.name = 'graph';
     scene.add(graph);
 
@@ -54,7 +54,7 @@ function getValue(x, y, z, w, equ){
             value = x*x + y*y + z*z - w*w;
             break;
         case '3':
-            value = x*x + y*y - z*z + w*w;
+            value = x*x + y*y - z + w*w;
             break;
         case '4':
             value = x*x + y*y - z*z - w*w;
@@ -299,23 +299,23 @@ function graphFn(resolution, minNum, maxNum, w, equ){
 function animate(){
     requestAnimationFrame( animate );
 
-    for(var i = 0; i < scene.children.length; i++){
-        if(scene.children[i].name == 'graph'){
-            scene.remove(scene.children[i]);
-            var selection = graphSelection.toString();
-            var graph = graphFn(40, -20, 20, x, selection);
-            graph.name = 'graph';
-            scene.add(graph);
-        }
-    }
-
-    if( x == 50){
-        x = -50;
-        graphSelection++;
-        //console.log(graphSelection);
-    }
-
-    x += .5;
+    //for(var i = 0; i < scene.children.length; i++){
+    //    if(scene.children[i].name == 'graph'){
+    //        scene.remove(scene.children[i]);
+    //        var selection = graphSelection.toString();
+    //        var graph = graphFn(40, -20, 20, x, 'Ellipsoid');
+    //        graph.name = 'graph';
+    //        scene.add(graph);
+    //    }
+    //}
+    //
+    //if( x == 50){
+    //    x = -50;
+    //    graphSelection++;
+    //    //console.log(graphSelection);
+    //}
+    //
+    //x += .5;
 
     render();
     update();
