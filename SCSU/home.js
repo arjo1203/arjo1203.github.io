@@ -1,8 +1,8 @@
 //For centering logo
-var logoDiv = $('.logoContainer'), glowDiv = $('#glowDiv');
+var logoDiv = $('.logoContainer'), glowDiv = $('.glow');
 
 //For animation
-var videos = $('#videos'), ISELF = $('#ISELF'), Campus = $('#Campus'), Projects = $('#Projects'), logo = $('#homeLogo'),
+var videos = $('.videoBorder'), ISELF = $('.ISELF_Border'), Campus = $('.campusBorder'), Projects = $('.projectBorder'), logo = $('#homeLogo'),
     videoLine = $('.videoLine'), ISELFLine = $('.ISELF_Line'), CampusLine = $('.CampusLine'), ProjectLine = $('.projectLine');
 var glowing, counter = 0, speedInOut = 400, glowingSpeed = 1000, riverSpeed = [150, 300, 450], fadeInSpeed = 200, fadeOutSpeed = 200;//all speeds in milliseconds
 

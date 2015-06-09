@@ -7,9 +7,6 @@ var flyCamera = false,
     distancePercent,
     percentage = 0,
     firstClick = true,
-    flyBtn = $('#flyBtn'),
-    zoomIn = $('#zoomIn'),
-    zoomOut = $('#zoomOut'),
     all = $('#all'),
     ZOOMOUT = false,
     ZOOMIN = false,
@@ -27,30 +24,6 @@ proirPos.z = 12000;
 window.addEventListener( 'mousedown', onMouseDown, false );
 window.addEventListener( 'mouseup', onMouseUp, false );
 window.addEventListener('resize', onWindowResize, false);
-
-
-
-
-flyBtn.click(function() {
-    flyCamera = true;
-    distancePercent = Math.round(((intersect.distance - 5000) / intersect.distance) * 100);
-});
-
-
-
-zoomIn.click(function(evt) {
-    evt.stopPropagation();
-    distancePercent = 30;
-    ZOOMIN = true;
-});
-
-
-
-zoomOut.click(function(evt) {
-    evt.stopPropagation();
-    distancePercent = 30;
-    ZOOMOUT = true;
-});
 
 
 var activeLabel;
@@ -140,10 +113,6 @@ function onMouseDown( event ) {
         //Turn off all other labels beside the activeLabel one
         labels[activeLabel].visible = true;
         hideLabels(activeLabel);
-
-        //Due to this intersection all labels will be reset
-        //so reset the button as well
-        all[0].innerHTML= 'Show';
 
         //Store the camera's position
         currentPos.x = camera.position.x;

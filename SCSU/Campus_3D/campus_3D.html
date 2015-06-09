@@ -4,57 +4,46 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta charset="UTF-8">
         <link href="../../VizLab/viz.css" rel="stylesheet">
-        <style>
-            #flyBtn{
-            }
-            .btn2{
-                padding: 5px 10px 5px 10px;
-                font-size : 20px;
-            }
-            #zoomGUI{
-                position: absolute;
-                left: 47%;
-                top: 0;
-                width: 90px;
-            }
-            #zoom{
-                position: absolute;
-                width: 90px;
-            }
-            #all{
-                position: absolute;
-                right: 0;
-            }
-            #zoomIn{
-                position: absolute;
-                right: 0;
-                width: 45px;
-            }
-            #zoomOut{
-                position: absolute;
-                left: 0;
-                width: 45px;
-            }
-        </style>
     </head>
     <body>
-    <div id="zoomGUI">
-        <div>
-            <button class="btn2" id="flyBtn">Fly to...</button>
-        </div>
-        <div id="zoom">
-            <button class="btn2" id="zoomOut">-</button>
-            <button class="btn2" id="zoomIn">+</button>
-        </div>
-    </div>
-    <div>
-        <button class="btn2" id="all">Show</button>
-    </div>
         <a href="../home.html"><img src="../images/Vector-Smart-Object.png" class="backArrow"></a>
 
-        <canvas id="threejs"></canvas>
+        <div id="three">
+            <canvas id="threejs"></canvas>
+        </div>
 
         <img src="../images/logo.png" class="BR">
+
+        <div class="ISELF_GUI">
+            <div>
+                <img id="logo" class="ISELF_GUI" src="../images/noGlow.png">
+            </div>
+
+            <div id="questionPanel">
+                <div class="questionLine"></div>
+                <img id="question" src="../images/QuestionIcon.png">
+            </div>
+
+            <div id="minPanel">
+                <div class="minLine"></div>
+                <img id="min" src="../images/minusIcon.png">
+            </div>
+
+            <div id="goPanel">
+                <div class="goLine"></div>
+                <img id="go" src="../images/arrowIcon.png">
+            </div>
+
+            <div id="plusPanel">
+                <div class="plusLine"></div>
+                <img id="plus" src="../images/plusIcon.png">
+            </div>
+
+            <div id="showPanel">
+                <div class="showLine"></div>
+                <img id="show" src="../images/lightIcon.png">
+            </div>
+        </div>
 
         <script src="../../assets/plugins/jquery-1.11.2.min.js"></script>
         <script src="../../THREE/three.min.js"></script>
@@ -62,7 +51,147 @@
         <script src="../../THREE/MTLLoader.js"></script>
         <script src="../../THREE/OBJMTLLoader.js"></script>
         <script src="./fonts/helvetiker_regular.typeface.js"></script>
-<!--        <script src="./fonts/droid_serif_bold.typeface.js"></script>-->
         <script src="./campus_3d.js"></script>
+        <script src="./campus_3D_GUI.js"></script>
+    <script>
+        var GUI = $('.ISELF_GUI'), logo = $('#logo'), toggle = 0;
+        var question = $('#question'), questionLine = $('.questionLine'), go = $('#go'), goLine = $('.goLine'),
+                min = $('#min'), minLine = $('.minLine'), plus = $('#plus'), plusLine = $('.plusLine'),
+                show = $('#show'), showLine = $('.showLine');
+        var speedInOut = 300, riverSpeed = [155, 310, 465, 620], fadeInSpeed = 200, fadeOutSpeed = 200;
+
+        logo.click(function(){
+            if(toggle % 2 == 0){
+                logo.removeClass('rotateBackward');
+                logo.addClass('rotateForward');
+                slideOut();
+            }
+            else{
+                logo.removeClass('rotateForward');
+                logo.addClass('rotateBackward');
+                slideIn();
+            }
+
+            toggle++;
+        });
+
+        init();
+        function init(){
+            positionGUI();
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+
+
+
+        function slideOut(){
+            question.animate({
+                left: '0'
+            }, speedInOut);
+            setTimeout(function(){
+                questionLine.fadeTo(fadeOutSpeed, 1);
+            }, speedInOut / 2);
+
+            setTimeout(function(){
+                min.animate({
+                    left: '0'
+                }, speedInOut);
+            }, riverSpeed[0]);
+
+            setTimeout(function(){
+                minLine.fadeTo(fadeOutSpeed, 1);
+            }, (speedInOut / 2) + riverSpeed[0]);
+
+            setTimeout(function(){
+                go.animate({
+                    top: '0'
+                }, speedInOut);
+            }, riverSpeed[1]);
+
+            setTimeout(function(){
+                goLine.fadeTo(fadeOutSpeed, 1);
+            }, (speedInOut / 2) + riverSpeed[1]);
+
+            setTimeout(function(){
+                plus.animate({
+                    right: '0'
+                }, speedInOut);
+            }, riverSpeed[2]);
+
+            setTimeout(function(){
+                plusLine.fadeTo(fadeOutSpeed, 1);
+            }, (speedInOut / 2) + riverSpeed[2]);
+
+            setTimeout(function(){
+                show.animate({
+                    right: '0'
+                }, speedInOut);
+            }, riverSpeed[3]);
+
+            setTimeout(function(){
+                showLine.fadeTo(fadeOutSpeed, 1);
+            }, (speedInOut / 2) + riverSpeed[3]);
+        }
+
+
+
+        function slideIn(){
+            showLine.fadeTo(fadeInSpeed, 0);
+            setTimeout(function(){
+                show.animate({
+                    right: '240px'
+                }, speedInOut);
+            }, 50);
+
+            setTimeout(function(){
+                plusLine.fadeTo(fadeInSpeed, 0);
+                setTimeout(function(){
+                    plus.animate({
+                        right: '240px'
+                    }, speedInOut);
+                }, 50);}, riverSpeed[0]);
+
+            setTimeout(function(){
+                goLine.fadeTo(fadeInSpeed, 0);
+                setTimeout(function(){
+                    go.animate({
+                        top: '240px'
+                    }, speedInOut);
+                }, 50);}, riverSpeed[1]);
+
+            setTimeout(function(){
+                minLine.fadeTo(fadeInSpeed, 0);
+                setTimeout(function(){
+                    min.animate({
+                        left: '240px'
+                    }, speedInOut);
+                }, 50);}, riverSpeed[2]);
+
+            setTimeout(function(){
+                questionLine.fadeTo(fadeInSpeed, 0);
+                setTimeout(function(){
+                    question.animate({
+                        left: '240px'
+                    }, speedInOut);
+                }, 50);}, riverSpeed[3]);
+        }
+
+
+
+
+        function onWindowResize(){
+            positionGUI();
+        }
+
+
+
+
+        function positionGUI(){
+            var width = window.innerWidth;
+
+            GUI[0].style.left = ((width / 2) - (GUI[0].clientWidth / 2)).toString() + 'px';
+            GUI[0].style.bottom = '0';
+        }
+    </script>
     </body>
 </html>

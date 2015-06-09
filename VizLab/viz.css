@@ -171,17 +171,6 @@ body{
 .off{
 	background : #F1695C;
 }
-.btnDiv{
-    background : #0D1E49;
-    background : rgba(13, 30, 73, 1);
-    position : absolute ;
-    width : 150px;
-    height : 50px;
-    border: 2px solid #00afea;
-    box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);
-    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;
-    /*opacity: .5;*/
-}
 /*viz styling Start*/
 .link2{
     font-family : Source Sans Pro, sans-serif;
@@ -195,58 +184,16 @@ body{
     text-shadow : 4px 5px 5px rgba(35, 31, 32, 0.75);
     text-decoration: none;
 }
-#newVideo{
-    position: absolute;
-    left: 22px;
-}
-#newISELF{
-    position: absolute;
-    left: 31px;
-}
-#newCampus{
-    position: absolute;
-    left: 8px;
-}
-#newProjects{
-    position: absolute;
-    left: 10px;
-}
 .logoContainer{
-    position: absolute;
-    width: 380px;
-    height: 380px;
-}
-.homeLogo{
     position: absolute;
     background-repeat: no-repeat;
     width: 380px;
     height: 380px;
     z-index: 10;
 }
-#glowDiv{
+.glow{
     position: absolute;
     background-repeat: no-repeat;
-    width: 470px;
-    height: 470px;
-    z-index: 9;
-}
-#clickMe{
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    bottom: 400px;
-    left: 130px;
-}
-#pic{
-    position: absolute;
-    width: 100px;
-    height: 100px;
-}
-#glow{
-    position: absolute;
-    background-repeat: no-repeat;
-    /*bottom: 0;*/
-    /*left: 0;*/
     width: 470px;
     height: 470px;
     z-index: 9;
@@ -258,29 +205,6 @@ body{
     left : 50%;
     top : 0;
 }
-#videos{
-    position: absolute;
-    top: 150px;
-    left: 0;
-}
-#VideoGUI{
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    right: 250px;
-    top: 200px;
-    z-index: 9;
-}
-.videoDiv{
-    background : #0D1E49;
-    background : rgba(13, 30, 73, 1);
-    position : absolute ;
-    width : 150px;
-    height : 50px;
-    border: 2px solid #00afea;
-    box-shadow : -4px 2px 7px rgba(80, 226, 242, 1);
-    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-4, OffY=2, Color='#50E2F2') ;
-}
 .videoLine{
     width: 470px;
     height: 1px;
@@ -291,6 +215,22 @@ body{
     rotate(-18deg);
     position: absolute;
     opacity: 0;
+}
+.videoBorder{
+    background : #0D1E49;
+    background : rgba(13, 30, 73, 1);
+    position : absolute;
+    top: 150px;
+    left: 0;
+    width : 150px;
+    height : 50px;
+    border: 2px solid #00afea;
+    box-shadow : -4px 2px 7px rgba(80, 226, 242, 1);
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-4, OffY=2, Color='#50E2F2');
+}
+#videoLabel{
+    position: absolute;
+    left: 22px;
 }
 #ISELF_Panel{
     position: absolute;
@@ -310,20 +250,21 @@ body{
     position: absolute;
     opacity: 0;
 }
-.ISELF_Div{
+.ISELF_Border{
     background : #0D1E49;
     background : rgba(13, 30, 73, 1);
-    position : absolute ;
+    position : absolute;
+    bottom: 150px;
+    left: 0;
     width : 150px;
     height : 50px;
     border: 2px solid #00afea;
     box-shadow : -4px -2px 7px rgba(80, 226, 242, 1);
-    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-4, OffY=-2, Color='#50E2F2') ;
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=-4, OffY=-2, Color='#50E2F2');
 }
-#ISELF{
+#ISELF_Label{
     position: absolute;
-    bottom: 150px;
-    left: 0;
+    left: 31px;
 }
 #CampusPanel{
     position: absolute;
@@ -343,19 +284,21 @@ body{
     position: absolute;
     opacity: 0;
 }
-.campusDiv{
+.campusBorder{
     background : #0D1E49;
     background : rgba(13, 30, 73, 1);
     position : absolute ;
     width : 150px;
     height : 50px;
+    right: 0;
+    top : 150px;
     border: 2px solid #00afea;
     box-shadow : 4px 1px 7px rgba(80, 226, 242, 1);
     filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=1, Color='#50E2F2') ;
 }
-#campus{
-    right: 0;
-    top : 150px;
+#CampusLabel{
+    position: absolute;
+    left: 8px;
 }
 #projectPanel{
     position: absolute;
@@ -375,17 +318,192 @@ body{
     position: absolute;
     opacity: 0;
 }
-.projectDiv{
+.projectBorder{
     background : #0D1E49;
     background : rgba(13, 30, 73, 1);
     position : absolute ;
+    right: 0;
+    bottom : 150px;
     width : 150px;
     height : 50px;
     border: 2px solid #00afea;
     box-shadow : 4px -2px 7px rgba(80, 226, 242, 1);
     filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=4, OffY=-2, Color='#50E2F2') ;
 }
-#Projects{
-    right: 0;
-    bottom : 150px;
+#ProjectsLabel{
+    position: absolute;
+    left: 10px;
+}
+/**/
+/**/
+.ISELF_GUI{
+    position: absolute;
+    background-repeat: no-repeat;
+    width: 180px;
+    height: 180px;
+    z-index: 10;
+}
+#questionPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    right : 75px;
+    top : 50%;
+    /*background-color: #080808;*/
+}
+.questionLine{
+    width: 300px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#question{
+    position: absolute;
+    left: 240px;
+    z-index: 9;
+}
+#minPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    -webkit-transform:
+    translateY(-8px)
+    translateX(-158px)
+    rotate(45deg);
+    /*background-color: #080808;*/
+    z-index: 8;
+}
+.minLine{
+    width: 300px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#min{
+    position: absolute;
+    left: 240px;
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+}
+#goPanel{
+    position: absolute;
+    width: 60px;
+    height: 300px;
+    left : 60px;
+    bottom : 30px;
+    /*background-color: #1ABC9C;*/
+    z-index: 8;
+}
+.goLine{
+    width: 1px;
+    height: 300px;
+    border-top: 300px solid #50e2f2;
+    position: absolute;
+    left: 29px;
+    opacity: 0;
+}
+#go{
+    position: absolute;
+    top: 240px;
+}
+#plusPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    -webkit-transform:
+    translateY(-8px)
+    translateX(37px)
+    rotate(-45deg);
+    /*background-color: #080808;*/
+    z-index: 9;
+}
+.plusLine{
+    width: 300px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#plus{
+    position: absolute;
+    right: 240px;
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+}
+#showPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    left : 75px;
+    top : 50%;
+    /*background-color: #080808;*/
+}
+.showLine{
+    width: 300px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#show{
+    position: absolute;
+    right: 240px;
+}
+@keyframes rotateForward {
+     0%    {-webkit-transform: rotate(0deg);}
+     5%    {-webkit-transform: rotate(18deg);}
+     10%   {-webkit-transform: rotate(36deg);}
+     15%   {-webkit-transform: rotate(54deg);}
+     20%   {-webkit-transform: rotate(72deg);}
+     25%   {-webkit-transform: rotate(90deg);}
+     30%   {-webkit-transform: rotate(108deg);}
+     35%   {-webkit-transform: rotate(126deg);}
+     40%   {-webkit-transform: rotate(144deg);}
+     45%   {-webkit-transform: rotate(162deg);}
+     50%   {-webkit-transform: rotate(180deg);}
+     55%   {-webkit-transform: rotate(198deg);}
+     60%   {-webkit-transform: rotate(216deg);}
+     65%   {-webkit-transform: rotate(234deg);}
+     70%   {-webkit-transform: rotate(252deg);}
+     75%   {-webkit-transform: rotate(270deg);}
+     80%   {-webkit-transform: rotate(288deg);}
+     85%   {-webkit-transform: rotate(306deg);}
+     90%   {-webkit-transform: rotate(324deg);}
+     95%   {-webkit-transform: rotate(342deg);}
+     100%  {-webkit-transform: rotate(360deg);}
+ }
+@keyframes rotateBackward {
+    0%    {-webkit-transform: rotate(360deg);}
+    5%    {-webkit-transform: rotate(342deg);}
+    10%   {-webkit-transform: rotate(324deg);}
+    15%   {-webkit-transform: rotate(306deg);}
+    20%   {-webkit-transform: rotate(288deg);}
+    25%   {-webkit-transform: rotate(270deg);}
+    30%   {-webkit-transform: rotate(252deg);}
+    35%   {-webkit-transform: rotate(234deg);}
+    40%   {-webkit-transform: rotate(216deg);}
+    45%   {-webkit-transform: rotate(198deg);}
+    50%   {-webkit-transform: rotate(180deg);}
+    55%   {-webkit-transform: rotate(162deg);}
+    60%   {-webkit-transform: rotate(144deg);}
+    65%   {-webkit-transform: rotate(126deg);}
+    70%   {-webkit-transform: rotate(108deg);}
+    75%   {-webkit-transform: rotate(90deg);}
+    80%   {-webkit-transform: rotate(72deg);}
+    85%   {-webkit-transform: rotate(54deg);}
+    90%   {-webkit-transform: rotate(36deg);}
+    95%   {-webkit-transform: rotate(18deg);}
+    100%  {-webkit-transform: rotate(0deg);}
+}
+.rotateForward{
+    animation-name: rotateForward;
+    animation-duration: .8s;
+}
+.rotateBackward{
+    animation-name: rotateBackward;
+    animation-duration: .8s;
 }

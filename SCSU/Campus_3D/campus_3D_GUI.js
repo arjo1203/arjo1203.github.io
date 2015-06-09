@@ -1,76 +1,36 @@
-var buttons = [$('#firstFloor'), $('#secondFloor'), $('#thirdFloor'), $('#allFloors')];
+var buttons = [$('#question'), $('#min'), $('#go'), $('#plus'), $('#show')], toggleShow = 0, threejs = $('#threejs');
 
 buttons[0].click( function() {
-    toggleClass(buttons[0], buttons[0][0].className);
-
-    if(buttons[0][0].className == 'btn btn-success'){
-        $Buildings.ISELF_1stfloor.visible = true;
-    }
-    else{
-        $Buildings.ISELF_1stfloor.visible = false;
-    }
-
-    updateAllFloorsButton();
-
-    render();
 });
 
-buttons[1].click( function() {
-    toggleClass(buttons[1], buttons[1][0].className);
+buttons[1].click( function(evt) {
+    //window.removeEventListener( 'mousedown', onMouseDown, true);
 
-    if(buttons[1][0].className == 'btn btn-success'){
-        $Buildings.ISELF_2ndfloor.visible = true;
-    }
-    else{
-        $Buildings.ISELF_2ndfloor.visible = false;
-    }
-
-    updateAllFloorsButton();
-
-    render();
+    distancePercent = 30;
+    ZOOMOUT = true;
 });
 
 buttons[2].click( function() {
-    toggleClass(buttons[2], buttons[2][0].className);
-
-    if(buttons[2][0].className == 'btn btn-success'){
-        $Buildings.ISELF_3rdfloor.visible = true;
-    }
-    else{
-        $Buildings.ISELF_3rdfloor.visible = false;
-    }
-
-    updateAllFloorsButton();
-
-    render();
+    flyCamera = true;
+    distancePercent = Math.round(((intersect.distance - 5000) / intersect.distance) * 100);
 });
 
-buttons[3].click( function() {
-    for(var i = 0; i < buttons.length - 1; i++){
-        if(buttons[i][0].className == 'btn btn-danger'){
-            buttons[i].click();
-        }
-    }
+buttons[3].click( function(evt) {
+    evt.stopPropagation();
+    distancePercent = 30;
+    ZOOMIN = true;
 });
 
+buttons[4].click( function(evt) {
+    evt.stopPropagation();
 
-function updateAllFloorsButton(){
-    if(buttons[0][0].className == 'btn btn-success' && buttons[1][0].className == 'btn btn-success' && buttons[2][0].className == 'btn btn-success'){
-        toggleClass(buttons[3], 'btn btn-danger');
+    if(toggleShow % 2 == 0){
+        activeLabel = findActiveLabel();
+        showLabels();
     }
     else{
-        toggleClass(buttons[3], 'btn btn-success');
+        hideLabels(activeLabel);
     }
-}
 
-
-function toggleClass(button, classString){
-    if(classString == 'btn btn-success'){
-        button.removeClass('btn btn-success');
-        button.addClass('btn btn-danger');
-    }
-    else{
-        button.removeClass('btn btn-danger');
-        button.addClass('btn btn-success');
-    }
-}
+    toggleShow++;
+});
