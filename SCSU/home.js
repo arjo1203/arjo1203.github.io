@@ -8,9 +8,7 @@ var glowing, counter = 0, speedInOut = 400, glowingSpeed = 1000, riverSpeed = [1
 
 
 
-
-init();
-
+//Called when the logo has loaded
 function init(){
     logo.click(function(){
         if(counter % 2 == 0){
