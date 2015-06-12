@@ -42,7 +42,7 @@ function init()
     renderer = new THREE.WebGLRenderer({canvas: threejs});
     renderer.setSize(window.innerWidth - sideBarWidth, window.innerHeight);
 
-    controls = new THREE.OrbitControls(camera,  threejs);
+    controls = new THREE.OrbitControls(camera);
     controls.addEventListener('change', render);
 
     renderer.setClearColor('white',1);
