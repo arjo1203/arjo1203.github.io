@@ -1,0 +1,192 @@
+<html>
+    <head>
+        <meta name="viewport" content="minimal-ui">
+        <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+        <link href="../bootstrap-slider/bootstrap-slider.css" rel="stylesheet">
+        <title>Jose R. Araujo Meza</title>
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+                overflow: none;
+            }
+            #sideBar{
+                position: absolute;
+                width: 350px;
+                height: 100%;
+                right: 0;
+                background-color: #999999;
+            }
+            #threejs{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+            }
+            #header{
+                font-size: 20px;
+                padding: 10px 10px 10px 40px;
+                color : #000000;
+            }
+            .params{
+                float: left;
+                padding: 20px;
+                color : #000000;
+            }
+            #GUI{
+                position: absolute;
+                width: 275px;
+                height: 200px;
+                left: 37px;
+                bottom: 0;
+            }
+            .inputs{
+                width: 100%;
+            }
+            #right{
+                position: absolute;
+                /*top: 60px;*/
+                right: 0;
+            }
+            #left{
+                position: absolute;
+                /*top: 60px;*/
+                left: 0;
+            }
+            #regraph{
+                position: absolute;
+                bottom: 0;
+            }
+            .partitionColor{
+                color: #B81414;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="threejs"></canvas>
+
+        <div id="sideBar">
+            <span id="header">
+                f(x,y,w,z)=x^2 + y^2 + z^2 + w^2
+            </span>
+            <span class="params">
+                Theta12:
+                <span id="R12Val">0</span>
+                <span> PI / <span class="partitionColor">Partition</span></span>
+
+            <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <span class="params">
+                Theta13:
+                <span id="R13Val">0</span>
+                <span> PI / <span class="partitionColor">Partition</span></span>
+
+            <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <span class="params">
+                Theta14:
+                <span id="R14Val">0</span>
+                <span> PI / <span class="partitionColor">Partition</span></span>
+
+            <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <span class="params">
+                Theta23:
+                <span id="R23Val">0</span>
+                <span> PI / <span class="partitionColor">Partition</span></span>
+
+            <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <span class="params">
+                Theta24:
+                <span id="R24Val">0</span>
+                <span> PI / <span class="partitionColor">Partition</span></span>
+
+            <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <span class="params">
+                Theta34:
+                <span id="R34Val">0</span>
+                <span> PI / <span class="partitionColor">Partition</span></span>
+
+            <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <span class="params">
+                w (x4):
+                <span id="wVal">0</span>
+
+            <input id="w" type="text" data-slider-min="-50" data-slider-step="1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+            </span>
+
+            <form id="GUI">
+                <h2>Something Cool?!</h2>
+                <div id="left" class="inputs">
+                    <div class="form-group">
+                        <span>Resolution</span>
+                        <input type="text" class="form-control" id="Resolution" placeholder="Enter Resolution">
+                    </div>
+                </div>
+                <!--<div id="right" class="inputs">-->
+                    <!--<div class="form-group">-->
+                        <!--<span class="partitionColor">Partition</span>-->
+                        <!--<input type="text" class="form-control" id="Partition" placeholder="# of Partitions">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <button id="regraph" class="btn btn-primary btn-block">Regraph</button>
+            </form>
+        </div>
+
+        <script src="./personalParser.js"></script>
+        <script src="./++-+.js"></script>
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+        <script src="./showCaseSliders.js"></script>
+        <script src="../THREE/three.js"></script>
+        <script src="../THREE/Orbit.js"></script>
+        <script src="../THREE/MarchingCubesData.js"></script>
+        <script src="./showCaseThree.js"></script>
+        <script>
+            var regraph = $('#regraph'), inputResolution = $('#Resolution'), inputPartition = $('#Partition');
+
+            regraph.click(function(event){
+                event.preventDefault();
+                removeOldGraph();
+
+                var refreshRes = parseInt(inputResolution[0].value),
+                        theta12 = 0,
+                        theta13 = 0,
+                        theta14 = 0,
+                        theta23 = 0,
+                        theta24 = 0,
+                        theta34 = 0;
+
+                var R12Val = $('#R12Val')[0].innerHTML,
+                        R13Val = $('#R13Val')[0].innerHTML,
+                        R14Val = $('#R14Val')[0].innerHTML,
+                        R23Val = $('#R23Val')[0].innerHTML,
+                        R24Val = $('#R24Val')[0].innerHTML,
+                        R34Val = $('#R34Val')[0].innerHTML,
+                        wVal = $('#wVal')[0].innerHTML;
+
+                theta12 = (parseInt(R12Val) * Math.PI) / parition;
+                theta13 = (parseInt(R13Val) * Math.PI) / parition;
+                theta14 = (parseInt(R14Val) * Math.PI) / parition;
+                theta23 = (parseInt(R23Val) * Math.PI) / parition;
+                theta24 = (parseInt(R24Val) * Math.PI) / parition;
+                theta34 = (parseInt(R34Val) * Math.PI) / parition;
+
+                var shape = graphFn(refreshRes, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
+                shape.name = 'graph';
+                scene.add(shape);
+
+                render();
+            });
+        </script>
+    </body>
+</html>
