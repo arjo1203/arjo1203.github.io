@@ -1,5 +1,5 @@
 var container, scene, camera, renderer, controls;
-var slidersCombo = '000000', numOfShape = 0, shapes = [];
+var numOfShape = 0, shapes = [];
 
 
 init();
@@ -9,7 +9,8 @@ animate();
 function init()
 {
     //Getting existing canvas and setting it to threejs
-    var threejs = document.getElementById('threejs');
+    var threejs = document.getElementById('threejs'), sideBarWidth = 350;
+    threejs.style.width = (window.innerWidth - sideBarWidth).toString() + 'px';
 
     //Creating a scene
     scene = new THREE.Scene();
@@ -39,7 +40,7 @@ function init()
 
     //Create renderer and linking it to threejs canvas
     renderer = new THREE.WebGLRenderer({canvas: threejs});
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth - sideBarWidth, window.innerHeight);
 
     controls = new THREE.OrbitControls(camera,  renderer.domElement);
     controls.addEventListener('change', render);
@@ -289,12 +290,15 @@ function animate(){
 //
 //                x += .5;
 
+
     render();
     update();
 }
 
-function update()
-{
+function update() {
+    camera.lookAt(0, 0, 0);
+
+    controls.center.set(0, 0, 0);
     controls.update();
 }
 

@@ -60,8 +60,6 @@ function personalParser(string){
 
     return finalFn;
 }
-//var fun = personalParser('(1/2)*x2*cos(theta24)');
-//console.log(fun);
 
 
 

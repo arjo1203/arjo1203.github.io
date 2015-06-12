@@ -128,6 +128,95 @@ function getSliderValues(){
 
 
 
+function removeSliders(){
+    var R12Div = $('#R12Div')[0], R13Div = $('#R13Div')[0], R14Div = $('#R14Div')[0], R23Div = $('#R23Div')[0], R24Div = $('#R24Div')[0], R34Div = $('#R34Div')[0], wDiv = $('#wDiv');
+
+    while(R12Div.firstChild){
+        R12Div.removeChild(R12Div.firstChild);
+    }
+
+    while(R13Div.firstChild){
+        R13Div.removeChild(R13Div.firstChild);
+    }
+
+    while(R14Div.firstChild){
+        R14Div.removeChild(R14Div.firstChild);
+    }
+    while(R23Div.firstChild){
+        R23Div.removeChild(R23Div.firstChild);
+    }
+    while(R24Div.firstChild){
+        R24Div.removeChild(R24Div.firstChild);
+    }
+    while(R34Div.firstChild){
+        R34Div.removeChild(R34Div.firstChild);
+    }
+}
+
+
+
+function createSliders(max){
+    var sliders = [
+        'R12',
+        'R13',
+        'R14',
+        'R23',
+        'R24',
+        'R34',
+    ];
+
+    for(var i = 0; i < sliders.length; i++){
+        createSlider($('#' + sliders[i] + 'Div')[0], sliders[i], max);
+        $('#' + sliders[i]).slider({
+            formatter: function() {
+                return '';
+            }
+        });
+    }
+
+    //for(var i = 0; i < sliders.length; i++){
+    //
+    //    $('#' + sliders[i]).on('slide', function(slideEvt) {
+    //        $('#' + sliders[i] + 'Val').text(slideEvt.value);
+    //
+    //        removeOldGraph();
+    //
+    //        getSliderValues();
+    //    });
+    //}
+}
+
+
+
+
+function createSlider(div, R__, max){
+    var span1 = document.createElement("span");
+    span1.setAttribute("class", "params");
+    span1.innerHTML = R__;
+
+    var span2 = document.createElement("span");
+    span2.id = R__ + "Val";
+    span2.innerHTML = "0";
+    span1.appendChild(span2);
+
+    var input = document.createElement("input");
+    input.id = R__;
+    input.setAttribute("type", "text");
+    input.setAttribute("data-slider-min", "0");
+    input.setAttribute("data-slider-step", "1");
+    input.setAttribute("data-slider-max", max);
+    input.setAttribute("data-slider-value", "0");
+    input.setAttribute("data", "value: '0'");
+    input.setAttribute("value", "0");
+    input.setAttribute("style", "display: none;");
+    span1.appendChild(input);
+
+    div.appendChild(span1);
+}
+
+
+
+
 function shadeShapes(array){
     var lowestId, priorId = 0, ids = [], shapeToRemove;
 
