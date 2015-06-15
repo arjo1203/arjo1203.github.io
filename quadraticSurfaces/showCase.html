@@ -201,12 +201,12 @@
                                 R34Val = $('#R34Val')[0].innerHTML,
                                 wVal = $('#wVal')[0].innerHTML;
 
-                        theta12 = (parseInt(R12Val) * Math.PI) / parition;
-                        theta13 = (parseInt(R13Val) * Math.PI) / parition;
-                        theta14 = (parseInt(R14Val) * Math.PI) / parition;
-                        theta23 = (parseInt(R23Val) * Math.PI) / parition;
-                        theta24 = (parseInt(R24Val) * Math.PI) / parition;
-                        theta34 = (parseInt(R34Val) * Math.PI) / parition;
+                        theta12 = parseInt(R12Val) * (Math.PI / 180);
+                        theta13 = parseInt(R13Val) * (Math.PI / 180);
+                        theta14 = parseInt(R14Val) * (Math.PI / 180);
+                        theta23 = parseInt(R23Val) * (Math.PI / 180);
+                        theta24 = parseInt(R24Val) * (Math.PI / 180);
+                        theta34 = parseInt(R34Val) * (Math.PI / 180);
 
                         var shape = graphFn(refreshRes, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
                         shape.name = 'graph';
@@ -269,12 +269,12 @@
                         R34Val = $('#R34Val')[0].innerHTML,
                         wVal = $('#wVal')[0].innerHTML;
 
-                    theta12 = (parseInt(R12Val) * Math.PI) / parition;
-                    theta13 = (parseInt(R13Val) * Math.PI) / parition;
-                    theta14 = (parseInt(R14Val) * Math.PI) / parition;
-                    theta23 = (parseInt(R23Val) * Math.PI) / parition;
-                    theta24 = (parseInt(R24Val) * Math.PI) / parition;
-                    theta34 = (parseInt(R34Val) * Math.PI) / parition;
+                    theta12 = parseInt(R12Val) * (Math.PI / 180);
+                    theta13 = parseInt(R13Val) * (Math.PI / 180);
+                    theta14 = parseInt(R14Val) * (Math.PI / 180);
+                    theta23 = parseInt(R23Val) * (Math.PI / 180);
+                    theta24 = parseInt(R24Val) * (Math.PI / 180);
+                    theta34 = parseInt(R34Val) * (Math.PI / 180);
 
                     var shape = graphFn(40, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
                     shape.name = 'graph';

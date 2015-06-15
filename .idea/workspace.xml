@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/showCase.html" afterPath="$PROJECT_DIR$/quadraticSurfaces/showCase.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" afterPath="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="showCase.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="showCase.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.68" vertical-offset="1296" max-vertical-offset="4752">
-              <caret line="93" column="123" selection-start-line="93" selection-start-column="118" selection-end-line="93" selection-end-column="123" />
+            <state vertical-scroll-proportion="0.7136842" vertical-offset="3738" max-vertical-offset="4752">
+              <caret line="276" column="65" selection-start-line="276" selection-start-column="65" selection-end-line="276" selection-end-column="65" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -47,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showCaseSliders.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="showCaseSliders.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6728205" vertical-offset="448" max-vertical-offset="4496">
-              <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1296" max-vertical-offset="4368">
+              <caret line="105" column="39" selection-start-line="105" selection-start-column="39" selection-end-line="112" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -114,8 +112,8 @@
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" />
         <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
         <option value="$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html" />
-        <option value="$PROJECT_DIR$/quadraticSurfaces/showCase.html" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" />
+        <option value="$PROJECT_DIR$/quadraticSurfaces/showCase.html" />
       </list>
     </option>
   </component>
@@ -702,10 +700,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1296" max-vertical-offset="4368">
+          <caret line="105" column="39" selection-start-line="105" selection-start-column="39" selection-end-line="112" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.68" vertical-offset="1296" max-vertical-offset="4752">
-          <caret line="93" column="123" selection-start-line="93" selection-start-column="118" selection-end-line="93" selection-end-column="123" />
+        <state vertical-scroll-proportion="0.7136842" vertical-offset="3738" max-vertical-offset="4752">
+          <caret line="276" column="65" selection-start-line="276" selection-start-column="65" selection-end-line="276" selection-end-column="65" />
           <folding>
             <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -715,14 +721,6 @@
             <element signature="n#style#0;n#input#0;n#span#0;n#div#5;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#6;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6728205" vertical-offset="448" max-vertical-offset="4496">
-          <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>

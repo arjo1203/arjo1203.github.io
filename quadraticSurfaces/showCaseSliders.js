@@ -112,14 +112,6 @@ function getSliderValues(){
     theta24 = parseInt(R24Val) * (Math.PI / 180);
     theta34 = parseInt(R34Val) * (Math.PI / 180);
 
-
-    //theta12 = (parseInt(R12Val) * Math.PI) / parition;
-    //theta13 = (parseInt(R13Val) * Math.PI) / parition;
-    //theta14 = (parseInt(R14Val) * Math.PI) / parition;
-    //theta23 = (parseInt(R23Val) * Math.PI) / parition;
-    //theta24 = (parseInt(R24Val) * Math.PI) / parition;
-    //theta34 = (parseInt(R34Val) * Math.PI) / parition;
-
     slidersCombo = R12Val + R13Val + R14Val + R23Val + '00';
 
     var shape = graphFn(animationResolution, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
