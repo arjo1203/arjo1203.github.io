@@ -1,6 +1,7 @@
 var container, scene, camera, renderer, controls;
-var numOfShape = 0, shapes = [];
+var numOfShape = 0, shapes = [], sideBarWidth = 350;
 
+var A = [ [1, 0, 0, 0] , [0, 1, 0, 0] , [0, 0, -1, 0] , [0, 0, 0, 1] ];
 
 init();
 animate();
@@ -9,7 +10,7 @@ animate();
 function init()
 {
     //Getting existing canvas and setting it to threejs
-    var threejs = document.getElementById('threejs'), sideBarWidth = 350;
+    var threejs = document.getElementById('threejs');
     threejs.style.width = (window.innerWidth - sideBarWidth).toString() + 'px';
 
     //Creating a scene
@@ -45,13 +46,27 @@ function init()
     controls = new THREE.OrbitControls(camera, threejs);
     controls.addEventListener('change', render);
 
-    renderer.setClearColor('white',1);
+    renderer.setClearColor('white', 1);
+
+    window.addEventListener('resize', onWindowResize, false);
 
     var shape = graphFn(40, min, max, 0, 0, 0, 0, 0, 0,0);
     shape.name = 'graph';
     scene.add(shape);
     //shapes.push(shape);
 
+    render();
+}
+
+
+
+function onWindowResize(){
+    camera.aspect = window.innerWidth / window.innerHeight;
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize(window.innerWidth - sideBarWidth, window.innerHeight);
     render();
 }
 
@@ -90,9 +105,20 @@ function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta
                 var y = axisMin + axisRange * j / size;
                 var z = axisMin + axisRange * k / size;
                 points.push( new THREE.Vector3(x,y,z) );
-                var value = infiniteFn(x, y, z, w, theta12, theta13, theta14, theta23, theta24, theta34);
-                //console.log(value);
+                //console.log(new THREE.Vector3(x,y,z), w);
 
+                var U = passAngleToU(theta12, theta13, theta14, theta23, theta24, theta34),
+                    X = [ [x], [y], [z], [w]],
+                    UTrans = numeric.transpose(U),
+                    XTrans = numeric.transpose(X);
+
+                var first = numeric.dot(XTrans, U),
+                    second = numeric.dot(UTrans, X);
+
+                var firstDone = numeric.dot(first, A),
+                    secondDone = numeric.dot(firstDone, second);
+
+                var value = secondDone[0];
                 values.push( value );
             }
 

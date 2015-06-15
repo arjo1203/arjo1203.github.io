@@ -97,6 +97,8 @@ function SetVisibility(object, value) {
 
 
 function onWindowResize(){
+    positionGUI();
+
     camera.aspect = window.innerWidth / window.innerHeight;
 
     camera.aspect = window.innerWidth / window.innerHeight;

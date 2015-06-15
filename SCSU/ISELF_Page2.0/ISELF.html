@@ -4,20 +4,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <meta charset="UTF-8">
         <link href="../../VizLab/viz.css" rel="stylesheet">
+        <style>
+
+        </style>
     </head>
     <body>
         <a href="../home.html"><img src="../images/Vector-Smart-Object.png" class="backArrow"></a>
         <img src="../images/logo.png" class="BR">
 
-        <div class="GUI TR">
-            <img src="../images/GUI.png" class="TR">
-            <div class="btnGroup" id="floors">
-                <button id="first" class="top btn on">1st</button>
-                <button id="second" class="btn on">2nd</button>
-                <button id="third" class="btn on">3rd</button>
-                <button id="ext" class="bottom btn on">Ext.</button>
-            </div>
-        </div>
+        <!--<div class="GUI TR">-->
+            <!--<img src="../images/GUI.png" class="TR">-->
+            <!--<div class="btnGroup" id="floors">-->
+                <!--<button id="first" class="top btn on">1st</button>-->
+                <!--<button id="second" class="btn on">2nd</button>-->
+                <!--<button id="third" class="btn on">3rd</button>-->
+                <!--<button id="ext" class="bottom btn on">Ext.</button>-->
+            <!--</div>-->
+        <!--</div>-->
 
         <canvas id="threejs"></canvas>
 
@@ -26,29 +29,29 @@
                 <img id="logo" class="ISELF_GUI" src="../images/noGlow.png">
             </div>
 
-            <div id="questionPanel">
-                <div class="questionLine"></div>
-                <img id="question" src="../images/QuestionIcon.png">
+            <div id="firstPanel">
+                <div class="firstLine"></div>
+                <img class="img" id="first" src="../images/1stNewBtn.png">
             </div>
 
-            <div id="minPanel">
-                <div class="minLine"></div>
-                <img id="min" src="../images/minusIcon.png">
+            <div id="secondPanel">
+                <div class="secondLine"></div>
+                <img class="img" id="second" src="../images/2ndNewBtn.png">
             </div>
 
-            <div id="goPanel">
-                <div class="goLine"></div>
-                <img id="go" src="../images/arrowIcon.png">
+            <div id="thirdPanel">
+                <div class="thirdLine"></div>
+                <img class="img" id="third" src="../images/3rdNewBtn.png">
             </div>
 
-            <div id="plusPanel">
-                <div class="plusLine"></div>
-                <img id="plus" src="../images/plusIcon.png">
+            <div id="ExtPanel">
+                <div class="ExtLine"></div>
+                <img class="img" id="Ext" src="../images/iconBGbtn.png">
             </div>
 
-            <div id="showPanel">
-                <div class="showLine"></div>
-                <img id="show" src="../images/lightIcon.png">
+            <div id="helpPanel">
+                <div class="helpLine"></div>
+                <img id="help" src="../images/questionMarkNew.png">
             </div>
         </div>
 
@@ -60,5 +63,136 @@
         <script src="../../THREE/OBJMTLLoader.js"></script>
         <script src="./ISELF_GUI.js"></script>
         <script src="./ISELF.js"></script>
+        <script>
+            var GUI = $('.ISELF_GUI'), logo = $('#logo'), toggle = 0;
+            var first = $('#first'), firstLine = $('.firstLine'), 
+                    second = $('#second'), secondLine = $('.secondLine'),
+                    third = $('#third'), thirdLine = $('.thirdLine'),
+                    Ext = $('#Ext'), ExtLine = $('.ExtLine'),
+                    help = $('#help'), helpLine = $('.helpLine');
+            var speedInOut = 300, riverSpeed = [155, 310, 465, 620], fadeInSpeed = 200, fadeOutSpeed = 200, opacity = .5;
+
+
+
+            positionGUI();
+            function positionGUI(){
+                var width = window.innerWidth;
+
+                GUI[0].style.left = ((width / 2) - (GUI[0].clientWidth / 2)).toString() + 'px';
+                GUI[0].style.bottom = '0';
+            }
+            
+            
+            
+            
+            logo.click(function(){
+                if(toggle % 2 == 0){
+                    logo.removeClass('rotateBackward');
+                    logo.addClass('rotateForward');
+                    slideOut();
+                }
+                else{
+                    logo.removeClass('rotateForward');
+                    logo.addClass('rotateBackward');
+                    slideIn();
+                }
+
+                toggle++;
+            });
+            
+            
+            
+            function slideOut(){
+                first.animate({
+                    left: '0'
+                }, speedInOut);
+                setTimeout(function(){
+                    firstLine.fadeTo(fadeOutSpeed, opacity);
+                }, speedInOut / 2);
+
+                setTimeout(function(){
+                    second.animate({
+                        left: '0'
+                    }, speedInOut);
+                }, riverSpeed[0]);
+
+                setTimeout(function(){
+                    secondLine.fadeTo(fadeOutSpeed, opacity);
+                }, (speedInOut / 2) + riverSpeed[0]);
+
+                setTimeout(function(){
+                    third.animate({
+                        top: '0'
+                    }, speedInOut);
+                }, riverSpeed[1]);
+
+                setTimeout(function(){
+                    thirdLine.fadeTo(fadeOutSpeed, opacity);
+                }, (speedInOut / 2) + riverSpeed[1]);
+
+                setTimeout(function(){
+                    Ext.animate({
+                        right: '0'
+                    }, speedInOut);
+                }, riverSpeed[2]);
+
+                setTimeout(function(){
+                    ExtLine.fadeTo(fadeOutSpeed, opacity);
+                }, (speedInOut / 2) + riverSpeed[2]);
+
+                setTimeout(function(){
+                    help.animate({
+                        right: '0'
+                    }, speedInOut);
+                }, riverSpeed[3]);
+
+                setTimeout(function(){
+                    helpLine.fadeTo(fadeOutSpeed, opacity);
+                }, (speedInOut / 2) + riverSpeed[3]);
+            }
+
+
+
+            function slideIn(){
+                helpLine.fadeTo(fadeInSpeed, 0);
+                setTimeout(function(){
+                    help.animate({
+                        right: '240px'
+                    }, speedInOut);
+                }, 10);
+
+                setTimeout(function(){
+                    ExtLine.fadeTo(fadeInSpeed, 0);
+                    setTimeout(function(){
+                        Ext.animate({
+                            right: '240px'
+                        }, speedInOut);
+                    }, 10);}, riverSpeed[0]);
+
+                setTimeout(function(){
+                    thirdLine.fadeTo(fadeInSpeed, 0);
+                    setTimeout(function(){
+                        third.animate({
+                            top: '240px'
+                        }, speedInOut);
+                    }, 10);}, riverSpeed[1]);
+
+                setTimeout(function(){
+                    secondLine.fadeTo(fadeInSpeed, 0);
+                    setTimeout(function(){
+                        second.animate({
+                            left: '240px'
+                        }, speedInOut);
+                    }, 10);}, riverSpeed[2]);
+
+                setTimeout(function(){
+                    firstLine.fadeTo(fadeInSpeed, 0);
+                    setTimeout(function(){
+                        first.animate({
+                            left: '240px'
+                        }, speedInOut);
+                    }, 10);}, riverSpeed[3]);
+            }
+        </script>
     </body>
 </html>

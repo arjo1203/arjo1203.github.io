@@ -1,4 +1,8 @@
 $("#R12").slider({
+    step: 1,
+    min: 0,
+    max: 12,
+    value: 0,
     formatter: function() {
         return '';
     }
@@ -88,6 +92,19 @@ $("#w").on('slide', function(slideEvt) {
 
     getSliderValues();
 });
+//
+//$("#parition").slider({
+//    formatter: function() {
+//        return '';
+//    }
+//});
+//$("#parition").on('slide', function(slideEvt) {
+//    $("#paritionVal").text(slideEvt.value);
+//
+//    removeOldGraph();
+//
+//    getSliderValues();
+//});
 
 
 
@@ -131,26 +148,27 @@ function getSliderValues(){
 function removeSliders(){
     var R12Div = $('#R12Div')[0], R13Div = $('#R13Div')[0], R14Div = $('#R14Div')[0], R23Div = $('#R23Div')[0], R24Div = $('#R24Div')[0], R34Div = $('#R34Div')[0], wDiv = $('#wDiv');
 
-    while(R12Div.firstChild){
-        R12Div.removeChild(R12Div.firstChild);
-    }
-
-    while(R13Div.firstChild){
-        R13Div.removeChild(R13Div.firstChild);
-    }
-
-    while(R14Div.firstChild){
-        R14Div.removeChild(R14Div.firstChild);
-    }
-    while(R23Div.firstChild){
-        R23Div.removeChild(R23Div.firstChild);
-    }
-    while(R24Div.firstChild){
-        R24Div.removeChild(R24Div.firstChild);
-    }
-    while(R34Div.firstChild){
-        R34Div.removeChild(R34Div.firstChild);
-    }
+    $('#R12').slider('destory');
+    //while(R12Div.firstChild){
+    //    R12Div.removeChild(R12Div.firstChild);
+    //}
+    //
+    //while(R13Div.firstChild){
+    //    R13Div.removeChild(R13Div.firstChild);
+    //}
+    //
+    //while(R14Div.firstChild){
+    //    R14Div.removeChild(R14Div.firstChild);
+    //}
+    //while(R23Div.firstChild){
+    //    R23Div.removeChild(R23Div.firstChild);
+    //}
+    //while(R24Div.firstChild){
+    //    R24Div.removeChild(R24Div.firstChild);
+    //}
+    //while(R34Div.firstChild){
+    //    R34Div.removeChild(R34Div.firstChild);
+    //}
 }
 
 

@@ -1,11 +1,13 @@
 var first = $('#first'),
     second = $('#second'),
     third = $('#third'),
-    ext = $('#ext');
+    ext = $('#Ext');
 
 var buttons = [first, second, third, ext];
 
 buttons[0].click(function(){
+    $Buildings.ISELF_exterior.visible = false;
+
     var state = switchClass(buttons[0]);
     
     if(state == 'ffo'){
@@ -17,6 +19,8 @@ buttons[0].click(function(){
 });
 
 buttons[1].click(function(){
+    $Buildings.ISELF_exterior.visible = false;
+
     var state = switchClass(buttons[1]);
     
     if(state == 'ffo'){
@@ -28,6 +32,8 @@ buttons[1].click(function(){
 });
 
 buttons[2].click(function(){
+    $Buildings.ISELF_exterior.visible = false;
+
     var state = switchClass(buttons[2]);
     
     if(state == 'ffo'){
@@ -39,8 +45,10 @@ buttons[2].click(function(){
 });
 
 buttons[3].click(function(){
+    $Buildings.ISELF_exterior.visible = false;
+
     var state = switchClass(buttons[3]);
-    console.log(state);
+    //console.log(state);
     
     if(state == 'ffo'){
         $Buildings.ISELF_exterior.visible = true;

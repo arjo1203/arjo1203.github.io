@@ -43,6 +43,12 @@
                 height: 170px;
                 left: 37px;
             }
+            #GUI_Top{
+                position: relative;
+                width: 300px;
+                height: 170px;
+                left: 25px;
+            }
             .inputs{
                 width: 100%;
             }
@@ -60,9 +66,25 @@
 
         <div id="sideBar">
             <div id="sideBarContext">
-                <span id="header">
-                    f(x,y,w,z)=x^2 + y^2 + z^2 + w^2
-                </span>
+
+                <div id="GUI_Top">
+                    <h1>Quadric Surface</h1>
+                    <div class="inputs">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="quadFn" placeholder="Quadric Surface ex. x^2 + y^2 - z^2 + w^2">
+                        </div>
+                    </div>
+                    <button id="graph" class="btn btn-primary btn-block">Graph</button>
+                </div>
+
+                <!--<div id="paritionDiv">-->
+                    <!--<span class="params">-->
+                        <!--# of Partitions:-->
+                        <!--<span id="paritionVal">0</span>-->
+
+                    <!--<input id="parition" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">-->
+                    <!--</span>-->
+                <!--</div>-->
 
                 <div id="R12Div">
                     <span class="params">
@@ -70,7 +92,7 @@
                         <span id="R12Val">0</span>
                         <span> PI / <span class="partitionColor">Partition</span></span>
 
-                    <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="6" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                    <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                     </span>
                 </div>
 
@@ -80,7 +102,7 @@
                         <span id="R13Val">0</span>
                         <span> PI / <span class="partitionColor">Partition</span></span>
 
-                    <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="6" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                    <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                     </span>
                 </div>
 
@@ -90,7 +112,7 @@
                         <span id="R14Val">0</span>
                         <span> PI / <span class="partitionColor">Partition</span></span>
 
-                    <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="6" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                    <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                     </span>
                 </div>
 
@@ -101,7 +123,7 @@
                         <span id="R23Val">0</span>
                         <span> PI / <span class="partitionColor">Partition</span></span>
 
-                    <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="6" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                    <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                     </span>
                 </div>
 
@@ -111,7 +133,7 @@
                         <span id="R24Val">0</span>
                         <span> PI / <span class="partitionColor">Partition</span></span>
 
-                    <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="6" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                    <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                     </span>
                 </div>
 
@@ -139,7 +161,7 @@
                     <div class="inputs">
                         <div class="form-group">
                             <span>Resolution</span>
-                            <input type="text" class="form-control" id="Resolution" placeholder="Enter Resolution">
+                            <input type="text" class="form-control" id="Resolution" placeholder="Enter Resolution between 0 - 100">
                         </div>
                     </div>
                     <!--<div id="right" class="inputs">-->
@@ -153,6 +175,7 @@
             </div>
         </div>
 
+        <script src="../Numeric/numeric-1.2.6.js"></script>
         <script src="./personalParser.js"></script>
         <script src="./quadricFns.js"></script>
         <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
@@ -163,16 +186,10 @@
         <script src="../THREE/MarchingCubesData.js"></script>
         <script src="./showCaseThree.js"></script>
         <script>
-            var regraph = $('#regraph'), inputResolution = $('#Resolution'), inputPartition = $('#Partition');
+            var regraph = $('#regraph'), inputResolution = $('#Resolution'), inputPartition = $('#Partition'), graph = $('#graph'), quadFn = $('#quadFn');
 
             regraph.click(function(event){
                 event.preventDefault();
-
-                var slider = $('#R13');
-                console.log(slider);
-                console.log(slider[0].dataset.sliderMax);
-                slider[0].dataset.sliderMax = '12';
-//                slider = new Slider('#R13', {});
 
                 var refreshRes = parseInt(inputResolution[0].value),
                         theta12 = 0,
@@ -183,16 +200,84 @@
                         theta34 = 0;
 
                 if(!isNaN(refreshRes)){
-//                    refreshRes = animationResolution;
+                    if(0 < refreshRes && refreshRes < 100){
+                        removeOldGraph();
+
+                        var R12Val = $('#R12Val')[0].innerHTML,
+                                R13Val = $('#R13Val')[0].innerHTML,
+                                R14Val = $('#R14Val')[0].innerHTML,
+                                R23Val = $('#R23Val')[0].innerHTML,
+                                R24Val = $('#R24Val')[0].innerHTML,
+                                R34Val = $('#R34Val')[0].innerHTML,
+                                wVal = $('#wVal')[0].innerHTML;
+
+                        theta12 = (parseInt(R12Val) * Math.PI) / parition;
+                        theta13 = (parseInt(R13Val) * Math.PI) / parition;
+                        theta14 = (parseInt(R14Val) * Math.PI) / parition;
+                        theta23 = (parseInt(R23Val) * Math.PI) / parition;
+                        theta24 = (parseInt(R24Val) * Math.PI) / parition;
+                        theta34 = (parseInt(R34Val) * Math.PI) / parition;
+
+                        var shape = graphFn(refreshRes, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
+                        shape.name = 'graph';
+                        scene.add(shape);
+
+                        render();
+                    }
+                    else{
+                        window.alert('Enter an integer between 0 - 100!');
+                    }
+                }
+                else{
+                    window.alert('Enter an integer for the resolution!');
+                }
+            });
+
+
+
+
+            graph.click(function(){
+                var fn = quadFn[0].value, operators = [];
+
+                for(var i = 0; i < fn.length; i++){
+                    if(fn[i] == '-' || fn[i] == '+'){
+                        operators.push(fn[i]);
+                    }
+                }
+
+                if(operators.length < 5){
+                    var ele11, ele22, ele33, ele44;
+
+                    if(operators.length < 4){
+                        ele11 = 1;
+                    }
+                    else{
+                        ele11 = parseInt(operators[0] + '1');
+                    }
+
+                    ele22 = parseInt(operators[operators.length - 3] + '1');
+                    ele33 = parseInt(operators[operators.length - 2] + '1');
+                    ele44 = parseInt(operators[operators.length - 1] + '1');
+
+
+                    A = [ [ele11, 0, 0, 0], [0, ele22, 0, 0] , [0, 0, ele33, 0] , [0, 0, 0, ele44] ];
+
                     removeOldGraph();
 
+                    var theta12 = 0,
+                        theta13 = 0,
+                        theta14 = 0,
+                        theta23 = 0,
+                        theta24 = 0,
+                        theta34 = 0;
+
                     var R12Val = $('#R12Val')[0].innerHTML,
-                            R13Val = $('#R13Val')[0].innerHTML,
-                            R14Val = $('#R14Val')[0].innerHTML,
-                            R23Val = $('#R23Val')[0].innerHTML,
-                            R24Val = $('#R24Val')[0].innerHTML,
-                            R34Val = $('#R34Val')[0].innerHTML,
-                            wVal = $('#wVal')[0].innerHTML;
+                        R13Val = $('#R13Val')[0].innerHTML,
+                        R14Val = $('#R14Val')[0].innerHTML,
+                        R23Val = $('#R23Val')[0].innerHTML,
+                        R24Val = $('#R24Val')[0].innerHTML,
+                        R34Val = $('#R34Val')[0].innerHTML,
+                        wVal = $('#wVal')[0].innerHTML;
 
                     theta12 = (parseInt(R12Val) * Math.PI) / parition;
                     theta13 = (parseInt(R13Val) * Math.PI) / parition;
@@ -201,17 +286,16 @@
                     theta24 = (parseInt(R24Val) * Math.PI) / parition;
                     theta34 = (parseInt(R34Val) * Math.PI) / parition;
 
-                    var shape = graphFn(refreshRes, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
+                    var shape = graphFn(40, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
                     shape.name = 'graph';
                     scene.add(shape);
 
                     render();
                 }
                 else{
-                    window.alert('Enter an integer for the resolution!');
+                    window.alert('Working on expanding functionality!, ' +
+                    'please enter a quadric surface in form of (+ / -) x^2 (+ / -) y^2 (+ / -) z^2 (+ / -) w^2')
                 }
-//                removeSliders();
-//                createSliders(12);
             });
         </script>
     </body>

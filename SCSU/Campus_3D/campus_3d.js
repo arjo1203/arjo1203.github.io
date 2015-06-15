@@ -215,7 +215,7 @@ function init(){
     camera.position.set(0, 6000, 12000);
     camera.lookAt(endPos);
 
-    controls = new THREE.OrbitControls(camera);
+    controls = new THREE.OrbitControls(camera, threejs);
     controls.addEventListener('change', render);
 
     //Create renderer and linking it to threejs canvas

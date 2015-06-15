@@ -55,8 +55,9 @@
     margin-bottom: 0;
 }
 #videos{
-    overflow-x: auto;
-    overflow-y: hidden;
+    position: absolute;
+    width: 100%;
+    height: 15%;
 }
 #container{
     position: absolute;
@@ -166,10 +167,10 @@ body{
 	-webkit-border-radius : 10px 10px 0px 0px;
 }
 .on{
-	background : #5cf19f;
+	/*background : #5cf19f;*/
 }
 .off{
-	background : #F1695C;
+	/*background : #F1695C;*/
 }
 /*viz styling Start*/
 .link2{
@@ -352,7 +353,7 @@ body{
     /*background-color: #080808;*/
 }
 .questionLine{
-    width: 300px;
+    width: 225px;
     height: 1px;
     border-top: 1px solid #50e2f2;
     position: absolute;
@@ -376,7 +377,7 @@ body{
     z-index: 8;
 }
 .minLine{
-    width: 300px;
+    width: 225px;
     height: 1px;
     border-top: 1px solid #50e2f2;
     position: absolute;
@@ -399,8 +400,8 @@ body{
 }
 .goLine{
     width: 1px;
-    height: 300px;
-    border-top: 300px solid #50e2f2;
+    height: 225px;
+    border-top: 225px solid #50e2f2;
     position: absolute;
     left: 29px;
     opacity: 0;
@@ -452,6 +453,122 @@ body{
 #show{
     position: absolute;
     right: 240px;
+}
+#firstPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    right : 75px;
+    top : 50%;
+    /*background-color: #080808;*/
+}
+.firstLine{
+    width: 225px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#first{
+    position: absolute;
+    left: 240px;
+    z-index: 9;
+}
+#secondPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    -webkit-transform:
+    translateY(-8px)
+    translateX(-158px)
+    rotate(45deg);
+    /*background-color: #080808;*/
+    z-index: 8;
+}
+.secondLine{
+    width: 225px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#second{
+    position: absolute;
+    left: 240px;
+    -webkit-transform: rotate(-45deg); /* Chrome, Safari, Opera */
+}
+#thirdPanel{
+    position: absolute;
+    width: 60px;
+    height: 300px;
+    left : 60px;
+    bottom : 30px;
+    /*background-color: #1ABC9C;*/
+    z-index: 8;
+}
+.thirdLine{
+    width: 1px;
+    height: 225px;
+    border-top: 225px solid #50e2f2;
+    position: absolute;
+    left: 29px;
+    opacity: 0;
+}
+#third{
+    position: absolute;
+    top: 240px;
+}
+#ExtPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    -webkit-transform:
+    translateY(-8px)
+    translateX(37px)
+    rotate(-45deg);
+    /*background-color: #080808;*/
+    z-index: 9;
+}
+.ExtLine{
+    width: 300px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#Ext{
+    position: absolute;
+    right: 240px;
+    -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+}
+#ExtLabel{
+    position: absolute;
+    z-index: 15;
+}
+#helpPanel{
+    position: absolute;
+    width: 300px;
+    height: 60px;
+    left : 75px;
+    top : 50%;
+}
+.helpLine{
+    width: 300px;
+    height: 1px;
+    border-top: 1px solid #50e2f2;
+    position: absolute;
+    top: 29px;
+    opacity: 0;
+}
+#help {
+    position: absolute;
+    right: 240px;
+}
+.img{
+    opacity: .7;
 }
 @keyframes rotateForward {
      0%    {-webkit-transform: rotate(0deg);}
