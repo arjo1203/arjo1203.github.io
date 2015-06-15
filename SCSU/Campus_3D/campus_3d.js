@@ -14,16 +14,13 @@ var flyCamera = false,
 
 
 
+window.addEventListener('resize', onWindowResize, false);
 
 
 var proirPos = {}, cameraUp = true;
 proirPos.x = 0;
 proirPos.y = 600;
 proirPos.z = 12000;
-
-window.addEventListener( 'mousedown', onMouseDown, false );
-window.addEventListener( 'mouseup', onMouseUp, false );
-window.addEventListener('resize', onWindowResize, false);
 
 
 var activeLabel;
@@ -215,7 +212,7 @@ function init(){
     camera.position.set(0, 6000, 12000);
     camera.lookAt(endPos);
 
-    controls = new THREE.OrbitControls(camera, threejs);
+    controls = new THREE.OrbitControls(camera);
     controls.addEventListener('change', render);
 
     //Create renderer and linking it to threejs canvas
@@ -224,6 +221,9 @@ function init(){
 
     renderer.setClearColor('white',1);
 
+
+    threejs.addEventListener( 'mousedown', onMouseDown, false );
+    threejs.addEventListener( 'mouseup', onMouseUp, false );
 
     loadScene();
     render();
