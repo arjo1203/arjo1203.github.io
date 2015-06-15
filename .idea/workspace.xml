@@ -3,16 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.js" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF_GUI.js" afterPath="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF_GUI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" afterPath="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/quadricFns.js" afterPath="$PROJECT_DIR$/quadraticSurfaces/quadricFns.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/showCase.html" afterPath="$PROJECT_DIR$/quadraticSurfaces/showCase.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" afterPath="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadraticSurfaces/showCaseThree.js" afterPath="$PROJECT_DIR$/quadraticSurfaces/showCaseThree.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VizLab/viz.css" afterPath="$PROJECT_DIR$/VizLab/viz.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showCase.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="showCase.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCase.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33684212" vertical-offset="0" max-vertical-offset="4912">
+            <state vertical-scroll-proportion="-12.8" vertical-offset="0" max-vertical-offset="4912">
               <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="23" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -70,6 +60,16 @@
                 <element signature="n#style#0;n#input#0;n#span#0;n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#span#0;n#div#7;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ISELF.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.64" vertical-offset="160" max-vertical-offset="3248">
+              <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,7 +135,6 @@
         <option value="$PROJECT_DIR$/quadraticSurfaces/personalParser.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.js" />
         <option value="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF_GUI.js" />
-        <option value="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/quadricFns.js" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/showCase.html" />
@@ -143,6 +142,7 @@
         <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html" />
         <option value="$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js" />
         <option value="$PROJECT_DIR$/VizLab/viz.css" />
+        <option value="$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html" />
       </list>
     </option>
   </component>
@@ -222,7 +222,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="VideosPage" />
+              <option name="myItemId" value="ISELF_Page2.0" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SCSU" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,13 +401,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/THREE/Orbit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5505" max-vertical-offset="6544">
-          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quadraticSurfaces/quadraticSurfaces.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.805128" vertical-offset="273" max-vertical-offset="6208">
@@ -673,14 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.96" vertical-offset="144" max-vertical-offset="3248">
-          <caret line="48" column="72" selection-start-line="48" selection-start-column="72" selection-end-line="48" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quadraticSurfaces/quadricFns.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1328">
@@ -763,7 +766,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/quadraticSurfaces/showCase.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33684212" vertical-offset="0" max-vertical-offset="4912">
+        <state vertical-scroll-proportion="-12.8" vertical-offset="0" max-vertical-offset="4912">
           <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="23" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#input#0;n#span#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -774,6 +777,19 @@
             <element signature="n#style#0;n#input#0;n#span#0;n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#0;n#div#7;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/images/1stIcon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/ISELF_Page2.0/ISELF.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64" vertical-offset="160" max-vertical-offset="3248">
+          <caret line="48" column="20" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
