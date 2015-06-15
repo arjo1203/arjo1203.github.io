@@ -1,10 +1,6 @@
 $("#R12").slider({
-    step: 1,
-    min: 0,
-    max: 12,
-    value: 0,
-    formatter: function() {
-        return '';
+    formatter: function(value) {
+        return value + "\u00B0";
     }
 });
 $("#R12").on('slide', function(slideEvt) {
@@ -16,8 +12,8 @@ $("#R12").on('slide', function(slideEvt) {
 });
 
 $("#R13").slider({
-    formatter: function() {
-        return '';
+    formatter: function(value) {
+        return value + "\u00B0";
     }
 });
 $("#R13").on('slide', function(slideEvt) {
@@ -29,8 +25,8 @@ $("#R13").on('slide', function(slideEvt) {
 });
 
 $("#R14").slider({
-    formatter: function() {
-        return '';
+    formatter: function(value) {
+        return value + "\u00B0";
     }
 });
 $("#R14").on('slide', function(slideEvt) {
@@ -42,8 +38,8 @@ $("#R14").on('slide', function(slideEvt) {
 });
 
 $("#R23").slider({
-    formatter: function() {
-        return '';
+    formatter: function(value) {
+        return value + "\u00B0";
     }
 });
 $("#R23").on('slide', function(slideEvt) {
@@ -55,8 +51,8 @@ $("#R23").on('slide', function(slideEvt) {
 });
 
 $("#R24").slider({
-    formatter: function() {
-        return '';
+    formatter: function(value) {
+        return value + "\u00B0";
     }
 });
 $("#R24").on('slide', function(slideEvt) {
@@ -68,8 +64,8 @@ $("#R24").on('slide', function(slideEvt) {
 });
 
 $("#R34").slider({
-    formatter: function() {
-        return '';
+    formatter: function(value) {
+        return value + "\u00B0";
     }
 });
 $("#R34").on('slide', function(slideEvt) {
@@ -80,11 +76,7 @@ $("#R34").on('slide', function(slideEvt) {
     getSliderValues();
 });
 
-$("#w").slider({
-    formatter: function() {
-        return '';
-    }
-});
+$("#w").slider();
 $("#w").on('slide', function(slideEvt) {
     $("#wVal").text(slideEvt.value);
 
@@ -92,19 +84,6 @@ $("#w").on('slide', function(slideEvt) {
 
     getSliderValues();
 });
-//
-//$("#parition").slider({
-//    formatter: function() {
-//        return '';
-//    }
-//});
-//$("#parition").on('slide', function(slideEvt) {
-//    $("#paritionVal").text(slideEvt.value);
-//
-//    removeOldGraph();
-//
-//    getSliderValues();
-//});
 
 
 
@@ -126,12 +105,20 @@ function getSliderValues(){
         R34Val = $('#R34Val')[0].innerHTML,
         wVal = $('#wVal')[0].innerHTML;
 
-    theta12 = (parseInt(R12Val) * Math.PI) / parition;
-    theta13 = (parseInt(R13Val) * Math.PI) / parition;
-    theta14 = (parseInt(R14Val) * Math.PI) / parition;
-    theta23 = (parseInt(R23Val) * Math.PI) / parition;
-    theta24 = (parseInt(R24Val) * Math.PI) / parition;
-    theta34 = (parseInt(R34Val) * Math.PI) / parition;
+    theta12 = parseInt(R12Val) * (Math.PI / 180);
+    theta13 = parseInt(R13Val) * (Math.PI / 180);
+    theta14 = parseInt(R14Val) * (Math.PI / 180);
+    theta23 = parseInt(R23Val) * (Math.PI / 180);
+    theta24 = parseInt(R24Val) * (Math.PI / 180);
+    theta34 = parseInt(R34Val) * (Math.PI / 180);
+
+
+    //theta12 = (parseInt(R12Val) * Math.PI) / parition;
+    //theta13 = (parseInt(R13Val) * Math.PI) / parition;
+    //theta14 = (parseInt(R14Val) * Math.PI) / parition;
+    //theta23 = (parseInt(R23Val) * Math.PI) / parition;
+    //theta24 = (parseInt(R24Val) * Math.PI) / parition;
+    //theta34 = (parseInt(R34Val) * Math.PI) / parition;
 
     slidersCombo = R12Val + R13Val + R14Val + R23Val + '00';
 

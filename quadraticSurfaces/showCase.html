@@ -49,12 +49,22 @@
                 height: 170px;
                 left: 25px;
             }
+            #sliders{
+                position: relative;
+                height: 616px;
+            }
             .inputs{
                 width: 100%;
             }
             #regraph{
                 /*position: absolute;*/
                 /*bottom: 0;*/
+            }
+            .theta{
+                font-size: 20px;
+            }
+            .sub{
+                font-size: 12px;
             }
             .partitionColor{
                 color: #B81414;
@@ -77,83 +87,66 @@
                     <button id="graph" class="btn btn-primary btn-block">Graph</button>
                 </div>
 
-                <!--<div id="paritionDiv">-->
-                    <!--<span class="params">-->
-                        <!--# of Partitions:-->
-                        <!--<span id="paritionVal">0</span>-->
+                <div id="sliders">
 
-                    <!--<input id="parition" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">-->
-                    <!--</span>-->
-                <!--</div>-->
+                    <div id="R12Div">
+                        <span class="params">
+                            <span class="theta">&theta;</span><span class="sub">12</span> : <span id="R12Val">0</span>&deg;
 
-                <div id="R12Div">
-                    <span class="params">
-                        Theta12:
-                        <span id="R12Val">0</span>
-                        <span> PI / <span class="partitionColor">Partition</span></span>
+                            <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
 
-                    <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
+                    <div id="R13Div">
+                        <span class="params">
+                            <span class="theta">&theta;</span><span class="sub">13</span> : <span id="R13Val">0</span>&deg;
 
-                <div id="R13Div">
-                    <span class="params">
-                        Theta13:
-                        <span id="R13Val">0</span>
-                        <span> PI / <span class="partitionColor">Partition</span></span>
+                        <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
 
-                    <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
+                    <div id="R14Div">
+                        <span class="params">
+                            <span class="theta">&theta;</span><span class="sub">14</span> : <span id="R14Val">0</span>&deg;
 
-                <div id="R14Div">
-                    <span class="params">
-                        Theta14:
-                        <span id="R14Val">0</span>
-                        <span> PI / <span class="partitionColor">Partition</span></span>
-
-                    <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
+                        <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
 
 
-                <div id="R23Div">
-                    <span class="params">
-                        Theta23:
-                        <span id="R23Val">0</span>
-                        <span> PI / <span class="partitionColor">Partition</span></span>
+                    <div id="R23Div">
+                        <span class="params">
+                            <span class="theta">&theta;</span><span class="sub">23</span> : <span id="R23Val">0</span>&deg;
 
-                    <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
+                        <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
 
-                <div id="R24Div">
-                    <span class="params">
-                        Theta24:
-                        <span id="R24Val">0</span>
-                        <span> PI / <span class="partitionColor">Partition</span></span>
+                    <div id="R24Div">
+                        <span class="params">
+                            <span class="theta">&theta;</span><span class="sub">24</span> : <span id="R24Val">0</span>&deg;
 
-                    <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="12" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
+                        <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
 
-                <div id="R34Div">
-                    <span class="params">
-                        Theta34:
-                        <span id="R34Val">0</span>
-                        <span> PI / <span class="partitionColor">Partition</span></span>
+                    <div id="R34Div">
+                        <span class="params">
+                            <span class="theta">&theta;</span><span class="sub">34</span> : <span id="R34Val">0</span>&deg;
 
-                    <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="6" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
-                </div>
+                        <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
 
-                <div id="wDiv">
-                    <span class="params">
-                        w (x4):
-                        <span id="wVal">0</span>
+                    <div id="wDiv">
+                        <span class="params">
+                            w (x4):
+                            <span id="wVal">0</span>
 
-                    <input id="w" type="text" data-slider-min="-50" data-slider-step="1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                    </span>
+                        <input id="w" type="text" data-slider-min="-50" data-slider-step="1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
                 </div>
 
                 <div id="GUI">
@@ -164,23 +157,20 @@
                             <input type="text" class="form-control" id="Resolution" placeholder="Enter Resolution between 0 - 100">
                         </div>
                     </div>
-                    <!--<div id="right" class="inputs">-->
-                    <!--<div class="form-group">-->
-                    <!--<span class="partitionColor">Partition</span>-->
-                    <!--<input type="text" class="form-control" id="Partition" placeholder="# of Partitions">-->
-                    <!--</div>-->
-                    <!--</div>-->
+
                     <button id="regraph" class="btn btn-primary btn-block">Regraph</button>
                 </div>
             </div>
         </div>
 
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+
         <script src="../Numeric/numeric-1.2.6.js"></script>
         <script src="./personalParser.js"></script>
         <script src="./quadricFns.js"></script>
-        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
-        <script src="../bootstrap-slider/bootstrap-slider.js"></script>
         <script src="./showCaseSliders.js"></script>
+
         <script src="../THREE/three.js"></script>
         <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/OrbitControls.js"></script>
         <script src="../THREE/MarchingCubesData.js"></script>
@@ -200,7 +190,7 @@
                         theta34 = 0;
 
                 if(!isNaN(refreshRes)){
-                    if(0 < refreshRes && refreshRes < 100){
+                    if(0 < refreshRes && refreshRes <= 100){
                         removeOldGraph();
 
                         var R12Val = $('#R12Val')[0].innerHTML,

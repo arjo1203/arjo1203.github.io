@@ -1,0 +1,209 @@
+<html>
+    <head>
+        <meta name="viewport" content="minimal-ui">
+        <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+        <link href="../bootstrap-slider/bootstrap-slider.css" rel="stylesheet">
+        <title>Jose R. Araujo Meza</title>
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+            }
+            #sideBar{
+                position: absolute;
+                width: 350px;
+                height: 100%;
+                right: 0;
+                background-color: #999999;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+            #sideBarContext{
+                position: absolute;
+                width: 350px;
+                height: 100%;
+            }
+            #threejs{
+                position: absolute;
+                height: 100%;
+            }
+            #header{
+                font-size: 20px;
+                padding: 10px 10px 10px 40px;
+                color : #000000;
+            }
+            .params{
+                float: left;
+                padding: 20px;
+                color : #000000;
+            }
+            #GUI{
+                position: relative;
+                width: 275px;
+                height: 170px;
+                left: 37px;
+            }
+            #GUI_Top{
+                position: relative;
+                width: 300px;
+                height: 170px;
+                left: 25px;
+            }
+            #sliders{
+                position: relative;
+                height: 560px;
+            }
+            .inputs{
+                width: 100%;
+            }
+            #regraph{
+                /*position: absolute;*/
+                /*bottom: 0;*/
+            }
+            .partitionColor{
+                color: #B81414;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="threejs"></canvas>
+
+        <div id="sideBar">
+            <div id="sideBarContext">
+
+                <div id="GUI_Top">
+                    <h1>Quadric Surface</h1>
+                    <div class="inputs">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="quadFn" placeholder="Quadric Surface ex. x^2 + y^2 - z^2 + w^2">
+                        </div>
+                    </div>
+                    <button id="graph" class="btn btn-primary btn-block">Graph</button>
+                </div>
+
+                <div id="sliders">
+                    <div id="wDiv">
+                        <span class="params">
+                            w (x4):
+                            <span id="wVal">0</span>
+
+                        <input id="w" type="text" data-slider-min="-50" data-slider-step="1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
+                    <div id="R12Div">
+                        <span class="params">
+                        Theta12:
+                        <span id="R12Val">0</span>
+                        <span> Degrees</span>
+
+                        <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
+                    <div id="R13Div">
+                        <span class="params">
+                        Theta13:
+                        <span id="R13Val">0</span>
+                        <span> Degrees</span>
+
+                        <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
+                    <div id="R14Div">
+                        <span class="params">
+                        Theta14:
+                        <span id="R14Val">0</span>
+                        <span> Degrees</span>
+
+                        <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
+
+                    <div id="R23Div">
+                        <span class="params">
+                        Theta23:
+                        <span id="R23Val">0</span>
+                        <span> Degrees</span>
+
+                        <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
+                    <div id="R24Div">
+                        <span class="params">
+                        Theta24:
+                        <span id="R24Val">0</span>
+                        <span> Degrees</span>
+
+                        <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+
+                    <div id="R34Div">
+                        <span class="params">
+                        Theta34:
+                        <span id="R34Val">0</span>
+                        <span> Degrees</span>
+
+                        <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                        </span>
+                    </div>
+                </div>
+
+                <div id="GUI">
+                    <h2>Something Cool?!</h2>
+                    <div class="inputs">
+                        <div class="form-group">
+                            <span>Resolution</span>
+                            <input type="text" class="form-control" id="Resolution" placeholder="Enter Resolution between 0 - 100">
+                        </div>
+                    </div>
+
+                    <button id="regraph" class="btn btn-primary btn-block">Regraph</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+        <script>
+            $('#R12').slider();
+            $("#R12").on('slide', function(slideEvt) {
+                $("#R12Val").text(slideEvt.value);
+            });
+
+            $('#R13').slider();
+            $("#R13").on('slide', function(slideEvt) {
+                $("#R13Val").text(slideEvt.value);
+            });
+
+            $('#R14').slider();
+            $("#R14").on('slide', function(slideEvt) {
+                $("#R14Val").text(slideEvt.value);
+            });
+
+            $('#R23').slider();
+            $("#R23").on('slide', function(slideEvt) {
+                $("#23Val").text(slideEvt.value);
+            });
+
+            $('#R24').slider();
+            $("#R24").on('slide', function(slideEvt) {
+                $("#R24Val").text(slideEvt.value);
+            });
+
+            $('#R34').slider();
+            $("#R34").on('slide', function(slideEvt) {
+                $("#R34Val").text(slideEvt.value);
+            });
+//
+            $('#w').slider();
+            $("#w").on('slide', function(slideEvt) {
+                $("#wVal").text(slideEvt.value);
+            });
+        </script>
+    </body>
+</html>
