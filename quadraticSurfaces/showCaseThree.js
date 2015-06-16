@@ -1,5 +1,12 @@
 var container, scene, camera, renderer, controls;
 var numOfShape = 0, shapes = [], sideBarWidth = 350;
+var R12Ani = $('#R12Ani'), R12Animation = false, R12Interval,
+    R13Ani = $('#R13Ani'), R13Animation = false, R13Interval,
+    R14Ani = $('#R14Ani'), R14Animation = false, R14Interval,
+    R23Ani = $('#R23Ani'), R23Animation = false, R23Interval,
+    R24Ani = $('#R24Ani'), R24Animation = false, R24Interval,
+    R34Ani = $('#R34Ani'), R34Animation = false, R34Interval,
+    wAni = $('#wAni'), wAnimation = false, wInterval;
 
 var A = [ [1, 0, 0, 0] , [0, 1, 0, 0] , [0, 0, -1, 0] , [0, 0, 0, 1] ];
 
@@ -298,24 +305,9 @@ function removeOldGraph() {
 function animate(){
     requestAnimationFrame( animate );
 
-//                for(var i = 0; i < scene.children.length; i++){
-//                    if(scene.children[i].name == 'graph'){
-//                        scene.remove(scene.children[i]);
-//                        var selection = graphSelection.toString();
-//                        var graph = graphFn(40, -20, 20, x, 'scully');
-//                        graph.name = 'graph';
-//                        scene.add(graph);
-//                    }
-//                }
-//
-//                if( x == 50){
-//                    x = -50;
-//                    graphSelection++;
-//                    //console.log(graphSelection);
-//                }
-//
-//                x += .5;
-
+    if(R12Animation || R13Animation || R14Animation || R23Animation || R24Animation || R34Animation || wAnimation){
+        makeNewGraph();
+    }
 
     render();
     update();
@@ -324,7 +316,7 @@ function animate(){
 function update() {
     camera.lookAt(0, 0, 0);
 
-    controls.center.set(0, 0, 0);
+    //controls.center.set(0, 0, 0);
     controls.update();
 }
 

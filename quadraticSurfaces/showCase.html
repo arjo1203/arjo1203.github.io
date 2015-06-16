@@ -2,7 +2,7 @@
     <head>
         <meta name="viewport" content="minimal-ui">
         <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
-        <link href="../bootstrap-slider/bootstrap-slider.css" rel="stylesheet">
+        <link href="./showCaseSliders.css" rel="stylesheet">
         <title>Jose R. Araujo Meza</title>
         <style>
             body{
@@ -27,14 +27,9 @@
                 position: absolute;
                 height: 100%;
             }
-            #header{
-                font-size: 20px;
-                padding: 10px 10px 10px 40px;
-                color : #000000;
-            }
             .params{
                 float: left;
-                padding: 20px;
+                padding: 20px 20px 20px 62px;
                 color : #000000;
             }
             #GUI{
@@ -56,18 +51,40 @@
             .inputs{
                 width: 100%;
             }
-            #regraph{
-                /*position: absolute;*/
-                /*bottom: 0;*/
-            }
             .theta{
                 font-size: 20px;
             }
             .sub{
                 font-size: 12px;
             }
-            .partitionColor{
-                color: #B81414;
+            .buttons{
+                position: absolute;
+                top: 25px;
+                left: 5px;
+            }
+            .abs{
+                position: absolute;
+            }
+            #R12Div{
+                top: 0;
+            }
+            #R13Div{
+                top: 80px;
+            }
+            #R14Div{
+                top: 160px;
+            }
+            #R23Div{
+                top: 240px;
+            }
+            #R24Div{
+                top: 320px;
+            }
+            #R34Div{
+                top: 400px;
+            }
+            #wDiv{
+                top: 480px;
             }
         </style>
     </head>
@@ -89,64 +106,84 @@
 
                 <div id="sliders">
 
-                    <div id="R12Div">
-                        <span class="params">
-                            <span class="theta">&theta;</span><span class="sub">12</span> : <span id="R12Val">0</span>&deg;
+                    <div class="abs" id="R12Div">
+                        <button id="R12Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                <span class="theta">&theta;</span><span class="sub">12</span> : <span id="R12Val">0</span>&deg;
 
-                            <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
+                                <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
                     </div>
 
-                    <div id="R13Div">
-                        <span class="params">
-                            <span class="theta">&theta;</span><span class="sub">13</span> : <span id="R13Val">0</span>&deg;
+                    <div class="abs" id="R13Div">
+                        <button id="R13Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                <span class="theta">&theta;</span><span class="sub">13</span> : <span id="R13Val">0</span>&deg;
 
-                        <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
+                                <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
                     </div>
 
-                    <div id="R14Div">
-                        <span class="params">
-                            <span class="theta">&theta;</span><span class="sub">14</span> : <span id="R14Val">0</span>&deg;
+                    <div class="abs" id="R14Div">
+                        <button id="R14Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                <span class="theta">&theta;</span><span class="sub">14</span> : <span id="R14Val">0</span>&deg;
 
-                        <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
+                                <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="abs" id="R23Div">
+                        <button id="R23Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                <span class="theta">&theta;</span><span class="sub">23</span> : <span id="R23Val">0</span>&deg;
+
+                                <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="abs" id="R24Div">
+                        <button id="R24Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                <span class="theta">&theta;</span><span class="sub">24</span> : <span id="R24Val">0</span>&deg;
+
+                                <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="abs" id="R34Div">
+                        <button id="R34Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                <span class="theta">&theta;</span><span class="sub">34</span> : <span id="R34Val">0</span>&deg;
+
+                                <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
                     </div>
 
 
-                    <div id="R23Div">
-                        <span class="params">
-                            <span class="theta">&theta;</span><span class="sub">23</span> : <span id="R23Val">0</span>&deg;
+                    <div class="abs" id="wDiv">
+                        <button id="wAni" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                            <span class="params">
+                                w (x4):
+                                <span id="wVal">0</span>
 
-                        <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
+                            <input id="w" type="text" data-slider-min="-50" data-slider-step=".1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                            </span>
+                        </div>
                     </div>
-
-                    <div id="R24Div">
-                        <span class="params">
-                            <span class="theta">&theta;</span><span class="sub">24</span> : <span id="R24Val">0</span>&deg;
-
-                        <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
-                    </div>
-
-                    <div id="R34Div">
-                        <span class="params">
-                            <span class="theta">&theta;</span><span class="sub">34</span> : <span id="R34Val">0</span>&deg;
-
-                        <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
-                    </div>
-
-                    <div id="wDiv">
-                        <span class="params">
-                            w (x4):
-                            <span id="wVal">0</span>
-
-                        <input id="w" type="text" data-slider-min="-50" data-slider-step="1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
-                        </span>
-                    </div>
-
                 </div>
 
                 <div id="GUI">
@@ -172,7 +209,8 @@
         <script src="./showCaseSliders.js"></script>
 
         <script src="../THREE/three.js"></script>
-        <script src="https://dl.dropboxusercontent.com/u/3587259/Code/Threejs/OrbitControls.js"></script>
+        <script src="../THREE/TrackballControls.js"></script>
+        <script src="../THREE/OrbitControls.js"></script>
         <script src="../THREE/MarchingCubesData.js"></script>
         <script src="./showCaseThree.js"></script>
         <script>
@@ -194,21 +232,21 @@
                         removeOldGraph();
 
                         var R12Val = $('#R12Val')[0].innerHTML,
-                                R13Val = $('#R13Val')[0].innerHTML,
-                                R14Val = $('#R14Val')[0].innerHTML,
-                                R23Val = $('#R23Val')[0].innerHTML,
-                                R24Val = $('#R24Val')[0].innerHTML,
-                                R34Val = $('#R34Val')[0].innerHTML,
-                                wVal = $('#wVal')[0].innerHTML;
+                            R13Val = $('#R13Val')[0].innerHTML,
+                            R14Val = $('#R14Val')[0].innerHTML,
+                            R23Val = $('#R23Val')[0].innerHTML,
+                            R24Val = $('#R24Val')[0].innerHTML,
+                            R34Val = $('#R34Val')[0].innerHTML,
+                            wVal = parseFloat($('#wVal')[0].innerHTML);
 
-                        theta12 = parseInt(R12Val) * (Math.PI / 180);
-                        theta13 = parseInt(R13Val) * (Math.PI / 180);
-                        theta14 = parseInt(R14Val) * (Math.PI / 180);
-                        theta23 = parseInt(R23Val) * (Math.PI / 180);
-                        theta24 = parseInt(R24Val) * (Math.PI / 180);
-                        theta34 = parseInt(R34Val) * (Math.PI / 180);
+                        theta12 = parseFloat(R12Val) * (Math.PI / 180);
+                        theta13 = parseFloat(R13Val) * (Math.PI / 180);
+                        theta14 = parseFloat(R14Val) * (Math.PI / 180);
+                        theta23 = parseFloat(R23Val) * (Math.PI / 180);
+                        theta24 = parseFloat(R24Val) * (Math.PI / 180);
+                        theta34 = parseFloat(R34Val) * (Math.PI / 180);
 
-                        var shape = graphFn(refreshRes, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
+                        var shape = graphFn(refreshRes, min, max, wVal, theta12, theta13, theta14, theta23, theta24, theta34);
                         shape.name = 'graph';
                         scene.add(shape);
 
@@ -267,16 +305,16 @@
                         R23Val = $('#R23Val')[0].innerHTML,
                         R24Val = $('#R24Val')[0].innerHTML,
                         R34Val = $('#R34Val')[0].innerHTML,
-                        wVal = $('#wVal')[0].innerHTML;
+                        wVal = parseFloat($('#wVal')[0].innerHTML);
 
-                    theta12 = parseInt(R12Val) * (Math.PI / 180);
-                    theta13 = parseInt(R13Val) * (Math.PI / 180);
-                    theta14 = parseInt(R14Val) * (Math.PI / 180);
-                    theta23 = parseInt(R23Val) * (Math.PI / 180);
-                    theta24 = parseInt(R24Val) * (Math.PI / 180);
-                    theta34 = parseInt(R34Val) * (Math.PI / 180);
+                    theta12 = parseFloat(R12Val) * (Math.PI / 180);
+                    theta13 = parseFloat(R13Val) * (Math.PI / 180);
+                    theta14 = parseFloat(R14Val) * (Math.PI / 180);
+                    theta23 = parseFloat(R23Val) * (Math.PI / 180);
+                    theta24 = parseFloat(R24Val) * (Math.PI / 180);
+                    theta34 = parseFloat(R34Val) * (Math.PI / 180);
 
-                    var shape = graphFn(40, min, max, parseInt(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
+                    var shape = graphFn(40, min, max, wVal, theta12, theta13, theta14, theta23, theta24, theta34);
                     shape.name = 'graph';
                     scene.add(shape);
 
@@ -287,6 +325,270 @@
                     'please enter a quadric surface in form of (+ / -) x^2 (+ / -) y^2 (+ / -) z^2 (+ / -) w^2')
                 }
             });
+
+
+
+
+            R12Ani.click(function(){
+                var currentValue = parseFloat(R12.$element[0].value);
+                R12.destroy();
+                R12 = new Slider('#R12', {
+                    value: currentValue
+                });
+
+                if(R12Animation){
+                    R12.on('slide', onSlide);
+
+                    R12Ani[0].innerHTML = '&#9658;';
+                    clearInterval(R12Interval);
+
+                    R12Animation = false;
+                }
+                else{
+                    R12.on('slide', onAnimate);
+
+                    R12Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R12Interval = setInterval(function(){
+                        animateSlider(R12, 1);
+                    }, 1);
+
+                    R12Animation = true;
+                }
+            });
+
+
+
+
+            R13Ani.click(function(){
+                var currentValue = parseFloat(R13.$element[0].value);
+                R13.destroy();
+                R13 = new Slider('#R13', {
+                    value: currentValue
+                });
+
+                if(R13Animation){
+                    R13.on('slide', onSlide);
+
+                    R13Ani[0].innerHTML = '&#9658;';
+                    clearInterval(R13Interval);
+
+                    R13Animation = false;
+                }
+                else{
+                    R13.on('slide', onAnimate);
+
+                    R13Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R13Interval = setInterval(function(){
+                        animateSlider(R13, 1);
+                    }, 1);
+
+                    R13Animation = true;
+                }
+            });
+
+
+
+
+            R14Ani.click(function(){
+                var currentValue = parseFloat(R14.$element[0].value);
+                R14.destroy();
+                R14 = new Slider('#R14', {
+                    value: currentValue
+                });
+
+                if(R14Animation){
+                    R14.on('slide', onSlide);
+
+                    R14Ani[0].innerHTML = '&#9658;';
+                    clearInterval(R14Interval);
+
+                    R14Animation = false;
+                }
+                else{
+                    R14.on('slide', onAnimate);
+
+                    R14Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R14Interval = setInterval(function(){
+                        animateSlider(R14, 1);
+                    }, 1);
+
+                    R14Animation = true;
+                }
+            });
+
+
+
+
+            R23Ani.click(function(){
+                var currentValue = parseFloat(R23.$element[0].value);
+                R23.destroy();
+                R23 = new Slider('#R23', {
+                    value: currentValue
+                });
+
+                if(R23Animation){
+                    R23.on('slide', onSlide);
+
+                    R23Ani[0].innerHTML = '&#9658;';
+                    clearInterval(R23Interval);
+
+                    R23Animation = false;
+                }
+                else{
+                    R23.on('slide', onAnimate);
+
+                    R23Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R23Interval = setInterval(function(){
+                        animateSlider(R23, 1);
+                    }, 1);
+
+                    R23Animation = true;
+                }
+            });
+
+
+
+
+            R24Ani.click(function(){
+                var currentValue = parseFloat(R24.$element[0].value);
+                R24.destroy();
+                R24 = new Slider('#R24', {
+                    value: currentValue
+                });
+
+                if(R24Animation){
+                    R24.on('slide', onSlide);
+
+                    R24Ani[0].innerHTML = '&#9658;';
+                    clearInterval(R24Interval);
+
+                    R24Animation = false;
+                }
+                else{
+                    R24.on('slide', onAnimate);
+
+                    R24Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R24Interval = setInterval(function(){
+                        animateSlider(R24, 1);
+                    }, 1);
+
+                    R24Animation = true;
+                }
+            });
+
+
+
+
+            R34Ani.click(function(){
+                var currentValue = parseFloat(R34.$element[0].value);
+                R34.destroy();
+                R34 = new Slider('#R34', {
+                    value: currentValue
+                });
+
+                if(R34Animation){
+                    R34.on('slide', onSlide);
+
+                    R34Ani[0].innerHTML = '&#9658;';
+                    clearInterval(R34Interval);
+
+                    R34Animation = false;
+                }
+                else{
+                    R34.on('slide', onAnimate);
+
+                    R34Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R34Interval = setInterval(function(){
+                        animateSlider(R34, 1);
+                    }, 1);
+
+                    R34Animation = true;
+                }
+            });
+
+
+
+
+            wAni.click(function(){
+                var currentValue = parseFloat(w.$element[0].value);
+                w.destroy();
+                w = new Slider('#w', {
+                    value: currentValue
+                });
+
+                if(wAnimation){
+                    //Paused
+                    w.on('slide', onSlide);
+
+                    wAni[0].innerHTML = '&#9658;';
+                    clearInterval(wInterval);
+
+                    wAnimation = false;
+                }
+                else{
+                    //Playing
+                    w.on('slide', onAnimate);
+
+                    wAni[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    wInterval = setInterval(function(){
+                        animateSlider(w, .2);
+                    }, 10);
+
+                    wAnimation = true;
+                }
+            });
+
+
+
+            function onClick(id, idString, idAni, idAnimation, idInterval){
+                var slider$element = id.$element[0];
+                var currentValue = parseFloat(slider$element.value);
+
+                id.destroy();
+
+                id = new Slider('#' + idString, {
+                    value: currentValue
+                });
+
+                if(idAnimation){
+                    //Paused
+                    id.on('slide', onSlide);
+
+                    idAni[0].innerHTML = '&#9658;';
+                    clearInterval(idInterval);
+
+                    idAnimation = false;
+                }
+                else{
+                    //Playing
+                    id.on('slide', onAnimate);
+
+                    idAni[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    idInterval = setInterval(function(){
+                        animateSlider(id, .2);
+                    }, 10);
+
+                    idAnimation = true;
+                }
+            }
+
+
+            function animateSlider(slider, step){
+                var currentValue = parseFloat(slider.$element[0].value),
+                        max = parseFloat(slider.$element[0].dataset.sliderMax),
+                        min = parseFloat(slider.$element[0].dataset.sliderMin),
+                        nextValue;
+
+                if(currentValue >= max){
+                    nextValue = min;
+                }
+                else{
+                    nextValue = currentValue + step;
+                }
+
+                slider.setValue(nextValue, true);
+                slider.$element[0].dataset.sliderValue = nextValue;
+            }
         </script>
     </body>
 </html>
