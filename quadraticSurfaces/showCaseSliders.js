@@ -74,7 +74,12 @@ var min = -20,
 
 
 function getSliderValues(){
-    var theta12 = 0, theta13 = 0, theta14 = 0, theta23 = 0, theta24 = 0, theta34 = 0;
+    var theta12 = 0,
+        theta13 = 0,
+        theta14 = 0,
+        theta23 = 0,
+        theta24 = 0,
+        theta34 = 0;
 
     var R12Val = $('#R12Val')[0].innerHTML,
         R13Val = $('#R13Val')[0].innerHTML,
@@ -94,8 +99,6 @@ function getSliderValues(){
     var shape = graphFn(animationResolution, min, max, parseFloat(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
     shape.name = 'graph';
     scene.add(shape);
-
-    render();
 }
 
 

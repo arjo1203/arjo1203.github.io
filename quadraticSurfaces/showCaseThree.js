@@ -1,12 +1,12 @@
 var container, scene, camera, renderer, controls;
 var numOfShape = 0, shapes = [], sideBarWidth = 350;
-var R12Ani = $('#R12Ani'), R12Animation = false, R12Interval,
-    R13Ani = $('#R13Ani'), R13Animation = false, R13Interval,
-    R14Ani = $('#R14Ani'), R14Animation = false, R14Interval,
-    R23Ani = $('#R23Ani'), R23Animation = false, R23Interval,
-    R24Ani = $('#R24Ani'), R24Animation = false, R24Interval,
-    R34Ani = $('#R34Ani'), R34Animation = false, R34Interval,
-    wAni = $('#wAni'), wAnimation = false, wInterval;
+var R12Btn = $('#R12Button'), R12Animation = false, R12Interval,
+    R13Btn = $('#R13Button'), R13Animation = false, R13Interval,
+    R14Btn = $('#R14Button'), R14Animation = false, R14Interval,
+    R23Btn = $('#R23Button'), R23Animation = false, R23Interval,
+    R24Btn = $('#R24Button'), R24Animation = false, R24Interval,
+    R34Btn = $('#R34Button'), R34Animation = false, R34Interval,
+    wBtn = $('#wButton'), wAnimation = false, wInterval;
 
 var A = [ [1, 0, 0, 0] , [0, 1, 0, 0] , [0, 0, -1, 0] , [0, 0, 0, 1] ];
 
@@ -101,6 +101,8 @@ function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta
 
     //var equIndex = convertToDec(comboString);
     //var expression = exprexssions[equIndex];
+    var U = passAngleToU(theta12, theta13, theta14, theta23, theta24, theta34),
+        UTrans = numeric.transpose(U);
 
     // Generate a list of 3D points and values at those points
     for (var k = 0; k < size; k++)
@@ -112,11 +114,8 @@ function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta
                 var y = axisMin + axisRange * j / size;
                 var z = axisMin + axisRange * k / size;
                 points.push( new THREE.Vector3(x,y,z) );
-                //console.log(new THREE.Vector3(x,y,z), w);
 
-                var U = passAngleToU(theta12, theta13, theta14, theta23, theta24, theta34),
-                    X = [ [x], [y], [z], [w]],
-                    UTrans = numeric.transpose(U),
+                var X = [ [x], [y], [z], [w]],
                     XTrans = numeric.transpose(X);
 
                 var first = numeric.dot(XTrans, U),
@@ -126,8 +125,10 @@ function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta
                     secondDone = numeric.dot(firstDone, second);
 
                 var value = secondDone[0];
+
                 values.push( value );
             }
+
 
     var graph = marchingCubes(points, values);
 
@@ -269,6 +270,7 @@ function marchingCubes(arrayOfPoints, arrayOfValues){
                     geometry.vertices.push( vlist[index1].clone() );
                     geometry.vertices.push( vlist[index2].clone() );
                     geometry.vertices.push( vlist[index3].clone() );
+
                     var face = new THREE.Face3(vertexIndex, vertexIndex+1, vertexIndex+2);
                     geometry.faces.push( face );
 

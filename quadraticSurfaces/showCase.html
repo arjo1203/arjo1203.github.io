@@ -107,7 +107,7 @@
                 <div id="sliders">
 
                     <div class="abs" id="R12Div">
-                        <button id="R12Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="R12Button" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 <span class="theta">&theta;</span><span class="sub">12</span> : <span id="R12Val">0</span>&deg;
@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="abs" id="R13Div">
-                        <button id="R13Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="R13Button" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 <span class="theta">&theta;</span><span class="sub">13</span> : <span id="R13Val">0</span>&deg;
@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="abs" id="R14Div">
-                        <button id="R14Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="R14Button" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 <span class="theta">&theta;</span><span class="sub">14</span> : <span id="R14Val">0</span>&deg;
@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="abs" id="R23Div">
-                        <button id="R23Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="R23Button" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 <span class="theta">&theta;</span><span class="sub">23</span> : <span id="R23Val">0</span>&deg;
@@ -151,7 +151,7 @@
                     </div>
 
                     <div class="abs" id="R24Div">
-                        <button id="R24Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="R24Button" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 <span class="theta">&theta;</span><span class="sub">24</span> : <span id="R24Val">0</span>&deg;
@@ -162,7 +162,7 @@
                     </div>
 
                     <div class="abs" id="R34Div">
-                        <button id="R34Ani" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="R34Button" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 <span class="theta">&theta;</span><span class="sub">34</span> : <span id="R34Val">0</span>&deg;
@@ -174,7 +174,7 @@
 
 
                     <div class="abs" id="wDiv">
-                        <button id="wAni" class="btn btn-danger buttons">&#9658;</button>
+                        <button id="wButton" class="btn btn-danger buttons">&#9658;</button>
                         <div>
                             <span class="params">
                                 w (x4):
@@ -219,38 +219,11 @@
             regraph.click(function(event){
                 event.preventDefault();
 
-                var refreshRes = parseInt(inputResolution[0].value),
-                        theta12 = 0,
-                        theta13 = 0,
-                        theta14 = 0,
-                        theta23 = 0,
-                        theta24 = 0,
-                        theta34 = 0;
+                var refreshRes = parseInt(inputResolution[0].value);
 
                 if(!isNaN(refreshRes)){
                     if(0 < refreshRes && refreshRes <= 100){
-                        removeOldGraph();
-
-                        var R12Val = $('#R12Val')[0].innerHTML,
-                            R13Val = $('#R13Val')[0].innerHTML,
-                            R14Val = $('#R14Val')[0].innerHTML,
-                            R23Val = $('#R23Val')[0].innerHTML,
-                            R24Val = $('#R24Val')[0].innerHTML,
-                            R34Val = $('#R34Val')[0].innerHTML,
-                            wVal = parseFloat($('#wVal')[0].innerHTML);
-
-                        theta12 = parseFloat(R12Val) * (Math.PI / 180);
-                        theta13 = parseFloat(R13Val) * (Math.PI / 180);
-                        theta14 = parseFloat(R14Val) * (Math.PI / 180);
-                        theta23 = parseFloat(R23Val) * (Math.PI / 180);
-                        theta24 = parseFloat(R24Val) * (Math.PI / 180);
-                        theta34 = parseFloat(R34Val) * (Math.PI / 180);
-
-                        var shape = graphFn(refreshRes, min, max, wVal, theta12, theta13, theta14, theta23, theta24, theta34);
-                        shape.name = 'graph';
-                        scene.add(shape);
-
-                        render();
+                        makeNewGraph();
                     }
                     else{
                         window.alert('Enter an integer between 0 - 100!');
@@ -290,35 +263,7 @@
 
                     A = [ [ele11, 0, 0, 0], [0, ele22, 0, 0] , [0, 0, ele33, 0] , [0, 0, 0, ele44] ];
 
-                    removeOldGraph();
-
-                    var theta12 = 0,
-                        theta13 = 0,
-                        theta14 = 0,
-                        theta23 = 0,
-                        theta24 = 0,
-                        theta34 = 0;
-
-                    var R12Val = $('#R12Val')[0].innerHTML,
-                        R13Val = $('#R13Val')[0].innerHTML,
-                        R14Val = $('#R14Val')[0].innerHTML,
-                        R23Val = $('#R23Val')[0].innerHTML,
-                        R24Val = $('#R24Val')[0].innerHTML,
-                        R34Val = $('#R34Val')[0].innerHTML,
-                        wVal = parseFloat($('#wVal')[0].innerHTML);
-
-                    theta12 = parseFloat(R12Val) * (Math.PI / 180);
-                    theta13 = parseFloat(R13Val) * (Math.PI / 180);
-                    theta14 = parseFloat(R14Val) * (Math.PI / 180);
-                    theta23 = parseFloat(R23Val) * (Math.PI / 180);
-                    theta24 = parseFloat(R24Val) * (Math.PI / 180);
-                    theta34 = parseFloat(R34Val) * (Math.PI / 180);
-
-                    var shape = graphFn(40, min, max, wVal, theta12, theta13, theta14, theta23, theta24, theta34);
-                    shape.name = 'graph';
-                    scene.add(shape);
-
-                    render();
+                    makeNewGraph();
                 }
                 else{
                     window.alert('Working on expanding functionality!, ' +
@@ -329,29 +274,24 @@
 
 
 
-            R12Ani.click(function(){
+            R12Btn.click(function(){
                 var currentValue = parseFloat(R12.$element[0].value);
                 R12.destroy();
                 R12 = new Slider('#R12', {
                     value: currentValue
                 });
-
                 if(R12Animation){
                     R12.on('slide', onSlide);
-
-                    R12Ani[0].innerHTML = '&#9658;';
+                    R12Btn[0].innerHTML = '&#9658;';
                     clearInterval(R12Interval);
-
                     R12Animation = false;
                 }
                 else{
                     R12.on('slide', onAnimate);
-
-                    R12Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R12Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     R12Interval = setInterval(function(){
                         animateSlider(R12, 1);
                     }, 1);
-
                     R12Animation = true;
                 }
             });
@@ -359,29 +299,24 @@
 
 
 
-            R13Ani.click(function(){
+            R13Btn.click(function(){
                 var currentValue = parseFloat(R13.$element[0].value);
                 R13.destroy();
                 R13 = new Slider('#R13', {
                     value: currentValue
                 });
-
                 if(R13Animation){
                     R13.on('slide', onSlide);
-
-                    R13Ani[0].innerHTML = '&#9658;';
+                    R13Btn[0].innerHTML = '&#9658;';
                     clearInterval(R13Interval);
-
                     R13Animation = false;
                 }
                 else{
                     R13.on('slide', onAnimate);
-
-                    R13Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R13Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     R13Interval = setInterval(function(){
                         animateSlider(R13, 1);
                     }, 1);
-
                     R13Animation = true;
                 }
             });
@@ -389,29 +324,25 @@
 
 
 
-            R14Ani.click(function(){
+
+            R14Btn.click(function(){
                 var currentValue = parseFloat(R14.$element[0].value);
                 R14.destroy();
                 R14 = new Slider('#R14', {
                     value: currentValue
                 });
-
                 if(R14Animation){
                     R14.on('slide', onSlide);
-
-                    R14Ani[0].innerHTML = '&#9658;';
+                    R14Btn[0].innerHTML = '&#9658;';
                     clearInterval(R14Interval);
-
                     R14Animation = false;
                 }
                 else{
                     R14.on('slide', onAnimate);
-
-                    R14Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R14Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     R14Interval = setInterval(function(){
                         animateSlider(R14, 1);
                     }, 1);
-
                     R14Animation = true;
                 }
             });
@@ -419,29 +350,25 @@
 
 
 
-            R23Ani.click(function(){
+
+            R23Btn.click(function(){
                 var currentValue = parseFloat(R23.$element[0].value);
                 R23.destroy();
                 R23 = new Slider('#R23', {
                     value: currentValue
                 });
-
                 if(R23Animation){
                     R23.on('slide', onSlide);
-
-                    R23Ani[0].innerHTML = '&#9658;';
+                    R23Btn[0].innerHTML = '&#9658;';
                     clearInterval(R23Interval);
-
                     R23Animation = false;
                 }
                 else{
                     R23.on('slide', onAnimate);
-
-                    R23Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R23Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     R23Interval = setInterval(function(){
                         animateSlider(R23, 1);
                     }, 1);
-
                     R23Animation = true;
                 }
             });
@@ -449,29 +376,24 @@
 
 
 
-            R24Ani.click(function(){
+            R24Btn.click(function(){
                 var currentValue = parseFloat(R24.$element[0].value);
                 R24.destroy();
                 R24 = new Slider('#R24', {
                     value: currentValue
                 });
-
                 if(R24Animation){
                     R24.on('slide', onSlide);
-
-                    R24Ani[0].innerHTML = '&#9658;';
+                    R24Btn[0].innerHTML = '&#9658;';
                     clearInterval(R24Interval);
-
                     R24Animation = false;
                 }
                 else{
                     R24.on('slide', onAnimate);
-
-                    R24Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R24Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     R24Interval = setInterval(function(){
                         animateSlider(R24, 1);
                     }, 1);
-
                     R24Animation = true;
                 }
             });
@@ -479,29 +401,25 @@
 
 
 
-            R34Ani.click(function(){
+
+            R34Btn.click(function(){
                 var currentValue = parseFloat(R34.$element[0].value);
                 R34.destroy();
                 R34 = new Slider('#R34', {
                     value: currentValue
                 });
-
                 if(R34Animation){
                     R34.on('slide', onSlide);
-
-                    R34Ani[0].innerHTML = '&#9658;';
+                    R34Btn[0].innerHTML = '&#9658;';
                     clearInterval(R34Interval);
-
                     R34Animation = false;
                 }
                 else{
                     R34.on('slide', onAnimate);
-
-                    R34Ani[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    R34Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     R34Interval = setInterval(function(){
                         animateSlider(R34, 1);
                     }, 1);
-
                     R34Animation = true;
                 }
             });
@@ -509,63 +427,58 @@
 
 
 
-            wAni.click(function(){
+            wBtn.click(function(){
                 var currentValue = parseFloat(w.$element[0].value);
                 w.destroy();
                 w = new Slider('#w', {
                     value: currentValue
                 });
-
                 if(wAnimation){
                     //Paused
                     w.on('slide', onSlide);
-
-                    wAni[0].innerHTML = '&#9658;';
+                    wBtn[0].innerHTML = '&#9658;';
                     clearInterval(wInterval);
-
                     wAnimation = false;
                 }
                 else{
                     //Playing
                     w.on('slide', onAnimate);
-
-                    wAni[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    wBtn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     wInterval = setInterval(function(){
                         animateSlider(w, .2);
                     }, 10);
-
                     wAnimation = true;
                 }
             });
 
 
 
-            function onClick(id, idString, idAni, idAnimation, idInterval){
-                var slider$element = id.$element[0];
-                var currentValue = parseFloat(slider$element.value);
+            function onClick(slider, idString, idBtn, idAnimation, idInterval){
+                var currentValue = parseFloat(slider.$element[0].value);
+                console.log(currentValue);
 
-                id.destroy();
+                slider.destroy();
 
-                id = new Slider('#' + idString, {
+                slider = new Slider('#' + idString, {
                     value: currentValue
                 });
 
                 if(idAnimation){
                     //Paused
-                    id.on('slide', onSlide);
+                    slider.on('slide', onSlide);
 
-                    idAni[0].innerHTML = '&#9658;';
+                    idBtn[0].innerHTML = '&#9658;';
                     clearInterval(idInterval);
 
                     idAnimation = false;
                 }
                 else{
                     //Playing
-                    id.on('slide', onAnimate);
+                    slider.on('slide', onAnimate);
 
-                    idAni[0].innerHTML = '&#9616;&nbsp;&#9612;';
+                    idBtn[0].innerHTML = '&#9616;&nbsp;&#9612;';
                     idInterval = setInterval(function(){
-                        animateSlider(id, .2);
+                        animateSlider(slider, .2);
                     }, 10);
 
                     idAnimation = true;
