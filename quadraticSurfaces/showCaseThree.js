@@ -10,6 +10,7 @@ var R12Btn = $('#R12Button'), R12Animation = false, R12Interval,
 
 var A = [ [1, 0, 0, 0] , [0, 1, 0, 0] , [0, 0, -1, 0] , [0, 0, 0, 1] ];
 
+
 init();
 animate();
 
@@ -57,7 +58,7 @@ function init()
 
     window.addEventListener('resize', onWindowResize, false);
 
-    var shape = graphFn(40, min, max, 0, 0, 0, 0, 0, 0,0);
+    var shape = graph4To3Graph(40, min, max, 0, 0, 0, 0, 0, 0,0);
     shape.name = 'graph';
     scene.add(shape);
     //shapes.push(shape);
@@ -74,45 +75,28 @@ function onWindowResize(){
     camera.updateProjectionMatrix();
 
     renderer.setSize(window.innerWidth - sideBarWidth, window.innerHeight);
-    render();
 }
 
 
 
-function convertToDec(sixBitNum){
-    var bit1 = parseInt(sixBitNum[0]), bit2 = parseInt(sixBitNum[1]), bit3 = parseInt(sixBitNum[2]), bit4 = parseInt(sixBitNum[3]), bit5 = parseInt(sixBitNum[4]), bit6 = parseInt(sixBitNum[5]), deci;
-    deci = bit1 * Math.pow(7, 0) + bit2 * Math.pow(7, 1) + bit3 * Math.pow(7, 2) + bit4 * Math.pow(7, 3) + bit5 * Math.pow(7, 4) + bit6 * Math.pow(7, 5);
-
-    return deci;
-}
-
-
-
-function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta23, theta24, theta34){
+function graph4To3Graph(resolution, axisMin, axisMax, w, theta12, theta13, theta14, theta23, theta24, theta34){
     var points = [];
     var values = [];
 
-    // number of cubes along a side
-    size = resolution;
-
-    var axisMin = minNum;
-    var axisMax =  maxNum;
     var axisRange = axisMax - axisMin;
 
-    //var equIndex = convertToDec(comboString);
-    //var expression = exprexssions[equIndex];
     var U = passAngleToU(theta12, theta13, theta14, theta23, theta24, theta34),
         UTrans = numeric.transpose(U);
 
     // Generate a list of 3D points and values at those points
-    for (var k = 0; k < size; k++)
-        for (var j = 0; j < size; j++)
-            for (var i = 0; i < size; i++)
+    for (var k = 0; k < resolution; k++)
+        for (var j = 0; j < resolution; j++)
+            for (var i = 0; i < resolution; i++)
             {
                 // actual values
-                var x = axisMin + axisRange * i / size;
-                var y = axisMin + axisRange * j / size;
-                var z = axisMin + axisRange * k / size;
+                var x = axisMin + axisRange * i / resolution;
+                var y = axisMin + axisRange * j / resolution;
+                var z = axisMin + axisRange * k / resolution;
                 points.push( new THREE.Vector3(x,y,z) );
 
                 var X = [ [x], [y], [z], [w]],
@@ -130,7 +114,9 @@ function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta
             }
 
 
-    var graph = marchingCubes(points, values);
+    var geometry = marchingCubes(points, values, resolution);
+    var colorMaterial =  new THREE.MeshLambertMaterial( {color: 0x0000ff, side: THREE.DoubleSide} );
+    var graph = new THREE.Mesh( geometry, colorMaterial );
 
     return graph;
 }
@@ -138,10 +124,10 @@ function graphFn(resolution, minNum, maxNum, w, theta12, theta13, theta14, theta
 
 
 
-function marchingCubes(arrayOfPoints, arrayOfValues){
+function marchingCubes(arrayOfPoints, arrayOfValues, resolution){
     // Marching Cubes Algorithm
 
-    var size2 = size * size;
+    var resolution2 = Math.pow(resolution, 2);
 
     // Vertices may occur along edges of cube, when the values at the edge's endpoints
     //   straddle the isolevel value.
@@ -151,19 +137,19 @@ function marchingCubes(arrayOfPoints, arrayOfValues){
     var geometry = new THREE.Geometry();
     var vertexIndex = 0;
 
-    for (var z = 0; z < size - 1; z++)
-        for (var y = 0; y < size - 1; y++)
-            for (var x = 0; x < size - 1; x++)
+    for (var z = 0; z < resolution - 1; z++)
+        for (var y = 0; y < resolution - 1; y++)
+            for (var x = 0; x < resolution - 1; x++)
             {
                 // index of base point, and also adjacent points on cube
-                var p    = x + size * y + size2 * z,
+                var p    = x + resolution * y + resolution2 * z,
                     px   = p   + 1,
-                    py   = p   + size,
+                    py   = p   + resolution,
                     pxy  = py  + 1,
-                    pz   = p   + size2,
-                    pxz  = px  + size2,
-                    pyz  = py  + size2,
-                    pxyz = pxy + size2;
+                    pz   = p   + resolution2,
+                    pxz  = px  + resolution2,
+                    pyz  = py  + resolution2,
+                    pxyz = pxy + resolution2;
 
                 // store scalar values corresponding to vertices
                 var value0 = arrayOfValues[ p ],
@@ -285,19 +271,15 @@ function marchingCubes(arrayOfPoints, arrayOfValues){
     geometry.computeFaceNormals();
     geometry.computeVertexNormals();
 
-    var colorMaterial =  new THREE.MeshLambertMaterial( {color: 0x0000ff, side: THREE.DoubleSide} );
-    var mesh = new THREE.Mesh( geometry, colorMaterial );
-
-    return mesh;
+    return geometry;
 }
 
 
 
-function removeOldGraph() {
+function remove4To3Graph() {
     for (var i = 0; i < scene.children.length; i++) {
         if (scene.children[i].name == 'graph') {
             scene.remove(scene.children[i]);
-            render();
         }
     }
 }
@@ -307,22 +289,75 @@ function removeOldGraph() {
 function animate(){
     requestAnimationFrame( animate );
 
-    if(R12Animation || R13Animation || R14Animation || R23Animation || R24Animation || R34Animation || wAnimation){
-        makeNewGraph();
-    }
+    animateSlidersByFrame();
 
-    render();
     update();
+    render();
 }
 
 function update() {
     camera.lookAt(0, 0, 0);
 
-    //controls.center.set(0, 0, 0);
+    controls.center.set(0, 0, 0);
     controls.update();
 }
 
 function render()
 {
     renderer.render( scene, camera );
+}
+
+
+
+function animateSlidersByFrame(){
+    if(R12Animation){
+        animateSliderById(R12, 'R12', 0, 360, 1);
+        makeNew4To3Graph();
+    }
+
+    if(R13Animation){
+        animateSliderById(R13, 'R13', 0, 360, 1);
+        makeNew4To3Graph();
+    }
+
+    if(R14Animation){
+        animateSliderById(R14, 'R14', 0, 360, 1);
+        makeNew4To3Graph();
+    }
+
+    if(R23Animation){
+        animateSliderById(R23, 'R23', 0, 360, 1);
+        makeNew4To3Graph();
+    }
+
+    if(R24Animation){
+        animateSliderById(R24, 'R24', 0, 360, 1);
+        makeNew4To3Graph();
+    }
+
+    if(R34Animation){
+        animateSliderById(R34, 'R34', 0, 360, 1);
+        makeNew4To3Graph();
+    }
+
+    if(wAnimation){
+        animateSliderById(w, 'w', -50, 50, .5);
+        makeNew4To3Graph();
+    }
+}
+
+
+function animateSliderById(slider, sliderId, min, max, step){
+    var nextValue;
+
+    if(sliderValues[sliderId] == max){
+        nextValue = min;
+    }
+    else{
+        nextValue = sliderValues[sliderId] + step;
+    }
+
+    slider.setValue(nextValue, true);
+
+    sliderValues[sliderId] = nextValue;
 }

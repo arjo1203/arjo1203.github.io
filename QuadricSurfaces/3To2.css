@@ -1,0 +1,73 @@
+
+body{
+    margin: 0;
+    padding: 0;
+}
+#sideBar{
+    position: absolute;
+    width: 350px;
+    height: 100%;
+    right: 0;
+    background-color: #999999;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#sideBarContext{
+    position: absolute;
+    width: 350px;
+    height: 100%;
+}
+#threejs{
+    position: absolute;
+    height: 100%;
+}
+.params{
+    float: left;
+    padding: 20px 20px 20px 62px;
+    color : #000000;
+}
+#GUI{
+    position: relative;
+    width: 275px;
+    height: 170px;
+    left: 37px;
+}
+#GUI_Top{
+    position: relative;
+    width: 300px;
+    height: 40px;
+    left: 25px;
+}
+#sliders{
+    position: relative;
+    height: 320px;
+}
+.inputs{
+    width: 100%;
+}
+.theta{
+    font-size: 20px;
+}
+.sub{
+    font-size: 12px;
+}
+.buttons{
+    position: absolute;
+    top: 25px;
+    left: 5px;
+}
+.abs{
+    position: absolute;
+}
+#R12Div{
+    top: 0;
+}
+#R13Div{
+    top: 80px;
+}
+#R23Div{
+    top: 160px;
+}
+#zDiv{
+    top: 240px;
+}

@@ -1,176 +1,7 @@
-// standard global variables
-var container, scene, camera, renderer, controls;
-
-// custom global variables
-var x = -50, graphSelection = 2;
-var fn = "-x1^2*sin((1/5)*Pi)*sin((1/12)*Pi)*cos((1/5)*Pi)*cos((1/12)*Pi)+2*x1*x2*sin((1/5)*Pi)^2*cos((1/12)*Pi)*sin((1/12)*Pi)+2*x1*x2*sin((1/5)*Pi)*cos((1/12)*Pi)^2*cos((1/5)*Pi)-2*x1*x2*cos((1/5)*Pi)*sin((1/12)*Pi)^2*sin((1/5)*Pi)-2*x1*x2*cos((1/5)*Pi)^2*sin((1/12)*Pi)*cos((1/12)*Pi)+4*x2^2*sin((1/5)*Pi)*cos((1/12)*Pi)*cos((1/5)*Pi)*sin((1/12)*Pi)-3*x3^2*sin((1/5)*Pi)*sin((1/12)*Pi)*cos((1/5)*Pi)*cos((1/12)*Pi)-(1/2)*x1*x3*sqrt(3)*sin((1/5)*Pi)^2*sin((1/12)*Pi)^2-(1/2)*x1*x3*sqrt(3)*cos((1/5)*Pi)^2*cos((1/12)*Pi)^2+2*x2*x3*sqrt(3)*sin((1/5)*Pi)^2*sin((1/12)*Pi)*cos((1/12)*Pi)-(1/2)*x1*cos((1/8)*Pi)^2*sqrt(3)*x3-(1/2)*x1*sin((1/8)*Pi)^2*sqrt(3)*x3-2*x2*x3*sqrt(3)*sin((1/5)*Pi)*sin((1/12)*Pi)^2*cos((1/5)*Pi)+2*x2*x3*sqrt(3)*cos((1/5)*Pi)*cos((1/12)*Pi)^2*sin((1/5)*Pi)-2*x2*x3*sqrt(3)*cos((1/5)*Pi)^2*cos((1/12)*Pi)*sin((1/12)*Pi)-2*x1*x3*sqrt(3)*sin((1/5)*Pi)*sin((1/12)*Pi)*cos((1/5)*Pi)*cos((1/12)*Pi)+(1/2)*x1*x3*sqrt(3)*cos((1/5)*Pi)^2*sin((1/12)*Pi)^2+(1/2)*x1*x3*sqrt(3)*sin((1/5)*Pi)^2*cos((1/12)*Pi)^2+(3/4)*cos((1/8)*Pi)^2*x1^2+(3/4)*sin((1/8)*)^2*x1^2+(1/4)*x3^2*cos((1/8)*π)^2+(1/4)*x3^2*sin((1/8)*π)^2+x4^2*sin((1/8)*π)^2+x4^2*cos((1/8)*π)^2+(1/4)*x1^2*cos((1/5)*π)^2*sin((1/12)*π)^2-(1/4)*x1^2*cos((1/5)*π)^2*cos((1/12)*π)^2-(1/4)*x1^2*sin((1/5)*π)^2*sin((1/12)*π)^2+(1/4)*x1^2*sin((1/5)*π)^2*cos((1/12)*π)^2-x2^2*cos((1/5)*π)^2*sin((1/12)*π)^2+x2^2*sin((1/5)*π)^2*sin((1/12)*π)^2-x2^2*sin((1/5)*π)^2*cos((1/12)*π)^2+x2^2*cos((1/5)*π)^2*cos((1/12)*π)^2+(3/4)*x3^2*cos((1/5)*π)^2*sin((1/12)*π)^2-(3/4)*x3^2*cos((1/5)*π)^2*cos((1/12)*π)^2-(3/4)*x3^2*sin((1/5)*π)^2*sin((1/12)*π)^2+(3/4)*x3^2*sin((1/5)*π)^2*cos((1/12)*π)^2";
-var expr = Parser.parse(fn);
-
-
-init();
-animate();
-
-// FUNCTIONS
-function init()
-{
-    //Getting existing canvas and setting it to threejs
-    var threejs = document.getElementById('threejs');
-
-    //Creating a scene
-    scene = new THREE.Scene();
-
-    var pointlight1 = new THREE.PointLight(0xffffff, 2.5, 70000);
-    pointlight1.position.set(0, 35000, 0);
-
-    var pointlight2 = new THREE.PointLight(0xffffff, 2.5, 70000);
-    pointlight2.position.set(0, -35000, 0);
-
-    scene.add(pointlight1);
-    scene.add(pointlight2);
-
-    //Creating camera, setting it's position, and then making it look at the scene position
-    camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000000);
-    camera.position.set(0, 100, 0);
-    camera.lookAt(scene.position);
-
-    controls = new THREE.OrbitControls(camera);
-    controls.addEventListener('change', render);
-
-    //Create renderer and linking it to threejs canvas
-    renderer = new THREE.WebGLRenderer({canvas: threejs});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    var graph = graphFn(40, -20, 20, 3, 'string');
-    graph.name = 'graph';
-    scene.add(graph);
-
-    renderer.setClearColor('white',1);
-
-    render();
-}
-
-
-function getValue(x, y, z, w, equ){
-    var value;
-    switch(equ){
-        case '1':
-            value = x*x + y*y + z*z + w*w;
-            break;
-        case '2':
-            value = x*x + y*y + z*z - w*w;
-            break;
-        case '3':
-            value = x*x + y*y - z + w*w;
-            break;
-        case '4':
-            value = x*x + y*y - z*z - w*w;
-            break;
-        case '5':
-            value = x*x - y*y + z*z + w*w;
-            break;
-        case '6':
-            value = x*x - y*y + z*z - w*w;
-            break;
-        case '7':
-            value = x*x - y*y - z*z + w*w;
-            break;
-        case '8':
-            value = x*x - y*y - z*z - w*w;
-            break;
-        case '9':
-            value = - x*x + y*y + z*z + w*w;
-            break;
-        case '10':
-            value = - x*x + y*y + z*z - w*w;
-            break;
-        case '11':
-            value = - x*x + y*y - z*z + w*w;
-            break;
-        case '12':
-            value = - x*x + y*y - z*z - w*w;
-            break;
-        case '13':
-            value = - x*x - y*y + z*z + w*w;
-            break;
-        case '14':
-            value = - x*x - y*y + z*z - w*w;
-            break;
-        case '15':
-            value = - x*x - y*y - z*z + w*w;
-            break;
-        case '16':
-            value = - x*x - y*y - z*z - w*w;
-            break;
-        case 'HyperbolicParaboloid':
-            value = x*x - y*y + z + w*w;
-            break;
-        case 'EllipticParaboloid':
-            value = x*x + y*y + z + w*w;
-            break;
-        case 'Hyperboloid1':
-            value = x*x + y*y - z*z - w*w;
-            break;
-        case 'Hyperboloid2':
-            value = x*x + y*y - z*z + w*w;
-            break;
-        case 'Ellipsoid':
-            value = x*x + y*y + z*z - w*w;
-            break;
-        case 'maple':
-            value = (1/4)*x*x*Math.pow(2,.5)*Math.pow(3,.5) - (1/4)*x*y*Math.pow(2,.5)*Math.pow(3,.5) - (1/4)*x*z + (1/4)*x*w*Math.pow(3,.5) - (1/2)*y*z*Math.pow(3,.5) - (1/2)*y*w - (1/4)*z*x*Math.pow(2,.5) + (1/4)*z*y*Math.pow(2,.5) - (1/4)*z*z*Math.pow(3,.5) + (3/4)*z*w - (1/2)*w*x*Math.pow(2,.5) - (1/2)*w*y*Math.pow(2,.5);
-            break;
-        case 'string':
-            value = expr.evaluate({x1: x, x2: y, x3: z, x4: w});
-            break;
-        case 'angles':
-            value = rotateOptionFn.evaluate({
-                theta12: angles[0],
-                theta13: angles[1],
-                theta14: angles[2],
-                theta23: angles[3],
-                theta24: angles[4],
-                theta34: angles[5],
-                x1: x,
-                x2: y,
-                x3: z,
-                x4: w
-            });
-    }
-
-    return value;
-}
-
-
-
-function graphFn(resolution, minNum, maxNum, w, equ){
-    var points = [];
-    var values = [];
-
-    // number of cubes along a side
-    size = resolution;
-
-    var axisMin = minNum;
-    var axisMax =  maxNum;
-    var axisRange = axisMax - axisMin;
-
-    // Generate a list of 3D points and values at those points
-    for (var k = 0; k < size; k++)
-        for (var j = 0; j < size; j++)
-            for (var i = 0; i < size; i++)
-            {
-                // actual values
-                var x = axisMin + axisRange * i / size;
-                var y = axisMin + axisRange * j / size;
-                var z = axisMin + axisRange * k / size;
-                points.push( new THREE.Vector3(x,y,z) );
-                var value = getValue(x, y, z, w, equ);
-
-                values.push( value );
-            }
-
+function marchingCubes(arrayOfPoints, arrayOfValues, resolution){
     // Marching Cubes Algorithm
 
-    var size2 = size * size;
+    var resolution2 = Math.pow(resolution, 2);
 
     // Vertices may occur along edges of cube, when the values at the edge's endpoints
     //   straddle the isolevel value.
@@ -180,29 +11,29 @@ function graphFn(resolution, minNum, maxNum, w, equ){
     var geometry = new THREE.Geometry();
     var vertexIndex = 0;
 
-    for (var z = 0; z < size - 1; z++)
-        for (var y = 0; y < size - 1; y++)
-            for (var x = 0; x < size - 1; x++)
+    for (var z = 0; z < resolution - 1; z++)
+        for (var y = 0; y < resolution - 1; y++)
+            for (var x = 0; x < resolution - 1; x++)
             {
                 // index of base point, and also adjacent points on cube
-                var p    = x + size * y + size2 * z,
+                var p    = x + resolution * y + resolution2 * z,
                     px   = p   + 1,
-                    py   = p   + size,
+                    py   = p   + resolution,
                     pxy  = py  + 1,
-                    pz   = p   + size2,
-                    pxz  = px  + size2,
-                    pyz  = py  + size2,
-                    pxyz = pxy + size2;
+                    pz   = p   + resolution2,
+                    pxz  = px  + resolution2,
+                    pyz  = py  + resolution2,
+                    pxyz = pxy + resolution2;
 
                 // store scalar values corresponding to vertices
-                var value0 = values[ p ],
-                    value1 = values[ px ],
-                    value2 = values[ py ],
-                    value3 = values[ pxy ],
-                    value4 = values[ pz ],
-                    value5 = values[ pxz ],
-                    value6 = values[ pyz ],
-                    value7 = values[ pxyz ];
+                var value0 = arrayOfValues[ p ],
+                    value1 = arrayOfValues[ px ],
+                    value2 = arrayOfValues[ py ],
+                    value3 = arrayOfValues[ pxy ],
+                    value4 = arrayOfValues[ pz ],
+                    value5 = arrayOfValues[ pxz ],
+                    value6 = arrayOfValues[ pyz ],
+                    value7 = arrayOfValues[ pxyz ];
 
                 // place a "1" in bit positions corresponding to vertices whose
                 //   isovalue is less than given constant.
@@ -233,53 +64,53 @@ function graphFn(resolution, minNum, maxNum, w, equ){
                 // bottom of the cube
                 if ( bits & 1 ){
                     mu = ( isolevel - value0 ) / ( value1 - value0 );
-                    vlist[0] = points[p].clone().lerp( points[px], mu );
+                    vlist[0] = arrayOfPoints[p].clone().lerp( arrayOfPoints[px], mu );
                 }
                 if ( bits & 2 ){
                     mu = ( isolevel - value1 ) / ( value3 - value1 );
-                    vlist[1] = points[px].clone().lerp( points[pxy], mu );
+                    vlist[1] = arrayOfPoints[px].clone().lerp( arrayOfPoints[pxy], mu );
                 }
                 if ( bits & 4 ){
                     mu = ( isolevel - value2 ) / ( value3 - value2 );
-                    vlist[2] = points[py].clone().lerp( points[pxy], mu );
+                    vlist[2] = arrayOfPoints[py].clone().lerp( arrayOfPoints[pxy], mu );
                 }
                 if ( bits & 8 ){
                     mu = ( isolevel - value0 ) / ( value2 - value0 );
-                    vlist[3] = points[p].clone().lerp( points[py], mu );
+                    vlist[3] = arrayOfPoints[p].clone().lerp( arrayOfPoints[py], mu );
                 }
                 // top of the cube
                 if ( bits & 16 ){
                     mu = ( isolevel - value4 ) / ( value5 - value4 );
-                    vlist[4] = points[pz].clone().lerp( points[pxz], mu );
+                    vlist[4] = arrayOfPoints[pz].clone().lerp( arrayOfPoints[pxz], mu );
                 }
                 if ( bits & 32 ){
                     mu = ( isolevel - value5 ) / ( value7 - value5 );
-                    vlist[5] = points[pxz].clone().lerp( points[pxyz], mu );
+                    vlist[5] = arrayOfPoints[pxz].clone().lerp( arrayOfPoints[pxyz], mu );
                 }
                 if ( bits & 64 ){
                     mu = ( isolevel - value6 ) / ( value7 - value6 );
-                    vlist[6] = points[pyz].clone().lerp( points[pxyz], mu );
+                    vlist[6] = arrayOfPoints[pyz].clone().lerp( arrayOfPoints[pxyz], mu );
                 }
                 if ( bits & 128 ){
                     mu = ( isolevel - value4 ) / ( value6 - value4 );
-                    vlist[7] = points[pz].clone().lerp( points[pyz], mu );
+                    vlist[7] = arrayOfPoints[pz].clone().lerp( arrayOfPoints[pyz], mu );
                 }
                 // vertical lines of the cube
                 if ( bits & 256 ){
                     mu = ( isolevel - value0 ) / ( value4 - value0 );
-                    vlist[8] = points[p].clone().lerp( points[pz], mu );
+                    vlist[8] = arrayOfPoints[p].clone().lerp( arrayOfPoints[pz], mu );
                 }
                 if ( bits & 512 ){
                     mu = ( isolevel - value1 ) / ( value5 - value1 );
-                    vlist[9] = points[px].clone().lerp( points[pxz], mu );
+                    vlist[9] = arrayOfPoints[px].clone().lerp( arrayOfPoints[pxz], mu );
                 }
                 if ( bits & 1024 ){
                     mu = ( isolevel - value3 ) / ( value7 - value3 );
-                    vlist[10] = points[pxy].clone().lerp( points[pxyz], mu );
+                    vlist[10] = arrayOfPoints[pxy].clone().lerp( arrayOfPoints[pxyz], mu );
                 }
                 if ( bits & 2048 ){
                     mu = ( isolevel - value2 ) / ( value6 - value2 );
-                    vlist[11] = points[py].clone().lerp( points[pyz], mu );
+                    vlist[11] = arrayOfPoints[py].clone().lerp( arrayOfPoints[pyz], mu );
                 }
 
                 // construct triangles -- get correct vertices from triTable.
@@ -299,6 +130,7 @@ function graphFn(resolution, minNum, maxNum, w, equ){
                     geometry.vertices.push( vlist[index1].clone() );
                     geometry.vertices.push( vlist[index2].clone() );
                     geometry.vertices.push( vlist[index3].clone() );
+
                     var face = new THREE.Face3(vertexIndex, vertexIndex+1, vertexIndex+2);
                     geometry.faces.push( face );
 
@@ -313,45 +145,5 @@ function graphFn(resolution, minNum, maxNum, w, equ){
     geometry.computeFaceNormals();
     geometry.computeVertexNormals();
 
-    var colorMaterial =  new THREE.MeshLambertMaterial( {color: 0x0000ff, side: THREE.DoubleSide} );
-    var mesh = new THREE.Mesh( geometry, colorMaterial );
-
-    return mesh;
-}
-
-
-
-function animate(){
-    requestAnimationFrame( animate );
-
-    //for(var i = 0; i < scene.children.length; i++){
-    //    if(scene.children[i].name == 'graph'){
-    //        scene.remove(scene.children[i]);
-    //        var selection = graphSelection.toString();
-    //        var graph = graphFn(40, -20, 20, x, 'string');
-    //        graph.name = 'graph';
-    //        scene.add(graph);
-    //    }
-    //}
-    //
-    //if( x == 50){
-    //    x = -50;
-    //    graphSelection++;
-    //    //console.log(graphSelection);
-    //}
-    //
-    //x += .5;
-
-    render();
-    update();
-}
-
-function update()
-{
-    controls.update();
-}
-
-function render()
-{
-    renderer.render( scene, camera );
+    return geometry;
 }

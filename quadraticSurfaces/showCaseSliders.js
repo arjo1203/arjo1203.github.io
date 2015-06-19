@@ -42,13 +42,14 @@ $("#R34").on('slide', onSlide);
 
 var w = new Slider('#w');
 w.on('slide', onSlide);
-//console.log(w.on.value);
-//w.on('slide', onAnimate);
 
 
 function onSlide(slideEvt){
     $("#" + this.id + "Val").text(slideEvt.value);
-    makeNewGraph();
+
+    sliderValues[this.id] = slideEvt.value;
+
+    makeNew4To3Graph();
 }
 
 
@@ -59,8 +60,8 @@ function onAnimate(slideEvt){
 
 
 
-function makeNewGraph(){
-    removeOldGraph();
+function makeNew4To3Graph(){
+    remove4To3Graph();
 
     getSliderValues();
 }
@@ -69,36 +70,46 @@ function makeNewGraph(){
 
 var min = -20,
     max = 20,
-    animationResolution = 25;
+    animationResolution = 30;
+
+var sliderValues = {};
+
+sliderValues.R12 = 0;
+sliderValues.R13 = 0;
+sliderValues.R14 = 0;
+sliderValues.R23 = 0;
+sliderValues.R24 = 0;
+sliderValues.R34 = 0;
+sliderValues.w = 0;
 
 
 
-function getSliderValues(){
-    var theta12 = 0,
-        theta13 = 0,
-        theta14 = 0,
-        theta23 = 0,
-        theta24 = 0,
-        theta34 = 0;
+function getSliderValues(res){
+    var resolution;
+    if(!res){
+        //console.log('nothing passed');
+        resolution = animationResolution;
+    }
+    else{
+        resolution = res;
+    }
+    var theta12 = degreesToRadian(sliderValues.R12),
+        theta13 = degreesToRadian(sliderValues.R13),
+        theta14 = degreesToRadian(sliderValues.R14),
+        theta23 = degreesToRadian(sliderValues.R23),
+        theta24 = degreesToRadian(sliderValues.R24),
+        theta34 = degreesToRadian(sliderValues.R34);
 
-    var R12Val = $('#R12Val')[0].innerHTML,
-        R13Val = $('#R13Val')[0].innerHTML,
-        R14Val = $('#R14Val')[0].innerHTML,
-        R23Val = $('#R23Val')[0].innerHTML,
-        R24Val = $('#R24Val')[0].innerHTML,
-        R34Val = $('#R34Val')[0].innerHTML,
-        wVal = $('#wVal')[0].innerHTML;
-
-    theta12 = parseFloat(R12Val) * (Math.PI / 180);
-    theta13 = parseFloat(R13Val) * (Math.PI / 180);
-    theta14 = parseFloat(R14Val) * (Math.PI / 180);
-    theta23 = parseFloat(R23Val) * (Math.PI / 180);
-    theta24 = parseFloat(R24Val) * (Math.PI / 180);
-    theta34 = parseFloat(R34Val) * (Math.PI / 180);
-
-    var shape = graphFn(animationResolution, min, max, parseFloat(wVal), theta12, theta13, theta14, theta23, theta24, theta34);
+    var shape = graph4To3Graph(resolution, min, max, sliderValues.w, theta12, theta13, theta14, theta23, theta24, theta34);
     shape.name = 'graph';
     scene.add(shape);
+}
+
+
+
+function degreesToRadian(degree){
+    var radians = degree * (Math.PI / 180);
+    return radians;
 }
 
 
@@ -138,7 +149,6 @@ function removeThreeObj(objId){
     for(var i = 0; i < scene.children.length; i++){
         if(scene.children[i].id == objId.toString()){
             scene.remove(scene.children[i]);
-            render();
         }
     }
 }

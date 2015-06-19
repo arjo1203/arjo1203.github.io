@@ -1,3 +1,5 @@
+
+
 function toJavascriptSyntax(string){
     //console.log(string);
     var indicies = [], variables = [];
@@ -89,7 +91,7 @@ function findCharacters(string, letters){
             }
 
             //Convert 'sqrt' to javascript syntax 'Math.sqrt'
-            var parsed = spliced + 'Math.';
+            var parsed = spliced + 'Mathf.';
 
             letterParsed += parsed;
 
@@ -113,8 +115,11 @@ function findCharacters(string, letters){
 
 
 
-function buildFunction(params, functionString){
-    var method = new Function(params, 'return ' + functionString + ';');
+function toCSharpSyntax(string){
+    var sinDone = string.replace(/sin/g, 'Mathf.Sin');
+    var cosDone = sinDone.replace(/cos/g, 'Mathf.Cos');
+    var thetaDone = cosDone.replace(/theta/g, 'angle');
+    console.log(thetaDone);
 
-    return method;
+    return thetaDone;
 }

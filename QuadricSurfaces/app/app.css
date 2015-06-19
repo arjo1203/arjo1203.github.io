@@ -1,0 +1,113 @@
+body{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+#view{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+#viewOptions{
+    position: absolute;
+}
+#threeD{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#fourD{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    right: 0;
+}
+#sideBar{
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    background-color: #999999;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.abs{
+    position: absolute;
+}
+#R12Div{
+    top: 0;
+}
+#R13Div{
+    top: 80px;
+}
+#R14Div{
+    top: 160px;
+}
+#R23Div{
+    top: 240px;
+}
+#R24Div{
+    top: 320px;
+}
+#R34Div{
+    top: 400px;
+}
+#wDiv{
+    top: 480px;
+}
+#sliders{
+    position: absolute;
+    height: 550px;
+    width: 20%;
+    top: 15%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#sliders2{
+    position: absolute;
+    top: 20%;
+    height: 320px;
+    width: 20%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#xDiv{
+    top: 0;
+}
+#yDiv{
+    top: 80px;
+}
+#zDiv{
+    top: 160px;
+}
+#zCrossDiv{
+    top: 240px;
+}
+#coneHeader{
+    width: 80%;
+}
+#quadHeader{
+    top: 3%;
+    width: 90%;
+}
+#quadTools{
+    position: absolute;
+    width: 100%;
+    height: 650px;
+    top: 20px;
+}
+#coneTools{
+    position: absolute;
+    width: 100%;
+    height: 400px;
+    top: 670px;
+}

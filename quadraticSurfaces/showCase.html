@@ -223,7 +223,8 @@
 
                 if(!isNaN(refreshRes)){
                     if(0 < refreshRes && refreshRes <= 100){
-                        makeNewGraph();
+                        remove4To3Graph();
+                        getSliderValues(refreshRes);
                     }
                     else{
                         window.alert('Enter an integer between 0 - 100!');
@@ -263,7 +264,7 @@
 
                     A = [ [ele11, 0, 0, 0], [0, ele22, 0, 0] , [0, 0, ele33, 0] , [0, 0, 0, ele44] ];
 
-                    makeNewGraph();
+                    makeNew4To3Graph();
                 }
                 else{
                     window.alert('Working on expanding functionality!, ' +
@@ -275,50 +276,14 @@
 
 
             R12Btn.click(function(){
-                var currentValue = parseFloat(R12.$element[0].value);
-                R12.destroy();
-                R12 = new Slider('#R12', {
-                    value: currentValue
-                });
-                if(R12Animation){
-                    R12.on('slide', onSlide);
-                    R12Btn[0].innerHTML = '&#9658;';
-                    clearInterval(R12Interval);
-                    R12Animation = false;
-                }
-                else{
-                    R12.on('slide', onAnimate);
-                    R12Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    R12Interval = setInterval(function(){
-                        animateSlider(R12, 1);
-                    }, 1);
-                    R12Animation = true;
-                }
+                R12Animation = onClick(R12, R12Btn, R12Animation);
             });
 
 
 
 
             R13Btn.click(function(){
-                var currentValue = parseFloat(R13.$element[0].value);
-                R13.destroy();
-                R13 = new Slider('#R13', {
-                    value: currentValue
-                });
-                if(R13Animation){
-                    R13.on('slide', onSlide);
-                    R13Btn[0].innerHTML = '&#9658;';
-                    clearInterval(R13Interval);
-                    R13Animation = false;
-                }
-                else{
-                    R13.on('slide', onAnimate);
-                    R13Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    R13Interval = setInterval(function(){
-                        animateSlider(R13, 1);
-                    }, 1);
-                    R13Animation = true;
-                }
+                R13Animation = onClick(R13, R13Btn, R13Animation);
             });
 
 
@@ -326,25 +291,7 @@
 
 
             R14Btn.click(function(){
-                var currentValue = parseFloat(R14.$element[0].value);
-                R14.destroy();
-                R14 = new Slider('#R14', {
-                    value: currentValue
-                });
-                if(R14Animation){
-                    R14.on('slide', onSlide);
-                    R14Btn[0].innerHTML = '&#9658;';
-                    clearInterval(R14Interval);
-                    R14Animation = false;
-                }
-                else{
-                    R14.on('slide', onAnimate);
-                    R14Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    R14Interval = setInterval(function(){
-                        animateSlider(R14, 1);
-                    }, 1);
-                    R14Animation = true;
-                }
+                R14Animation = onClick(R14, R14Btn, R14Animation);
             });
 
 
@@ -352,50 +299,15 @@
 
 
             R23Btn.click(function(){
-                var currentValue = parseFloat(R23.$element[0].value);
-                R23.destroy();
-                R23 = new Slider('#R23', {
-                    value: currentValue
-                });
-                if(R23Animation){
-                    R23.on('slide', onSlide);
-                    R23Btn[0].innerHTML = '&#9658;';
-                    clearInterval(R23Interval);
-                    R23Animation = false;
-                }
-                else{
-                    R23.on('slide', onAnimate);
-                    R23Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    R23Interval = setInterval(function(){
-                        animateSlider(R23, 1);
-                    }, 1);
-                    R23Animation = true;
-                }
+                var currentValue = parseF
+                R23Animation = onClick(R23, R23Btn, R23Animation);
             });
 
 
 
 
             R24Btn.click(function(){
-                var currentValue = parseFloat(R24.$element[0].value);
-                R24.destroy();
-                R24 = new Slider('#R24', {
-                    value: currentValue
-                });
-                if(R24Animation){
-                    R24.on('slide', onSlide);
-                    R24Btn[0].innerHTML = '&#9658;';
-                    clearInterval(R24Interval);
-                    R24Animation = false;
-                }
-                else{
-                    R24.on('slide', onAnimate);
-                    R24Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    R24Interval = setInterval(function(){
-                        animateSlider(R24, 1);
-                    }, 1);
-                    R24Animation = true;
-                }
+                R24Animation = onClick(R24, R24Btn, R24Animation);
             });
 
 
@@ -403,90 +315,43 @@
 
 
             R34Btn.click(function(){
-                var currentValue = parseFloat(R34.$element[0].value);
-                R34.destroy();
-                R34 = new Slider('#R34', {
-                    value: currentValue
-                });
-                if(R34Animation){
-                    R34.on('slide', onSlide);
-                    R34Btn[0].innerHTML = '&#9658;';
-                    clearInterval(R34Interval);
-                    R34Animation = false;
-                }
-                else{
-                    R34.on('slide', onAnimate);
-                    R34Btn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    R34Interval = setInterval(function(){
-                        animateSlider(R34, 1);
-                    }, 1);
-                    R34Animation = true;
-                }
+                R34Animation = onClick(R34, R34Btn, R34Animation);
             });
 
 
 
 
             wBtn.click(function(){
-                var currentValue = parseFloat(w.$element[0].value);
-                w.destroy();
-                w = new Slider('#w', {
-                    value: currentValue
-                });
-                if(wAnimation){
-                    //Paused
-                    w.on('slide', onSlide);
-                    wBtn[0].innerHTML = '&#9658;';
-                    clearInterval(wInterval);
-                    wAnimation = false;
-                }
-                else{
-                    //Playing
-                    w.on('slide', onAnimate);
-                    wBtn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    wInterval = setInterval(function(){
-                        animateSlider(w, .2);
-                    }, 10);
-                    wAnimation = true;
-                }
+                wAnimation = onClick(w, wBtn, wAnimation);
             });
 
 
 
-            function onClick(slider, idString, idBtn, idAnimation, idInterval){
-                var currentValue = parseFloat(slider.$element[0].value);
-                console.log(currentValue);
+            function onClick(slider, idBtn, idAnimation){
+                var playing;
 
-                slider.destroy();
-
-                slider = new Slider('#' + idString, {
-                    value: currentValue
-                });
-
-                if(idAnimation){
-                    //Paused
-                    slider.on('slide', onSlide);
-
-                    idBtn[0].innerHTML = '&#9658;';
-                    clearInterval(idInterval);
-
-                    idAnimation = false;
-                }
-                else{
-                    //Playing
+                if(!idAnimation){
+                    slider.off('slide', onSlide);
                     slider.on('slide', onAnimate);
 
                     idBtn[0].innerHTML = '&#9616;&nbsp;&#9612;';
-                    idInterval = setInterval(function(){
-                        animateSlider(slider, .2);
-                    }, 10);
 
-                    idAnimation = true;
+                    playing = true;
                 }
+                else{
+                    slider.off('slide', onAnimate);
+                    slider.on('slide', onSlide);
+
+                    idBtn[0].innerHTML = '&#9658;';
+
+                    playing = false;
+                }
+
+                return playing;
             }
 
 
-            function animateSlider(slider, step){
+            function animateSliderByStep(slider, step){
                 var currentValue = parseFloat(slider.$element[0].value),
                         max = parseFloat(slider.$element[0].dataset.sliderMax),
                         min = parseFloat(slider.$element[0].dataset.sliderMin),

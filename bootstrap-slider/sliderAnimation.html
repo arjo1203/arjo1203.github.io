@@ -179,6 +179,7 @@
 
         <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
         <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+        <script src="../THREE/three.js"></script>
         <script>
             $("#R12").slider({
                 formatter: function(value) {
@@ -271,6 +272,13 @@
 
                 slider.setValue(nextValue, true);
                 $("#" + sliderId)[0].dataset.sliderValue = nextValue;
+            }
+
+            animate();
+            function animate(){
+                requestAnimationFrame( animate );
+//                animateSlider(w, 'w');
+//                console.log('hello');
             }
         </script>
     </body>
