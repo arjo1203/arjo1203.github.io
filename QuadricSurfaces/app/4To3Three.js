@@ -9,6 +9,39 @@ var R12Btn = $('#R12Button'), R12Animation = false,
 var GraphFlag = false;
 
 
+var label = {
+    labels: [ ],
+    on: function(){
+        var labels = label.labels;
+        var length = labels.length;
+
+        if(length > 0){
+            for(var i = 0; i < length; i++){
+                labels[i].visible = true;
+            }
+        }
+    },
+    off: function(){
+        var labels = label.labels;
+        var length = labels.length;
+
+        if(length > 0){
+            for(var i = 0; i < length; i++){
+                labels[i].visible = false;
+            }
+        }
+    },
+    toggle: function(label){
+        if(label.visible == true){
+            label.visible = false;
+        }
+        else{
+            label.visible = true;
+        }
+    }
+};
+
+
 
 fourInit();
 fourAnimate();
@@ -39,7 +72,7 @@ function fourInit()
 
     //Creating camera, setting it's position, and then making it look at the scene position
     fourCamera = new THREE.PerspectiveCamera(45, fourView[0].clientWidth / fourView[0].clientHeight, 1, 1000);
-    fourCamera.position.set(0, 100, 20);
+    fourCamera.position.set(0, -250, 50);
     fourCamera.lookAt(fourScene.position);
 
     //Create renderer and linking it to threejs canvas
@@ -56,7 +89,37 @@ function fourInit()
     _4to3shape.name = '_4to3shape';
     fourScene.add(_4to3shape);
 
+    var quadLabel = createLabel('Quadric Surfaces', 10);
+    quadLabel.position.z = 30;
+    quadLabel.position.x = -55;
+    quadLabel.rotation.x = 90 * (Math.PI / 180);
+    fourScene.add(quadLabel);
+    label.labels.push(quadLabel);
+
     fourRender();
+}
+
+
+
+
+//Creates 3d text
+function createLabel(message, size){
+    var geo, mat, label;
+    var geo = new THREE.TextGeometry( message, {
+        size: size,
+        height: 10,
+        curveSegments: 10,
+        font: 'helvetiker',
+        bevelThickness: 5,
+        bevelSize: 5
+    });
+    geo.computeBoundingBox();
+
+    mat = new THREE.MeshBasicMaterial( { color: 0x0000ff, overdraw: 0.5 } );
+    label = new THREE.Mesh(geo, mat);
+    label.name = message;
+
+    return label;
 }
 
 

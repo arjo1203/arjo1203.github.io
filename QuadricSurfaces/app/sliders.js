@@ -93,6 +93,14 @@ function _3to2onSlide(slideEvt){
 
     if(slideEvt.target.id == 'zCross'){
         updatePlane(slideEvt.value);
+        removeGraph('line');
+
+        _2DGraph = getGraphPoints();
+        //console.log(_2DGraph);
+
+        var graph = graph2D(_2DGraph);
+        graph.name = 'line';
+        twoScene.add(graph);
     }
     else{
         updateRotation(this.id);

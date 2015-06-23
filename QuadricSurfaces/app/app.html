@@ -9,7 +9,10 @@
     <body>
         <div id="view">
 
-            <canvas id="threeD"></canvas>
+            <div id="leftView">
+                <canvas id="threeD"></canvas>
+                <canvas id="twoD"></canvas>
+            </div>
 
             <div id="sideBar">
                 <form id="viewOptions" class="nav navbar-nav">
@@ -20,7 +23,7 @@
 
                 <div id="quadTools">
                     <div id="quadHeader" class="abs">
-                        <h2>Quadric Surfaces</h2>
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Quadric Surfaces</button>
                     </div>
 
                     <div id="sliders">
@@ -110,7 +113,7 @@
 
 
                     <div id="coneHeader" class="abs">
-                        <h2>Conic Sections</h2>
+                        <button type="button" class="btn btn-primary btn-lg btn-block">Conic Sections</button>
                     </div>
 
 
@@ -177,6 +180,7 @@
         <script src="../../THREE/three.js"></script>
         <script src="../../THREE/MarchingCubesData.js"></script>
         <script src="../../THREE/OrbitControls.js"></script>
+        <script src="../../SCSU/Campus_3D/fonts/helvetiker_regular.typeface.js"></script>
         <script src="../../Numeric/numeric-1.2.6.js"></script>
 
         <script src="../../marchingCubes/marchingCubes.js"></script>
@@ -191,5 +195,7 @@
 
         <script src="./3To2Three.js"></script>
         <script src="./3To2Buttons.js"></script>
+
+        <script src="./2dCrossSections.js"></script>
     </body>
 </html>

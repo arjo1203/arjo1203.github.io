@@ -26,15 +26,18 @@ var view = {
         }
     },
     animateLeft: function(){
-        view.setView('left');
+        view.setView('right');
 
         view.animateView = true;
 
-        threeView.animate({
+        leftView.animate({
             width: '0'
         }, 500,
         function(){
-            view.animateView = false;
+            setTimeout(function(){
+                view.animateView = false;
+                label.off();
+            }, 100);
         });
 
         sideBar.animate({
@@ -50,7 +53,7 @@ var view = {
 
         view.animateView = true;
 
-        threeView.animate({
+        leftView.animate({
             width: '40%'
         }, 500);
 
@@ -58,7 +61,10 @@ var view = {
             left: '40%'
         }, 500,
         function(){
-            view.animateView = false;
+            setTimeout(function(){
+                view.animateView = false;
+                label.on();
+            }, 100);
         });
 
         fourView.animate({
@@ -66,11 +72,11 @@ var view = {
         }, 500);
     },
     animateRight: function(){
-        view.setView('right');
+        view.setView('left');
 
         view.animateView = true;
 
-        threeView.animate({
+        leftView.animate({
             width: '80%'
         }, 500);
 
@@ -82,11 +88,15 @@ var view = {
             width: '0'
         }, 500,
         function(){
-            view.animateView = false;
+            setTimeout(function(){
+                view.animateView = false;
+                label.off();
+            }, 100);
         });
     },
     resizeView: function(){
         if(view.currentView() == 'left'){
+            console.log('debug');
             view.resizeLeftView();
         }
         if(view.currentView() == 'middle'){
@@ -102,17 +112,17 @@ var view = {
         view.centerHeaders();
     },
     resizeBothView: function(){
-        threeView[0].style.width = window.innerWidth * .4;
+        leftView[0].style.width = window.innerWidth * .4;
         fourView[0].style.width = window.innerWidth * .4;
 
     },
-    resizeLeftView: function(){
-        threeView[0].style.width = 0;
+    resizeRightView: function(){
+        leftView[0].style.width = 0;
         fourView[0].style.width = window.innerWidth * .8;
     },
-    resizeRightView: function(){
+    resizeLeftView: function(){
         fourView[0].style.width = 0;
-        threeView[0].style.width = window.innerWidth * .8;
+        leftView[0].style.width = window.innerWidth * .8;
     },
     resizeSidebar: function(){
         sideBar[0].style.width = window.innerWidth * .2;

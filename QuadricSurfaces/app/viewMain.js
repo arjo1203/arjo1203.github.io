@@ -3,10 +3,12 @@ var L = $('#L'),
     R = $('#R'),
     threeView = $('#threeD'),
     fourView = $('#fourD'),
+    twoView = $('#twoD'),
     sideBar = $('#sideBar'),
     viewOptions = $('#viewOptions'),
     quadHeader = $('#quadHeader'),
-    coneHeader = $('#coneHeader');
+    coneHeader = $('#coneHeader'),
+    leftView = $('#leftView');
 
 
 
@@ -22,47 +24,75 @@ function onStart(){
 
 
 
+quadHeader.click(function(){
+    label.toggle(label.labels[0]);
+});
+
+
+
+coneHeader.click(function(){
+    label.toggle(label.labels[1]);
+});
+
+
+
 L.click(function(evt){
     evt.preventDefault();
 
-    if(view.currentView() == 'right'){
-        toolBar.RL();
-    }
-    else{
-        toolBar.ML();
-    }
+    var currentView = view.currentView();
 
-    view.animateLeft();
+    //If you are already at the view that the button will display
+    //then do nothing
+    //if not change view and sideBar
+    if(currentView !== 'left'){
 
+        if(currentView == 'right'){
+            toolBar.Conic();
+        }
+        else{
+            toolBar.QuadricToConic();
+        }
+
+
+        view.animateRight();
+    }
 });
-
 
 M.click(function(evt){
     evt.preventDefault();
 
-    if(view.currentView() == 'right'){
-        toolBar.RM();
-    }
-    else{
-        toolBar.LM();
-    }
+    //If you are already at the view that the button will display
+    //then do nothing
+    //if not change view and sideBar
+    var currentView = view.currentView();
 
-    view.animateMiddle();
+    if(currentView !== 'middle') {
+        toolBar.QuadricAndConic();
+
+        view.animateMiddle();
+    }
 });
 
 
 R.click(function(evt){
     evt.preventDefault();
 
-    if(view.currentView() == 'middle'){
-        toolBar.MR();
-    }
-    else{
-        toolBar.LR();
-    }
+    //If you are already at the view that the button will display
+    //then do nothing
+    //if not change view and sideBar
+    var currentView = view.currentView();
 
-    view.animateRight();
+    if(currentView !== 'right') {
 
+        if (currentView == 'middle') {
+            toolBar.Quadric();
+        }
+        else {
+            toolBar.ConicToQuaric();
+        }
+
+        view.animateLeft();
+    }
 });
 
 
@@ -75,10 +105,19 @@ function onWindowResize(){
 }
 
 
+function onTwoResize(){
+    twoCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.3);
+    twoCamera.updateProjectionMatrix();
+    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.3);
+
+    twoRender();
+}
+
+
 function onThreeResize(){
-    threeCamera.aspect = threeView[0].clientWidth / threeView[0].clientHeight;
+    threeCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.7);
     threeCamera.updateProjectionMatrix();
-    threeRenderer.setSize(threeView[0].clientWidth, threeView[0].clientHeight);
+    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.7);
 
     threeRender();
 }

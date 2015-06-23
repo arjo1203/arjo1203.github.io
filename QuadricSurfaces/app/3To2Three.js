@@ -35,13 +35,13 @@ function threeInit(){
     threeScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    threeCamera = new THREE.PerspectiveCamera(45, threeView[0].clientWidth / threeView[0].clientHeight, 1, 1000);
-    threeCamera.position.set(0, 100, 20);
+    threeCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.7), 1, 1000);
+    threeCamera.position.set(0, -170, 40);
     threeCamera.lookAt(threeScene.position);
 
     //Create renderer and linking it to threejs canvas
     threeRenderer = new THREE.WebGLRenderer({canvas: threeView[0]});
-    threeRenderer.setSize(threeView[0].clientWidth, threeView[0].clientHeight);
+    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.7);
     threeRenderer.setClearColor('white', 1);
 
     threeControls = new THREE.OrbitControls(threeCamera, threeView[0]);
@@ -56,7 +56,37 @@ function threeInit(){
     plane = new THREE.Mesh(geo, mat);
     threeScene.add(plane);
 
+    var conicLabel = createLabel('Conic Sections', 10);
+    conicLabel.position.z = 30;
+    conicLabel.position.x = -45;
+    conicLabel.rotation.x = 90 * (Math.PI / 180);
+    threeScene.add(conicLabel);
+    label.labels.push(conicLabel);
+
     threeRender();
+}
+
+
+
+
+//Creates 3d text
+function createLabel(message, size){
+    var geo, mat, label;
+    var geo = new THREE.TextGeometry( message, {
+        size: size,
+        height: 10,
+        curveSegments: 10,
+        font: 'helvetiker',
+        bevelThickness: 5,
+        bevelSize: 5
+    });
+    geo.computeBoundingBox();
+
+    mat = new THREE.MeshBasicMaterial( { color: 0x0000ff, overdraw: 0.5 } );
+    label = new THREE.Mesh(geo, mat);
+    label.name = message;
+
+    return label;
 }
 
 
@@ -73,34 +103,6 @@ function threeAnimate(){
     threeUpdate();
     threeRender();
 }
-
-
-
-//function animate(){
-//    requestAnimationFrame( animate );
-//
-//    animateThreeSlidersByFrame();
-//
-//    if(view.animateView){
-//        onThreeResize();
-//    }
-//
-//    threeUpdate();
-//    threeRender();
-//
-//    GraphFlag = animateSlidersByFrame();
-//
-//    if(GraphFlag){
-//        makeNew4To3Graph();
-//    }
-//
-//    if(view.animateView){
-//        onFourResize();
-//    }
-//
-//    fourUpdate();
-//    fourRender();
-//}
 
 
 
