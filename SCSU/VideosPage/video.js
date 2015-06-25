@@ -4,57 +4,48 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player, videosDiv = $('#videos'), videos = $('#videos')[0], mainDiv = document.getElementById('container');
-var inputPlayList = document.getElementById('playList'), logoDiv = $('#logoDiv'), logo = $('#logo'), left = $('#left'), right = $('#right');
-var rightOffSet = 0, leftOffSet = 0, videoWidth = Math.round(window.innerWidth * .15), animateIndex = 0, maxLength;
-var numMiddle = Math.round(window.innerWidth / videoWidth),
-    numRight, numLeft = 0, lastOffSet = (videoWidth * numMiddle) - window.innerWidth;
-var btns = $('#btns');
-console.log(numMiddle);
+var player, 
+    videos = $('#videos'),
+    logoDiv = $('#logoDiv'),
+    left = $('#left'),
+    right = $('#right'),
+    btns = $('#btns');
 
-window.addEventListener('resize', onWindowResize, false);
-
-left.click(function(){
-    if(numLeft > 0){
-        animateIndex--;
-
-        videosDiv.animate({
-            left: '-' + (videoWidth * animateIndex).toString() + 'px'
-        }, 100);
-
-        numRight++;
-        numLeft--;
-    }
-});
-
-right.click(function(){
-    if(numRight > 0){
-        animateIndex++;
-
-        videosDiv.animate({
-            left: '-' + (videoWidth * animateIndex).toString() + 'px'
-        }, 100);
-
-        numLeft++;
-        numRight--;
-    }
-    else{
-        videosDiv.animate({
-            left: '-' + (videoWidth * animateIndex + lastOffSet).toString() + 'px'
-        }, 100);
-    }
-});
+var carousel = {
+    widthOfCarousel: 0,
+    widthOfVideos: Math.round(window.innerWidth * .15),
+    heightOfVideos: Math.round(window.innerHeight * .15),
+    numOfVideos: 0,
+    RightVideos: 0,
+    MiddleVideos: 0,
+    LeftVideos: 0,
+    currentIndex: 0,
+    lastOffSet: 0
+};
 
 
 
-function onYouTubeIframeAPIReady(){
+init();
+
+
+
+function init() {
+    window.addEventListener('resize', onWindowResize, false);
+
+    setlogoDiv(logoDiv, 'right');
+    setlogoDiv(btns, 'center');
+}
+
+
+
+function onYouTubeIframeAPIReady() {
 
     player = new YT.Player('player', {
         height: '85%',
         width: '100%',
         playerVars: {
             listType:'playlist',
-            list: 'PLc9N-_6px7KFVrwxkVbgaAvvnjVGFF053', //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-, PL1DD10E84B9B08A35
+            list: 'PLc9N-_6px7KFVrwxkVbgaAvvnjVGFF053',
             'controls': 0,
             'autohide': 1,
             'rel': 0
@@ -69,20 +60,15 @@ function onYouTubeIframeAPIReady(){
 
 
 
-//API will call this function when player is ready
-function onPlayerReady(event){
-    console.log(event);
+function onPlayerReady(event) {
     event.target.playVideo();
 }
 
 
 
 
-//API calls when player state changes
-function onPlayerStateChange(event){
-    console.log(event);
+function onPlayerStateChange(event) {
     if(event.data == 0){
-        //Video has ended
         changeVideo();
     }
     if(event.data == 1){
@@ -94,14 +80,15 @@ function onPlayerStateChange(event){
 
 //creates the sidebar elements
 function addElement() {
-    maxLength = player.getPlaylist().length;
-    numRight = maxLength - numMiddle - numLeft;
-
     var playerList = player.getPlaylist();
-    //console.log(playerList);
-    videosDiv[0].style.width = (playerList.length * (window.innerWidth * .15)).toString() + 'px';
 
-    var inWidth = Math.round(window.innerWidth * .15), inHeight = Math.round(window.innerHeight * .15);
+    carousel.MiddleVideos = Math.round(window.innerWidth / carousel.widthOfVideos);
+    carousel.lastOffSet = (carousel.widthOfVideos * carousel.MiddleVideos) - window.innerWidth;
+    carousel.numOfVideos = player.getPlaylist().length;
+    carousel.widthOfCarousel = Math.round(carousel.numOfVideos * carousel.widthOfVideos);
+    carousel.RightVideos = carousel.numOfVideos - carousel.MiddleVideos;//Giving more time for carousel.MiddleVideos to be initialized
+
+    videos[0].style.width = (carousel.widthOfCarousel).toString() + 'px';
 
 
     for (var j = 0; j < playerList.length; j++) {
@@ -110,16 +97,16 @@ function addElement() {
         input.type = 'image';
         input.id = j.toString();
         input.src = 'http://img.youtube.com/vi/' + playerList[j] + '/0.jpg';
-        input.style.width = (inWidth).toString() + 'px';
-        input.style.height = (inHeight).toString() + 'px';
+        input.style.width = (carousel.widthOfVideos).toString() + 'px';
+        input.style.height = (carousel.heightOfVideos).toString() + 'px';
         input.onclick = function(){
 
-            for(var i = 0; i < videos.children.length; i++){
-                if(videos.children[i].id != this.id){
-                    $('#' + videos.children[i].id).removeClass('border');
+            for(var i = 0; i < videos[0].children.length; i++){
+                if(videos[0].children[i].id != this.id){
+                    $('#' + videos[0].children[i].id).removeClass('border');
                 }
                 else{
-                    $('#' + videos.children[i].id).addClass('border');
+                    $('#' + videos[0].children[i].id).addClass('border');
                 }
             }
 
@@ -127,24 +114,23 @@ function addElement() {
         };
 
         if(j == 0){
-            //console.log(input);
             input.className = 'border';
         }
 
-        videosDiv[0].appendChild(input);
+        videos[0].appendChild(input);
     }
 }
 
 
 
-function changeVideo(){
-    var videoIndex = findVideo(videos);
+function changeVideo() {
+    var videoIndex = findVideo(videos[0]);
 
-    if(videoIndex == videos.children.length - 1){
+    if(videoIndex == videos[0].children.length - 1){
         var nextVideo = $('#0');
     }
     else{
-        var nextVideo = $('#' + videos.children[videoIndex + 1].id)[0];
+        var nextVideo = $('#' + videos[0].children[videoIndex + 1].id)[0];
     }
 
     nextVideo.click();
@@ -152,12 +138,11 @@ function changeVideo(){
 
 
 
-function findVideo(div){
+function findVideo(div) {
     for(var i = 0; i < div.children.length; i ++){
         var video = div.children[i];
 
         if(video.className == 'border'){
-            //console.log('found');
             var index = i;
         }
     }
@@ -167,23 +152,23 @@ function findVideo(div){
 
 
 
-function onWindowResize(){
-    var inWidth = window.innerWidth * .15;
-    videoWidth = Math.round(window.innerWidth * .15)
+function onWindowResize() {
+    carousel.widthOfVideos = Math.round(window.innerWidth * .15);
 
-    for (var j = 0; j < videosDiv[0].children.length; j++) {
-        videosDiv[0].children[j].style.width = (inWidth).toString() + 'px';
+    for (var j = 0; j < videos[0].children.length; j++) {
+        videos[0].children[j].style.width = (carousel.widthOfVideos).toString() + 'px';
     }
 
-    videosDiv[0].style.width = (videosDiv[0].children.length * inWidth).toString() + 'px';
+    videos[0].style.width = (Math.round(carousel.numOfVideos * carousel.widthOfVideos)).toString() + 'px';
 
     setlogoDiv(logoDiv);
+    setlogoDiv(btns, 'center');
 }
 
 
 
-function setlogoDiv(div, position){
-    var width = div[0].clientWidth / 2, height = div[0].clientHeight, deltaHeight, deltaWidth;
+function setlogoDiv(div, position) {
+    var width = div[0].clientWidth / 2, height = div[0].clientHeight;
     var inHeight = window.innerHeight * .85, inWidth = window.innerWidth / 2;
 
     div[0].style.top = Math.round(inHeight - height).toString() + 'px';
@@ -203,6 +188,42 @@ function setlogoDiv(div, position){
 
 
 
-setlogoDiv(logoDiv, 'right');
-setlogoDiv(btns, 'center');
-logo[0].style.opacity = .8;
+
+left.click(function() {
+    if(carousel.LeftVideos > 0){
+        carousel.currentIndex--;
+
+        videos.animate({
+            left: '-' + (carousel.widthOfVideos * carousel.currentIndex).toString() + 'px'
+        }, 100);
+
+        carousel.RightVideos++;
+        carousel.LeftVideos--;
+    }
+    else{
+        videos.animate({
+            left: '0'
+        }, 50);
+    }
+});
+
+
+
+
+right.click(function() {
+    if(carousel.RightVideos > 0){
+        carousel.currentIndex++;
+
+        videos.animate({
+            left: '-' + (carousel.widthOfVideos * carousel.currentIndex).toString() + 'px'
+        }, 100);
+
+        carousel.RightVideos--;
+        carousel.LeftVideos++;
+    }
+    else{
+        videos.animate({
+            left: '-' + (carousel.widthOfVideos * carousel.currentIndex + carousel.lastOffSet).toString() + 'px'
+        }, 50);
+    }
+});
