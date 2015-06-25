@@ -93,14 +93,6 @@ function _3to2onSlide(slideEvt){
 
     if(slideEvt.target.id == 'zCross'){
         updatePlane(slideEvt.value);
-        removeGraph('line');
-
-        _2DGraph = getGraphPoints();
-        //console.log(_2DGraph);
-
-        var graph = graph2D(_2DGraph);
-        graph.name = 'line';
-        twoScene.add(graph);
     }
     else{
         updateRotation(this.id);
@@ -114,12 +106,15 @@ function updateRotation(id){
     switch(id){
         case 'x':
             _3to2shape.rotation.x = radian;
+            _2DGraph.rotation.x = radian;
             break;
         case 'y':
             _3to2shape.rotation.y = radian;
+            _2DGraph.rotation.y = radian;
             break;
         case 'z':
             _3to2shape.rotation.z = radian;
+            _2DGraph.rotation.z = radian;
             break;
 
     }
@@ -129,6 +124,7 @@ function updateRotation(id){
 
 function updatePlane(value){
     plane.position.z = value;
+    twoCamera.position.z = value + 10;
 }
 
 

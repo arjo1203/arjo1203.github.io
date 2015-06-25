@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/4To3Three.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/4To3Three.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/app.css" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/app.html" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/sideBarObj.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/sideBarObj.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/app.png" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/app.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html" afterPath="$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/sliders.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/sliders.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/QuadricSurfaces/app/viewObj.js" afterPath="$PROJECT_DIR$/QuadricSurfaces/app/viewObj.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -35,31 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="4To3Three.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/4To3Three.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2481" max-vertical-offset="4448">
-              <caret line="180" column="61" selection-start-line="180" selection-start-column="61" selection-end-line="180" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="3To2Three.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5733333" vertical-offset="1889" max-vertical-offset="3184">
-              <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.12" vertical-offset="336" max-vertical-offset="3296">
-              <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.7683557" vertical-offset="2697" max-vertical-offset="7600">
+              <caret line="215" column="146" selection-start-line="215" selection-start-column="146" selection-end-line="215" selection-end-column="146" />
               <folding />
             </state>
           </provider>
@@ -85,14 +61,12 @@
         <option value="$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/main.css" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/function.js" />
-        <option value="$PROJECT_DIR$/marchingCubes/marchingCubes.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/4To3.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/main.html" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/4To3.html" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/3To2.css" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/3To2Sliders.js" />
         <option value="$PROJECT_DIR$/MapleToJavascript/parser.js" />
-        <option value="$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/sliders.css" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/sideBarObj..js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/sideBarObj.js" />
@@ -110,20 +84,22 @@
         <option value="$PROJECT_DIR$/QuadricSurfaces/3To2Three.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/3To2Buttons.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/4To3U.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/showCaseThree.js" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/showCaseSliders.js" />
         <option value="$PROJECT_DIR$/quadraticSurfaces/showCase.html" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/viewObj.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/app.html" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/app.css" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/sideBarObj.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/4To3Three.js" />
+        <option value="$PROJECT_DIR$/QuadricSurfaces/app/3To2U.js" />
+        <option value="$PROJECT_DIR$/marchingCubes/marchingCubes.js" />
+        <option value="$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js" />
+        <option value="$PROJECT_DIR$/QuadricSurfaces/app/app.html" />
+        <option value="$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/sliders.js" />
         <option value="$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/3To2U.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js" />
+        <option value="$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -131,8 +107,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1680" />
-    <option name="height" value="1050" />
+    <option name="x" value="-1920" />
+    <option name="y" value="-40" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -157,7 +135,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -176,40 +153,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuadricSurfaces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="QuadricSurfaces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -233,10 +179,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
@@ -244,10 +194,6 @@
       <setting name="settingsFile" value="" />
       <setting name="serverType" value="INTERNAL" />
       <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -307,7 +253,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <frame x="-1920" y="-40" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -315,7 +261,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.0875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -463,13 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.0" vertical-offset="2314" max-vertical-offset="4640">
-          <caret line="179" column="70" selection-start-line="179" selection-start-column="70" selection-end-line="180" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/QuadricSurfaces/4To3.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="401" max-vertical-offset="1392">
@@ -488,13 +427,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="1248">
           <caret line="60" column="1" selection-start-line="60" selection-start-column="1" selection-end-line="72" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1489" max-vertical-offset="2464">
-          <caret line="143" column="32" selection-start-line="143" selection-start-column="32" selection-end-line="143" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -537,20 +469,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11487179" vertical-offset="0" max-vertical-offset="1088">
           <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/4To3U.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="497" max-vertical-offset="1472">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2752" max-vertical-offset="6976">
-          <caret line="205" column="117" selection-start-line="205" selection-start-column="117" selection-end-line="205" selection-end-column="117" />
         </state>
       </provider>
     </entry>
@@ -635,15 +553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1185" max-vertical-offset="2160">
           <caret line="128" column="11" selection-start-line="128" selection-start-column="11" selection-end-line="128" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45846155" vertical-offset="993" max-vertical-offset="2080">
-          <caret line="90" column="56" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -651,15 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.81948715" vertical-offset="17" max-vertical-offset="992">
           <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/sliders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11384615" vertical-offset="1473" max-vertical-offset="2544">
-          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -667,15 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.72205126" vertical-offset="704" max-vertical-offset="5104">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2192">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,7 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.031794872" vertical-offset="337" max-vertical-offset="1312">
           <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -691,26 +581,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="1760">
           <caret line="65" column="27" selection-start-line="65" selection-start-column="27" selection-end-line="65" selection-end-column="27" />
-          <folding>
-            <element signature="e#162#379#0" expanded="false" />
-            <element signature="e#408#573#0" expanded="false" />
-            <element signature="e#2461#2585#0" expanded="false" />
-            <element signature="e#2618#2720#0" expanded="false" />
-            <element signature="e#2752#2854#0" expanded="false" />
-            <element signature="e#2885#2949#0" expanded="false" />
-            <element signature="e#2980#3302#0" expanded="false" />
-            <element signature="e#3068#3224#0" expanded="false" />
-            <element signature="e#3337#3577#0" expanded="false" />
-            <element signature="e#3608#4009#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.html">
+    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.12" vertical-offset="336" max-vertical-offset="3296">
-          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-          <folding />
+        <state vertical-scroll-proportion="0.31076923" vertical-offset="1457" max-vertical-offset="2464">
+          <caret line="110" column="35" selection-start-line="110" selection-start-column="35" selection-end-line="110" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/4To3U.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.033264033" vertical-offset="0" max-vertical-offset="1472">
+          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -718,14 +602,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2481" max-vertical-offset="4448">
           <caret line="180" column="61" selection-start-line="180" selection-start-column="61" selection-end-line="180" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5733333" vertical-offset="1889" max-vertical-offset="3184">
-          <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="3184">
+          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1262" max-vertical-offset="2192">
+          <caret line="108" column="79" selection-start-line="108" selection-start-column="49" selection-end-line="108" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2330" max-vertical-offset="3296">
+          <caret line="192" column="28" selection-start-line="192" selection-start-column="28" selection-end-line="192" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/sliders.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1534" max-vertical-offset="2480">
+          <caret line="126" column="34" selection-start-line="126" selection-start-column="34" selection-end-line="126" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="304" max-vertical-offset="2080">
+          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap-slider/sliderAnimation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20210527" vertical-offset="0" max-vertical-offset="950">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7683557" vertical-offset="2697" max-vertical-offset="7600">
+          <caret line="215" column="146" selection-start-line="215" selection-start-column="146" selection-end-line="215" selection-end-column="146" />
           <folding />
         </state>
       </provider>

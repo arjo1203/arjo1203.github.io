@@ -1,5 +1,5 @@
 var twoScene, twoCamera, twoRenderer, twoControls;
-var _2DGraph = [ ];
+var _2DGraph;
 
 
 
@@ -33,23 +33,23 @@ function twoInit(){
     twoScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.3), 1, 1000);
-    twoCamera.position.set(0, 0, 50);
-    twoCamera.lookAt(threeScene.position);
+    //twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.3), 10, 10.1);
+    twoCamera = new THREE.OrthographicCamera(30 / -2, 30 / 2, 30 / 7, 30 / -7, 10, 10.2);
+    twoCamera.position.set(0, 0, 10);
+    //twoCamera.lookAt(0, 0, sliderValues.zCross);
+    threeScene.add(twoCamera);
 
     //Create renderer and linking it to threejs canvas
     twoRenderer = new THREE.WebGLRenderer({canvas: twoView[0]});
     twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.3);
     twoRenderer.setClearColor('white', 1);
 
-    twoControls = new THREE.OrbitControls(twoCamera, twoView[0]);
-    twoControls.addEventListener('change', twoRender);
+    //twoControls = new THREE.OrbitControls(twoCamera, twoView[0]);
+    //twoControls.addEventListener('change', twoRender);
 
-    _2DGraph = getGraphPoints();
-
-    var graph = graph2D(_2DGraph);
-    graph.name = 'line';
-    twoScene.add(graph);
+    _2DGraph = graph3To2Graph(40, min, max, 0, 0, 0, 0);
+    _2DGraph.name = '_2DGraph';
+    twoScene.add(_2DGraph);
 
     twoRender();
 }
@@ -63,7 +63,7 @@ function twoAnimate(){
         onTwoResize();
     }
 
-    twoUpdate();
+    //twoUpdate();
     twoRender();
 }
 
