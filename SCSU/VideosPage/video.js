@@ -4,11 +4,46 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player, videosDiv = document.getElementById('videos'), videos = $('#videos')[0], mainDiv = document.getElementById('container');
-var inputPlayList = document.getElementById('playList'), logoDiv = $('#logoDiv'), logo = $('#logoImg');
-
+var player, videosDiv = $('#videos'), videos = $('#videos')[0], mainDiv = document.getElementById('container');
+var inputPlayList = document.getElementById('playList'), logoDiv = $('#logoDiv'), logo = $('#logo'), left = $('#left'), right = $('#right');
+var rightOffSet = 0, leftOffSet = 0, videoWidth = Math.round(window.innerWidth * .15), animateIndex = 0, maxLength;
+var numMiddle = Math.round(window.innerWidth / videoWidth),
+    numRight, numLeft = 0, lastOffSet = (videoWidth * numMiddle) - window.innerWidth;
+var btns = $('#btns');
+console.log(numMiddle);
 
 window.addEventListener('resize', onWindowResize, false);
+
+left.click(function(){
+    if(numLeft > 0){
+        animateIndex--;
+
+        videosDiv.animate({
+            left: '-' + (videoWidth * animateIndex).toString() + 'px'
+        }, 100);
+
+        numRight++;
+        numLeft--;
+    }
+});
+
+right.click(function(){
+    if(numRight > 0){
+        animateIndex++;
+
+        videosDiv.animate({
+            left: '-' + (videoWidth * animateIndex).toString() + 'px'
+        }, 100);
+
+        numLeft++;
+        numRight--;
+    }
+    else{
+        videosDiv.animate({
+            left: '-' + (videoWidth * animateIndex + lastOffSet).toString() + 'px'
+        }, 100);
+    }
+});
 
 
 
@@ -36,29 +71,22 @@ function onYouTubeIframeAPIReady(){
 
 //API will call this function when player is ready
 function onPlayerReady(event){
+    console.log(event);
     event.target.playVideo();
-    //console.log(event);
 }
 
 
 
 
-var first = true;
 //API calls when player state changes
 function onPlayerStateChange(event){
-    //console.log(event);
-    //loads the videoplaylist after the playlist has started playing
-    if(first == true){
-        while(videosDiv.children.length > 0){
-            videosDiv.removeChild(videosDiv.lastChild);
-        }
-        //console.log(player.getPlaylist());
-        setTimeout(addElement, 1000);
-        first = false;
-    }
+    console.log(event);
     if(event.data == 0){
         //Video has ended
         changeVideo();
+    }
+    if(event.data == 1){
+        addElement();
     }
 }
 
@@ -66,9 +94,12 @@ function onPlayerStateChange(event){
 
 //creates the sidebar elements
 function addElement() {
+    maxLength = player.getPlaylist().length;
+    numRight = maxLength - numMiddle - numLeft;
+
     var playerList = player.getPlaylist();
     //console.log(playerList);
-    videosDiv.style.width = (playerList.length * (window.innerWidth * .15)).toString() + 'px';
+    videosDiv[0].style.width = (playerList.length * (window.innerWidth * .15)).toString() + 'px';
 
     var inWidth = Math.round(window.innerWidth * .15), inHeight = Math.round(window.innerHeight * .15);
 
@@ -100,7 +131,7 @@ function addElement() {
             input.className = 'border';
         }
 
-        videosDiv.appendChild(input);
+        videosDiv[0].appendChild(input);
     }
 }
 
@@ -138,28 +169,40 @@ function findVideo(div){
 
 function onWindowResize(){
     var inWidth = window.innerWidth * .15;
-    videosDiv.style.width = (videosDiv.children.length * inWidth).toString() + 'px';
-    for (var j = 0; j < videosDiv.children.length; j++) {
-        videosDiv.children[j].style.width = (inWidth).toString() + 'px';
+    videoWidth = Math.round(window.innerWidth * .15)
+
+    for (var j = 0; j < videosDiv[0].children.length; j++) {
+        videosDiv[0].children[j].style.width = (inWidth).toString() + 'px';
     }
+
+    videosDiv[0].style.width = (videosDiv[0].children.length * inWidth).toString() + 'px';
 
     setlogoDiv(logoDiv);
 }
 
 
 
-function setlogoDiv(div){
-    //console.log(div);
-    var width = div[0].clientWidth, height = div[0].clientHeight, deltaHeight, deltaWidth;
-    var inHeight = window.innerHeight * .85, inWidth = window.innerWidth;
-    //console.log(width, height);
+function setlogoDiv(div, position){
+    var width = div[0].clientWidth / 2, height = div[0].clientHeight, deltaHeight, deltaWidth;
+    var inHeight = window.innerHeight * .85, inWidth = window.innerWidth / 2;
 
-    //img.style.position.x = Math.round(inWidth - deltaWidth);
     div[0].style.top = Math.round(inHeight - height).toString() + 'px';
-    div[0].style.right = '0';
+
+    switch(position){
+        case 'left':
+            div[0].style.left = '0';
+            break;
+        case 'center':
+            div[0].style.left = Math.round(inWidth - width).toString() + 'px';
+            break;
+        case 'right':
+            div[0].style.right = '0';
+            break;
+    }
 }
 
 
 
-setlogoDiv(logoDiv);
-logo[0].style.opacity = '.8';
+setlogoDiv(logoDiv, 'right');
+setlogoDiv(btns, 'center');
+logo[0].style.opacity = .8;

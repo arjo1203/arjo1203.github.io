@@ -58,7 +58,6 @@ function createThreeEnviroment(){
     renderer.setClearColor('white',1);
 
     loadBuildings();
-    //console.log($Buildings);
 
     window.addEventListener('resize', onWindowResize, false);
 
@@ -69,16 +68,10 @@ function createThreeEnviroment(){
 
 
 
-function loadBuilding(model, material, modelName, visbility) {
+function loadBuilding(model, material, modelName) {
     var loader = new THREE.OBJMTLLoader();
 
-
-
     loader.load(model, material, function (myobject) {
-
-        SetVisibility(myobject, visbility);
-
-
 
         myobject.position.x = -1200;
         myobject.position.z = -1200;
@@ -88,29 +81,17 @@ function loadBuilding(model, material, modelName, visbility) {
         scene.add(myobject);
         render();
 
-
     });
-
-
-
-}function loadBuildings() {
-    loadBuilding('ISELF_Floors/ISELF_1stfloor.obj', 'ISELF_Floors/ISELF_1stfloor.mtl', 'ISELF_1stfloor', true);
-    loadBuilding('ISELF_Floors/ISELF_2ndfloor.obj', 'ISELF_Floors/ISELF_2ndfloor.mtl', 'ISELF_2ndfloor', true);
-    loadBuilding('ISELF_Floors/ISELF_3rdfloor.obj', 'ISELF_Floors/ISELF_3rdfloor.mtl', 'ISELF_3rdfloor', true);
-    loadBuilding('../Campus_3D/campusBuildings/Terrain.obj', '../Campus_3D/campusBuildings/Terrain.mtl', 'Terrain', true);
-    loadBuilding('../Campus_3D/campusBuildings/ISELF_exterior.obj', '../Campus_3D/campusBuildings/ISELF_exterior.mtl', 'ISELF_exterior', true);
 }
 
 
-function SetVisibility(object, value) {
-    // use this to set the visiblity of objects
-    // in webgl, the model is a child of the object, and setting the visbility of the parent
-    // doesn't autocamtically affect the visibility of the child.
-    object.traverse(function (child) {
 
-        child.visible = value;
-    });
-
+function loadBuildings() {
+    loadBuilding('ISELF_Floors/ISELF_1stfloor.obj', 'ISELF_Floors/ISELF_1stfloor.mtl', 'ISELF_1stfloor');
+    loadBuilding('ISELF_Floors/ISELF_2ndfloor.obj', 'ISELF_Floors/ISELF_2ndfloor.mtl', 'ISELF_2ndfloor');
+    loadBuilding('ISELF_Floors/ISELF_3rdfloor.obj', 'ISELF_Floors/ISELF_3rdfloor.mtl', 'ISELF_3rdfloor');
+    loadBuilding('../Campus_3D/campusBuildings/Terrain.obj', '../Campus_3D/campusBuildings/Terrain.mtl', 'Terrain');
+    loadBuilding('../Campus_3D/campusBuildings/ISELF_exterior.obj', '../Campus_3D/campusBuildings/ISELF_exterior.mtl', 'ISELF_exterior');
 }
 
 
@@ -143,12 +124,11 @@ function checkFn(int){
 
 function animate(){
     var y, deltay;
+
     y = camera.position.y;
-    //console.log(proirx);
     deltay = proirx.y - y;
 
     cameraUp = checkFn(deltay);
-    //console.log(cameraUp);
 
     if(cameraUp !== true){
         if(camera.position.y <= 10){
