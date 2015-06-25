@@ -5,32 +5,49 @@ var logoDiv = $('.logoContainer'), glowDiv = $('.glow');
 var videos = $('.videoBorder'), ISELF = $('.ISELF_Border'), Campus = $('.campusBorder'), Projects = $('.projectBorder'), logo = $('#homeLogo'),
     videoLine = $('.videoLine'), ISELFLine = $('.ISELF_Line'), CampusLine = $('.CampusLine'), ProjectLine = $('.projectLine');
 var glowing, counter = 0, speedInOut = 400, glowingSpeed = 1000, riverSpeed = [150, 300, 450], fadeInSpeed = 200, fadeOutSpeed = 200;//all speeds in milliseconds
+var startTime, lastTime = 0, deltaTime;
 
 
 
 init();
 function init(){
     logo.click(function(){
-        if(counter % 2 == 0){
-            stopGlowing();
-            logo.removeClass('rotateBackward');
-            logo.addClass('rotateForward');
-            slideOut();
+        startTime = (new Date()).getTime();
+
+        if(!deltaTime){
+            deltaTime = 800;
         }
         else{
-            animateGlow();
-            logo.removeClass('rotateForward');
-            logo.addClass('rotateBackward');
-            slideIn();
+            deltaTime = startTime - lastTime;
         }
 
-        counter++;
+
+        if(deltaTime > 799){
+
+            if(counter % 2 == 0){
+                stopGlowing();
+                logo.removeClass('rotateBackward');
+                logo.addClass('rotateForward');
+                slideOut();
+            }
+            else{
+                animateGlow();
+                logo.removeClass('rotateForward');
+                logo.addClass('rotateBackward');
+                slideIn();
+            }
+
+            counter++;
+        }
+
+        lastTime = startTime;
     });
 
 
     centerLogo();
     animateGlow();
     window.addEventListener('resize', onWindowResize, false);
+
 }
 
 

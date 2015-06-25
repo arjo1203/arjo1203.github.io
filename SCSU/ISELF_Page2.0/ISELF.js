@@ -1,6 +1,24 @@
+var $Buildings = {
+    turnOn: function(string){
+        if(typeof string == 'string'){
+            for(var building in $Buildings){
+
+                if($Buildings[building].name == string || $Buildings[building].name == 'Terrain'){
+                    $Buildings[building].visible = true;
+                }
+                else{
+                    $Buildings[building].visible = false;
+                }
+            }
+        }
+        else{
+            console.log('Not of type \'string\'');
+        }
+    }
+};
+
 //THREE.JS Globals
 var camera, scene, renderer, controls;
-var $Buildings = {};
 var proirx = {}, cameraUp = true;
 proirx.x = 0;
 proirx.y = 1200;
@@ -64,6 +82,7 @@ function loadBuilding(model, material, modelName, visbility) {
 
         myobject.position.x = -1200;
         myobject.position.z = -1200;
+        myobject.name = modelName;
         $Buildings[modelName] = myobject;
 
         scene.add(myobject);

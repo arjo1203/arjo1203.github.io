@@ -71,7 +71,7 @@
                     Ext = $('#Ext'), ExtLine = $('.ExtLine'),
                     help = $('#help'), helpLine = $('.helpLine');
             var speedInOut = 300, riverSpeed = [155, 310, 465, 620], fadeInSpeed = 200, fadeOutSpeed = 200, opacity = .5;
-
+            var startTime, lastTime = 0, deltaTime;
 
 
             positionGUI();
@@ -86,18 +86,31 @@
             
             
             logo.click(function(){
-                if(toggle % 2 == 0){
-                    logo.removeClass('rotateBackward');
-                    logo.addClass('rotateForward');
-                    slideOut();
+                startTime = (new Date()).getTime();
+
+                if(!deltaTime){
+                    deltaTime = 800;
                 }
                 else{
-                    logo.removeClass('rotateForward');
-                    logo.addClass('rotateBackward');
-                    slideIn();
+                    deltaTime = startTime - lastTime;
                 }
 
-                toggle++;
+                if(deltaTime > 799){
+                    if(toggle % 2 == 0){
+                        logo.removeClass('rotateBackward');
+                        logo.addClass('rotateForward');
+                        slideOut();
+                    }
+                    else{
+                        logo.removeClass('rotateForward');
+                        logo.addClass('rotateBackward');
+                        slideIn();
+                    }
+
+                    toggle++;
+                }
+
+                lastTime = startTime;
             });
             
             

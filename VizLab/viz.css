@@ -223,7 +223,7 @@ body{
     position : absolute;
     top: 150px;
     left: 0;
-    width : 150px;
+    width : 180px;
     height : 50px;
     border: 2px solid #00afea;
     box-shadow : -4px 2px 7px rgba(80, 226, 242, 1);
@@ -231,7 +231,7 @@ body{
 }
 #videoLabel{
     position: absolute;
-    left: 22px;
+    left: 37px;
 }
 #ISELF_Panel{
     position: absolute;
@@ -257,7 +257,7 @@ body{
     position : absolute;
     bottom: 150px;
     left: 0;
-    width : 150px;
+    width : 180px;
     height : 50px;
     border: 2px solid #00afea;
     box-shadow : -4px -2px 7px rgba(80, 226, 242, 1);
@@ -265,7 +265,7 @@ body{
 }
 #ISELF_Label{
     position: absolute;
-    left: 31px;
+    left: 47px;
 }
 #CampusPanel{
     position: absolute;
@@ -289,7 +289,7 @@ body{
     background : #0D1E49;
     background : rgba(13, 30, 73, 1);
     position : absolute ;
-    width : 150px;
+    width : 180px;
     height : 50px;
     right: 0;
     top : 150px;
@@ -299,7 +299,7 @@ body{
 }
 #CampusLabel{
     position: absolute;
-    left: 8px;
+    left: 25px;
 }
 #projectPanel{
     position: absolute;
@@ -325,7 +325,7 @@ body{
     position : absolute ;
     right: 0;
     bottom : 150px;
-    width : 150px;
+    width : 180px;
     height : 50px;
     border: 2px solid #00afea;
     box-shadow : 4px -2px 7px rgba(80, 226, 242, 1);
@@ -333,7 +333,7 @@ body{
 }
 #ProjectsLabel{
     position: absolute;
-    left: 10px;
+    left: 23px;
 }
 /**/
 /**/
