@@ -4,19 +4,148 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-var player, videosDiv = document.getElementById('videos'), videos = $('#videos')[0], mainDiv = document.getElementById('container');
-var inputPlayList = document.getElementById('playList'), go = $('#Go'), logoDiv = $('#logoDiv'), logo = $('#logoImg');
+var player, videos = $('#videos'), mainView = $('#mainView');
+var inputPlayList = document.getElementById('playList'), go = $('#Go'), logoDiv = $('#logoDiv'), logo = $('#logoImg'), afterClick = false;
+var startTime, errorTimer;
+
+var carousel = {
+    reset: false,
+    playlist: [],
+    videos: videos[0],
+    CarouselWidth: 0,
+    VideosWidth: Math.round(window.innerWidth * .15),
+    VideosHeight: Math.round(window.innerHeight * .15),
+    findVideo: function (div) {
+        for(var i = 0; i < div.children.length; i ++){
+            var video = div.children[i];
+
+            if(video.className == 'border'){
+                var index = i;
+            }
+        }
+
+        return index;
+    },
+    changeVideo: function () {
+        var videoIndex = carousel.findVideo(carousel.videos);
+
+        if(videoIndex == carousel.videos.children.length - 1){
+            var nextVideo = $('#0');
+        }
+        else{
+            var nextVideo = $('#' + carousel.videos.children[videoIndex + 1].id)[0];
+        }
+
+        nextVideo.click();
+    },
+    addVideos: function () {
+        carousel.numOfVideos = carousel.playlist.length;
+        carousel.CarouselWidth = Math.round(carousel.numOfVideos * carousel.VideosWidth);
+
+        carousel.videos.style.width = (carousel.CarouselWidth).toString() + 'px';
 
 
-window.addEventListener('resize', onWindowResize, false);
+        for (var j = 0; j < carousel.playlist.length; j++) {
+            var input = document.createElement('input');
+
+            input.type = 'image';
+            input.id = j.toString();
+            input.src = 'http://img.youtube.com/vi/' + carousel.playlist[j] + '/0.jpg';
+            input.style.width = (carousel.VideosWidth).toString() + 'px';
+            input.style.height = (carousel.VideosHeight).toString() + 'px';
+            input.onclick = function(){
+
+                for(var i = 0; i < carousel.videos.children.length; i++){
+                    if(carousel.videos.children[i].id != this.id){
+                        $('#' + carousel.videos.children[i].id).removeClass('border');
+                    }
+                    else{
+                        $('#' + carousel.videos.children[i].id).addClass('border');
+                    }
+                }
+
+                player.loadVideoById(carousel.playlist[parseInt(this.id)]);
+            };
+
+            if(j == 0){
+                input.className = 'border';
+            }
+
+            carousel.videos.appendChild(input);
+        }
+    },
+    removeVideos: function () {
+        while(carousel.videos.children.length > 0){
+            carousel.videos.removeChild(carousel.videos.lastChild);
+        }
+    },
+    onResize: function () {
+        carousel.VideosWidth = Math.round(window.innerWidth * .15);
+
+        for (var j = 0; j < carousel.videos.children.length; j++) {
+            carousel.videos.children[j].style.width = (carousel.VideosWidth).toString() + 'px';
+        }
+
+        carousel.videos.style.width = (Math.round(carousel.numOfVideos * carousel.VideosWidth)).toString() + 'px';
+
+        view.width = window.innerWidth;
+        view.height = window.innerHeight;
+        view.positionChild(logoDiv[0]);
+    }
+};
+
+var view = {
+    width: mainView[0].clientWidth,
+    height: mainView[0].clientHeight,
+    logoPosition: {
+        x: 1,
+        y: .85
+    },
+    positionChild: function (div) {
+        var divWidth = div.clientWidth, divHeight = div.clientHeight;
+
+        var deltaY = view.positionChildInY(divHeight, view.logoPosition.y);
+        div.style.top = deltaY.toString() + 'px';
+
+        var deltaX = view.positionChildInX(divWidth, view.logoPosition.x);
+        div.style.left = deltaX.toString() + 'px';
+    },
+    positionChildInX: function (width, percent) {
+        var percentWidth = width * percent,
+            percentInWidth = this.width * percent,
+            delta = Math.round(percentInWidth - percentWidth);
+
+        return delta;
+    },
+    positionChildInY: function (height, percent){
+        var percentInHeight = this.height * percent,
+            delta = Math.round(percentInHeight - height);
+
+        return delta;
+    }
+};
 
 
 
-go.click( function(){
-    first = true;
+
+init();
+
+
+
+function init() {
+    window.addEventListener('resize', carousel.onResize, false);
+    view.positionChild(logoDiv[0]);
+}
+
+
+
+go.click( function() {
+    afterClick = true;
+    carousel.reset = false;
+    carousel.removeVideos();
 
     inputPlayList.placeholder = inputPlayList.value;
-    //console.log(inputPlayList);
+
     var container = document.getElementById("container");
     container.removeChild(container.children[0]);
 
@@ -39,19 +168,18 @@ go.click( function(){
             'onStateChange': onPlayerStateChange,
         }
     });
-    //console.log(player.getPlaylist());
 });
 
 
 
-function onYouTubeIframeAPIReady(){
+function onYouTubeIframeAPIReady() {
 
     player = new YT.Player('player', {
-        height: '82%',
+        height: '85%',
         width: '100%',
         playerVars: {
             listType:'playlist',
-            list: 'PLc9N-_6px7KFVrwxkVbgaAvvnjVGFF053', //other playlist PLScC8g4bqD47c-qHlsfhGH3j6Bg7jzFy-, PL1DD10E84B9B08A35
+            list: 'PLc9N-_6px7KFVrwxkVbgaAvvnjVGFF053',
             'controls': 0,
             'autohide': 1,
             'rel': 0
@@ -66,141 +194,39 @@ function onYouTubeIframeAPIReady(){
 
 
 
-//API will call this function when player is ready
-function onPlayerReady(event){
+function onPlayerReady(event) {
     event.target.playVideo();
-    //console.log(event);
 }
 
 
 
 
-var first = true;
-//API calls when player state changes
-function onPlayerStateChange(event){
-    //console.log(event);
-    //loads the videoplaylist after the playlist has started playing
-    if(first == true){
-        while(videosDiv.children.length > 0){
-            videosDiv.removeChild(videosDiv.lastChild);
-        }
-        //console.log(player.getPlaylist());
-        setTimeout(addElement, 1000);
-        first = false;
+function onPlayerStateChange(event) {
+    if(event.data == -1){//First
+        startTime = (new Date()).getTime();
+        errorTimer = setTimeout(checkTimer, 500);
+    }
+    if(event.data == 3){//Second
+        startTime = 0;
+        clearTimeout(errorTimer);
+    }
+    if(event.data == 1 && !carousel.reset){//Third
+        carousel.playlist = player.getPlaylist();
+        carousel.addVideos();
+        carousel.reset = true;
     }
     if(event.data == 0){
-        //Video has ended
-        changeVideo();
+        carousel.changeVideo();
     }
 }
 
 
 
-//creates the sidebar elements
-function addElement() {
-    var playerList = player.getPlaylist();
-    //console.log(playerList);
-    if(!playerList){
-        console.log('error');
+function checkTimer(){
+    if(startTime > 0){
         promptError();
     }
-    else{
-        videosDiv.style.width = (playerList.length * (window.innerWidth * .15)).toString() + 'px';
-
-        var inWidth = Math.round(window.innerWidth * .15), inHeight = Math.round(window.innerHeight * .15);
-
-
-        for (var j = 0; j < playerList.length; j++) {
-            var input = document.createElement('input');
-
-            input.type = 'image';
-            input.id = j.toString();
-            input.src = 'http://img.youtube.com/vi/' + playerList[j] + '/0.jpg';
-            input.style.width = (inWidth).toString() + 'px';
-            input.style.height = (inHeight).toString() + 'px';
-            input.onclick = function(){
-
-                for(var i = 0; i < videos.children.length; i++){
-                    if(videos.children[i].id != this.id){
-                        $('#' + videos.children[i].id).removeClass('border');
-                    }
-                    else{
-                        $('#' + videos.children[i].id).addClass('border');
-                    }
-                }
-
-                player.loadVideoById(playerList[parseInt(this.id)]);
-            };
-
-            if(j == 0){
-                //console.log(input);
-                input.className = 'border';
-            }
-
-            videosDiv.appendChild(input);
-        }
-    }
 }
-
-
-
-function changeVideo(){
-    var videoIndex = findVideo(videos);
-
-    if(videoIndex == videos.children.length - 1){
-        var nextVideo = $('#0');
-    }
-    else{
-        var nextVideo = $('#' + videos.children[videoIndex + 1].id)[0];
-    }
-
-    nextVideo.click();
-}
-
-
-
-function findVideo(div){
-    for(var i = 0; i < div.children.length; i ++){
-        var video = div.children[i];
-
-        if(video.className == 'border'){
-            //console.log('found');
-            var index = i;
-        }
-    }
-
-    return index;
-}
-
-
-
-function onWindowResize(){
-    var inWidth = window.innerWidth * .15;
-    videosDiv.style.width = (videosDiv.children.length * inWidth).toString() + 'px';
-    for (var j = 0; j < videosDiv.children.length; j++) {
-        videosDiv.children[j].style.width = (inWidth).toString() + 'px';
-    }
-
-    setlogoDiv(logoDiv);
-}
-
-
-
-function setlogoDiv(div){
-    //console.log(div);
-    var width = div[0].clientWidth, height = div[0].clientHeight, deltaHeight, deltaWidth;
-    var inHeight = window.innerHeight * .85, inWidth = window.innerWidth;
-    //console.log(width, height);
-
-    //img.style.position.x = Math.round(inWidth - deltaWidth);
-    div[0].style.top = Math.round(inHeight - height).toString() + 'px';
-    div[0].style.right = '0';
-}
-
-
-
-setlogoDiv(logoDiv);
-logo[0].style.opacity = '.8';
 
 
 
