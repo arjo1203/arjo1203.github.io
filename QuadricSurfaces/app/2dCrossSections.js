@@ -33,8 +33,7 @@ function twoInit(){
     twoScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    //twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.5), twoDCameraOffset, twoDCameraOffset + .1);
-    twoCamera = new THREE.OrthographicCamera(40 / -2, 40 / 2, 40 / 6, 40 / -6, twoDCameraOffset, twoDCameraOffset + .1);
+    twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.5), twoDCameraOffset, twoDCameraOffset + .1);
     twoCamera.position.set(0, 0, twoDCameraOffset);
     threeScene.add(twoCamera);
 
