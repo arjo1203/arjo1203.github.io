@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
+        </style>
+    </head>
+    <body>
+        <div id="map-canvas"></div>
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=drawing"></script>
+        <script type="text/javascript">
+            var map, MSP = {lat: 44.977753, lng: -93.265011}, infowindow, marker;
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+            function initialize() {
+                var mapOptions = {
+                    center: MSP,
+                    zoom: 10
+                };
+                map = new google.maps.Map(document.getElementById('map-canvas'),
+                        mapOptions);
+                // Create a div to hold the control.
+                var controlDiv = document.createElement('div');
+
+// Set CSS for the control border
+                var controlUI = document.createElement('div');
+                controlUI.style.backgroundColor = '#fff';
+                controlUI.style.border = '2px solid #fff';
+                controlUI.style.cursor = 'pointer';
+                controlUI.style.marginBottom = '22px';
+                controlUI.style.textAlign = 'center';
+                controlUI.title = 'Click to recenter the map';
+                controlDiv.appendChild(controlUI);
+
+// Set CSS for the control interior
+                var controlText = document.createElement('div');
+                controlText.style.color = 'rgb(25,25,25)';
+                controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+                controlText.style.fontSize = '16px';
+                controlText.style.lineHeight = '38px';
+                controlText.style.paddingLeft = '5px';
+                controlText.style.paddingRight = '5px';
+                controlText.innerHTML = 'Center Map';
+                controlUI.appendChild(controlText);
+
+                var drawingManager = new google.maps.drawing.DrawingManager({
+                    drawingMode: google.maps.drawing.OverlayType.DEFAULTS,
+                    drawingControl: true,
+                    drawingControlOptions: {
+                        position: google.maps.ControlPosition.TOP_RIGHT,
+                        drawingModes: [
+                            google.maps.drawing.OverlayType.MARKER,
+                            google.maps.drawing.OverlayType.CIRCLE,
+                            google.maps.drawing.OverlayType.POLYGON,
+                            google.maps.drawing.OverlayType.POLYLINE,
+                            google.maps.drawing.OverlayType.RECTANGLE
+                        ]
+                    },
+                    circleOptions: {
+                        fillColor: '#ffff00',
+                        fillOpacity: 1,
+                        strokeWeight: 5,
+                        clickable: false,
+                        editable: true,
+                        zIndex: 1
+                    }
+                });
+                drawingManager.setMap(map);
+
+                var contentString = '<div id="content" style="position: relative; width: 600px; height: 400px; overflow: hidden;">'+
+                                        '<div id="siteNotice">'+
+                                        '</div>'+
+                                        '<h1 id="firstHeading" class="firstHeading"></h1>'+
+                                        '<div id="bodyContent">'+
+                                            '<iframe id="content" src="http://stcloudstate.studioabroad.com/index.cfm?FuseAction=Programs.ViewProgram&Program_ID=54362" style="position: relative; width: 600px; height: 400px;"></iframe>'+
+                                        '</div>'+
+                                    '</div>';
+
+                infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+
+
+                marker = new google.maps.Marker({
+                    position: MSP
+                });
+                marker.setMap(map);
+
+                google.maps.event.addListener(marker, 'click', popUp);
+            }
+
+            function popUp(){
+                infowindow.open(map, marker);
+            }
+        </script>
+    </body>
+</html>

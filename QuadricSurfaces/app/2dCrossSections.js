@@ -33,19 +33,15 @@ function twoInit(){
     twoScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    //twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.3), 10, 10.1);
-    twoCamera = new THREE.OrthographicCamera(30 / -2, 30 / 2, 30 / 7, 30 / -7, 10, 10.2);
-    twoCamera.position.set(0, 0, 10);
-    //twoCamera.lookAt(0, 0, sliderValues.zCross);
+    //twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.5), twoDCameraOffset, twoDCameraOffset + .1);
+    twoCamera = new THREE.OrthographicCamera(40 / -2, 40 / 2, 40 / 6, 40 / -6, twoDCameraOffset, twoDCameraOffset + .1);
+    twoCamera.position.set(0, 0, twoDCameraOffset);
     threeScene.add(twoCamera);
 
     //Create renderer and linking it to threejs canvas
     twoRenderer = new THREE.WebGLRenderer({canvas: twoView[0]});
-    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.3);
+    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.5);
     twoRenderer.setClearColor('white', 1);
-
-    //twoControls = new THREE.OrbitControls(twoCamera, twoView[0]);
-    //twoControls.addEventListener('change', twoRender);
 
     _2DGraph = graph3To2Graph(40, min, max, 0, 0, 0, 0);
     _2DGraph.name = '_2DGraph';

@@ -106,18 +106,18 @@ function onWindowResize(){
 
 
 function onTwoResize(){
-    twoCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.3);
+    twoCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.5);
     twoCamera.updateProjectionMatrix();
-    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.3);
+    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.5);
 
     twoRender();
 }
 
 
 function onThreeResize(){
-    threeCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.7);
+    threeCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.5);
     threeCamera.updateProjectionMatrix();
-    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.7);
+    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * .5);
 
     threeRender();
 }

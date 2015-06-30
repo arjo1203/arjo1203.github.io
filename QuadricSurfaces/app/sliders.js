@@ -13,7 +13,8 @@ var R12,
         formatter: function(value) {
             return value + "\u00B0";
         }
-    };
+    },
+    twoDCameraOffset = 20;
 
 R12 = new Slider('#R12', formatter);
 $("#R12").on('slide', _4to3onSlide);
@@ -124,7 +125,7 @@ function updateRotation(id){
 
 function updatePlane(value){
     plane.position.z = value;
-    twoCamera.position.z = value + 10;
+    twoCamera.position.z = value + twoDCameraOffset;
 }
 
 

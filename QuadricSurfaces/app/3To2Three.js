@@ -4,7 +4,7 @@ var xBtn = $('#xButton'), xAnimation = false,
     yBtn = $('#yButton'), yAnimation = false,
     zBtn = $('#zButton'), zAnimation = false,
     zCrossBtn = $('#zCrossButton'), zCrossAnimation = false,
-    threeFlag = false;
+    threeScreenPercent = .5;
 
 
 
@@ -35,13 +35,13 @@ function threeInit(){
     threeScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    threeCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.7), 1, 1000);
+    threeCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight * threeScreenPercent), 1, 1000);
     threeCamera.position.set(0, -170, 40);
     threeCamera.lookAt(threeScene.position);
 
     //Create renderer and linking it to threejs canvas
     threeRenderer = new THREE.WebGLRenderer({canvas: threeView[0]});
-    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.7);
+    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * threeScreenPercent);
     threeRenderer.setClearColor('white', 1);
 
     threeControls = new THREE.OrbitControls(threeCamera, threeView[0]);
