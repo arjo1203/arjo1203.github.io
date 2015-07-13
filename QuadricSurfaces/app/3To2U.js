@@ -2,11 +2,6 @@ var plane, _3to2shape;
 
 var threeA = [ [1, 0, 0] , [0, 1, 0] , [0, 0, -1] ];
 
-sliderValues.x = 0;
-sliderValues.y = 0;
-sliderValues.z = 0;
-sliderValues.zCross = 0;
-
 
 var threeU11 = toJavascriptSyntax('cos(theta23)*cos(theta13)'),
     threeU12 = toJavascriptSyntax('-sin(theta23)*cos(theta12)+cos(theta23)*sin(theta13)*sin(theta12)'),

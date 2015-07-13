@@ -1,4 +1,4 @@
-var fourContainer, fourScene, fourCamera, fourRenderer, fourControls;
+var fourScene, fourCamera, fourRenderer, fourControls;
 var R12Btn = $('#R12Button'), R12Animation = false,
     R13Btn = $('#R13Button'), R13Animation = false,
     R14Btn = $('#R14Button'), R14Animation = false,
@@ -7,39 +7,6 @@ var R12Btn = $('#R12Button'), R12Animation = false,
     R34Btn = $('#R34Button'), R34Animation = false,
     wBtn = $('#wButton'), wAnimation = false;
 var GraphFlag = false;
-
-
-var label = {
-    labels: [ ],
-    on: function(){
-        var labels = label.labels;
-        var length = labels.length;
-
-        if(length > 0){
-            for(var i = 0; i < length; i++){
-                labels[i].visible = true;
-            }
-        }
-    },
-    off: function(){
-        var labels = label.labels;
-        var length = labels.length;
-
-        if(length > 0){
-            for(var i = 0; i < length; i++){
-                labels[i].visible = false;
-            }
-        }
-    },
-    toggle: function(label){
-        if(label.visible == true){
-            label.visible = false;
-        }
-        else{
-            label.visible = true;
-        }
-    }
-};
 
 
 
@@ -71,55 +38,29 @@ function fourInit()
     fourScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    fourCamera = new THREE.PerspectiveCamera(45, fourView[0].clientWidth / fourView[0].clientHeight, 1, 1000);
-    fourCamera.position.set(0, -250, 50);
+    fourCamera = new THREE.PerspectiveCamera(45, rightView[0].clientWidth / rightView[0].clientHeight, 1, 1000);
+    fourCamera.position.set(0, -100, 30);
     fourCamera.lookAt(fourScene.position);
 
     //Create renderer and linking it to threejs canvas
     fourRenderer = new THREE.WebGLRenderer({canvas: fourView[0]});
-    fourRenderer.setSize(fourView[0].clientWidth, fourView[0].clientHeight);
-    fourRenderer.setClearColor('white', 1);
+    fourRenderer.setSize(rightView[0].clientWidth, rightView[0].clientHeight * .95);//Top 5% is used for header
+    fourRenderer.setClearColor(0xffffff, 1);
 
     fourControls = new THREE.OrbitControls(fourCamera, fourView[0]);
     fourControls.addEventListener('change', fourRender);
 
     window.addEventListener('resize', onWindowResize, false);
 
-    var _4to3shape = graph4To3Graph(40, min, max, 0, 0, 0, 0, 0, 0,0);
-    _4to3shape.name = '_4to3shape';
-    fourScene.add(_4to3shape);
+    shapes.shape1.data = getSliderValues();
+    shapes.shape1.crossSection = drawQuadricSurface(shapes.shape1.data, 40);
+    fourScene.add(shapes.shape1.crossSection);
 
-    var quadLabel = createLabel('Quadric Surfaces', 10);
-    quadLabel.position.z = 30;
-    quadLabel.position.x = -55;
-    quadLabel.rotation.x = 90 * (Math.PI / 180);
-    fourScene.add(quadLabel);
-    label.labels.push(quadLabel);
+    var box = new THREE.BoxHelper(shapes.shape1.crossSection.children[0]);
+    box.material.color.set( 0x000000 );
+    fourScene.add(box);
 
     fourRender();
-}
-
-
-
-
-//Creates 3d text
-function createLabel(message, size){
-    var geo, mat, label;
-    var geo = new THREE.TextGeometry( message, {
-        size: size,
-        height: 10,
-        curveSegments: 10,
-        font: 'helvetiker',
-        bevelThickness: 5,
-        bevelSize: 5
-    });
-    geo.computeBoundingBox();
-
-    mat = new THREE.MeshBasicMaterial( { color: 0x0000ff, overdraw: 0.5 } );
-    label = new THREE.Mesh(geo, mat);
-    label.name = message;
-
-    return label;
 }
 
 
@@ -161,9 +102,10 @@ function fourRender()
 
 
 
-function graph4To3Graph(resolution, axisMin, axisMax, w, theta12, theta13, theta14, theta23, theta24, theta34){
+function graph4To3Graph(resolution, axisMin, axisMax, windingOpt, w, theta12, theta13, theta14, theta23, theta24, theta34){
     var points = [];
     var values = [];
+    var color;
 
     var axisRange = axisMax - axisMin;
 
@@ -196,8 +138,17 @@ function graph4To3Graph(resolution, axisMin, axisMax, w, theta12, theta13, theta
             }
 
 
-    var geometry = marchingCubes(points, values, resolution);
-    var colorMaterial =  new THREE.MeshLambertMaterial( {color: 0x0000ff, side: THREE.DoubleSide} );
+    var geometry = marchingCubes(points, values, resolution, windingOpt);
+
+    if(windingOpt == 1){
+        color = new THREE.Color(0x0000ff);
+    }
+
+    if(windingOpt == 2){
+        color = new THREE.Color(0xf0ad4e);
+    }
+
+    var colorMaterial =  new THREE.MeshLambertMaterial( {color: color} );
     var graph = new THREE.Mesh( geometry, colorMaterial );
 
     return graph;

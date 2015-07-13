@@ -20,15 +20,15 @@ toolBar = {
     QuadricAndConic: function(){
         quadTools.animate({
             width: '100%',
-            left: '5px',
+            left: '0',
             top: '60px'
         }, 500);
 
         coneTools.animate({
             width: '100%',
-            height: '400px',
-            left: '5px',
-            top: '740px'
+            height: '430px',
+            left: '0',
+            top: '770px'
         }, 500);
     },
     Quadric: function(){
@@ -45,7 +45,7 @@ toolBar = {
 
         quadTools.animate({
             width: '100%',
-            left: '5px'
+            left: '0'
         }, 300);
     },
     Conic: function(){
@@ -56,8 +56,8 @@ toolBar = {
 
         coneTools.animate({
             width: '100%',
-            height: '400px',
-            left: '5px',
+            height: '430px',
+            left: '0',
             top: '60px'
         }, 500);
     },
@@ -69,8 +69,8 @@ toolBar = {
 
         coneTools.animate({
             width: '100%',
-            height: '400px',
-            left: '5px',
+            height: '430px',
+            left: '0',
             top: '60px'
         }, 500);
     }

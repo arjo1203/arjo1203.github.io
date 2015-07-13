@@ -1,24 +1,45 @@
 body{
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 #view{
     position: absolute;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;
 }
 #viewOptions{
     position: absolute;
+    top: 5px;
+}
+#topCone{
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    left: 0;
+    top: 0;
+    background-color: #d9534f;
+    text-align: center;
+    font-size: 30px;
+}
+#topQuad{
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    left: 0;
+    top: 0;
+    background-color: #337ab7;
+    text-align: center;
+    font-size: 30px;
 }
 #threeD{
     padding: 0;
     margin: 0;
     position: absolute;
     width: 100%;
-    height: 50%;
-    top: 0;
+    height: 47.5%;
+    top: 5%;
     left: 0;
     border-bottom: 2px solid #999999;
 }
@@ -27,7 +48,7 @@ body{
     margin: 0;
     position: absolute;
     width: 100%;
-    height: 50%;
+    height: 47.5%;
     bottom: 0;
     left: 0;
 }
@@ -38,14 +59,25 @@ body{
     width: 40%;
     height: 100%;
     left: 0;
+    bottom: 0;
 }
-#fourD{
+#rightView{
     padding: 0;
     margin: 0;
     position: absolute;
     width: 40%;
     height: 100%;
     right: 0;
+    bottom: 0;
+}
+#fourD{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    width: 40%;
+    height: 95%;
+    right: 0;
+    bottom: 0;
 }
 #sideBar{
     position: absolute;
@@ -54,6 +86,7 @@ body{
     width: 20%;
     height: 100%;
     left: 40%;
+    /*top: 5%;*/
     background-color: #999999;
     overflow-y: auto;
     overflow-x: hidden;
@@ -65,35 +98,35 @@ body{
     top: 0;
 }
 #R13Div{
-    top: 80px;
+    top: 90px;
 }
 #R14Div{
-    top: 160px;
+    top: 180px;
 }
 #R23Div{
-    top: 240px;
+    top: 270px;
 }
 #R24Div{
-    top: 320px;
+    top: 360px;
 }
 #R34Div{
-    top: 400px;
+    top: 450px;
 }
 #wDiv{
-    top: 480px;
+    top: 540px;
 }
 #sliders{
     position: absolute;
-    height: 550px;
+    height: 630px;
     width: 20%;
-    top: 15%;
+    top: 70px;
     padding-left: 5%;
     padding-right: 5%;
 }
 #sliders2{
     position: absolute;
-    top: 20%;
-    height: 320px;
+    top: 70px;
+    height: 360px;
     width: 20%;
     padding-left: 5%;
     padding-right: 5%;
@@ -102,29 +135,73 @@ body{
     top: 0;
 }
 #yDiv{
-    top: 80px;
+    top: 90px;
 }
 #zDiv{
-    top: 160px;
+    top: 180px;
 }
 #zCrossDiv{
-    top: 240px;
+    top: 270px;
 }
 #coneHeader{
-    width: 80%;
+    position: absolute;
+    top: 0;
+    width: 170px;
 }
 #quadHeader{
-    width: 90%;
+    width: 200px;
 }
 #quadTools{
     position: absolute;
     width: 100%;
-    height: 650px;
+    height: 710px;
     top: 60px;
 }
 #coneTools{
     position: absolute;
     width: 100%;
-    height: 400px;
-    top: 740px;
+    height: 430px;
+    top: 770px;
+}
+#coneHeader2{
+    position: relative;
+    width: 100%;
+    height: 5%;
+    z-index: 10;
+    background-color: #0077aa;
+}
+.right{
+    float: right;
+}
+.left{
+    float: left;
+}
+#QHeader{
+    color: #337ab7;
+}
+#coneLabel{
+    color: #d9534f;
+}
+#topHeader{
+    position: absolute;
+    width: 100%;
+    height: 5%;
+}
+#hR12 .slider-handle, #hR13 .slider-handle, #hR14 .slider-handle, #hR23 .slider-handle, #hR24 .slider-handle, #hR34 .slider-handle, #hw .slider-handle{
+    background: #337ab7;
+}
+#hx .slider-handle, #hy .slider-handle, #hz .slider-handle, #hzCross .slider-handle{
+    background: #d9534f;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.up{
+    margin-bottom: 20px;
+}
+.theta{
+    font-size: 27px;
+}
+.degree{
+    font-size: 24px;
 }

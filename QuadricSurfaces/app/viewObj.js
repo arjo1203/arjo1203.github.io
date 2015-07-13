@@ -2,6 +2,12 @@ var toolBar;
 
 var view = {
     animateView: false,
+    widths: {
+        min: .4,
+        max: .8,
+        sideBar: .2,
+        sliders: .18
+    },
     views: {
         left: false,
         middle: true,
@@ -36,7 +42,6 @@ var view = {
         function(){
             setTimeout(function(){
                 view.animateView = false;
-                label.off();
             }, 100);
         });
 
@@ -44,7 +49,7 @@ var view = {
             left: '0'
         }, 500);
 
-        fourView.animate({
+        rightView.animate({
             width: '80%'
         }, 500);
     },
@@ -63,11 +68,10 @@ var view = {
         function(){
             setTimeout(function(){
                 view.animateView = false;
-                label.on();
             }, 100);
         });
 
-        fourView.animate({
+        rightView.animate({
             width: '40%'
         }, 500);
     },
@@ -84,19 +88,17 @@ var view = {
             left: '80%'
         }, 500);
 
-        fourView.animate({
+        rightView.animate({
             width: '0'
         }, 500,
         function(){
             setTimeout(function(){
                 view.animateView = false;
-                label.off();
             }, 100);
         });
     },
     resizeView: function(){
         if(view.currentView() == 'left'){
-            console.log('debug');
             view.resizeLeftView();
         }
         if(view.currentView() == 'middle'){
@@ -112,23 +114,23 @@ var view = {
         view.centerHeaders();
     },
     resizeBothView: function(){
-        leftView[0].style.width = window.innerWidth * .4;
-        fourView[0].style.width = window.innerWidth * .4;
+        leftView[0].style.width = window.innerWidth * view.widths.min;
+        rightView[0].style.width = window.innerWidth * view.widths.min;
 
     },
     resizeRightView: function(){
         leftView[0].style.width = 0;
-        fourView[0].style.width = window.innerWidth * .8;
+        rightView[0].style.width = window.innerWidth * view.widths.max;
     },
     resizeLeftView: function(){
-        fourView[0].style.width = 0;
-        leftView[0].style.width = window.innerWidth * .8;
+        rightView[0].style.width = 0;
+        leftView[0].style.width = window.innerWidth * view.widths.max;
     },
     resizeSidebar: function(){
-        sideBar[0].style.width = window.innerWidth * .2;
+        sideBar[0].style.width = window.innerWidth * view.widths.sideBar;
     },
     resizeSliders: function(){
-        var sliderWidth = window.innerWidth * .18;
+        var sliderWidth = window.innerWidth * view.widths.sliders;
 
         if(sliderArray.length > 0){
             for(var i = 0; i < sliderArray.length; i ++){

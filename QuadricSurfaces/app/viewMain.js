@@ -8,7 +8,8 @@ var L = $('#L'),
     viewOptions = $('#viewOptions'),
     quadHeader = $('#quadHeader'),
     coneHeader = $('#coneHeader'),
-    leftView = $('#leftView');
+    leftView = $('#leftView'),
+    rightView = $('#rightView');
 
 
 
@@ -21,18 +22,6 @@ function onStart(){
 
     window.addEventListener('resize', onWindowResize, false);
 }
-
-
-
-quadHeader.click(function(){
-    label.toggle(label.labels[0]);
-});
-
-
-
-coneHeader.click(function(){
-    label.toggle(label.labels[1]);
-});
 
 
 
@@ -100,33 +89,34 @@ R.click(function(evt){
 function onWindowResize(){
     view.resizeView();
 
-    onThreeResize();
     onFourResize();
+    onThreeResize();
+    onTwoResize();
 }
 
 
 function onTwoResize(){
-    twoCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.5);
+    twoCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight * .475);
     twoCamera.updateProjectionMatrix();
-    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.5);
+    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * .475);
 
     twoRender();
 }
 
 
 function onThreeResize(){
-    threeCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.5);
+    threeCamera.aspect = leftView[0].clientWidth / (leftView[0].clientHeight *.475);
     threeCamera.updateProjectionMatrix();
-    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * .5);
+    threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * .475);
 
     threeRender();
 }
 
 
 function onFourResize(){
-    fourCamera.aspect = fourView[0].clientWidth / fourView[0].clientHeight;
+    fourCamera.aspect = rightView[0].clientWidth / (rightView[0].clientHeight * .95);
     fourCamera.updateProjectionMatrix();
-    fourRenderer.setSize(fourView[0].clientWidth, fourView[0].clientHeight);
+    fourRenderer.setSize(rightView[0].clientWidth, rightView[0].clientHeight *.95);
 
     fourRender();
 }

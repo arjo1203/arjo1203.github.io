@@ -1,5 +1,5 @@
 var twoScene, twoCamera, twoRenderer, twoControls;
-var _2DGraph;
+var _2DGraph, twoScreenPercent = .475;
 
 
 
@@ -9,7 +9,7 @@ twoAnimate();
 
 function twoInit(){
     //ToDo Find a way to detect whe all 3 scene have been created to animate to the view to the left
-    L.click();
+    //L.click();
 
     //Creating a scene
     twoScene = new THREE.Scene();
@@ -33,14 +33,14 @@ function twoInit(){
     twoScene.add(pointlight4);
 
     //Creating camera, setting it's position, and then making it look at the scene position
-    twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight *.5), twoDCameraOffset, twoDCameraOffset + .1);
+    twoCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight * twoScreenPercent), twoDCameraOffset, twoDCameraOffset + .1);
     twoCamera.position.set(0, 0, twoDCameraOffset);
     threeScene.add(twoCamera);
 
     //Create renderer and linking it to threejs canvas
     twoRenderer = new THREE.WebGLRenderer({canvas: twoView[0]});
-    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight *.5);
-    twoRenderer.setClearColor('white', 1);
+    twoRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * twoScreenPercent);
+    twoRenderer.setClearColor(0xffffff, 1);
 
     _2DGraph = graph3To2Graph(40, min, max, 0, 0, 0, 0);
     _2DGraph.name = '_2DGraph';

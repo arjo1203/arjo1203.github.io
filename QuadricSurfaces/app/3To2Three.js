@@ -1,10 +1,9 @@
-
 var threeScene, threeCamera, threeRenderer, threeControls;
 var xBtn = $('#xButton'), xAnimation = false,
     yBtn = $('#yButton'), yAnimation = false,
     zBtn = $('#zButton'), zAnimation = false,
     zCrossBtn = $('#zCrossButton'), zCrossAnimation = false,
-    threeScreenPercent = .5;
+    threeScreenPercent = .475;
 
 
 
@@ -36,13 +35,13 @@ function threeInit(){
 
     //Creating camera, setting it's position, and then making it look at the scene position
     threeCamera = new THREE.PerspectiveCamera(45, leftView[0].clientWidth / (leftView[0].clientHeight * threeScreenPercent), 1, 1000);
-    threeCamera.position.set(0, -170, 40);
+    threeCamera.position.set(0, -80, 20);
     threeCamera.lookAt(threeScene.position);
 
     //Create renderer and linking it to threejs canvas
     threeRenderer = new THREE.WebGLRenderer({canvas: threeView[0]});
     threeRenderer.setSize(leftView[0].clientWidth, leftView[0].clientHeight * threeScreenPercent);
-    threeRenderer.setClearColor('white', 1);
+    threeRenderer.setClearColor(0xffffff, 1);
 
     threeControls = new THREE.OrbitControls(threeCamera, threeView[0]);
     threeControls.addEventListener('change', threeRender);
@@ -52,51 +51,21 @@ function threeInit(){
     threeScene.add(_3to2shape);
 
     var geo = new THREE.PlaneGeometry(60, 60, 1, 1);
-    var mat = new THREE.MeshLambertMaterial( {color: 0x8B0000, side: THREE.DoubleSide} );
+    var mat = new THREE.MeshLambertMaterial( {color: 0xFF6600, side: THREE.DoubleSide} );
     plane = new THREE.Mesh(geo, mat);
     threeScene.add(plane);
-
-    var conicLabel = createLabel('Conic Sections', 10);
-    conicLabel.position.z = 30;
-    conicLabel.position.x = -45;
-    conicLabel.rotation.x = 90 * (Math.PI / 180);
-    threeScene.add(conicLabel);
-    label.labels.push(conicLabel);
 
     threeRender();
 }
 
 
 
-
-//Creates 3d text
-function createLabel(message, size){
-    var geo, mat, label;
-    var geo = new THREE.TextGeometry( message, {
-        size: size,
-        height: 10,
-        curveSegments: 10,
-        font: 'helvetiker',
-        bevelThickness: 5,
-        bevelSize: 5
-    });
-    geo.computeBoundingBox();
-
-    mat = new THREE.MeshBasicMaterial( { color: 0x0000ff, overdraw: 0.5 } );
-    label = new THREE.Mesh(geo, mat);
-    label.name = message;
-
-    return label;
-}
-
-
-
-function threeAnimate(){
+function threeAnimate() {
     requestAnimationFrame( threeAnimate );
 
     animateThreeSlidersByFrame();
 
-    if(view.animateView){
+    if(view.animateView) {
         onThreeResize();
     }
 
@@ -114,14 +83,13 @@ function threeUpdate() {
 
 
 
-function threeRender()
-{
+function threeRender() {
     threeRenderer.render( threeScene, threeCamera );
 }
 
 
 
-function graph3To2Graph(resolution, axisMin, axisMax, theta12, theta13, theta23){
+function graph3To2Graph(resolution, axisMin, axisMax, theta12, theta13, theta23) {
     var points = [];
     var values = [];
 
@@ -166,7 +134,7 @@ function graph3To2Graph(resolution, axisMin, axisMax, theta12, theta13, theta23)
 
 
 function remove3To2Graph(string) {
-    for (var i = 0; i < threeScene.children.length; i++) {
+    for(var i = 0; i < threeScene.children.length; i++) {
         if (threeScene.children[i].name == string) {
             threeScene.remove(threeScene.children[i]);
         }
@@ -175,20 +143,20 @@ function remove3To2Graph(string) {
 
 
 
-function animateThreeSlidersByFrame(){
-    if(xAnimation){
+function animateThreeSlidersByFrame() {
+    if(xAnimation) {
         animateThreeSliderById(x, 'x', 0, 360, 1);
     }
 
-    if(yAnimation){
+    if(yAnimation) {
         animateThreeSliderById(y, 'y', 0, 360, 1);
     }
 
-    if(zAnimation){
+    if(zAnimation) {
         animateThreeSliderById(z, 'z', 0, 360, 1);
     }
 
-    if(zCrossAnimation){
+    if(zCrossAnimation) {
         animateThreeSliderById(zCross, 'zCross', -50, 50, .1);
     }
 }

@@ -1,18 +1,6 @@
-var min = -20,
-    max = 20,
-    animationResolution = 26;
-
-var A = [ [1, 0, 0, 0] , [0, 1, 0, 0] , [0, 0, -1, 0] , [0, 0, 0, 1] ];
+var A = [ [1, 0, 0, 0] , [0, 1, 0, 0] , [0, 0, -1, 0] , [0, 0, 0, -1] ];
 
 var sliderValues = {};
-
-sliderValues.R12 = 0;
-sliderValues.R13 = 0;
-sliderValues.R14 = 0;
-sliderValues.R23 = 0;
-sliderValues.R24 = 0;
-sliderValues.R34 = 0;
-sliderValues.w = 0;
 
 
 var U11 = toJavascriptSyntax('cos(theta14)*cos(theta13)*cos(theta12)'),

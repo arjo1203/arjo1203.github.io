@@ -170,7 +170,7 @@ interact(target).gesturable({
 
 
 function createPaperTools(){
-    numOfChildren = paper.project.activeLayer.children.length
+    numOfChildren = paper.project.activeLayer.children.length;
     //Create Drawing Tool
     tools.drawing = new Tool();
     tools.drawing.onMouseDown = onMouseDown;

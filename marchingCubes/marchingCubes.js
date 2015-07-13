@@ -1,5 +1,6 @@
-function marchingCubes(arrayOfPoints, arrayOfValues, resolution){
+function marchingCubes(arrayOfPoints, arrayOfValues, resolution, windingOpt){
     // Marching Cubes Algorithm
+    var thisWindingOpt = windingOpt || 1;
 
     var resolution2 = Math.pow(resolution, 2);
 
@@ -131,7 +132,13 @@ function marchingCubes(arrayOfPoints, arrayOfValues, resolution){
                     geometry.vertices.push( vlist[index2].clone() );
                     geometry.vertices.push( vlist[index3].clone() );
 
-                    var face = new THREE.Face3(vertexIndex, vertexIndex+1, vertexIndex+2);
+                    if(thisWindingOpt == 1){
+                        var face = new THREE.Face3(vertexIndex, vertexIndex+1, vertexIndex+2);
+                    }
+                    if(thisWindingOpt == 2){
+                        var face = new THREE.Face3(vertexIndex+2, vertexIndex+1, vertexIndex);
+                    }
+
                     geometry.faces.push( face );
 
                     geometry.faceVertexUvs[ 0 ].push( [ new THREE.Vector2(0,0), new THREE.Vector2(0,1), new THREE.Vector2(1,1) ] );

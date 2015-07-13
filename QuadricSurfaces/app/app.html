@@ -8,75 +8,83 @@
     </head>
     <body>
         <div id="view">
+            <!--<div id="topHeader">-->
+                <!--<div id="topQuad">-->
+                    <!--Quadratic Surfaces-->
+                <!--</div>-->
+            <!--</div>-->
 
             <div id="leftView">
+                <div id="topCone">
+                    Conic Sections
+                </div>
                 <canvas id="threeD"></canvas>
                 <canvas id="twoD"></canvas>
             </div>
 
             <div id="sideBar">
                 <form id="viewOptions" class="nav navbar-nav">
-                    <button id="L" class="btn btn-danger">L</button>
-                    <button id="M" class="btn btn-danger">M</button>
-                    <button id="R" class="btn btn-danger">R</button>
+                    <button id="L" class="btn btn-danger">C</button>
+                    <button id="M" class="btn btn-warning">M</button>
+                    <button id="R" class="btn btn-primary">Q</button>
                 </form>
 
                 <div id="quadTools">
                     <div id="quadHeader" class="abs">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Quadric Surfaces</button>
+                        <h3 id="QHeader">Quadric Surfaces</h3>
                     </div>
 
                     <div id="sliders">
 
                         <div class="abs" id="R12Div">
-                            <button id="R12Button" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="R12Button" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">12</span> : <span id="R12Val">0</span>&deg;
+                                        <span class="theta">&theta;</span><span class="sub">12</span><span class="theta">: </span><span id="R12Val" class="degree">0</span><span class="degree">&deg;</span>
 
-                                        <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hR12" id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="R13Div">
-                            <button id="R13Button" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="R13Button" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">13</span> : <span id="R13Val">0</span>&deg;
+                                        <span class="theta">&theta;</span><span class="sub">13</span><span class="theta">: </span><span id="R13Val" class="degree">0</span><span class="degree">&deg;</span>
 
-                                        <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hR13" id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="R14Div">
-                            <button id="R14Button" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="R14Button" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">14</span> : <span id="R14Val">0</span>&deg;
+                                        <span class="theta">&theta;</span><span class="sub">14</span><span class="theta">: </span><span id="R14Val" class="degree">0</span><span class="degree">&deg;</span>
 
-                                        <input id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hR14" id="R14" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="R23Div">
-                            <button id="R23Button" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="R23Button" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">23</span> : <span id="R23Val">0</span>&deg;
+                                        <span class="theta">&theta;</span><span class="sub">23</span><span class="theta">: </span><span id="R23Val" class="degree">0</span><span class="degree">&deg;</span>
 
-                                        <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hR23" id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="R24Div">
-                            <button id="R24Button" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="R24Button" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">24</span> : <span id="R24Val">0</span>&deg;
+                                        <span class="theta">&theta;</span><span class="sub">24</span><span class="theta">: </span><span id="R24Val" class="degree">0</span><span class="degree">&deg;</span>
 
                                         <input id="R24" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
@@ -84,25 +92,23 @@
                         </div>
 
                         <div class="abs" id="R34Div">
-                            <button id="R34Button" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="R34Button" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">34</span> : <span id="R34Val">0</span>&deg;
+                                        <span class="theta">&theta;</span><span class="sub">34</span><span class="theta">: </span><span id="R34Val" class="degree">0</span><span class="degree">&deg;</span>
 
-                                        <input id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hR34" id="R34" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
 
                         <div class="abs" id="wDiv">
-                            <button id="wButton" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="wButton" class="btn btn-primary buttons right up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        w (x4):
-                                        <span id="wVal">0</span>
-
-                                    <input id="w" type="text" data-slider-min="-50" data-slider-step=".1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <span class="theta">w</span><span class="sub">(x4)</span><span class="theta">: </span><span id="wVal" class="degree">0</span>
+                                        <input data-slider-id="hw" id="w" type="text" data-slider-min="-50" data-slider-step=".1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
@@ -113,53 +119,60 @@
 
 
                     <div id="coneHeader" class="abs">
-                        <button type="button" class="btn btn-primary btn-lg btn-block">Conic Sections</button>
+                        <h3 id="coneLabel">Conic Sections</h3>
                     </div>
 
 
                     <div id="sliders2">
 
                         <div class="abs" id="xDiv">
-                            <button id="xButton" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="xButton" class="btn btn-danger buttons left up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">12</span> : <span id="xVal">0</span>&deg;
+                                        <div class="right">
+                                            <span class="theta">&theta;</span><span class="sub">12</span><span class="theta">: </span><span id="xVal" class="degree">0</span><span class="degree">&deg;</span>
+                                        </div>
 
-                                        <input id="x" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hx" id="x" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="yDiv">
-                            <button id="yButton" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="yButton" class="btn btn-danger buttons left up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">13</span> : <span id="yVal">0</span>&deg;
+                                        <div class="right">
+                                            <span class="theta">&theta;</span><span class="sub">13</span><span class="theta">: </span><span id="yVal" class="degree">0</span><span class="degree">&deg;</span>
+                                        </div>
 
-                                        <input id="y" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hy" id="y" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="zDiv">
-                            <button id="zButton" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="zButton" class="btn btn-danger buttons left up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        <span class="theta">&theta;</span><span class="sub">23</span> : <span id="zVal">0</span>&deg;
+                                        <div class="right">
+                                            <span class="theta">&theta;</span><span class="sub">23</span><span class="theta">: </span><span id="zVal" class="degree">0</span><span class="degree">&deg;</span>
+                                        </div>
 
-                                        <input id="z" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                        <input data-slider-id="hz" id="z" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
 
                         <div class="abs" id="zCrossDiv">
-                            <button id="zCrossButton" class="btn btn-danger buttons">&#9658;</button>
+                            <button id="zCrossButton" class="btn btn-danger buttons left up">&#9658;</button>
                             <div>
                                     <span class="params">
-                                        z:
-                                        <span id="zCrossVal">0</span>
+                                        <div class="right">
+                                            <span class="theta">z</span><span class="theta">: </span><span id="zCrossVal" class="degree">0</span>
+                                        </div>
 
-                                    <input id="zCross" type="text" data-slider-min="-50" data-slider-step=".1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                    <input data-slider-id="hzCross" id="zCross" type="text" data-slider-min="-50" data-slider-step=".1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
                                     </span>
                             </div>
                         </div>
@@ -167,7 +180,13 @@
                 </div>
             </div>
 
-            <canvas id="fourD"></canvas>
+
+            <div id="rightView">
+                <div id="topQuad">
+                    Quadric Surfaces
+                </div>
+                <canvas id="fourD"></canvas>
+            </div>
         </div>
 
         <script src="../../quadraticSurfaces/personalParser.js"></script>
