@@ -85,17 +85,6 @@ var NerdBoard = (function() {
     };
     wb.theme = wb.themes.default;
 
-    wb.changeTheme = function(theme) {
-        $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Theme: "+ theme.capitalizeFirstLetter();
-
-        var priorColor = wb.theme.pathName;
-        wb.themes[theme].penColor = wb.themes[theme][priorColor];
-        wb.theme = wb.themes[theme];
-
-        NerdBoardTools.convertTheme();
-        wb.convertBtnTheme();
-    };
-
     wb.convertBtnTheme = function() {
         var black = getColorComponents(wb.theme.black);
         styleEle($('.penBlack'), black);
@@ -116,13 +105,6 @@ var NerdBoard = (function() {
         styleEle($('#navBar'), nav);
     };
     wb.convertBtnTheme();
-
-    wb.changeColor = function (color) {
-        wb.theme.penColor = wb.theme[color];
-        wb.theme.pathName = color;
-        wb.activateDrawMode();
-        wb.toggleToolBtns();
-    };
 
     wb.toggleToolBtns = function() {
         var shapeIndicator = $('#shapeIndicator'), moveIndicator = $('#moveIndicator'), eraseIndicator = $('#eraseIndicator');
@@ -155,21 +137,39 @@ var NerdBoard = (function() {
 
 
 
-    wb.changePenWidth = function(width) {
+    wb.setTheme = function(theme) {
+        $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Theme: "+ theme.capitalizeFirstLetter();
+
+        var priorColor = wb.theme.pathName;
+        wb.themes[theme].penColor = wb.themes[theme][priorColor];
+        wb.theme = wb.themes[theme];
+
+        NerdBoardTools.convertTheme();
+        wb.convertBtnTheme();
+    };
+
+    wb.setColor = function (color) {
+        wb.theme.penColor = wb.theme[color];
+        wb.theme.pathName = color;
+        wb.activateDrawMode();
+        wb.toggleToolBtns();
+    };
+
+    wb.setPenWidth = function(width) {
         $('#penDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Pen Width: " + width;
         wb.penStroke = width;
         wb.activateDrawMode();
         wb.toggleToolBtns();
     };
 
-    wb.changeEraserWidth = function(width) {
+    wb.setEraserWidth = function(width) {
         $('#eraseDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Eraser Width: " + width.toString();
         wb.eraseStroke = width;
         wb.activateEraseMode();
         wb.toggleToolBtns();
     };
 
-    wb.changeTextSize = function(size) {
+    wb.setTextSize = function(size) {
         $('#textDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Text Size: " + size.toString();
         wb.textSize = size;
         wb.activateShapeMode();
