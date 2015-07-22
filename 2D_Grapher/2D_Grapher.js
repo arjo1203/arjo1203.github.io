@@ -6,6 +6,7 @@ var canvas = $('#myCanvas')[0], GRID;
 //Install paper on 2d canvas
 paper.setup('myCanvas');
 paper.view.viewSize = [canvas.clientWidth, canvas.clientHeight];
+paper.view.zoom = 2;
 
 
 //draw2DFunction();
@@ -92,12 +93,12 @@ function drawGridLines() {
 var shape = new CompoundPath();
 
 
-animate(100);
+animate(1, 40);
 //animation();
 
 
-function animate(radius) {
-    var plot = getMarchingSquaresData(1000, -200, 200, radius);
+function animate(radius, theta) {
+    var plot = getMarchingSquaresData(1200, -100, 100, radius, theta);
 
     for(var i = 0; i < plot.length; i++){
         shape.children[i] = plot[i];
@@ -108,18 +109,19 @@ function animate(radius) {
 }
 
 
-var counter = 0;
+var radiusCounter = 1,
+    thetaCounter = 1;
 
 function animation() {
     setInterval(function() {
-        animate(counter);
-        counter += 1000;
+        animate(radiusCounter, thetaCounter);
+        thetaCounter += 1;
     }, 50);
 }
 
 
 
-function getMarchingSquaresData(resolution, axisMin, axisMax, r){
+function getMarchingSquaresData(resolution, axisMin, axisMax, r, theta){
     var points = [],
         values = [];
 
@@ -135,7 +137,10 @@ function getMarchingSquaresData(resolution, axisMin, axisMax, r){
                 var y = axisMin + axisRange * j / resolution;
                 points[j].push(new Point(x, y));
 
-                var value = Math.pow(x + 200, 2) + .05 * Math.pow(y, 2) - r;
+                var value = 2 * Math.cos2(theta) * Math.pow(x, 2) + 4 * Math.cos(theta) * Math.sin(theta) * x - 2 * Math.cos2(theta) - Math.pow(x, 2) + Math.pow(y, 2) + r;
+                //var value = Math.pow(x, 2) + 2 * Math.pow(y, 2) - r;
+
+                //console.log(value);
 
                 values.push(value);
             }
@@ -217,8 +222,8 @@ function lookUpTable(index, topLeft, topRight, bottomLeft, bottomRight) {
         return line;
     }
     if(index == 2 || index == 13) {
-        var point1 = LERP(bottomRight, bottomLeft, .25);
-        var point2 = LERP(bottomRight, topRight, .25);
+        var point1 = LERP(bottomRight, bottomLeft, .5);
+        var point2 = LERP(bottomRight, topRight, .5);
         var line = new Path();
         line.strokeColor = 'black';
         line.add(point1);
@@ -237,8 +242,8 @@ function lookUpTable(index, topLeft, topRight, bottomLeft, bottomRight) {
         return line;
     }
     if(index == 4 || index == 11) {
-        var point1 = LERP(topRight, topLeft, .25);
-        var point2 = LERP(topRight, bottomRight, .25);
+        var point1 = LERP(topRight, topLeft, .5);
+        var point2 = LERP(topRight, bottomRight, .5);
         var line = new Path();
         line.strokeColor = 'black';
         line.add(point1);
