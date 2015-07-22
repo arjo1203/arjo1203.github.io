@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,20 +23,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.96">
-              <caret line="144" column="154" selection-start-line="144" selection-start-column="154" selection-end-line="144" selection-end-column="154" />
+            <state vertical-scroll-proportion="0.26100966">
+              <caret line="63" column="86" selection-start-line="63" selection-start-column="86" selection-end-line="63" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoard.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NerdBoard.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46443516">
+            <state vertical-scroll-proportion="0.0">
               <caret line="290" column="42" selection-start-line="290" selection-start-column="42" selection-end-line="290" selection-end-column="42" />
               <folding />
             </state>
@@ -123,8 +122,8 @@
         <option value="$PROJECT_DIR$/JavascriptExtensions/extendString.js" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.css" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
-        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
+        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
       </list>
     </option>
   </component>
@@ -715,18 +714,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.96">
-          <caret line="144" column="154" selection-start-line="144" selection-start-column="154" selection-end-line="144" selection-end-column="154" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="290" column="42" selection-start-line="290" selection-start-column="42" selection-end-line="290" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46443516">
-          <caret line="290" column="42" selection-start-line="290" selection-start-column="42" selection-end-line="290" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.26100966">
+          <caret line="63" column="86" selection-start-line="63" selection-start-column="86" selection-end-line="63" selection-end-column="86" />
           <folding />
         </state>
       </provider>
