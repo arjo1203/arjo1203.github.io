@@ -1,22 +1,10 @@
 /**
- * Created by alexpersian on 11/16/14.
+ * Created by Jose Araujo on 07/22/15.
  */
 
 paper.install(window);
-String.prototype.capitalizeFirstLetter = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
-window.addEventListener('resize', onWindowResize, false);
 
 
-function onWindowResize() {
-    NerdBoard.width = window.innerWidth;
-    NerdBoard.height = window.innerHeight;
-
-    paper.project.activeLayer.children['bg']._segments[2]._point._x = NerdBoard.width;
-    paper.project.activeLayer.children['bg']._segments[3]._point._x = NerdBoard.width;
-    paper.view.draw();
-}
 
 // Main Javascript functions and code.
 var NerdBoard = (function() {
@@ -40,6 +28,10 @@ var NerdBoard = (function() {
     wb.numOfShapes = 0;
     wb.shapeStrokeColor = '#95B1BD';
     wb.erasing = false;
+
+
+
+
 
     wb.themes = {
         default: {
@@ -93,10 +85,6 @@ var NerdBoard = (function() {
     };
     wb.theme = wb.themes.default;
 
-
-    /**
-     * Modifies all colors to match the selected theme
-     */
     wb.changeTheme = function(theme) {
         $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Theme: "+ theme.capitalizeFirstLetter();
 
@@ -107,8 +95,6 @@ var NerdBoard = (function() {
         NerdBoardTools.convertTheme();
         wb.convertBtnTheme();
     };
-
-
 
     wb.convertBtnTheme = function() {
         var black = getColorComponents(wb.theme.black);
@@ -131,19 +117,12 @@ var NerdBoard = (function() {
     };
     wb.convertBtnTheme();
 
-
-    /**
-     * Change color will grab the value from the color buttons and change the draw color to that.
-     * If in night mode, it will change to the more pleasing colors.
-     */
     wb.changeColor = function (color) {
         wb.theme.penColor = wb.theme[color];
         wb.theme.pathName = color;
         wb.activateDrawMode();
         wb.toggleToolBtns();
     };
-
-
 
     wb.toggleToolBtns = function() {
         var shapeIndicator = $('#shapeIndicator'), moveIndicator = $('#moveIndicator'), eraseIndicator = $('#eraseIndicator');
@@ -172,21 +151,24 @@ var NerdBoard = (function() {
 
     };
 
-    /**
-     * These two functions simple change the stroke width based on passed integer parameter.
-     */
+
+
+
+
     wb.changePenWidth = function(width) {
         $('#penDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Pen Width: " + width;
         wb.penStroke = width;
         wb.activateDrawMode();
         wb.toggleToolBtns();
     };
+
     wb.changeEraserWidth = function(width) {
         $('#eraseDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Eraser Width: " + width.toString();
         wb.eraseStroke = width;
         wb.activateEraseMode();
         wb.toggleToolBtns();
     };
+
     wb.changeTextSize = function(size) {
         $('#textDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Text Size: " + size.toString();
         wb.textSize = size;
@@ -194,17 +176,14 @@ var NerdBoard = (function() {
         wb.toggleToolBtns();
     };
 
-    /**
-     * Undo simply removes the most recently created path.
-     */
+
+
+
+
     wb.undo = function() {
         NerdBoardTools.undo();
     };
 
-    /**
-     * Clears the canvas by drawing the background over the current canvas.
-     * Considers the current theme when redrawing.
-     */
     wb.clear = function() {
         c = confirm('Are you sure you want to clear the canvas?');
         if (c) {
@@ -212,13 +191,6 @@ var NerdBoard = (function() {
         }
     };
 
-
-
-    /**
-     * Change shape monitors the value of the shape dropdown.
-     * Draws shapes on the canvas by using Rectangle paths.
-     * Shapes are created at mouse click point.
-     */
     wb.changeShape = function(shape) {
         wb.shape = shape;
 
@@ -233,31 +205,37 @@ var NerdBoard = (function() {
             wb.toggleShapeMode();
         }
     };
+
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
         NerdBoardTools.tools.draw.activate();
         wb.toggleToolBtns();
     };
+
     wb.activateShapeMode = function() {
         wb.activeMode = 'shape';
         NerdBoardTools.tools.shape.activate();
         wb.toggleToolBtns();
     };
+
     wb.activateEraseMode = function() {
         wb.activeMode = 'erase';
         NerdBoardTools.tools.erase.activate();
         wb.toggleToolBtns();
     };
+
     wb.activateMoveMode = function() {
         wb.activeMode = 'move';
         NerdBoardTools.tools.move.activate();
         wb.toggleToolBtns();
     };
+
     wb.activatePanMode = function() {
         wb.activeMode = 'pan';
         NerdBoardTools.tools.pan.activate();
         wb.toggleToolBtns();
     };
+
     wb.toggleShapeMode = function() {
         if (wb.activeMode !== 'shape') {
             wb.activateShapeMode();
@@ -265,6 +243,7 @@ var NerdBoard = (function() {
             wb.activateDrawMode();
         }
     };
+
     wb.toggleMoveMode = function() {
         if (wb.activeMode !== 'move') {
             wb.activateMoveMode();
@@ -272,6 +251,7 @@ var NerdBoard = (function() {
             wb.activateDrawMode();
         }
     };
+
     wb.togglePanMode = function() {
         if (wb.activeMode !== 'pan') {
             wb.activatePanMode();
@@ -279,12 +259,7 @@ var NerdBoard = (function() {
             wb.activateDrawMode();
         }
     };
-    /**
-     * Hacky way to handle the eraser functionality.
-     * Draws over the canvas with a white pen stroke.
-     * Changes the text in the eraser button to reflect the mode.
-     * Saves the current pen color+width so it can be used after erasing is finished.
-     */
+
     wb.toggleEraseMode = function () {
         if (wb.activeMode !== 'erase') {
             wb.activateEraseMode();
@@ -295,9 +270,8 @@ var NerdBoard = (function() {
 
 
 
-    /**
-     * Returns a date string used to timestamp save files.
-     */
+
+
     wb.getDate = function () {
         var d = new Date();
         var year = d.getFullYear();
@@ -309,25 +283,6 @@ var NerdBoard = (function() {
         return (year + "-" + month + "-" + day + "_" + hour + ":" + min + ":" + sec);
     };
 
-    /**
-     * Prevents default page scrolling action; fixes iOS 8 drawing bug.
-     */
-    document.addEventListener('touchmove', function(event) {
-        event.preventDefault();
-    }, false);
-
-
-    /**
-     * Ensures that drawings aren't unintentionally lost when navigating away from page.
-     */
-    $(window).bind('beforeunload', function() {
-        return "Save your drawing before leaving!!";
-    });
-
-
-    /**
-     * Save button grabs canvas and saves it as .png with timestamp as file name.
-     */
     $('#saveImg').on('click', function() {
         this.download = wb.getDate();
         this.href = wb.canvas.toDataURL('image/svg');
@@ -384,9 +339,6 @@ var NerdBoard = (function() {
             false);
     };
 
-    /**
-     * Loads a saved board from an image file. Overwrites current canvas.
-     */
     $('#uploadImg').on('change', function(e) {
         var file = e.target.files[0];
         var fileReader = new FileReader();
@@ -397,6 +349,29 @@ var NerdBoard = (function() {
         };
 
         fileReader.readAsDataURL(file);
+    });
+
+
+
+
+
+    wb.onWindowResize = function() {
+        NerdBoard.width = window.innerWidth;
+        NerdBoard.height = window.innerHeight;
+
+        paper.project.activeLayer.children['bg']._segments[2]._point._x = NerdBoard.width;
+        paper.project.activeLayer.children['bg']._segments[3]._point._x = NerdBoard.width;
+        paper.view.draw();
+    };
+
+    window.addEventListener('resize', wb.onWindowResize, false);
+
+    document.addEventListener('touchmove', function(event) {
+        event.preventDefault();
+    }, false);
+
+    $(window).bind('beforeunload', function() {
+        return "Save your drawing before leaving!!";
     });
 
 

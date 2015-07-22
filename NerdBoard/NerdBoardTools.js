@@ -1,44 +1,24 @@
 /**
- * Created by alexpersian on 11/16/14.
+ * Created by Jose Araujo on 07/22/15.
  */
 
-// This file handles the drawingMode functions for whiteboard.js
-// Paper.js running through Javascript instead of Paperscript.
+paper.setup(NerdBoard.canvas);
+
+
 var NerdBoardTools = window.onload = (function() {
-    paper.setup(NerdBoard.canvas);
 
     var wbTools = {
         tools: {}
     };
-    wbTools.drawingMode = true;
-    wbTools.shapeMode = false;
 
     var hitOptions = {
-            segments: true,
-            stroke: true,
-            fill: true,
-            tolerance: 5
-        },
-        pathHit, myPath, mousePoint = paper.view.center;
+        segments: true,
+        stroke: true,
+        fill: true,
+        tolerance: 5
+    }, pathHit, myPath;
 
 
-
-    // Covers the canvas in a white rectangle to prevent transparent background on save.
-    // Drawings are created on top of this rectangle.
-    wbTools.drawBackground = function () {
-        //if(paper.project.activeLayer.children['bg']) {
-        //    paper.project.activeLayer.children['bg'].remove();
-        //}
-        var rectangle = new paper.Path.Rectangle({
-            center: paper.view.center,
-            size: [NerdBoard.width, NerdBoard.height],
-            fillColor: NerdBoard.theme.bg,
-            name: 'bg'
-        });
-
-        paper.view.update();
-    };
-    wbTools.drawBackground();
 
 
 
@@ -59,7 +39,6 @@ var NerdBoardTools = window.onload = (function() {
     };
     wbTools.tools.draw.minDistance = 1;
     wbTools.tools.draw.maxDistance = 3;
-
 
 
     wbTools.tools.erase = new paper.Tool();
@@ -83,8 +62,7 @@ var NerdBoardTools = window.onload = (function() {
 
     wbTools.tools.shape = new paper.Tool();
     wbTools.tools.shape.onMouseDown = function(event) {
-        mousePoint = event.point;
-        wbTools.drawShape(mousePoint, NerdBoard.shape, $('#shapeText')[0].value);
+        wbTools.drawShape(event.point, NerdBoard.shape, $('#shapeText')[0].value);
     };
     wbTools.tools.shape.onMouseDrag = function(event) {
         var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
@@ -101,7 +79,6 @@ var NerdBoardTools = window.onload = (function() {
     };
     wbTools.tools.shape.minDistance = 1;
     wbTools.tools.shape.maxDistance = 3;
-
 
 
     wbTools.tools.move = new paper.Tool();
@@ -134,7 +111,6 @@ var NerdBoardTools = window.onload = (function() {
     wbTools.tools.move.maxDistance = 3;
 
 
-
     wbTools.tools.pan = new paper.Tool();
     wbTools.tools.pan.onMouseDown = function(event) {
         paper.project.activeLayer.position = event.point;
@@ -144,6 +120,33 @@ var NerdBoardTools = window.onload = (function() {
     };
     wbTools.tools.pan.minDistance = 1;
     wbTools.tools.pan.maxDistance = 3;
+
+
+
+
+
+    wbTools.drawBackground = function () {
+        //if(paper.project.activeLayer.children['bg']) {
+        //    paper.project.activeLayer.children['bg'].remove();
+        //}
+        var rectangle = new paper.Path.Rectangle({
+            center: paper.view.center,
+            size: [NerdBoard.width, NerdBoard.height],
+            fillColor: NerdBoard.theme.bg,
+            name: 'bg'
+        });
+
+        paper.view.update();
+    };
+    wbTools.drawBackground();
+
+
+    wbTools.loadRaster = function(image) {
+        new paper.Raster({
+            source: image,
+            position: paper.view.center
+        });
+    };
 
 
     wbTools.undo = function() {
@@ -173,16 +176,12 @@ var NerdBoardTools = window.onload = (function() {
     };
 
 
-
-
     wbTools.clear = function() {
         while(paper.project.activeLayer.children.length > 1){
             paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1].remove();
         }
         paper.view.draw();
     };
-
-
 
 
     wbTools.convertTheme = function() {
@@ -238,9 +237,6 @@ var NerdBoardTools = window.onload = (function() {
     };
 
 
-
-    // Creates paths and options for each shape available for the canvas
-    // Shapes are only created if the program is in shape mode
     wbTools.drawShape = function(location, shape, message) {
         var rect, text;
 
@@ -359,34 +355,6 @@ var NerdBoardTools = window.onload = (function() {
         NerdBoard.numOfShapes++;
 
         paper.view.draw();
-    };
-
-
-
-    // Loads the chosen image as a raster and places it in the center of the canvas.
-    wbTools.loadRaster = function(image) {
-        new paper.Raster({
-            source: image,
-            position: paper.view.center
-        });
-    };
-
-
-
-    wbTools.drawText = function(text, x, y) {
-        var color;
-        if (NerdBoard.night) {
-            color = "white";
-        } else {
-            color = "black";
-        }
-        new paper.PointText({
-            point: [x, y],
-            content: text,
-            fillColor: color,
-            fontFamily: 'Source Code Pro',
-            fontSize: '24'
-        });
     };
 
     return wbTools;

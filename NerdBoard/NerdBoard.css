@@ -1,5 +1,11 @@
+html,
 body {
     overflow: hidden;
+    height: 100%;
+}
+canvas[resize] {
+    width: 100%;
+    height: 100%;
 }
 /* custom bootstrap styles */
 .btn-custom-font {
@@ -88,6 +94,7 @@ fieldset[disabled] .btn-custom.active {
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
+    z-index: 10;
 }
 
 .navbar-default {
@@ -115,7 +122,6 @@ fieldset[disabled] .btn-custom.active {
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     color: #eee8d5;
-    /*background-color: #000000;*/
     background-color: rgba(255, 255, 255, 0);
 }
 .navbar-default .navbar-toggle {
@@ -174,18 +180,6 @@ fieldset[disabled] .btn-custom.active {
     }
 }
 
-/* editor and modal junk */
-#editor {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    bottom: 5px;
-    left: 5px;
-}
-
-.modal-body {
-    min-height: 400px;
-}
 #shapeBtn {
     position: relative;
     padding-left: 3px;
@@ -235,14 +229,6 @@ fieldset[disabled] .btn-custom.active {
 .padding {
     margin-left: 3px;
 }
-html,
-body {
-    height: 100%;
-}
-canvas[resize] {
-    width: 100%;
-    height: 100%;
-}
 .saveDiv {
     width: 32px;
 }
@@ -255,4 +241,7 @@ canvas[resize] {
     margin: 0;
     padding: 0;
     left: 0;
+}
+#my-canvas {
+    z-index: -1;
 }
