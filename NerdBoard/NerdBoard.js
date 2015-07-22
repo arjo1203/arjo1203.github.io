@@ -283,8 +283,13 @@ var NerdBoard = (function(wb) {
 
     $('#saveImg').on('click', function() {
         this.download = wb.getDate();
-        this.href = wb.canvas.toDataURL('image/svg');
+        this.href = wb.canvas.toDataURL('image/png');
     });
+
+    wb.autoText = function() {
+        var str = OCRAD(NerdBoard.canvas);
+        window.alert('This image says:' + str);
+    };
 
     wb.saveAsWorkSpace = function() {
         var file = JSON.stringify(paper.project);
