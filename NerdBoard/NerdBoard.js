@@ -7,9 +7,7 @@ paper.install(window);
 
 
 // Main Javascript functions and code.
-var NerdBoard = (function() {
-
-    var wb = {};
+var NerdBoard = (function(wb) {
 
     wb.width = window.innerWidth;
     wb.height = window.innerHeight;
@@ -51,7 +49,7 @@ var NerdBoard = (function() {
             bg: createColor(0, 43, 54),
             black: createColor(101, 123, 131),
             red: createColor(220, 50, 47),
-            green: createColor(72, 139, 210),
+            green: createColor(72, 139, 60),
             blue: createColor(38, 139, 210),
             yellow: createColor(241, 196, 15),
             penColor: createColor(101, 123, 131),
@@ -138,13 +136,13 @@ var NerdBoard = (function() {
 
 
     wb.setTheme = function(theme) {
-        $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Theme: "+ theme.capitalizeFirstLetter();
+        $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Themes: "+ theme.capitalizeFirstLetter();
 
         var priorColor = wb.theme.pathName;
         wb.themes[theme].penColor = wb.themes[theme][priorColor];
         wb.theme = wb.themes[theme];
 
-        NerdBoardTools.convertTheme();
+        NerdBoard.Tools.convertTheme();
         wb.convertBtnTheme();
     };
 
@@ -176,22 +174,7 @@ var NerdBoard = (function() {
         wb.toggleToolBtns();
     };
 
-
-
-
-
-    wb.undo = function() {
-        NerdBoardTools.undo();
-    };
-
-    wb.clear = function() {
-        c = confirm('Are you sure you want to clear the canvas?');
-        if (c) {
-            NerdBoardTools.clear();
-        }
-    };
-
-    wb.changeShape = function(shape) {
+    wb.setShape = function(shape) {
         wb.shape = shape;
 
         if(shape == 'Input') {
@@ -206,33 +189,48 @@ var NerdBoard = (function() {
         }
     };
 
+
+
+
+
+    wb.undo = function() {
+        NerdBoard.Tools.undo();
+    };
+
+    wb.clear = function() {
+        c = confirm('Are you sure you want to clear the canvas?');
+        if (c) {
+            NerdBoard.Tools.clear();
+        }
+    };
+
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
-        NerdBoardTools.tools.draw.activate();
+        NerdBoard.Tools.tools.draw.activate();
         wb.toggleToolBtns();
     };
 
     wb.activateShapeMode = function() {
         wb.activeMode = 'shape';
-        NerdBoardTools.tools.shape.activate();
+        NerdBoard.Tools.tools.shape.activate();
         wb.toggleToolBtns();
     };
 
     wb.activateEraseMode = function() {
         wb.activeMode = 'erase';
-        NerdBoardTools.tools.erase.activate();
+        NerdBoard.Tools.tools.erase.activate();
         wb.toggleToolBtns();
     };
 
     wb.activateMoveMode = function() {
         wb.activeMode = 'move';
-        NerdBoardTools.tools.move.activate();
+        NerdBoard.Tools.tools.move.activate();
         wb.toggleToolBtns();
     };
 
     wb.activatePanMode = function() {
         wb.activeMode = 'pan';
-        NerdBoardTools.tools.pan.activate();
+        NerdBoard.Tools.tools.pan.activate();
         wb.toggleToolBtns();
     };
 
@@ -332,6 +330,10 @@ var NerdBoard = (function() {
                     }
 
                     paper.project.importJSON(inputFile[0]);
+
+                    paper.project.activeLayer.position = paper.view.center;
+                    wb.resizeBg();
+                    NerdBoard.Tools.convertTheme();
                     paper.view.draw();
                 };
                 reader.readAsText(file.files[0]);
@@ -345,7 +347,7 @@ var NerdBoard = (function() {
 
         fileReader.onload = function(e2) {
             wb.clear();
-            NerdBoardTools.loadRaster(e2.target.result);
+            NerdBoard.Tools.loadRaster(e2.target.result);
         };
 
         fileReader.readAsDataURL(file);
@@ -355,16 +357,35 @@ var NerdBoard = (function() {
 
 
 
-    wb.onWindowResize = function() {
+    wb.resizeBg = function() {
+        var SW = paper.project.activeLayer.children['bg']._segments[0],
+            NW = paper.project.activeLayer.children['bg']._segments[1],
+            NE = paper.project.activeLayer.children['bg']._segments[2],
+            SE = paper.project.activeLayer.children['bg']._segments[3];
+
+        NW._point._x = 0;
+        NW._point._y = 0;
+
+        SW._point._x = 0;
+        SW._point._y = NerdBoard.height;
+
+        NE._point._x = NerdBoard.width;
+        NE._point._y = 0;
+
+        SE._point._x = NerdBoard.width;
+        SE._point._y = NerdBoard.height;
+    };
+
+
+    function onWindowResize() {
         NerdBoard.width = window.innerWidth;
         NerdBoard.height = window.innerHeight;
 
-        paper.project.activeLayer.children['bg']._segments[2]._point._x = NerdBoard.width;
-        paper.project.activeLayer.children['bg']._segments[3]._point._x = NerdBoard.width;
+        NerdBoard.resizeBg();
         paper.view.draw();
-    };
+    }
 
-    window.addEventListener('resize', wb.onWindowResize, false);
+    window.addEventListener('resize', onWindowResize, false);
 
     document.addEventListener('touchmove', function(event) {
         event.preventDefault();
@@ -398,4 +419,4 @@ var NerdBoard = (function() {
 
 
     return wb;
-}(NerdBoard = NerdBoard || {}));
+}(NerdBoard || {}));
