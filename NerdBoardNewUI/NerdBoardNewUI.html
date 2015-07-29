@@ -31,6 +31,9 @@
                     <div id="addTool">
                         <img id="addToolIcon" src="./icons/add.png">
                     </div>
+                    <div id="themeTool">
+                        <img id="themeToolIcon" src="./icons/theme.png">
+                    </div>
                 </div>
             </div>
 
@@ -65,17 +68,6 @@
             </div>
 
             <div id="eraseToolOptions">
-
-                <div id="eraseDiv">
-                    <div id="eraseView">
-                        <div id="eraseWidth" class="whiteText">
-                            <p>Width</p>
-                                <input id="eraseSlider"/>
-                            <p id="eraseSliderVal">30</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <div id="moveToolOptions">
@@ -141,6 +133,55 @@
                 </div>
 
             </div>
+
+
+
+
+            <div id="themeToolOptions">
+                <div id="theme">
+                    <div id="themeBtn">
+                        <div id="activeBlack" class="black"></div>
+                        <div id="activeRed" class="red"></div>
+                        <div id="activeGreen" class="green"></div>
+                        <div id="activeBlue" class="blue"></div>
+                        <div id="activeYellow" class="yellow"></div>
+                    </div>
+                    <div id="themeOptions">
+                        <div id="default" onclick="NerdBoard.setTheme('default')">
+                            <div id="defaultBlack"></div>
+                            <div id="defaultRed"></div>
+                            <div id="defaultGreen"></div>
+                            <div id="defaultBlue"></div>
+                            <div id="defaultYellow"></div>
+                        </div>
+
+                        <div id="neon" onclick="NerdBoard.setTheme('neon')">
+                            <div id="neonBlack"></div>
+                            <div id="neonRed"></div>
+                            <div id="neonGreen"></div>
+                            <div id="neonBlue"></div>
+                            <div id="neonYellow"></div>
+                        </div>
+
+                        <div id="night" onclick="NerdBoard.setTheme('night')">
+                            <div id="nightBlack"></div>
+                            <div id="nightRed"></div>
+                            <div id="nightGreen"></div>
+                            <div id="nightBlue"></div>
+                            <div id="nightYellow"></div>
+                        </div>
+
+                        <div id="slate" onclick="NerdBoard.setTheme('slate')">
+                            <div id="slateBlack"></div>
+                            <div id="slateRed"></div>
+                            <div id="slateGreen"></div>
+                            <div id="slateBlue"></div>
+                            <div id="slateYellow"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
@@ -152,10 +193,14 @@
                 <div class="black hamburger bottom"></div>
             </div>
             <ul class="dropdown-menu">
-                <li><a href="#" id="saveImg">Save Image</a></li>
-                <li><a href="#" onclick="NerdBoard.saveAsWorkSpace()">Save WorkSpace</a></li>
-                <li><a href="#" id="loadImg">Load Image</a></li>
-                <li><a href="#" onclick="NerdBoard.loadWorkSpace()">Load WorkSpace</a></li>
+                <li><a href="#" id="saveImg"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save Image</a></li>
+                <li><a href="#" onclick="NerdBoard.saveAsWorkSpace()"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save WorkSpace</a></li>
+                <li class="btn btn-file">
+                    <input type="file" id="uploadImg">
+                    <a id="loadImg" href="#"><span class="glyphicon glyphicon-open"></span> Image</a>
+                </li>
+                <li><a href="#" onclick="NerdBoard.loadWorkSpace()"><span class="glyphicon glyphicon-open"></span>Load WorkSpace</a></li>
+                <!--<li><a id="fullScreen">Full-Screen</a></li>-->
             </ul>
         </div>
 
@@ -163,48 +208,9 @@
             <div class="undoBtn red" id="undo" onclick="NerdBoard.undo()">
                 <span class="glyphicon glyphicon-repeat functionsLogos" aria-hidden="true"></span>
             </div>
-            <div class="divider"></div>
+            <div class="verticalDivider"></div>
             <div class="clearBtn red" id="clear" onclick="NerdBoard.clear()">
                 <span class="glyphicon glyphicon-fire functionsLogos" aria-hidden="true"></span>
-            </div>
-        </div>
-
-        <div id="theme">
-            <div id="themeBtn">
-                <img id="themeIcon" src="icons/theme.png"/>
-            </div>
-            <div id="themeOptions">
-                <div id="default" onclick="NerdBoard.setTheme('default')">
-                    <div id="defaultBlack"></div>
-                    <div id="defaultRed"></div>
-                    <div id="defaultGreen"></div>
-                    <div id="defaultBlue"></div>
-                    <div id="defaultYellow"></div>
-                </div>
-
-                <div id="neon" onclick="NerdBoard.setTheme('neon')">
-                    <div id="neonBlack"></div>
-                    <div id="neonRed"></div>
-                    <div id="neonGreen"></div>
-                    <div id="neonBlue"></div>
-                    <div id="neonYellow"></div>
-                </div>
-
-                <div id="night" onclick="NerdBoard.setTheme('night')">
-                    <div id="nightBlack"></div>
-                    <div id="nightRed"></div>
-                    <div id="nightGreen"></div>
-                    <div id="nightBlue"></div>
-                    <div id="nightYellow"></div>
-                </div>
-
-                <div id="slate" onclick="NerdBoard.setTheme('slate')">
-                    <div id="slateBlack"></div>
-                    <div id="slateRed"></div>
-                    <div id="slateGreen"></div>
-                    <div id="slateBlue"></div>
-                    <div id="slateYellow"></div>
-                </div>
             </div>
         </div>
 
@@ -233,7 +239,7 @@
             var toolsDiv = $('#toolsDiv'), toolOptions = $('#toolOptions');
 
             centerDiv(canvas, sideBar, 0, .5);
-            centerDiv(canvas, $('#functions'), 0, .3);
+            centerDiv(canvas, $('#functions'), .05, 0);
             centerDiv(canvas, $('#NerdLogo'), 1, 0);
             centerDiv(toolsDiv, toolOptions, 0, .5);
             centerDiv(colorDiv, colorOptions, .5, .5);

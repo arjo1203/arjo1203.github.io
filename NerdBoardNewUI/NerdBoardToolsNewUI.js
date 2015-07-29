@@ -15,7 +15,7 @@ NerdBoard.Tools = window.onload = (function() {
         segments: true,
         stroke: true,
         fill: true,
-        tolerance: 5
+        tolerance: 2
     }, pathHit, myPath;
 
 
@@ -56,20 +56,30 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.tools.erase = new paper.Tool();
     wbTools.tools.erase.onMouseDown = function() {
-        myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.bg, // NerdBoard is the global module from whiteboard.js
-            strokeWidth: NerdBoard.eraseStroke,
-            strokeCap: 'round',
-            data: {
-                name: 'erase'
+        var hitResult = project.hitTest(event.point, hitOptions);
+
+        if (hitResult) {
+            pathHit = hitResult.item;
+            if(pathHit.data.name !== 'bg') {
+                pathHit.remove();
             }
-        });
+        }
+        else {
+            return ;
+        }
     };
     wbTools.tools.erase.onMouseDrag = function(event) {
-        myPath.add(event.point);
-    };
-    wbTools.tools.erase.onMouseUp = function() {
-        myPath.simplify();
+        var hitResult = project.hitTest(event.point, hitOptions);
+
+        if (hitResult) {
+            pathHit = hitResult.item;
+            if(pathHit.data.name !== 'bg') {
+                pathHit.remove();
+            }
+        }
+        else {
+            return ;
+        }
     };
     wbTools.tools.erase.minDistance = 1;
     wbTools.tools.erase.maxDistance = 3;

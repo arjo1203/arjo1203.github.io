@@ -11,7 +11,8 @@ NerdBoard.UIHandler = (function() {
                 drawTool: $('#drawTool'),
                 eraseTool: $('#eraseTool'),
                 moveTool: $('#moveTool'),
-                addTool: $('#addTool')
+                addTool: $('#addTool'),
+                themeTool: $('#themeTool')
             },
             tigger: $('#toolsView'),
             options: $('#toolOptions'),
@@ -26,7 +27,7 @@ NerdBoard.UIHandler = (function() {
             },
             open: function() {
                 sideBar.toolsUI.options.animate({
-                        left: '215px'
+                        left: '265px'
                     }, 300,
                     function() {
                         sideBar.toolsUI.options.css('z-index', '1');
@@ -43,48 +44,6 @@ NerdBoard.UIHandler = (function() {
             toggleStart: 0,
             toggleDelta: 0,
             toggleLast: 0
-        },
-        themeUI: {
-            ele: $('#theme'),
-            activeOption: '',
-            options: {
-                themes: {
-                    tigger: $('#themeBtn'),
-                    options: $('#themeOptions'),
-                    isOut: false,
-                    toggle: function() {
-                        if(sideBar.themeUI.options.themes.isOut) {
-                            sideBar.themeUI.options.themes.close();
-                        }
-                        else {
-                            sideBar.themeUI.options.themes.open();
-                        }
-                    },
-                    open: function() {
-                        sideBar.themeUI.options.themes.options.animate({
-                            left: '245px'
-                        }, 300);
-                        sideBar.themeUI.options.themes.isOut = true;
-                    },
-                    close: function() {
-                        sideBar.themeUI.options.themes.options.animate({
-                            left: '0'
-                        }, 250);
-                        sideBar.themeUI.options.themes.isOut = false;
-                    },
-                    toggleStart: 0,
-                    toggleDelta: 0,
-                    toggleLast: 0
-                }
-            },
-            styleUI: function() {
-                //var penColor = NerdBoard.getColorComponents(NerdBoard.theme.penColor);
-                //var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
-                //NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.tigger, navBg);
-                //NerdBoard.styleEle(sideBar.UIS.drawUI.options.width.tigger, navBg);
-                //NerdBoard.styleEle(sideBar.activeToolView, penColor);
-                //NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.activeColor, penColor);
-            }
         },
         UIS: {
             drawUI: {
@@ -207,38 +166,14 @@ NerdBoard.UIHandler = (function() {
             },
             eraseUI: {
                 ele: $('#eraseToolOptions'),
-                options: {
-                    width: {
-                        input: $('#eraseSlider'),
-                        slider: function() {
-                            sideBar.UIS.eraseUI.options.width.input.slider({
-                                min  : 1,
-                                max  : 50,
-                                value: 30,
-                                step: 5,
-                                orientation: 'vertical'
-                            });
-                            sideBar.UIS.eraseUI.options.width.input.on('slideStart', function(event) {
-                                $('#eraseSliderVal').text(event.value);
-                                NerdBoard.eraseStroke = event.value;
-                            });
-                            sideBar.UIS.eraseUI.options.width.input.on('slide', function(event) {
-                                $('#eraseSliderVal').text(event.value);
-                                NerdBoard.eraseStroke = event.value;
-                            });
-                        }
-                    }
-                },
                 displayOptions: function() {
                     sideBar.switchUI('eraseUI');
                     sideBar.sideBarEle.animate({
-                        height: '284px'
+                        height: '70px'
                     }, 200);
                 },
                 styleUI: function() {
                     var eraseColor = NerdBoard.getColorComponents(NerdBoard.theme.bg);
-                    var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
-                    NerdBoard.styleEle($('#eraseWidth'), navBg);
                     NerdBoard.styleEle(sideBar.activeToolView, eraseColor);
                 }
             },
@@ -404,6 +339,50 @@ NerdBoard.UIHandler = (function() {
                         }
                     }
                 }
+            },
+            themeUI: {
+                ele: $('#themeToolOptions'),
+                activeOption: '',
+                options: {
+                    themes: {
+                        tigger: $('#themeBtn'),
+                        options: $('#themeOptions'),
+                        isOut: false,
+                        toggle: function() {
+                            if(sideBar.UIS.themeUI.options.themes.isOut) {
+                                sideBar.UIS.themeUI.options.themes.close();
+                            }
+                            else {
+                                sideBar.UIS.themeUI.options.themes.open();
+                            }
+                        },
+                        open: function() {
+                            sideBar.UIS.themeUI.options.themes.options.animate({
+                                left: '263px'
+                            }, 300);
+                            sideBar.UIS.themeUI.options.themes.isOut = true;
+                        },
+                        close: function() {
+                            sideBar.UIS.themeUI.options.themes.options.animate({
+                                left: '0'
+                            }, 250);
+                            sideBar.UIS.themeUI.options.themes.isOut = false;
+                        },
+                        toggleStart: 0,
+                        toggleDelta: 0,
+                        toggleLast: 0
+                    }
+                },
+                displayOptions: function() {
+                    sideBar.switchUI('themeUI');
+                    sideBar.sideBarEle.animate({
+                        height: '140px'
+                    }, 200);
+                },
+                styleUI: function() {
+                    var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
+                    NerdBoard.styleEle(sideBar.UIS.themeUI.ele, navBg);
+                }
             }
         },
         switchUI: function(selectedUI) {
@@ -436,6 +415,9 @@ NerdBoard.UIHandler = (function() {
                     break;
                 case 'addTool':
                     sideBar.UIS.addUI.displayOptions();
+                    break;
+                case 'themeTool':
+                    sideBar.UIS.themeUI.displayOptions();
                     break;
             }
         },
@@ -484,16 +466,16 @@ NerdBoard.UIHandler = (function() {
     });
 
 
-    sideBar.themeUI.options.themes.tigger.click(function() {
-        sideBar.themeUI.options.themes.toggleStart = (new Date()).getTime();
+    sideBar.UIS.themeUI.options.themes.tigger.click(function() {
+        sideBar.UIS.themeUI.options.themes.toggleStart = (new Date()).getTime();
 
-        sideBar.themeUI.options.themes.toggleDelta = sideBar.themeUI.options.themes.toggleStart - sideBar.themeUI.options.themes.toggleLast;
+        sideBar.UIS.themeUI.options.themes.toggleDelta = sideBar.UIS.themeUI.options.themes.toggleStart - sideBar.UIS.themeUI.options.themes.toggleLast;
 
-        if(sideBar.themeUI.options.themes.toggleDelta > 300) {
-            sideBar.themeUI.options.themes.toggle();
+        if(sideBar.UIS.themeUI.options.themes.toggleDelta > 300) {
+            sideBar.UIS.themeUI.options.themes.toggle();
         }
 
-        sideBar.themeUI.options.themes.toggleLast = sideBar.themeUI.options.themes.toggleStart;
+        sideBar.UIS.themeUI.options.themes.toggleLast = sideBar.UIS.themeUI.options.themes.toggleStart;
     });
 
 
@@ -590,10 +572,16 @@ NerdBoard.UIHandler = (function() {
         $('#toolIcon').attr('src', 'icons/add.png');
     });
 
+    sideBar.toolsUI.btns.themeTool.click(function() {
+        sideBar.selectedTool = 'themeTool';
+        sideBar.setToolMode();
+        NerdBoard.activateShapeMode();
+        $('#toolIcon').attr('src', 'icons/theme.png');
+    });
+
 
 
     sideBar.UIS.drawUI.options.width.slider();
-    sideBar.UIS.eraseUI.options.width.slider();
     sideBar.UIS.addUI.options.textSize.slider();
 
 

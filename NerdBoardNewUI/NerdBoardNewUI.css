@@ -400,7 +400,7 @@ fieldset[disabled] .btn-custom.active {
 }
 #toolsDiv {
     position: relative;
-    width: 200px;
+    width: 250px;
     height: 70px;
     float: right;
 }
@@ -437,6 +437,10 @@ fieldset[disabled] .btn-custom.active {
     width: 50px;
     height: 50px;
 }
+#themeToolIcon {
+    width: 50px;
+    height: 50px;
+}
 #drawTool {
     position: relative;
     width: 50px;
@@ -462,6 +466,13 @@ fieldset[disabled] .btn-custom.active {
     height: 50px;
     left: 150px;
     bottom: 150px
+}
+#themeTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 200px;
+    bottom: 200px
 }
 .centerIcon {
     position: relative;
@@ -631,19 +642,21 @@ fieldset[disabled] .btn-custom.active {
     height: 40px;
     left: 0;
     top: 0;
-    border-radius : 0px 10px 0px 0px;
+    border-radius : 0px 0px 0px 10px;
 }
 .clearBtn {
     position: relative;
     width: 40px;
     height: 40px;
-    left: 0;
-    top: 0;
+    left: 42px;
+    bottom: 80px;
     border-radius : 0px 0px 10px 0px;
 }
 #functions {
     position: absolute;
-    border-radius : 0px 10px 10px 0px;
+    width: 82px;
+    height: 40px;
+    border-radius : 0px 0px 10px 10px;
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
 }
 .functionsLogos {
@@ -651,19 +664,27 @@ fieldset[disabled] .btn-custom.active {
     left: 13px;
     top: 12px;
 }
-#theme {
+#themeToolOptions {
     position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 70px;
+    border-radius : 0px 0px 10px 0px;
+}
+#theme {
+    position: relative;
     width: 230px;
     height: 50px;
     left: -180px;
-    z-index: 5;
+    top: 140px;
+    z-index: -1;
     top: 19%;
 }
 #themeBtn {
     position: relative;
     width: 50px;
     height: 50px;
-    left: 180px;
+    left: 190px;
     z-index: 1;
 }
 #themeIcon {
@@ -674,14 +695,50 @@ fieldset[disabled] .btn-custom.active {
     position: relative;
     width: 40px;
     height: 40px;
-    /*background-color: #080808;*/
 }
 #themeOptions {
     position: relative;
     bottom: 45px;
     width: 220px;
     height: 40px;
-    /*z-index: -1;*/
+}
+#activeBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+}
+#activeRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 50px;
+    background-color: red;
+}
+#activeGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 100px;
+    background-color: green;
+}
+#activeBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 150px;
+    background-color: blue;
+}
+#activeYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 200px;
+    background-color: yellow;
 }
 #defaultBlack {
     position: relative;
@@ -858,4 +915,12 @@ fieldset[disabled] .btn-custom.active {
     left: 80%;
     bottom: 160px;
     background-color: rgb(241, 196, 15);
+}
+.verticalDivider {
+    position: relative;
+    width: 2px;
+    height: 100%;
+    left: 40px;
+    bottom: 40px;
+    border-left: 2px solid black;
 }

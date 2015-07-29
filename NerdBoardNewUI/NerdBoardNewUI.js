@@ -151,7 +151,7 @@ var NerdBoard = (function(wb) {
         NerdBoard.Tools.convertTheme();
         wb.convertBtnTheme();
 
-        NerdBoard.UIHandler.themeUI.options.themes.close();
+        NerdBoard.UIHandler.UIS.themeUI.options.themes.close();
     };
 
     wb.setColor = function (color) {
@@ -365,6 +365,19 @@ var NerdBoard = (function(wb) {
         };
 
         fileReader.readAsDataURL(file);
+    });
+
+    $('#fullScreen').on('click', function() {
+        var elem = $("#my-canvas");
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        }
     });
 
 
