@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="../bootstrap-slider/bootstrap-slider.css">
         <link rel="stylesheet" href="NerdBoardNewUI.css">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
     </head>
     <body>
 
@@ -251,15 +252,6 @@
                 innerDiv[0].style.top = Math.round(outHeight - inHeight).toString() + 'px';
                 innerDiv[0].style.left = Math.round(outWidth - inWidth).toString() + 'px';
             }
-
-
-            window.addEventListener("load",function() {
-                // Set a timeout...
-                setTimeout(function(){
-                    // Hide the address bar!
-                    window.scrollTo(0, 0);
-                }, 0);
-            });
         </script>
     </body>
 </html>
