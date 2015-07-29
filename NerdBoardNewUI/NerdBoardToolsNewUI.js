@@ -37,8 +37,18 @@ NerdBoard.Tools = window.onload = (function() {
         myPath.add(event.point);
         myPath.smooth();
     };
-    wbTools.tools.draw.onMouseUp = function() {
-        myPath.simplify();
+    wbTools.tools.draw.onMouseUp = function(event) {
+        if(myPath._segments == 0) {
+            myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
+            myPath.style = {
+                fillColor: NerdBoard.theme.penColor,
+                strokeColor: NerdBoard.theme.penColor
+            };
+            myPath.data.name = NerdBoard.theme.pathName + 'Dot';
+        }
+        else {
+            myPath.simplify();
+        }
     };
     wbTools.tools.draw.minDistance = 1;
     wbTools.tools.draw.maxDistance = 3;
@@ -67,7 +77,7 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.tools.shape = new paper.Tool();
     wbTools.tools.shape.onMouseDown = function(event) {
-        wbTools.drawShape(event.point, NerdBoard.shape, $('#shapeText')[0].value);
+        wbTools.drawShape(event.point, NerdBoard.shape, $('#textInput')[0].value);
     };
     wbTools.tools.shape.onMouseDrag = function(event) {
         var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
@@ -174,17 +184,38 @@ NerdBoard.Tools = window.onload = (function() {
             if(name == 'black') {
                 paths[i].strokeColor = NerdBoard.theme.black;
             }
+
+            if(name == 'blackDot') {
+                paths[i].strokeColor = NerdBoard.theme.black;
+                paths[i].fillColor = NerdBoard.theme.black;
+            }
             if(name == 'green') {
                 paths[i].strokeColor = NerdBoard.theme.green;
+            }
+            if(name == 'greenDot') {
+                paths[i].strokeColor = NerdBoard.theme.green;
+                paths[i].fillColor = NerdBoard.theme.green;
             }
             if(name == 'blue') {
                 paths[i].strokeColor = NerdBoard.theme.blue;
             }
+            if(name == 'blueDot') {
+                paths[i].strokeColor = NerdBoard.theme.blue;
+                paths[i].fillColor = NerdBoard.theme.blue;
+            }
             if(name == 'red') {
                 paths[i].strokeColor = NerdBoard.theme.red;
             }
+            if(name == 'redDot') {
+                paths[i].strokeColor = NerdBoard.theme.red;
+                paths[i].fillColor = NerdBoard.theme.red;
+            }
             if(name == 'yellow') {
                 paths[i].strokeColor = NerdBoard.theme.yellow;
+            }
+            if(name == 'yellowDot') {
+                paths[i].strokeColor = NerdBoard.theme.yellow;
+                paths[i].fillColor = NerdBoard.theme.yellow;
             }
             if(name == 'plainText') {
                 paths[i].fillColor = NerdBoard.theme.black;

@@ -119,6 +119,9 @@ var NerdBoard = (function(wb) {
         var nav = wb.getColorComponents(wb.theme.navBg);
         wb.styleEle($('#navBar'), nav);
 
+        var bg = wb.getColorComponents(wb.theme.bg);
+        wb.styleEle($('#menuBtn'), bg);
+
         //var colorViewBg = getColorComponents(wb.theme.penColor);
         //styleEle($('#activeColor'), colorViewBg);
         //
@@ -133,37 +136,12 @@ var NerdBoard = (function(wb) {
         //activeTool.css('border-top-right-radius', '10px');
         NerdBoard.UIHandler.styleUI();
     };
-    //wb.convertBtnTheme();
-
-    wb.toggleToolBtns = function() {
-        var shapeIndicator = $('#shapeIndicator'), moveIndicator = $('#moveIndicator');
-        var indicators = [shapeIndicator, moveIndicator];
-
-        if(wb.activeMode == 'draw') {
-            indicators[0][0].className = "glyphicon glyphicon-unchecked";
-            indicators[1][0].className = "glyphicon glyphicon-unchecked";
-        }
-        if(wb.activeMode == 'erase') {
-            indicators[0][0].className = "glyphicon glyphicon-unchecked";
-            indicators[1][0].className = "glyphicon glyphicon-unchecked";
-        }
-        if(wb.activeMode == 'shape') {
-            indicators[0][0].className = "glyphicon glyphicon-check";
-            indicators[1][0].className = "glyphicon glyphicon-unchecked";
-        }
-        if(wb.activeMode == 'move') {
-            indicators[0][0].className = "glyphicon glyphicon-unchecked";
-            indicators[1][0].className = "glyphicon glyphicon-check";
-        }
-
-    };
 
 
 
 
 
     wb.setTheme = function(theme) {
-        $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Themes: "+ theme.capitalizeFirstLetter();
 
         var priorColor = wb.theme.pathName;
         wb.themes[theme].penColor = wb.themes[theme][priorColor];
@@ -171,13 +149,13 @@ var NerdBoard = (function(wb) {
 
         NerdBoard.Tools.convertTheme();
         wb.convertBtnTheme();
+        NerdBoard.UIHandler.UIS.themeUI.options.themes.close();
     };
 
     wb.setColor = function (color) {
         wb.theme.penColor = wb.theme[color];
         wb.theme.pathName = color;
         wb.activateDrawMode();
-        wb.toggleToolBtns();
 
         //var activeColorBg = getColorComponents(wb.theme.penColor);
 
@@ -199,36 +177,28 @@ var NerdBoard = (function(wb) {
         $('#penDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Pen Width: " + width;
         wb.penStroke = width;
         wb.activateDrawMode();
-        wb.toggleToolBtns();
     };
 
     wb.setEraserWidth = function(width) {
         $('#eraseDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Eraser Width: " + width.toString();
         wb.eraseStroke = width;
         wb.activateEraseMode();
-        wb.toggleToolBtns();
     };
 
     wb.setTextSize = function(size) {
         $('#textDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Text Size: " + size.toString();
         wb.textSize = size;
         wb.activateShapeMode();
-        wb.toggleToolBtns();
     };
 
     wb.setShape = function(shape) {
         wb.shape = shape;
 
-        if(shape == 'Input') {
-            $('#shapeChoice')[0].innerHTML = "<span class=\"caret\"></span> " + shape + " / Output";
-        }
-        else {
-            $('#shapeChoice')[0].innerHTML = "<span class=\"caret\"></span> " + shape;
-        }
-
         if(wb.activeMode !== 'shape') {
             wb.toggleShapeMode();
         }
+
+        NerdBoard.UIHandler.UIS.addUI.options.shapes.close();
     };
 
 
@@ -249,32 +219,26 @@ var NerdBoard = (function(wb) {
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
         NerdBoard.Tools.tools.draw.activate();
-        //wb.toggleToolBtns();
-        //NerdBoard.UI.
     };
 
     wb.activateShapeMode = function() {
         wb.activeMode = 'shape';
         NerdBoard.Tools.tools.shape.activate();
-        wb.toggleToolBtns();
     };
 
     wb.activateEraseMode = function() {
         wb.activeMode = 'erase';
         NerdBoard.Tools.tools.erase.activate();
-        //wb.toggleToolBtns();
     };
 
     wb.activateMoveMode = function() {
         wb.activeMode = 'move';
         NerdBoard.Tools.tools.move.activate();
-        wb.toggleToolBtns();
     };
 
     wb.activatePanMode = function() {
         wb.activeMode = 'pan';
         NerdBoard.Tools.tools.pan.activate();
-        wb.toggleToolBtns();
     };
 
     wb.toggleShapeMode = function() {
@@ -429,6 +393,7 @@ var NerdBoard = (function(wb) {
         NerdBoard.width = window.innerWidth;
         NerdBoard.height = window.innerHeight;
 
+        centerDiv(canvas, $('#logo'), 1, 0);
         NerdBoard.resizeBg();
         paper.view.draw();
     }

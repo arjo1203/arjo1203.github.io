@@ -252,7 +252,7 @@ fieldset[disabled] .btn-custom.active {
     position : absolute;
     left : 0;
     width : 70px;
-    height : 210px;
+    height : 209px;
     border-radius : 0px 10px 10px 0px;
     -moz-border-radius : 0px 10px 10px 0px;
     -webkit-border-radius : 0px 10px 10px 0px;
@@ -463,10 +463,373 @@ fieldset[disabled] .btn-custom.active {
     left: 150px;
     bottom: 150px
 }
-.centerActiveTool {
+.centerIcon {
+    position: relative;
     left: 10px;
     top: 10px;
 }
 #eraseWidth {
     border-radius : 0px 0px 10px 0px;
+}
+#shapeToolOptions {
+    position: absolute;
+    width: 70px;
+    height: 210px;
+    top: 70px;
+    z-index: -1;
+    opacity: 0;
+    border-radius : 0px 0px 10px 0px;
+}
+#shapeDiv {
+    height: 70px;
+    width: 350px;
+    float: right;
+}
+#activeShape {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    left: 10px;
+    top: 10px;
+}
+#shapeOptions {
+    position: relative;
+    width: 350px;
+    height: 70px;
+    top: 0;
+    z-index: -1;
+}
+#shapeView {
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    margin: 0;
+    float: right;
+    background-color: white;
+    z-index: 1;
+}
+#activeShapeIcon {
+    width: 50px;
+    height: 50px;
+}
+.IconDiv {
+    width: 70px;
+    height: 70px;
+}
+.Icon {
+    width: 50px;
+    height: 50px;
+}
+#Terminal {
+    position: relative;
+    left: 70px;
+}
+#Process {
+    position: relative;
+    left: 140px;
+    bottom: 70px;
+}
+#Input {
+    position: relative;
+    left: 210px;
+    bottom: 140px;
+}
+#Decision {
+    position: relative;
+    left: 280px;
+    bottom: 210px;
+}
+#textSizeDiv {
+    text-align: center;
+    height: 70px;
+    width: 166px;
+    float: right;
+}
+#textSizeView {
+    width: 70px;
+    height: 70px;
+    float: right;
+    z-index: 1;
+}
+#textSizeOptions {
+    position: absolute;
+    width: 166px;
+    top: 165px;
+    right: 0;
+    z-index: -1;
+}
+#textInputDiv {
+    text-align: center;
+    height: 70px;
+    width: 166px;
+    float: right;
+}
+#textInputView {
+    width: 70px;
+    height: 70px;
+    float: right;
+    background-color: red;
+    z-index: 1;
+}
+#textInputOptions {
+    position: absolute;
+    width: 166px;
+    top: 95px;
+    right: 0;
+    z-index: -1;
+}
+#menu {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+}
+#menuIcon {
+    width: 30px;
+    height: 30px;
+}
+.dropdown-menu {
+    width: 50px!important;
+}
+.white {
+    background-color: white;
+    border: 0;
+}
+#logo {
+    position: absolute;
+    font-size: 40px;
+    color: black;
+}
+.undoBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 0;
+    top: 0;
+    border-radius : 0px 10px 0px 0px;
+}
+.clearBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 0;
+    top: 0;
+    border-radius : 0px 0px 10px 0px;
+}
+#functions {
+    position: absolute;
+}
+.functionsLogos {
+    position: relative;
+    left: 13px;
+    top: 12px;
+}
+#theme {
+    position: absolute;
+    width: 230px;
+    height: 50px;
+    left: -180px;
+    z-index: 5;
+    top: 20%;
+}
+#themeBtn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 180px;
+    z-index: 1;
+}
+#themeIcon {
+    width: 50px;
+    height: 50px;
+}
+#default {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    /*background-color: #080808;*/
+}
+#themeOptions {
+    position: relative;
+    bottom: 45px;
+    width: 220px;
+    height: 40px;
+    /*z-index: -1;*/
+}
+#defaultBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+}
+#defaultRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: red;
+}
+#defaultGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: green;
+}
+#defaultBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: blue;
+}
+#defaultYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: yellow;
+}
+#neon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 45px;
+    bottom: 40px;
+    /*background-color: #080808;*/
+}
+#neonBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(176, 176, 176);
+}
+#neonRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: rgb(251, 1, 32);
+}
+#neonGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: rgb(161, 198, 89);
+}
+#neonBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: rgb(111, 179, 216);
+}
+#neonYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: rgb(253, 163, 49);
+}
+#night {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 90px;
+    bottom: 80px;
+    /*background-color: #080808;*/
+}
+#nightBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(101, 123, 131);
+}
+#nightRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: rgb(220, 50, 47);
+}
+#nightGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: rgb(72, 139, 60);
+}
+#nightBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: rgb(38, 139, 210);
+}
+#nightYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: rgb(241, 196, 15);
+}
+#slate {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 135px;
+    bottom: 120px;
+    /*background-color: #080808;*/
+}
+#slateBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(62, 68, 76);
+}
+#slateRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: rgb(237, 88, 84);
+}
+#slateGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: rgb(112, 201, 112);
+}
+#slateBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: rgb(108, 199, 225);
+}
+#slateYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: rgb(241, 196, 15);
 }
