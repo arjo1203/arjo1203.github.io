@@ -103,6 +103,7 @@ var NerdBoard = (function(wb) {
     wb.convertBtnTheme = function() {
         var black = wb.getColorComponents(wb.theme.black);
         wb.styleEle($('.black'), black);
+        wb.styleEle($('#logo'), black);
 
         var red = wb.getColorComponents(wb.theme.red);
         wb.styleEle($('.red'), red);
@@ -149,7 +150,8 @@ var NerdBoard = (function(wb) {
 
         NerdBoard.Tools.convertTheme();
         wb.convertBtnTheme();
-        NerdBoard.UIHandler.UIS.themeUI.options.themes.close();
+
+        NerdBoard.UIHandler.themeUI.options.themes.close();
     };
 
     wb.setColor = function (color) {
@@ -393,7 +395,7 @@ var NerdBoard = (function(wb) {
         NerdBoard.width = window.innerWidth;
         NerdBoard.height = window.innerHeight;
 
-        centerDiv(canvas, $('#logo'), 1, 0);
+        centerDiv(canvas, $('#NerdLogo'), 1, 0);
         NerdBoard.resizeBg();
         paper.view.draw();
     }

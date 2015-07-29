@@ -3,6 +3,7 @@ NerdBoard.UIHandler = (function() {
         sideBarEle: $('#sideBar'),
         activeToolView: $('#toolsView'),
         activeTool: $('#activeTool'),
+        logo: $('#NerdLogo'),
         selectedTool: 'drawTool',
         activeUI: 'drawUI',
         toolsUI: {
@@ -43,49 +44,49 @@ NerdBoard.UIHandler = (function() {
             toggleDelta: 0,
             toggleLast: 0
         },
-        UIS: {
-            themeUI: {
-                ele: $('#theme'),
-                activeOption: '',
-                options: {
-                    themes: {
-                        tigger: $('#themeBtn'),
-                        options: $('#themeOptions'),
-                        isOut: false,
-                        toggle: function() {
-                            if(sideBar.UIS.themeUI.options.themes.isOut) {
-                                sideBar.UIS.themeUI.options.themes.close();
-                            }
-                            else {
-                                sideBar.UIS.themeUI.options.themes.open();
-                            }
-                        },
-                        open: function() {
-                            sideBar.UIS.themeUI.options.themes.options.animate({
-                                    left: '245px'
-                                }, 300);
-                            sideBar.UIS.themeUI.options.themes.isOut = true;
-                        },
-                        close: function() {
-                            sideBar.UIS.themeUI.options.themes.options.animate({
-                                left: '0'
-                            }, 250);
-                            sideBar.UIS.themeUI.options.themes.isOut = false;
-                        },
-                        toggleStart: 0,
-                        toggleDelta: 0,
-                        toggleLast: 0
-                    }
-                },
-                styleUI: function() {
-                    //var penColor = NerdBoard.getColorComponents(NerdBoard.theme.penColor);
-                    //var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
-                    //NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.tigger, navBg);
-                    //NerdBoard.styleEle(sideBar.UIS.drawUI.options.width.tigger, navBg);
-                    //NerdBoard.styleEle(sideBar.activeToolView, penColor);
-                    //NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.activeColor, penColor);
+        themeUI: {
+            ele: $('#theme'),
+            activeOption: '',
+            options: {
+                themes: {
+                    tigger: $('#themeBtn'),
+                    options: $('#themeOptions'),
+                    isOut: false,
+                    toggle: function() {
+                        if(sideBar.themeUI.options.themes.isOut) {
+                            sideBar.themeUI.options.themes.close();
+                        }
+                        else {
+                            sideBar.themeUI.options.themes.open();
+                        }
+                    },
+                    open: function() {
+                        sideBar.themeUI.options.themes.options.animate({
+                            left: '245px'
+                        }, 300);
+                        sideBar.themeUI.options.themes.isOut = true;
+                    },
+                    close: function() {
+                        sideBar.themeUI.options.themes.options.animate({
+                            left: '0'
+                        }, 250);
+                        sideBar.themeUI.options.themes.isOut = false;
+                    },
+                    toggleStart: 0,
+                    toggleDelta: 0,
+                    toggleLast: 0
                 }
             },
+            styleUI: function() {
+                //var penColor = NerdBoard.getColorComponents(NerdBoard.theme.penColor);
+                //var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
+                //NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.tigger, navBg);
+                //NerdBoard.styleEle(sideBar.UIS.drawUI.options.width.tigger, navBg);
+                //NerdBoard.styleEle(sideBar.activeToolView, penColor);
+                //NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.activeColor, penColor);
+            }
+        },
+        UIS: {
             drawUI: {
                 ele: $('#drawToolOptions'),
                 activeOption: '',
@@ -134,6 +135,11 @@ NerdBoard.UIHandler = (function() {
                                 max  : 20,
                                 value: 5,
                                 step: 1
+                            });
+                            sideBar.UIS.drawUI.options.width.input.on('slideStart', function(event) {
+                                $('#penWidth').text(event.value);
+                                NerdBoard.penStroke = event.value;
+
                             });
                             sideBar.UIS.drawUI.options.width.input.on('slide', function(event) {
                                 $('#penWidth').text(event.value);
@@ -211,6 +217,10 @@ NerdBoard.UIHandler = (function() {
                                 value: 30,
                                 step: 5,
                                 orientation: 'vertical'
+                            });
+                            sideBar.UIS.eraseUI.options.width.input.on('slideStart', function(event) {
+                                $('#eraseSliderVal').text(event.value);
+                                NerdBoard.eraseStroke = event.value;
                             });
                             sideBar.UIS.eraseUI.options.width.input.on('slide', function(event) {
                                 $('#eraseSliderVal').text(event.value);
@@ -293,6 +303,11 @@ NerdBoard.UIHandler = (function() {
                                 max  : 60,
                                 value: 40,
                                 step: 1
+                            });
+                            sideBar.UIS.addUI.options.textSize.input.on('slideStart', function(event) {
+                                $('#textSizeSliderVal').text(event.value);
+                                NerdBoard.textSize = event.value;
+
                             });
                             sideBar.UIS.addUI.options.textSize.input.on('slide', function(event) {
                                 $('#textSizeSliderVal').text(event.value);
@@ -442,7 +457,14 @@ NerdBoard.UIHandler = (function() {
                     }
                 }
             }
+
+            var black = NerdBoard.getColorComponents(NerdBoard.theme.black);
+            sideBar.styleLogo(sideBar.logo, black);
         }
+    };
+
+    sideBar.styleLogo = function(ele, components) {
+        ele.css("color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     };
     
     
@@ -462,16 +484,16 @@ NerdBoard.UIHandler = (function() {
     });
 
 
-    sideBar.UIS.themeUI.options.themes.tigger.click(function() {
-        sideBar.UIS.themeUI.options.themes.toggleStart = (new Date()).getTime();
+    sideBar.themeUI.options.themes.tigger.click(function() {
+        sideBar.themeUI.options.themes.toggleStart = (new Date()).getTime();
 
-        sideBar.UIS.themeUI.options.themes.toggleDelta = sideBar.UIS.themeUI.options.themes.toggleStart - sideBar.UIS.themeUI.options.themes.toggleLast;
+        sideBar.themeUI.options.themes.toggleDelta = sideBar.themeUI.options.themes.toggleStart - sideBar.themeUI.options.themes.toggleLast;
 
-        if(sideBar.UIS.themeUI.options.themes.toggleDelta > 300) {
-            sideBar.UIS.themeUI.options.themes.toggle();
+        if(sideBar.themeUI.options.themes.toggleDelta > 300) {
+            sideBar.themeUI.options.themes.toggle();
         }
 
-        sideBar.UIS.themeUI.options.themes.toggleLast = sideBar.UIS.themeUI.options.themes.toggleStart;
+        sideBar.themeUI.options.themes.toggleLast = sideBar.themeUI.options.themes.toggleStart;
     });
 
 

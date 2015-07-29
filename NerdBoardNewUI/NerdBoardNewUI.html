@@ -145,9 +145,12 @@
 
 
         <div id="menu" class="btn-group">
-            <button id="menuBtn" type="button" class="white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img id="menuIcon" src="icons/menu.png">
-            </button>
+            <div id="menuBtn" class="white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--<img id="menuIcon" src="icons/menu.png">-->
+                <div class="black hamburger top"></div>
+                <div class="black hamburger middle"></div>
+                <div class="black hamburger bottom"></div>
+            </div>
             <ul class="dropdown-menu">
                 <li><a href="#" id="saveImg">Save Image</a></li>
                 <li><a href="#" onclick="NerdBoard.saveAsWorkSpace()">Save WorkSpace</a></li>
@@ -205,7 +208,7 @@
             </div>
         </div>
 
-        <div id="logo">NerdBoard</div>
+        <div id="NerdLogo">NerdBoard</div>
 
         <canvas id="my-canvas" resize></canvas>
 
@@ -230,12 +233,9 @@
             var toolsDiv = $('#toolsDiv'), toolOptions = $('#toolOptions');
 
             centerDiv(canvas, sideBar, 0, .5);
-            centerDiv(canvas, $('#menu'), 0, 0);
             centerDiv(canvas, $('#functions'), 0, .3);
-            centerDiv(canvas, $('#logo'), 1, 0);
-//            centerDiv(canvas, $('#theme'), 0, .2);
+            centerDiv(canvas, $('#NerdLogo'), 1, 0);
             centerDiv(toolsDiv, toolOptions, 0, .5);
-//            centerDiv(toolsView, activeTool, .5, .5);
             centerDiv(colorDiv, colorOptions, .5, .5);
             centerDiv(colorView, activeColor, .5, .5);
 

@@ -579,11 +579,35 @@ fieldset[disabled] .btn-custom.active {
     right: 0;
     z-index: -1;
 }
+.top {
+    position: relative;
+    margin-bottom: 4px;
+}
+.middle {
+    position: relative;
+    margin-bottom: 4px;
+}
+.bottom {
+    position: relative;
+}
+.hamburger {
+    width: 100%;
+    height: 20%;
+    border-radius : 5px 5px 5px 5px;
+}
+#menuBtn {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
 #menu {
     position: absolute;
     width: 30px;
     height: 30px;
-    background-color: white;
+    left: 5px;
+    top: 5px;
+    background-color: black;
 }
 #menuIcon {
     width: 30px;
@@ -596,7 +620,7 @@ fieldset[disabled] .btn-custom.active {
     background-color: white;
     border: 0;
 }
-#logo {
+#NerdLogo {
     position: absolute;
     font-size: 40px;
     color: black;
@@ -619,6 +643,8 @@ fieldset[disabled] .btn-custom.active {
 }
 #functions {
     position: absolute;
+    border-radius : 0px 10px 10px 0px;
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
 }
 .functionsLogos {
     position: relative;
@@ -631,7 +657,7 @@ fieldset[disabled] .btn-custom.active {
     height: 50px;
     left: -180px;
     z-index: 5;
-    top: 20%;
+    top: 19%;
 }
 #themeBtn {
     position: relative;
