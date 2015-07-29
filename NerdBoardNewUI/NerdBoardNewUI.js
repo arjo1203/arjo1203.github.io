@@ -409,6 +409,7 @@ var NerdBoard = (function(wb) {
         NerdBoard.height = window.innerHeight;
 
         centerDiv(canvas, $('#NerdLogo'), 1, 0);
+        centerDiv(canvas, sideBar, 0, .5);
         NerdBoard.resizeBg();
         paper.view.draw();
     }
