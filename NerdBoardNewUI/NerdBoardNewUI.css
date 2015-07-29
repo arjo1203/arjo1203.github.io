@@ -671,6 +671,7 @@ fieldset[disabled] .btn-custom.active {
     height: 70px;
     top: 70px;
     border-radius : 0px 0px 10px 0px;
+    z-index: -1;
 }
 #theme {
     position: relative;
@@ -678,7 +679,6 @@ fieldset[disabled] .btn-custom.active {
     height: 50px;
     left: -180px;
     top: 140px;
-    z-index: -1;
     top: 19%;
 }
 #themeBtn {
