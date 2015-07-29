@@ -93,7 +93,8 @@ NerdBoard.UIHandler = (function() {
                                 min  : 1,
                                 max  : 20,
                                 value: 5,
-                                step: 1
+                                step: 1,
+                                tooltip: 'hide'
                             });
                             sideBar.UIS.drawUI.options.width.input.on('slideStart', function(event) {
                                 $('#penWidth').text(event.value);
@@ -103,7 +104,13 @@ NerdBoard.UIHandler = (function() {
                             sideBar.UIS.drawUI.options.width.input.on('slide', function(event) {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
+                                $('.slider.slider-horizontal .slider-track').css('height', event.value.toString() + 'px');
+                                $('.slider-handle').css('margin-top', -(event.value / 2).toString() + 'px');
 
+                                if(event.value > 3) {
+                                    $('.slider-handle').css('width', (event.value * 2).toString() + 'px');
+                                    $('.slider-handle').css('height', (event.value * 2).toString() + 'px');
+                                }
                             });
                             sideBar.UIS.drawUI.options.width.input.on('slideStop', function(event) {
                                 sideBar.UIS.drawUI.options.width.close();
@@ -131,7 +138,7 @@ NerdBoard.UIHandler = (function() {
                         close: function() {
                             sideBar.UIS.drawUI.options.width.options.css('z-index', '-1');
                             sideBar.UIS.drawUI.options.width.options.animate({
-                                left: '-120px'
+                                left: '-130px'
                             }, 250);
                             sideBar.UIS.drawUI.options.width.isOut = false;
                         },
@@ -153,6 +160,9 @@ NerdBoard.UIHandler = (function() {
                     NerdBoard.styleEle(sideBar.UIS.drawUI.options.width.tigger, navBg);
                     NerdBoard.styleEle(sideBar.activeToolView, penColor);
                     NerdBoard.styleEle(sideBar.UIS.drawUI.options.colors.activeColor, penColor);
+                    NerdBoard.styleEle($('#penWidth .slider-selection'), penColor);
+
+                    $('#penWidth .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
                 },
                 closeOtherOptions: function() {
                     for(var option in sideBar.UIS.drawUI.options) {
@@ -237,7 +247,8 @@ NerdBoard.UIHandler = (function() {
                                 min  : 5,
                                 max  : 60,
                                 value: 40,
-                                step: 1
+                                step: 1,
+                                tooltip: 'hide'
                             });
                             sideBar.UIS.addUI.options.textSize.input.on('slideStart', function(event) {
                                 $('#textSizeSliderVal').text(event.value);

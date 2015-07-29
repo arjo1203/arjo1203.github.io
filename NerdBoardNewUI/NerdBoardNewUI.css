@@ -925,3 +925,13 @@ fieldset[disabled] .btn-custom.active {
     bottom: 40px;
     border-left: 2px solid black;
 }
+/*.slider.slider-horizontal .slider-track {*/
+    /*height: 20px;*/
+ /*}*/
+/*.slider.slider-horizontal .slider-handle {*/
+    /*margin-left: -5px;*/
+    /*margin-top: 0;*/
+/*}*/
+#penWidth .slider-selection {
+    background: #0077aa;
+}

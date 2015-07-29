@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js" afterPath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" afterPath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" afterPath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js" afterPath="$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +29,20 @@
       <file leaf-file-name="NerdBoardNewUI.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.0">
-              <caret line="673" column="16" selection-start-line="673" selection-start-column="16" selection-end-line="673" selection-end-column="16" />
+            <state vertical-scroll-proportion="-30.851852">
+              <caret line="934" column="0" selection-start-line="934" selection-start-column="0" selection-end-line="934" selection-end-column="27" />
+              <folding>
+                <marker date="1438191648000" expanded="true" signature="16365:16459" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap-slider.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-75.85185">
+              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -36,28 +51,38 @@
       <file leaf-file-name="NerdBoardNewUI.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-23.16">
-              <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="241" selection-end-column="46" />
+            <state vertical-scroll-proportion="-15.36">
+              <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoardNewUI.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NerdBoardNewUI.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5313808">
+            <state vertical-scroll-proportion="0.0">
               <caret line="411" column="42" selection-start-line="411" selection-start-column="42" selection-end-line="411" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdUIHandler.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js">
+      <file leaf-file-name="sliders.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/sliders.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="360" column="42" selection-start-line="360" selection-start-column="42" selection-end-line="360" selection-end-column="42" />
+              <caret line="0" column="54" selection-start-line="0" selection-start-column="54" selection-end-line="3" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NerdUIHandler.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43096235">
+              <caret line="105" column="66" selection-start-line="105" selection-start-column="66" selection-end-line="105" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -138,10 +163,10 @@
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardTools.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardToolsNewUI.js" />
-        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js" />
-        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" />
-        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js" />
+        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
+        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" />
+        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js" />
       </list>
     </option>
   </component>
@@ -227,57 +252,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NerdBoardNewUI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="NerdBoardNewUI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="icons" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="archTool_1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="archTool_1.0" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
+              <option name="myItemId" value="bootstrap-slider" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -441,13 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="92" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/sliders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41094527">
-          <caret line="296" column="1" selection-start-line="296" selection-start-column="1" selection-end-line="296" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -721,14 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45188284">
-          <caret line="56" column="1" selection-start-line="56" selection-start-column="1" selection-end-line="60" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6987448">
@@ -777,34 +737,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.0">
-          <caret line="673" column="16" selection-start-line="673" selection-start-column="16" selection-end-line="673" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js">
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/sliders.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="360" column="42" selection-start-line="360" selection-start-column="42" selection-end-line="360" selection-end-column="42" />
+          <caret line="0" column="54" selection-start-line="0" selection-start-column="54" selection-end-line="3" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.16">
-          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="241" selection-end-column="46" />
+        <state vertical-scroll-proportion="-15.36">
+          <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5313808">
+        <state vertical-scroll-proportion="0.0">
           <caret line="411" column="42" selection-start-line="411" selection-start-column="42" selection-end-line="411" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-75.85185">
+          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.851852">
+          <caret line="934" column="0" selection-start-line="934" selection-start-column="0" selection-end-line="934" selection-end-column="27" />
+          <folding>
+            <marker date="1438191648000" expanded="true" signature="16365:16459" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43096235">
+          <caret line="105" column="66" selection-start-line="105" selection-start-column="66" selection-end-line="105" selection-end-column="66" />
           <folding />
         </state>
       </provider>
