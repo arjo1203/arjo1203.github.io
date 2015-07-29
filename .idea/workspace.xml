@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" afterPath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" afterPath="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -24,21 +23,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="NerdBoardNewUI.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NerdBoardNewUI.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38598442">
+            <state vertical-scroll-proportion="-12.851851">
               <caret line="657" column="17" selection-start-line="657" selection-start-column="17" selection-end-line="657" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoardNewUI.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="NerdBoardNewUI.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.6">
-              <caret line="242" column="52" selection-start-line="242" selection-start-column="52" selection-end-line="242" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.15982242">
+              <caret line="9" column="66" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -141,8 +140,8 @@
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardToolsNewUI.js" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js" />
-        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" />
+        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
       </list>
     </option>
   </component>
@@ -792,18 +791,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html">
+    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.6">
-          <caret line="242" column="52" selection-start-line="242" selection-start-column="52" selection-end-line="242" selection-end-column="52" />
+        <state vertical-scroll-proportion="-12.851851">
+          <caret line="657" column="17" selection-start-line="657" selection-start-column="17" selection-end-line="657" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css">
+    <entry file="file://$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38598442">
-          <caret line="657" column="17" selection-start-line="657" selection-start-column="17" selection-end-line="657" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.15982242">
+          <caret line="9" column="66" selection-start-line="9" selection-start-column="66" selection-end-line="9" selection-end-column="66" />
           <folding />
         </state>
       </provider>
