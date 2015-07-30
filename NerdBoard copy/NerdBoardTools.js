@@ -1,0 +1,425 @@
+/**
+ * Created by Jose Araujo on 07/22/15.
+ */
+
+paper.setup(NerdBoard.canvas);
+
+
+NerdBoard.Tools = window.onload = (function() {
+
+    function addPoints(point1, point2) {
+        var afterMath = new paper.Point({x: point1.x + point2.x, y: point1.y + point2.y});
+
+        return afterMath;
+    }
+
+    var wbTools = {
+        tools: {}
+    };
+
+    var hitOptions = {
+        segments: true,
+        stroke: true,
+        fill: true,
+        tolerance: 2
+    }, pathHit, myPath;
+
+
+
+    function dynamicStroke(event) {
+        var step, avgStep;
+
+        step = new paper.Point({x: event.delta.x, y: event.delta.y});
+        step.angle += 90;
+
+        if(myPath.segments.length > 1) {
+            var lastSegment = myPath.segments[myPath.segments.length - 1];
+            var lastLength = new paper.Point({x: (lastSegment._handleIn.x - lastSegment._handleOut.x) / 2, y: (lastSegment._handleIn.y - lastSegment._handleOut.y) / 4});
+            avgStep = addPoints(lastLength, new paper.Point({x: step.x / 2, y: step.y / 2}));
+        }
+        else {
+            avgStep = step;
+        }
+
+        var thickness = .5;
+        var top = new paper.Point({x: event.middlePoint.x + avgStep.x * thickness, y: event.middlePoint.y + avgStep.y * thickness});
+        var bottom = new paper.Point({x: event.middlePoint.x - avgStep.x * thickness, y: event.middlePoint.y - avgStep.y * thickness});
+
+        myPath.add(top);
+        myPath.insert(0, bottom);
+        myPath.smooth();
+    }
+
+    wbTools.tools.draw = new paper.Tool();
+    wbTools.tools.draw.onMouseDown = function() {
+        myPath = new paper.Path({
+            strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
+            strokeWidth: NerdBoard.penStroke,
+            strokeCap: 'round',
+            data: {
+                name: NerdBoard.pathName
+            }
+        });
+    };
+    wbTools.tools.draw.onMouseDrag = function(event) {
+        myPath.add(event.point);
+        myPath.smooth();
+    };
+    wbTools.tools.draw.onMouseUp = function(event) {
+        if(myPath._segments == 0) {
+            myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
+            myPath.style = {
+                fillColor: NerdBoard.penColor,
+                strokeColor: NerdBoard.penColor
+            };
+            myPath.data.name = NerdBoard.pathName + 'Dot';
+        }
+        else {
+            myPath.simplify();
+        }
+    };
+    wbTools.tools.draw.minDistance = 1;
+    wbTools.tools.draw.maxDistance = 3;
+
+
+    wbTools.tools.erase = new paper.Tool();
+    wbTools.tools.erase.onMouseDown = function() {
+        var hitResult = project.hitTest(event.point, hitOptions);
+
+        if (hitResult) {
+            pathHit = hitResult.item;
+            if(pathHit.data.name !== 'bg') {
+                pathHit.remove();
+            }
+        }
+        else {
+            return ;
+        }
+    };
+    wbTools.tools.erase.onMouseDrag = function(event) {
+        var hitResult = project.hitTest(event.point, hitOptions);
+
+        if (hitResult) {
+            pathHit = hitResult.item;
+            if(pathHit.data.name !== 'bg') {
+                pathHit.remove();
+            }
+        }
+        else {
+            return ;
+        }
+    };
+    wbTools.tools.erase.minDistance = 1;
+    wbTools.tools.erase.maxDistance = 3;
+
+
+    wbTools.tools.shape = new paper.Tool();
+    wbTools.tools.shape.onMouseDown = function(event) {
+        wbTools.drawShape(event.point, NerdBoard.shape, $('#textInput')[0].value);
+    };
+    wbTools.tools.shape.onMouseDrag = function(event) {
+        var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
+        last.position = event.point;
+    };
+    wbTools.tools.shape.minDistance = 1;
+    wbTools.tools.shape.maxDistance = 3;
+
+
+    wbTools.tools.move = new paper.Tool();
+    wbTools.tools.move.onMouseDown = function(event) {
+        var hitResult = project.hitTest(event.point, hitOptions);
+        if (hitResult) {
+            pathHit = hitResult.item;
+        }
+        else {
+            return ;
+        }
+    };
+    wbTools.tools.move.onMouseDrag = function(event) {
+        var firstThree = pathHit.data.name[0] + pathHit.data.name[1]  + pathHit.data.name[2];
+        var last = pathHit.data.name[pathHit.data.name.length - 1], numOfDigits, id;
+
+        if (pathHit && pathHit.data.name !== 'bg') {
+            if (firstThree == 'rec' || firstThree == 'tex')  {
+                id = pathHit.data.name.slice(4, pathHit.data.name.length);
+                paper.project.activeLayer.children['group' + id].position.x += event.delta.x;
+                paper.project.activeLayer.children['group' + id].position.y += event.delta.y;
+            }
+            else{
+                pathHit.position.x += event.delta.x;
+                pathHit.position.y += event.delta.y;
+            }
+        }
+    };
+    wbTools.tools.move.minDistance = 1;
+    wbTools.tools.move.maxDistance = 3;
+
+
+    wbTools.tools.pan = new paper.Tool();
+    wbTools.tools.pan.onMouseDrag = function(event) {
+        paper.project.activeLayer.position.x += event.delta.x;
+        paper.project.activeLayer.position.y += event.delta.y;
+    };
+    wbTools.tools.pan.minDistance = 1;
+    wbTools.tools.pan.maxDistance = 3;
+
+
+
+
+
+    wbTools.drawBg= function () {
+        var rectangle = new paper.Path.Rectangle({
+            center: paper.view.center,
+            size: [NerdBoard.width, NerdBoard.height],
+            fillColor: NerdBoard.colors.defaultBg,
+            name: 'bg',
+            data: {
+                name: 'bg'
+            }
+        });
+
+        paper.view.update();
+    };
+    wbTools.drawBg();
+
+
+    wbTools.resizeBg = function() {
+        var SW = paper.project.activeLayer.children['bg']._segments[0],
+            NW = paper.project.activeLayer.children['bg']._segments[1],
+            NE = paper.project.activeLayer.children['bg']._segments[2],
+            SE = paper.project.activeLayer.children['bg']._segments[3];
+
+        NW._point._x = 0;
+        NW._point._y = 0;
+
+        SW._point._x = 0;
+        SW._point._y = NerdBoard.height;
+
+        NE._point._x = NerdBoard.width;
+        NE._point._y = 0;
+
+        SE._point._x = NerdBoard.width;
+        SE._point._y = NerdBoard.height;
+    };
+
+    wbTools.loadRaster = function(image) {
+        new paper.Raster({
+            source: image,
+            position: paper.view.center
+        });
+    };
+
+
+    wbTools.undo = function() {
+        var children = paper.project.activeLayer.children;
+        var lastIndex = children.length - 1;
+
+        if(children.length > 0 && children[lastIndex].data.name !== 'bg'){
+            children[lastIndex].remove();
+        }
+        paper.view.draw();
+    };
+
+
+    wbTools.clear = function() {
+        while(paper.project.activeLayer.children.length > 1){
+            paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1].remove();
+        }
+        paper.view.draw();
+    };
+
+
+    wbTools.changeBgColor = function() {
+        var paths = paper.project.activeLayer.children;
+
+        for(var i = 0; i < paths.length; i++) {
+            if(paths[i].name) {
+                if(paths[i].name == 'bg') {
+                    paths[i].fillColor = NerdBoard.bgColor;
+                }
+            }
+        }
+
+        paper.view.draw();
+    };
+
+
+    wbTools.drawShape = function(location, shape, message) {
+
+        switch(shape) {
+            case 'Terminal':
+                var terminal = createTerminal(location, message);
+                terminal.name = 'group' + NerdBoard.numOfShapes.toString();
+                break;
+            case 'Process':
+                var process = createProcess(location, message);
+                process.name = 'group' + NerdBoard.numOfShapes.toString();
+                break;
+            case 'Decision':
+                var decision = createDecision(location, message);
+                decision.name = 'group' + NerdBoard.numOfShapes.toString();
+                break;
+            case 'Input':
+                var input = createInput(location, message);
+                input.name = 'group' + NerdBoard.numOfShapes.toString();
+                break;
+            case 'Text':
+                var text = createText(location, message);
+                text.data.name = 'plainText';
+                break;
+        }
+
+
+        function createTerminal(pos, message) {
+            var rect = new paper.Path.Rectangle({
+                center: pos,
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
+                fillColor: NerdBoard.colors.defaultBlue,
+                strokeColor: NerdBoard.colors.defaultBlack,
+                strokeWidth: 2,
+                radius: NerdBoard.textSize / 2,
+                data: {
+                    name: 'rect' + NerdBoard.numOfShapes.toString(),
+                    identifier: 'Terminal'
+                }
+            });
+
+            var text = new PointText({
+                content: message,
+                data: {
+                    name: 'text' + NerdBoard.numOfShapes.toString()
+                }
+            });
+            text.style = {
+                fontFamily: 'sans-serif',
+                fontSize: NerdBoard.textSize,
+                justification: 'center'
+            };
+            text.fitBounds(rect.bounds);
+
+            var group = new Group(rect, text);
+
+            return group;
+        }
+
+
+        function createProcess(pos, message) {
+            var rect = new paper.Path.Rectangle({
+                center: pos,
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
+                fillColor: NerdBoard.colors.defaultYellow,
+                strokeColor: NerdBoard.colors.defaultBlack,
+                strokeWidth: 2,
+                data: {
+                    name: 'rect' + NerdBoard.numOfShapes.toString(),
+                    identifier: 'Process'
+                }
+            });
+
+            var text = new PointText({
+                content: message,
+                data: {
+                    name: 'text' + NerdBoard.numOfShapes.toString()
+                }
+            });
+            text.style = {
+                fontFamily: 'sans-serif',
+                fontSize: NerdBoard.textSize,
+                justification: 'center'
+            };
+            text.fitBounds(rect.bounds);
+
+
+            var group = new Group(rect, text);
+
+            return group;
+        }
+
+
+        function createDecision(pos, message) {
+            var rect = new paper.Path.Rectangle({
+                center: pos,
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
+                fillColor: NerdBoard.colors.defaultGreen,
+                strokeColor: NerdBoard.colors.defaultBlack,
+                strokeWidth: 2,
+                data: {
+                    name: 'rect' + NerdBoard.numOfShapes.toString(),
+                    identifier: 'Decision'
+                }
+            });
+            rect.rotate(45);
+
+            var text = new PointText({
+                content: message,
+                data: {
+                    name: 'text' + NerdBoard.numOfShapes.toString()
+                }
+            });
+            text.style = {
+                fontFamily: 'sans-serif',
+                fontSize: NerdBoard.textSize,
+                justification: 'center'
+            };
+            text.position = rect.position;
+
+            var group = new Group(rect, text);
+
+            return group;
+        }
+
+
+        function createInput(pos, message) {
+            var rect = new paper.Path.Rectangle({
+                center: pos,
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
+                fillColor: NerdBoard.colors.defaultRed,
+                strokeColor: NerdBoard.colors.defaultBlack,
+                strokeWidth: 2,
+                data: {
+                    name: 'rect' + NerdBoard.numOfShapes.toString(),
+                    identifier: 'Input'
+                }
+            });
+
+            rect._segments[0].point._x -= NerdBoard.textSize;
+            rect._segments[2].point._x += NerdBoard.textSize;
+
+            var text = new PointText({
+                content: message,
+                data: {
+                    name: 'text' + NerdBoard.numOfShapes.toString()
+                }
+            });
+            text.style = {
+                fontFamily: 'sans-serif',
+                fontSize: NerdBoard.textSize,
+                justification: 'center'
+            };
+            text.position = rect.position;
+            var group = new Group(rect, text);
+
+            return group;
+        }
+
+
+        function createText(pos, message) {
+            var text = new PointText({
+                point: pos,
+                content: message,
+                justification: 'center',
+                fontSize: NerdBoard.textSize
+            });
+            text.fillColor = NerdBoard.colors.defaultBlack;
+            text.strokeColor = NerdBoard.colors.defaultBlack;
+
+            return text;
+        }
+
+        NerdBoard.numOfShapes++;
+
+        paper.view.draw();
+    };
+
+    return wbTools;
+}());
