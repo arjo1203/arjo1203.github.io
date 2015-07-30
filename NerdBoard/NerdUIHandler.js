@@ -196,10 +196,10 @@ NerdBoard.UIHandler = (function() {
                     }, 200);
                 },
                 styleUI: function() {
-                    //var eraseColor = NerdBoard.getColorComponents(NerdBoard.theme.bg);
-                    //var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
-                    //NerdBoard.styleEle($('#eraseWidth'), navBg);
-                    //NerdBoard.styleEle(sideBar.activeToolView, eraseColor);
+                    //var eraseColor = NerdBoardOriginal.getColorComponents(NerdBoardOriginal.theme.bg);
+                    //var navBg = NerdBoardOriginal.getColorComponents(NerdBoardOriginal.theme.navBg);
+                    //NerdBoardOriginal.styleEle($('#eraseWidth'), navBg);
+                    //NerdBoardOriginal.styleEle(sideBar.activeToolView, eraseColor);
                 }
             },
             addUI: {
@@ -335,7 +335,7 @@ NerdBoard.UIHandler = (function() {
                     }, 200);
                 },
                 styleUI: function() {
-                    //var eraseColor = NerdBoard.getColorComponents(NerdBoard.theme.bg);
+                    //var eraseColor = NerdBoardOriginal.getColorComponents(NerdBoardOriginal.theme.bg);
                     var navBg = NerdBoard.getColorComponents(NerdBoard.theme.navBg);
                     NerdBoard.styleEle(sideBar.UIS.addUI.options.shapes.tigger, navBg);
                     NerdBoard.styleEle(sideBar.UIS.addUI.options.textSize.tigger, navBg);

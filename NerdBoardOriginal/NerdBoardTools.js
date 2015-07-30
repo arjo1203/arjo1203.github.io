@@ -15,7 +15,7 @@ NerdBoard.Tools = window.onload = (function() {
         segments: true,
         stroke: true,
         fill: true,
-        tolerance: 2
+        tolerance: 5
     }, pathHit, myPath;
 
 
@@ -25,7 +25,7 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.draw = new paper.Tool();
     wbTools.tools.draw.onMouseDown = function() {
         myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.penColor, // NerdBoard is the global module from whiteboard.js
+            strokeColor: NerdBoard.theme.penColor, // NerdBoardOriginal is the global module from whiteboard.js
             strokeWidth: NerdBoard.penStroke,
             strokeCap: 'round',
             data: {
@@ -35,20 +35,9 @@ NerdBoard.Tools = window.onload = (function() {
     };
     wbTools.tools.draw.onMouseDrag = function(event) {
         myPath.add(event.point);
-        myPath.smooth();
     };
-    wbTools.tools.draw.onMouseUp = function(event) {
-        if(myPath._segments == 0) {
-            myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
-            myPath.style = {
-                fillColor: NerdBoard.theme.penColor,
-                strokeColor: NerdBoard.theme.penColor
-            };
-            myPath.data.name = NerdBoard.theme.pathName + 'Dot';
-        }
-        else {
-            myPath.simplify();
-        }
+    wbTools.tools.draw.onMouseUp = function() {
+        myPath.simplify();
     };
     wbTools.tools.draw.minDistance = 1;
     wbTools.tools.draw.maxDistance = 3;
@@ -56,30 +45,20 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.tools.erase = new paper.Tool();
     wbTools.tools.erase.onMouseDown = function() {
-        var hitResult = project.hitTest(event.point, hitOptions);
-
-        if (hitResult) {
-            pathHit = hitResult.item;
-            if(pathHit.data.name !== 'bg') {
-                pathHit.remove();
+        myPath = new paper.Path({
+            strokeColor: NerdBoard.theme.bg, // NerdBoardOriginal is the global module from whiteboard.js
+            strokeWidth: NerdBoard.eraseStroke,
+            strokeCap: 'round',
+            data: {
+                name: 'erase'
             }
-        }
-        else {
-            return ;
-        }
+        });
     };
     wbTools.tools.erase.onMouseDrag = function(event) {
-        var hitResult = project.hitTest(event.point, hitOptions);
-
-        if (hitResult) {
-            pathHit = hitResult.item;
-            if(pathHit.data.name !== 'bg') {
-                pathHit.remove();
-            }
-        }
-        else {
-            return ;
-        }
+        myPath.add(event.point);
+    };
+    wbTools.tools.erase.onMouseUp = function() {
+        myPath.simplify();
     };
     wbTools.tools.erase.minDistance = 1;
     wbTools.tools.erase.maxDistance = 3;
@@ -87,7 +66,7 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.tools.shape = new paper.Tool();
     wbTools.tools.shape.onMouseDown = function(event) {
-        wbTools.drawShape(event.point, NerdBoard.shape, $('#textInput')[0].value);
+        wbTools.drawShape(event.point, NerdBoard.shape, $('#shapeText')[0].value);
     };
     wbTools.tools.shape.onMouseDrag = function(event) {
         var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
@@ -114,12 +93,10 @@ NerdBoard.Tools = window.onload = (function() {
         if (pathHit && pathHit.data.name !== 'bg') {
             if (firstThree == 'rec' || firstThree == 'tex')  {
                 id = pathHit.data.name.slice(4, pathHit.data.name.length);
-                paper.project.activeLayer.children['group' + id].position.x += event.delta.x;
-                paper.project.activeLayer.children['group' + id].position.y += event.delta.y;
+                paper.project.activeLayer.children['group' + id].position = event.point;
             }
             else{
-                pathHit.position.x += event.delta.x;
-                pathHit.position.y += event.delta.y;
+                pathHit.position = event.point;
             }
         }
     };
@@ -128,9 +105,11 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     wbTools.tools.pan = new paper.Tool();
+    wbTools.tools.pan.onMouseDown = function(event) {
+        paper.project.activeLayer.position = event.point;
+    };
     wbTools.tools.pan.onMouseDrag = function(event) {
-        paper.project.activeLayer.position.x += event.delta.x;
-        paper.project.activeLayer.position.y += event.delta.y;
+        paper.project.activeLayer.position = event.point;
     };
     wbTools.tools.pan.minDistance = 1;
     wbTools.tools.pan.maxDistance = 3;
@@ -194,38 +173,17 @@ NerdBoard.Tools = window.onload = (function() {
             if(name == 'black') {
                 paths[i].strokeColor = NerdBoard.theme.black;
             }
-
-            if(name == 'blackDot') {
-                paths[i].strokeColor = NerdBoard.theme.black;
-                paths[i].fillColor = NerdBoard.theme.black;
-            }
             if(name == 'green') {
                 paths[i].strokeColor = NerdBoard.theme.green;
-            }
-            if(name == 'greenDot') {
-                paths[i].strokeColor = NerdBoard.theme.green;
-                paths[i].fillColor = NerdBoard.theme.green;
             }
             if(name == 'blue') {
                 paths[i].strokeColor = NerdBoard.theme.blue;
             }
-            if(name == 'blueDot') {
-                paths[i].strokeColor = NerdBoard.theme.blue;
-                paths[i].fillColor = NerdBoard.theme.blue;
-            }
             if(name == 'red') {
                 paths[i].strokeColor = NerdBoard.theme.red;
             }
-            if(name == 'redDot') {
-                paths[i].strokeColor = NerdBoard.theme.red;
-                paths[i].fillColor = NerdBoard.theme.red;
-            }
             if(name == 'yellow') {
                 paths[i].strokeColor = NerdBoard.theme.yellow;
-            }
-            if(name == 'yellowDot') {
-                paths[i].strokeColor = NerdBoard.theme.yellow;
-                paths[i].fillColor = NerdBoard.theme.yellow;
             }
             if(name == 'plainText') {
                 paths[i].fillColor = NerdBoard.theme.black;
@@ -297,7 +255,7 @@ NerdBoard.Tools = window.onload = (function() {
         function createTerminal(pos, message) {
             var rect = new paper.Path.Rectangle({
                 center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize],
                 fillColor: NerdBoard.theme.blue,
                 strokeColor: NerdBoard.theme.black,
                 strokeWidth: 2,
@@ -330,7 +288,7 @@ NerdBoard.Tools = window.onload = (function() {
         function createProcess(pos, message) {
             var rect = new paper.Path.Rectangle({
                 center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize],
                 fillColor: NerdBoard.theme.yellow,
                 strokeColor: NerdBoard.theme.black,
                 strokeWidth: 2,
@@ -363,7 +321,7 @@ NerdBoard.Tools = window.onload = (function() {
         function createDecision(pos, message) {
             var rect = new paper.Path.Rectangle({
                 center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 12))],
                 fillColor: NerdBoard.theme.green,
                 strokeColor: NerdBoard.theme.black,
                 strokeWidth: 2,
@@ -372,6 +330,10 @@ NerdBoard.Tools = window.onload = (function() {
                     identifier: 'Decision'
                 }
             });
+            rect._segments[0].point._x += NerdBoard.textSize + 1;
+            rect._segments[1].point._x += NerdBoard.textSize + 1;
+            rect._segments[1].point._y += NerdBoard.textSize + 1;
+            rect._segments[2].point._y += NerdBoard.textSize + 1;
             rect.rotate(45);
 
             var text = new PointText({
@@ -394,20 +356,17 @@ NerdBoard.Tools = window.onload = (function() {
 
 
         function createInput(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
-                fillColor: NerdBoard.theme.red,
-                strokeColor: NerdBoard.theme.black,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Input'
-                }
-            });
-
-            rect._segments[0].point._x -= NerdBoard.textSize;
+            var rect = new Path.RegularPolygon(pos, 4, (NerdBoard.textSize * message.length) / 2);
+            rect.fillColor = NerdBoard.theme.red;
+            rect.strokeColor = NerdBoard.theme.black;
+            rect.strokeWidth = 2;
+            rect.data.name = 'rect' + NerdBoard.numOfShapes.toString();
+            rect.data.identifier = 'Input';
+            rect._segments[1].point._x += NerdBoard.textSize;
+            rect._segments[1].point._y += NerdBoard.textSize + 15;
             rect._segments[2].point._x += NerdBoard.textSize;
+            rect._segments[2].point._y += NerdBoard.textSize + 15;
+
 
             var text = new PointText({
                 content: message,

@@ -7,6 +7,12 @@ canvas[resize] {
     width: 100%;
     height: 100%;
 }
+::-webkit-scrollbar {
+    display: none;
+}
+#my-canvas {
+    z-index: -5;
+}
 /* custom bootstrap styles */
 .btn-custom-font {
     color: #eee8d5;
@@ -94,7 +100,6 @@ fieldset[disabled] .btn-custom.active {
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
-    z-index: 10;
 }
 
 .navbar-default {
@@ -237,11 +242,696 @@ fieldset[disabled] .btn-custom.active {
     padding-left: 13px;
 }
 #loadImg {
-    /*width: 158px;*/
     margin: 0;
     padding: 0;
     left: 0;
 }
-#my-canvas {
+.bar {
+    background : #FFFFFF;
+    background : rgba(255, 255, 255, 1);
+    position : absolute;
+    left : 0;
+    width : 70px;
+    height : 209px;
+    border-radius : 0px 10px 10px 0px;
+    -moz-border-radius : 0px 10px 10px 0px;
+    -webkit-border-radius : 0px 10px 10px 0px;
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+    z-index: 1;
+}
+.dropShadow {
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+}
+.black {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
+.red {
+    position: relative;
+    left: 33px;
+    bottom: 30px;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+.green {
+    position: relative;
+    left: 66px;
+    bottom: 60px;
+    width: 30px;
+    height: 30px;
+    background-color: green;
+}
+.blue {
+    position: relative;
+    left: 99px;
+    bottom: 90px;
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+}
+.yellow {
+    position: relative;
+    left: 132px;
+    bottom: 120px;
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+}
+#toolIconDiv {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+#toolIcon {
+    width: 50px;
+    height: 50px;
+}
+.divider {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    border-top: 2px solid black;
+}
+#drawToolOptions {
+    position: absolute;
+    width: 70px;
+    height: 140px;
+    left: 0;
+    top: 70px;
+}
+#colorDiv {
+    height: 70px;
+    width: 166px;
+    float: right;
+}
+#activeColor {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+}
+#colorOptions {
+    position: relative;
+    width: 166px;
+    height: 30px;
+    top: 0;
     z-index: -1;
+}
+#colorView {
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    margin: 0;
+    float: right;
+    background-color: white;
+    z-index: 1;
+}
+#widthDiv {
+    text-align: center;
+    height: 70px;
+    width: 166px;
+    float: right;
+}
+#widthView {
+    width: 70px;
+    height: 70px;
+    float: right;
+    background-color: white;
+    z-index: 1;
+    border-top: 2px solid black;
+    border-radius : 0px 0px 10px 0px;
+}
+.whiteText {
+    font-size: 20px;
+    color: white;
+}
+#widthOptions {
+    position: absolute;
+    width: 166px;
+    top: 95px;
+    right: 0;
+    z-index: -1;
+}
+#widths {
+    position: relative;
+}
+.slider.slider-horizontal {
+    width: 166px;
+    height: 20px;
+}
+.slider.slider-vertical {
+    height: 150px;
+    width: 20px;
+}
+#eraseToolOptions {
+    position: absolute;
+    width: 70px;
+    height: 200px;
+    z-index: -1;
+    left: 0;
+    top: 70px;
+    opacity: 0;
+}
+#eraseView {
+    text-align: center;
+}
+#toolsDiv {
+    position: relative;
+    width: 250px;
+    height: 70px;
+    float: right;
+}
+#toolsView {
+    width: 70px;
+    height: 70px;
+    float: right;
+    border-radius : 0px 10px 0px 0px;
+}
+#activeTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+#toolOptions {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    z-index: -1;
+}
+#drawToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#eraseToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#moveToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#addToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#themeToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#drawTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+#eraseTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 50px;
+    bottom: 50px;
+}
+#moveTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 100px;
+    bottom: 100px
+}
+#addTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 150px;
+    bottom: 150px
+}
+#themeTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 200px;
+    bottom: 200px
+}
+.centerIcon {
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
+#eraseWidth {
+    border-radius : 0px 0px 10px 0px;
+}
+#shapeToolOptions {
+    position: absolute;
+    width: 70px;
+    height: 210px;
+    top: 70px;
+    z-index: -1;
+    opacity: 0;
+    border-radius : 0px 0px 10px 0px;
+}
+#shapeDiv {
+    height: 70px;
+    width: 350px;
+    float: right;
+}
+#activeShape {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    left: 10px;
+    top: 10px;
+}
+#shapeOptions {
+    position: relative;
+    width: 350px;
+    height: 70px;
+    top: 0;
+    z-index: -1;
+}
+#shapeView {
+    width: 70px;
+    height: 70px;
+    padding: 0;
+    margin: 0;
+    float: right;
+    background-color: white;
+    z-index: 1;
+}
+#activeShapeIcon {
+    width: 50px;
+    height: 50px;
+}
+.IconDiv {
+    width: 70px;
+    height: 70px;
+}
+.Icon {
+    width: 50px;
+    height: 50px;
+}
+#Terminal {
+    position: relative;
+    left: 70px;
+}
+#Process {
+    position: relative;
+    left: 140px;
+    bottom: 70px;
+}
+#Input {
+    position: relative;
+    left: 210px;
+    bottom: 140px;
+}
+#Decision {
+    position: relative;
+    left: 280px;
+    bottom: 210px;
+}
+#textSizeDiv {
+    text-align: center;
+    height: 70px;
+    width: 166px;
+    float: right;
+}
+#textSizeView {
+    width: 70px;
+    height: 70px;
+    float: right;
+    z-index: 1;
+}
+#textSizeOptions {
+    position: absolute;
+    width: 166px;
+    top: 165px;
+    right: 0;
+    z-index: -1;
+}
+#textInputDiv {
+    text-align: center;
+    height: 70px;
+    width: 166px;
+    float: right;
+}
+#textInputView {
+    width: 70px;
+    height: 70px;
+    float: right;
+    background-color: red;
+    z-index: 1;
+}
+#textInputOptions {
+    position: absolute;
+    width: 166px;
+    top: 95px;
+    right: 0;
+    z-index: -1;
+}
+.top {
+    position: relative;
+    margin-bottom: 4px;
+}
+.middle {
+    position: relative;
+    margin-bottom: 4px;
+}
+.bottom {
+    position: relative;
+}
+.hamburger {
+    width: 100%;
+    height: 20%;
+    border-radius : 5px 5px 5px 5px;
+}
+#menuBtn {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
+#menu {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 5px;
+    top: 5px;
+    background-color: black;
+}
+#menuIcon {
+    width: 30px;
+    height: 30px;
+}
+.dropdown-menu {
+    width: 50px!important;
+}
+.white {
+    background-color: white;
+    border: 0;
+}
+#NerdLogo {
+    position: absolute;
+    font-size: 40px;
+    color: black;
+}
+.undoBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 0;
+    top: 0;
+    border-radius : 0px 0px 0px 10px;
+}
+.clearBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 42px;
+    bottom: 80px;
+    border-radius : 0px 0px 10px 0px;
+}
+#functions {
+    position: absolute;
+    width: 82px;
+    height: 40px;
+    left: 80px;
+    border-radius : 0px 0px 10px 10px;
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+}
+.functionsLogos {
+    position: relative;
+    left: 13px;
+    top: 12px;
+}
+#themeToolOptions {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    top: 70px;
+    border-radius : 0px 0px 10px 0px;
+    z-index: -1;
+}
+#theme {
+    position: relative;
+    width: 230px;
+    height: 50px;
+    left: -180px;
+    top: 140px;
+    top: 19%;
+}
+#themeBtn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 190px;
+    z-index: 1;
+}
+#themeIcon {
+    width: 50px;
+    height: 50px;
+}
+#default {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+#themeOptions {
+    position: relative;
+    bottom: 45px;
+    width: 220px;
+    height: 40px;
+}
+#activeBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+}
+#activeRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 50px;
+    background-color: red;
+}
+#activeGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 100px;
+    background-color: green;
+}
+#activeBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 150px;
+    background-color: blue;
+}
+#activeYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 200px;
+    background-color: yellow;
+}
+#defaultBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: black;
+}
+#defaultRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: red;
+}
+#defaultGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: green;
+}
+#defaultBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: blue;
+}
+#defaultYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: yellow;
+}
+#neon {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 45px;
+    bottom: 40px;
+    /*background-color: #080808;*/
+}
+#neonBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(176, 176, 176);
+}
+#neonRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: rgb(251, 1, 32);
+}
+#neonGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: rgb(161, 198, 89);
+}
+#neonBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: rgb(111, 179, 216);
+}
+#neonYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: rgb(253, 163, 49);
+}
+#night {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 90px;
+    bottom: 80px;
+    /*background-color: #080808;*/
+}
+#nightBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(101, 123, 131);
+}
+#nightRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: rgb(220, 50, 47);
+}
+#nightGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: rgb(72, 139, 60);
+}
+#nightBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: rgb(38, 139, 210);
+}
+#nightYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: rgb(241, 196, 15);
+}
+#slate {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 135px;
+    bottom: 120px;
+    /*background-color: #080808;*/
+}
+#slateBlack {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(62, 68, 76);
+}
+#slateRed {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 20%;
+    bottom: 40px;
+    background-color: rgb(237, 88, 84);
+}
+#slateGreen {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 40%;
+    bottom: 80px;
+    background-color: rgb(112, 201, 112);
+}
+#slateBlue {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 60%;
+    bottom: 120px;
+    background-color: rgb(108, 199, 225);
+}
+#slateYellow {
+    position: relative;
+    width: 20%;
+    height: 100%;
+    left: 80%;
+    bottom: 160px;
+    background-color: rgb(241, 196, 15);
+}
+.verticalDivider {
+    position: relative;
+    width: 2px;
+    height: 100%;
+    left: 40px;
+    bottom: 40px;
+    border-left: 2px solid black;
+}
+/*.slider.slider-horizontal .slider-track {*/
+    /*height: 20px;*/
+ /*}*/
+/*.slider.slider-horizontal .slider-handle {*/
+    /*margin-left: -5px;*/
+    /*margin-top: 0;*/
+/*}*/
+#penWidth .slider-selection {
+    background: #0077aa;
 }

@@ -26,7 +26,7 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.draw = new paper.Tool();
     wbTools.tools.draw.onMouseDown = function() {
         myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.penColor, // NerdBoard is the global module from whiteboard.js
+            strokeColor: NerdBoard.theme.penColor, // NerdBoardOriginal is the global module from whiteboard.js
             strokeWidth: NerdBoard.penStroke,
             strokeCap: 'round',
             data: {
@@ -48,7 +48,7 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.erase = new paper.Tool();
     wbTools.tools.erase.onMouseDown = function() {
         myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.bg, // NerdBoard is the global module from whiteboard.js
+            strokeColor: NerdBoard.theme.bg, // NerdBoardOriginal is the global module from whiteboard.js
             strokeWidth: NerdBoard.eraseStroke,
             strokeCap: 'round',
             data: {
