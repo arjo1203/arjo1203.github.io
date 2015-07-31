@@ -30,6 +30,7 @@ function touchStart(ev){
     var touches = ev.changedTouches;
 
     for(var i = 0; i < touches.length; i++) {
+        var touch = touches[i];
 
         currentTouches.push({
             id: touch.identifier,
