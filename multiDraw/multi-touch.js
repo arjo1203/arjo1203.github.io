@@ -20,27 +20,27 @@ paper.setup('myCanvas');
     //});
 
     // Set up an event listener for when the touch instrument is moved.
-    canvas.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-        touchMoved(e);
-    });
-
-    // Set up an event listener for when a touch ends.
-    canvas.addEventListener('touchend', function(e) {
-        e.preventDefault();
-        touchEnded(e);
-    });
-
-    // Set up an event listener for when a touch leaves the canvas.
-    canvas.addEventListener('touchleave', function(e) {
-        e.preventDefault();
-        touchEnded(e);
-    });
-
-    // Set up an event listener to catch cancelled touches.
-    canvas.addEventListener('touchcancel', function(e) {
-        touchCancelled(e);
-    });
+    //canvas.addEventListener('touchmove', function(e) {
+    //    e.preventDefault();
+    //    touchMoved(e);
+    //});
+    //
+    //// Set up an event listener for when a touch ends.
+    //canvas.addEventListener('touchend', function(e) {
+    //    e.preventDefault();
+    //    touchEnded(e);
+    //});
+    //
+    //// Set up an event listener for when a touch leaves the canvas.
+    //canvas.addEventListener('touchleave', function(e) {
+    //    e.preventDefault();
+    //    touchEnded(e);
+    //});
+    //
+    //// Set up an event listener to catch cancelled touches.
+    //canvas.addEventListener('touchcancel', function(e) {
+    //    touchCancelled(e);
+    //});
 
     var draw = new paper.Tool();
     draw.onMouseDown = touchStarted;
@@ -61,6 +61,7 @@ paper.setup('myCanvas');
     // Creates a new touch in the currentTouches array and draws the starting
     // point on the canvas.
     function touchStarted(paperEvent) {
+        console.log('started');
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
 
