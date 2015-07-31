@@ -36,7 +36,7 @@ function touchStart(ev){
             id: touch.identifier,
             pageX: touch.pageX,
             pageY: touch.pageY,
-            color: touchColor
+            color: '#3F3F3F'
         });
 
 
