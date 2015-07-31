@@ -66,7 +66,7 @@ paper.setup('myCanvas');
             });
 
             var newPath = new Path();
-            newPath.strokeColor = 'red';
+            newPath.strokeColor = 'green';
             newPath.strokeWidth = 4;
 
             currentPaths.push(newPath);
@@ -91,6 +91,10 @@ paper.setup('myCanvas');
 
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
+                var currentPath = currentPaths[currentTouchIndex];
+                
+                var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentPath.add(newPoint);
 
                 ctx.beginPath();
                 ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
