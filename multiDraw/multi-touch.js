@@ -128,6 +128,8 @@ paper.setup('myCanvas');
             }
 
         }
+
+        console.log(currentTouches);
     };
 
     // Removes cancelled touches from the currentTouches array.
