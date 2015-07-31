@@ -68,6 +68,7 @@ paper.setup('myCanvas');
             ctx.fillStyle = touchColor;
             ctx.fill();
         }
+        console.log(currentTouches);
     };
 
     // Draws a line on the canvas between the previous touch location and
@@ -100,6 +101,7 @@ paper.setup('myCanvas');
             }
 
         }
+        console.log(currentTouches);
     };
 
     // Draws a line to the final touch position on the canvas and then
