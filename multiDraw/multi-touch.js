@@ -15,7 +15,7 @@ function startup(){
     console.log(paper.view);
     
     document.body.addEventListener('touchstart', touchStart, false);
-    document.body.addEventListener('touchmove', touchmove, false);
+    document.body.addEventListener('touchmove', touchMove, false);
     document.body.addEventListener('touchend', touchEnd, false);
 }
 
@@ -53,7 +53,7 @@ function touchStart(ev){
 }
 
 
-function touchmove(ev){  
+function touchMove(ev){
     ev.preventDefault();
     var touches = ev.changedTouches;
 
@@ -78,6 +78,15 @@ function touchmove(ev){
             var currentTouch = currentTouches[currentTouchIndex];
             console.log(ev);
             currentTouch.path.add(new Point({x: currentTouch.pageX, y: currentTouch.pageY}));
+
+            // Update the touch record.
+            currentTouch.pageX = touch.pageX;
+            currentTouch.pageY = touch.pageY;
+            // Store the record.
+            currentTouches.splice(currentTouchIndex, 1, currentTouch);
+        }
+        else {
+            console.log('Touch not found!');
         }
     }
 }
