@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiDraw/multi-touch.js" afterPath="$PROJECT_DIR$/multiDraw/multi-touch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiDraw/multiDrawing.html" afterPath="$PROJECT_DIR$/multiDraw/multiDrawing.html" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -37,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/multiDraw/multi-touch.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+              <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -735,7 +736,7 @@
     <entry file="file://$PROJECT_DIR$/multiDraw/multi-touch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="7" selection-start-line="33" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
           <folding />
         </state>
       </provider>

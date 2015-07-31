@@ -34,7 +34,7 @@ paper.setup('myCanvas');
     // Set up an event listener for when a touch leaves the canvas.
     canvas.addEventListener('touchleave', function(e) {
         e.preventDefault();
-        touchEnded(e);
+        touchLeave(e);
     });
 
     // Set up an event listener to catch cancelled touches.
@@ -117,6 +117,28 @@ paper.setup('myCanvas');
     // removes the touh from the currentTouches array.
     function touchEnded(paperEvent) {
         var touches = paperEvent.event.changedTouches;
+
+        for (var i=0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
+
+            if (currentTouchIndex >= 0) {
+                var currentPath = currentPaths[currentTouchIndex];
+                currentPath.simplify();
+
+                // Remove the record.
+                currentTouches.splice(currentTouchIndex, 1);
+                currentPaths.splice(currentTouchIndex, 1);
+            } else {
+                console.log('Touch was not found!');
+            }
+
+        }
+    }
+
+
+    function touchLeave(event) {
+        var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
             var touch = touches[i];
