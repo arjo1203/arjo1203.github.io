@@ -137,8 +137,8 @@ var canvasCodeBehind = (function(){
 
     // Finds the array index of a touch in the currentTouches array.
     var findCurrentTouchIndex = function (id) {
-        for (var i=0; i < currentTouches.length; i++) {
-            if (currentTouches[i].id === id) {
+        for (var i=0; i < codeBehind.currentTouches.length; i++) {
+            if (codeBehind.currentTouches[i].id === id) {
                 return i;
             }
         }
