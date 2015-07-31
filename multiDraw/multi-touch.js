@@ -100,6 +100,34 @@
         }
     };
 
+    // Draws a line to the final touch position on the canvas and then
+    // removes the touh from the currentTouches array.
+    var touchEnded = function (event) {
+        var touches = event.changedTouches;
+
+        for (var i=0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
+
+            if (currentTouchIndex >= 0) {
+                var currentTouch = currentTouches[currentTouchIndex];
+
+                ctx.beginPath();
+                ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
+                ctx.lineTo(touch.pageX, touch.pageY);
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = currentTouch.color;
+                ctx.stroke();
+
+                // Remove the record.
+                currentTouches.splice(currentTouchIndex, 1);
+            } else {
+                console.log('Touch was not found!');
+            }
+
+        }
+    };
+
     // Removes cancelled touches from the currentTouches array.
     var touchCancelled = function (event) {
         var touches = event.changedTouches;
