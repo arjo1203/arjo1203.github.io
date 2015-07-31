@@ -1,3 +1,4 @@
+paper.install(window);
 paper.setup('myCanvas');
 
 (function(){
@@ -61,7 +62,7 @@ paper.setup('myCanvas');
                 pageX: touch.pageX,
                 pageY: touch.pageY,
                 color: touchColor,
-                path: new paper.Path()
+                path: new Path()
             });
 
             currentTouches[i].path.strokeColor = 'black';
@@ -85,7 +86,7 @@ paper.setup('myCanvas');
 
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
-                var newPoint = new paper.Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 console.log(newPoint);
                 currentTouch.path.add(newPoint);
 
