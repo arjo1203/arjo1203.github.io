@@ -56,13 +56,11 @@ paper.setup('myCanvas');
 
         for (var i=0; i < touches.length; i++) {
             var touch = touches[i];
-            var touchColor = randomColor();
 
             currentTouches.push({
                 id: touch.identifier,
                 pageX: touch.pageX,
-                pageY: touch.pageY,
-                color: touchColor
+                pageY: touch.pageY
             });
 
             var newPath = new Path();

@@ -250,8 +250,9 @@ fieldset[disabled] .btn-custom.active {
 .bar {
     background : #FFFFFF;
     background : rgba(255, 255, 255, 1);
-    position : relative;
-    left : 0;
+    position : absolute;
+    /*left : 0;*/
+    /*top: 50%;*/
     width : 70px;
     height : 209px;
     border-radius : 0px 10px 0px 0px;
@@ -661,10 +662,11 @@ fieldset[disabled] .btn-custom.active {
     border-radius : 0px 0px 10px 0px;
 }
 #functions {
-    position: relative;
+    position: absolute;
     width: 82px;
     height: 40px;
     left: 80px;
+    top: 0;
     border-radius : 0px 0px 10px 10px;
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
 }
