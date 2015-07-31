@@ -34,28 +34,28 @@ var currentTouches = [];
 function touchStart(ev){
     console.log(ev);
     ev.preventDefault();
-    var touches = ev.changedTouches;
-
-    for(var i = 0; i < touches.length; i++) {
-        var touch = touches[i];
-
-        currentTouches.push({
-            id: touch.identifier,
-            pageX: touch.pageX,
-            pageY: touch.pageY,
-            color: '#3F3F3F',
-            path: new Path()
-        });
-
-
-        //Create new path per touch
-        //var path = new Path();
-        currentTouches[i].path.strokeColor = 'red';
-        currentTouches[i].path.strokeWidth = i * 4;
-        //paths.push(path);
-    }
-
-    console.log(touches);
+    //var touches = ev.changedTouches;
+    //
+    //for(var i = 0; i < touches.length; i++) {
+    //    var touch = touches[i];
+    //
+    //    currentTouches.push({
+    //        id: touch.identifier,
+    //        pageX: touch.pageX,
+    //        pageY: touch.pageY,
+    //        color: '#3F3F3F',
+    //        path: new Path()
+    //    });
+    //
+    //
+    //    //Create new path per touch
+    //    //var path = new Path();
+    //    currentTouches[i].path.strokeColor = 'red';
+    //    currentTouches[i].path.strokeWidth = i * 4;
+    //    //paths.push(path);
+    //}
+    //
+    //console.log(touches);
 
 }
 
