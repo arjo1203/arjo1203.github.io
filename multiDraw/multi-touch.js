@@ -1,3 +1,4 @@
+paper.install(window);
 paper.setup('myCanvas');
 
 (function(){
