@@ -202,3 +202,26 @@ $('#uploadImg').on('change', function(e) {
 
 NerdBoard.UIHandler.UIS.drawUI.options.width.slider();
 NerdBoard.UIHandler.UIS.addUI.options.textSize.slider();
+
+
+
+NerdBoard.UIHandler.styleUI();
+
+var canvas = $('#my-canvas'), sideBar = $('#sideBar'), toolsView = $('#toolsView'), activeTool = $('#activeTool'),
+    colorOptions = $('#colorOptions'), activeColor = $('#activeColor'), colorDiv = $('#colorDiv'), colorView = $('#colorView');
+
+var toolsDiv = $('#toolsDiv'), toolOptions = $('#toolOptions');
+
+centerDiv(canvas, sideBar, 0, .5);
+centerDiv(canvas, $('#NerdLogo'), 1, 0);
+//centerDiv(toolsDiv, toolOptions, 0, .5);
+//centerDiv(colorDiv, colorOptions, .5, .5);
+//centerDiv(colorView, activeColor, .5, .5);
+
+function centerDiv(outerDiv, innerDiv, left, top) {
+    var inWidth = innerDiv[0].clientWidth * left, inHeight = innerDiv[0].clientHeight * top;
+    var outWidth = outerDiv[0].clientWidth * left, outHeight = outerDiv[0].clientHeight * top;
+
+    innerDiv[0].style.top = Math.round(outHeight - inHeight).toString() + 'px';
+    innerDiv[0].style.left = Math.round(outWidth - inWidth).toString() + 'px';
+}

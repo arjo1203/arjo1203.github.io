@@ -56,7 +56,7 @@ NerdBoard.UIHandler = (function() {
                         open: function() {
                             sideBar.UIS.drawUI.activeOption = 'colors';
                             sideBar.UIS.drawUI.options.colors.options.animate({
-                                    left: '465px'
+                                    left: '350px'
                                 }, 300,
                                 function() {
                                     sideBar.UIS.drawUI.options.colors.options.css('z-index', '1');
@@ -138,10 +138,10 @@ NerdBoard.UIHandler = (function() {
                     }
                 },
                 displayOptions: function(){
+                    sideBar.switchUI('drawUI');
                     sideBar.sideBar.animate({
                         height: '209px'
                     }, 100);
-                    sideBar.switchUI('drawUI');
                 },
                 styleUI: function() {
                     var penColor = NerdBoard.getColorComponents(NerdBoard.penColor);
@@ -167,10 +167,10 @@ NerdBoard.UIHandler = (function() {
             eraseUI: {
                 layer: $('#eraseToolOptions'),
                 displayOptions: function() {
+                    sideBar.switchUI('eraseUI');
                     sideBar.sideBar.animate({
                         height: '70px'
                     }, 200);
-                    sideBar.switchUI('eraseUI');
                 },
                 styleUI: function() {
                 }
@@ -260,7 +260,7 @@ NerdBoard.UIHandler = (function() {
                         open: function() {
                             sideBar.UIS.addUI.activeOption = 'textSize';
                             sideBar.UIS.addUI.options.textSize.options.animate({
-                                    left: '100px'
+                                    left: '185px'
                                 }, 300,
                                 function() {
                                     sideBar.UIS.addUI.options.textSize.options.css('z-index', '1');
@@ -270,7 +270,7 @@ NerdBoard.UIHandler = (function() {
                         close: function() {
                             sideBar.UIS.addUI.options.textSize.options.css('z-index', '-1');
                             sideBar.UIS.addUI.options.textSize.options.animate({
-                                left: '-106px'
+                                left: '0'
                             }, 250);
                             sideBar.UIS.addUI.options.textSize.isOut = false;
                         },
@@ -293,7 +293,7 @@ NerdBoard.UIHandler = (function() {
                         open: function() {
                             sideBar.UIS.addUI.activeOption = 'textInput';
                             sideBar.UIS.addUI.options.textInput.options.animate({
-                                    left: '100px'
+                                    left: '185px'
                                 }, 300,
                                 function() {
                                     sideBar.UIS.addUI.options.textInput.options.css('z-index', '1');
@@ -303,7 +303,7 @@ NerdBoard.UIHandler = (function() {
                         close: function() {
                             sideBar.UIS.addUI.options.textInput.options.css('z-index', '-1');
                             sideBar.UIS.addUI.options.textInput.options.animate({
-                                left: '-106px'
+                                left: '0'
                             }, 250);
                             sideBar.UIS.addUI.options.textInput.isOut = false;
                         },
@@ -341,7 +341,7 @@ NerdBoard.UIHandler = (function() {
                 options: {
                     themes: {
                         tigger: $('#themeBtn'),
-                        options: $('#themeOptions'),
+                        options: $('#themes'),
                         isOut: false,
                         toggle: function() {
                             if(sideBar.UIS.themeUI.options.themes.isOut) {
@@ -353,13 +353,13 @@ NerdBoard.UIHandler = (function() {
                         },
                         open: function() {
                             sideBar.UIS.themeUI.options.themes.options.animate({
-                                left: '365px'
+                                left: '85px'
                             }, 300);
                             sideBar.UIS.themeUI.options.themes.isOut = true;
                         },
                         close: function() {
                             sideBar.UIS.themeUI.options.themes.options.animate({
-                                left: '0'
+                                left: '-265px'
                             }, 250);
                             sideBar.UIS.themeUI.options.themes.isOut = false;
                         },

@@ -11,6 +11,36 @@
     </head>
     <body>
 
+
+        <div id="menu" class="btn-group">
+            <div id="menuBtn" class="white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!--<img id="menuIcon" src="icons/menu.png">-->
+                <div class="black hamburger top"></div>
+                <div class="black hamburger middle"></div>
+                <div class="black hamburger bottom"></div>
+            </div>
+            <ul class="dropdown-menu">
+                <li><a href="#" id="saveImg"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save Image</a></li>
+                <li><a href="#" id="saveWorkSpace"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save WorkSpace</a></li>
+                <li class="btn btn-file">
+                    <input type="file" id="uploadImg">
+                    <a id="loadImg" href="#"><span class="glyphicon glyphicon-open"></span> Image</a>
+                </li>
+                <li><a href="#" id="loadWorkSpace"><span class="glyphicon glyphicon-open"></span>Load WorkSpace</a></li>
+                <!--<li><a id="fullScreen">Full-Screen</a></li>-->
+            </ul>
+        </div>
+
+        <div id="functions">
+            <div class="undoBtn red" id="undo">
+                <span class="glyphicon glyphicon-repeat functionsLogos" aria-hidden="true"></span>
+            </div>
+            <div class="verticalDivider"></div>
+            <div class="clearBtn red" id="clear">
+                <span class="glyphicon glyphicon-fire functionsLogos" aria-hidden="true"></span>
+            </div>
+        </div>
+
         <div id="sideBar" class="bar">
 
             <div id="toolsDiv">
@@ -46,7 +76,7 @@
                         <div id="activeColor"></div>
                     </div>
                     <div id="colorOptions">
-                        <div class="default down1">
+                        <div class="default">
                             <div class="border defaultBg" onclick="NerdBoard.setColor('defaultBg')">
                             </div>
                             <div class="border defaultBlack" onclick="NerdBoard.setColor('defaultBlack')">
@@ -61,7 +91,7 @@
                             </div>
                         </div>
 
-                        <div class="neon down2">
+                        <div class="neon">
                             <div class="border neonBg" onclick="NerdBoard.setColor('neonBg')">
                             </div>
                             <div class="border neonBlack" onclick="NerdBoard.setColor('neonBlack')">
@@ -76,7 +106,7 @@
                             </div>
                         </div>
 
-                        <div class="night down3">
+                        <div class="night">
                             <div class="border nightBg" onclick="NerdBoard.setColor('nightBg')">
                             </div>
                             <div class="border nightBlack" onclick="NerdBoard.setColor('nightBlack')">
@@ -91,7 +121,7 @@
                             </div>
                         </div>
 
-                        <div class="slate down4">
+                        <div class="slate">
                             <div class="border slateBg" onclick="NerdBoard.setColor('slateBg')">
                             </div>
                             <div class="border slateBlack" onclick="NerdBoard.setColor('slateBlack')">
@@ -193,11 +223,10 @@
 
 
             <div id="themeToolOptions">
-                <div id="theme">
-                    <div id="themeBtn">
-                    </div>
-                    <div id="themeOptions">
-                        <div class="default down1">
+                <div id="themeBtn">
+                </div>
+                <div id="themes">
+                        <div class="default">
                             <div class="border defaultBg" onclick="NerdBoard.setBg('defaultBg')">
                             </div>
                             <div class="border defaultBlack" onclick="NerdBoard.setBg('defaultBlack')">
@@ -212,7 +241,7 @@
                             </div>
                         </div>
 
-                        <div class="neon down2">
+                        <div class="neon">
                             <div class="border neonBg" onclick="NerdBoard.setBg('neonBg')">
                             </div>
                             <div class="border neonBlack" onclick="NerdBoard.setBg('neonBlack')">
@@ -227,7 +256,7 @@
                             </div>
                         </div>
 
-                        <div class="night down3">
+                        <div class="night">
                             <div class="border nightBg" onclick="NerdBoard.setBg('nightBg')">
                             </div>
                             <div class="border nightBlack" onclick="NerdBoard.setBg('nightBlack')">
@@ -242,7 +271,7 @@
                             </div>
                         </div>
 
-                        <div class="slate down4">
+                        <div class="slate">
                             <div class="border slateBg" onclick="NerdBoard.setBg('slateBg')">
                             </div>
                             <div class="border slateBlack" onclick="NerdBoard.setBg('slateBlack')">
@@ -256,40 +285,9 @@
                             <div class="border slateYellow" onclick="NerdBoard.setBg('slateYellow')">
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
 
-        </div>
-
-
-        <div id="menu" class="btn-group">
-            <div id="menuBtn" class="white dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <!--<img id="menuIcon" src="icons/menu.png">-->
-                <div class="black hamburger top"></div>
-                <div class="black hamburger middle"></div>
-                <div class="black hamburger bottom"></div>
-            </div>
-            <ul class="dropdown-menu">
-                <li><a href="#" id="saveImg"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save Image</a></li>
-                <li><a href="#" id="saveWorkSpace"><span class="glyphicon glyphicon-save" aria-hidden="true"></span>Save WorkSpace</a></li>
-                <li class="btn btn-file">
-                    <input type="file" id="uploadImg">
-                    <a id="loadImg" href="#"><span class="glyphicon glyphicon-open"></span> Image</a>
-                </li>
-                <li><a href="#" id="loadWorkSpace"><span class="glyphicon glyphicon-open"></span>Load WorkSpace</a></li>
-                <!--<li><a id="fullScreen">Full-Screen</a></li>-->
-            </ul>
-        </div>
-
-        <div id="functions">
-            <div class="undoBtn red" id="undo">
-                <span class="glyphicon glyphicon-repeat functionsLogos" aria-hidden="true"></span>
-            </div>
-            <div class="verticalDivider"></div>
-            <div class="clearBtn red" id="clear">
-                <span class="glyphicon glyphicon-fire functionsLogos" aria-hidden="true"></span>
-            </div>
         </div>
 
         <div id="NerdLogo">NerdBoard</div>
@@ -309,26 +307,6 @@
         <script src="NerdUIHandler.js"></script>
         <script src="NerdBoardTranslator.js"></script>
         <script>
-            NerdBoard.UIHandler.styleUI();
-
-            var canvas = $('#my-canvas'), sideBar = $('#sideBar'), toolsView = $('#toolsView'), activeTool = $('#activeTool'),
-                colorOptions = $('#colorOptions'), activeColor = $('#activeColor'), colorDiv = $('#colorDiv'), colorView = $('#colorView');
-
-            var toolsDiv = $('#toolsDiv'), toolOptions = $('#toolOptions');
-
-            centerDiv(canvas, sideBar, 0, .5);
-            centerDiv(canvas, $('#NerdLogo'), 1, 0);
-            centerDiv(toolsDiv, toolOptions, 0, .5);
-            centerDiv(colorDiv, colorOptions, .5, .5);
-            centerDiv(colorView, activeColor, .5, .5);
-
-            function centerDiv(outerDiv, innerDiv, left, top) {
-                var inWidth = innerDiv[0].clientWidth * left, inHeight = innerDiv[0].clientHeight * top;
-                var outWidth = outerDiv[0].clientWidth * left, outHeight = outerDiv[0].clientHeight * top;
-
-                innerDiv[0].style.top = Math.round(outHeight - inHeight).toString() + 'px';
-                innerDiv[0].style.left = Math.round(outWidth - inWidth).toString() + 'px';
-            }
         </script>
     </body>
 </html>
