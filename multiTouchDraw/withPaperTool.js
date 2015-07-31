@@ -108,6 +108,14 @@ paper.setup('myCanvas');
                     pageY: touch.pageY
                 };
 
+                var hitResult = project.hitTest(event.point, hitOptions);
+                if (hitResult) {
+                    pathHit = hitResult.item;
+                }
+                else {
+                    return ;
+                }
+
                 //Store the trackedTouch
                 currentTouches.push(trackedTouch);
             }

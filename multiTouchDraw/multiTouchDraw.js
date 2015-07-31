@@ -25,8 +25,7 @@ paper.setup('myCanvas');
                 //Track the newly created touch
                 var trackedTouch = {
                     id: touch.identifier,
-                    pageX: touch.pageX,
-                    pageY: touch.pageY
+                    point: new Point({x: touch.pageX, y: touch.pageY})
                 };
 
                 //Store the trackedTouch
@@ -52,14 +51,14 @@ paper.setup('myCanvas');
                     var currentTouch = currentTouches[currentTouchIndex];
                     var currentPath = currentPaths[currentTouchIndex];
 
-                    //Creates a paper point based on the currentTouch position.
-                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentPath.add(point);
-                    currentPath.smooth();
-
                     // Update the trackedTouch record.
-                    currentTouch.pageX = touch.pageX;
-                    currentTouch.pageY = touch.pageY;
+                    currentTouch.point = {
+                        x: currentTouch.pageX,
+                        y: currentTouch.pageY
+                    };
+
+                    currentPath.add(currentTouch.point);
+                    currentPath.smooth();
 
                     // Store the record of the trackedTouch.
                     currentTouches.splice(currentTouchIndex, 1, currentTouch);
