@@ -12,14 +12,14 @@ function startup(){
     
     var soilMap = new Raster('img');
     soilMap.position = paper.view.center;
-    console.log(paper.view);
+    //console.log(paper.view);
     
     document.body.addEventListener('touchstart', function(e) {
         touchStart(e);
     }, false);
-    //document.body.addEventListener('touchmove', function(e) {
-    //    touchMove(e);
-    //}, false);
+    document.body.addEventListener('touchmove', function(e) {
+        touchMove(e);
+    }, false);
     //document.body.addEventListener('touchend', function(e) {
     //    touchEnd(e);
     //}, false);
@@ -33,7 +33,7 @@ var currentTouches = [];
 
 function touchStart(ev){
     console.log(ev);
-    ev.preventDefault();
+    //ev.preventDefault();
     //var touches = ev.changedTouches;
     //
     //for(var i = 0; i < touches.length; i++) {
@@ -62,8 +62,8 @@ function touchStart(ev){
 
 function touchMove(ev){
     console.log(ev);
-    ev.preventDefault();
-    var touches = ev.changedTouches;
+    //ev.preventDefault();
+    //var touches = ev.changedTouches;
 
     //Prevents touch bubbling 
     //if(touches.length == paths.length){
@@ -78,24 +78,24 @@ function touchMove(ev){
     //    }
     //}
 
-    for(var i = 0; i < touches.length; i++) {
-        var touch = touches[i];
-        var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
-
-        if(currentTouchIndex >= 0) {
-            var currentTouch = currentTouches[currentTouchIndex];
-            currentTouch.path.add(new Point({x: currentTouch.pageX, y: currentTouch.pageY}));
-
-            // Update the touch record.
-            currentTouch.pageX = touch.pageX;
-            currentTouch.pageY = touch.pageY;
-            // Store the record.
-            currentTouches.splice(currentTouchIndex, 1, currentTouch);
-        }
-        else {
-            console.log('Touch not found!');
-        }
-    }
+    //for(var i = 0; i < touches.length; i++) {
+    //    var touch = touches[i];
+    //    var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
+    //
+    //    if(currentTouchIndex >= 0) {
+    //        var currentTouch = currentTouches[currentTouchIndex];
+    //        currentTouch.path.add(new Point({x: currentTouch.pageX, y: currentTouch.pageY}));
+    //
+    //        // Update the touch record.
+    //        currentTouch.pageX = touch.pageX;
+    //        currentTouch.pageY = touch.pageY;
+    //        // Store the record.
+    //        currentTouches.splice(currentTouchIndex, 1, currentTouch);
+    //    }
+    //    else {
+    //        console.log('Touch not found!');
+    //    }
+    //}
 }
 
 
