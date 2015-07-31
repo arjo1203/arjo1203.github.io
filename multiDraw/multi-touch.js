@@ -8,7 +8,7 @@ var canvasCodeBehind = (function(){
         fill: true,
         tolerance: 2
     };
-    
+
     var codeBehind = {
         currentTouches: [],
         currentPaths: [],
