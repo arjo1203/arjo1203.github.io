@@ -14,9 +14,15 @@ function startup(){
     soilMap.position = paper.view.center;
     console.log(paper.view);
     
-    document.body.addEventListener('touchstart', touchStart, false);
-    document.body.addEventListener('touchmove', touchMove, false);
-    document.body.addEventListener('touchend', touchEnd, false);
+    document.body.addEventListener('touchstart', function(e) {
+        touchStart(e);
+    }, false);
+    document.body.addEventListener('touchmove', function(e) {
+        touchMove(e);
+    }, false);
+    document.body.addEventListener('touchend', function(e) {
+        touchEnd(e);
+    }, false);
 }
 
 
@@ -26,6 +32,7 @@ var paths = [];
 var currentTouches = [];
 
 function touchStart(ev){
+    console.log(ev);
     ev.preventDefault();
     var touches = ev.changedTouches;
 
@@ -54,6 +61,7 @@ function touchStart(ev){
 
 
 function touchMove(ev){
+    console.log(ev);
     ev.preventDefault();
     var touches = ev.changedTouches;
 
@@ -76,7 +84,6 @@ function touchMove(ev){
 
         if(currentTouchIndex >= 0) {
             var currentTouch = currentTouches[currentTouchIndex];
-            console.log(ev);
             currentTouch.path.add(new Point({x: currentTouch.pageX, y: currentTouch.pageY}));
 
             // Update the touch record.
