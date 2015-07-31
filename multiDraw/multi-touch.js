@@ -71,8 +71,6 @@ paper.setup('myCanvas');
 
             currentPaths.push(newPath);
         }
-        console.log(currentTouches);
-        console.log(currentPaths);
     };
 
     // Draws a line on the canvas between the previous touch location and
@@ -104,8 +102,6 @@ paper.setup('myCanvas');
         }
 
         paper.view.draw();
-        console.log(currentTouches);
-        console.log(currentPaths);
     };
 
     // Draws a line to the final touch position on the canvas and then
@@ -118,16 +114,8 @@ paper.setup('myCanvas');
             var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
 
             if (currentTouchIndex >= 0) {
-                var currentTouch = currentTouches[currentTouchIndex];
                 var currentPath = currentPaths[currentTouchIndex];
                 currentPath.simplify();
-
-                //ctx.beginPath();
-                //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
-                //ctx.lineTo(touch.pageX, touch.pageY);
-                //ctx.lineWidth = 4;
-                //ctx.strokeStyle = currentTouch.color;
-                //ctx.stroke();
 
                 // Remove the record.
                 currentTouches.splice(currentTouchIndex, 1);
@@ -137,9 +125,6 @@ paper.setup('myCanvas');
             }
 
         }
-
-        console.log(currentTouches);
-        console.log(currentPaths);
     };
 
     // Removes cancelled touches from the currentTouches array.
