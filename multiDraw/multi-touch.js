@@ -65,10 +65,13 @@ paper.setup('myCanvas');
                 color: touchColor
             });
 
-            currentPaths.push(new Path().style({
+            var newPath = new Path();
+            newPath.style = {
                 strokeColor: 'red',
                 strokeWidth: 4
-            }));
+            };
+
+            currentPaths.push(newPath);
 
             ctx.beginPath();
             ctx.arc(touch.pageX, touch.pageY, 2.5, Math.PI*2, false);
