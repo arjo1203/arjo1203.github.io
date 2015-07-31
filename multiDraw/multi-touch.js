@@ -2,7 +2,13 @@ paper.install(window);
 paper.setup('myCanvas');
 
 var canvasCodeBehind = (function(){
-
+    var hitOptions = {
+        segments: true,
+        stroke: true,
+        fill: true,
+        tolerance: 2
+    };
+    
     var codeBehind = {
         currentTouches: [],
         currentPaths: [],
