@@ -52,6 +52,7 @@ paper.setup('myCanvas');
                     var currentPath = currentPaths[currentTouchIndex];
 
                     // Update the trackedTouch record.
+                    console.log(currentTouch.point);
                     currentTouch.point = {
                         x: currentTouch.pageX,
                         y: currentTouch.pageY
