@@ -44,6 +44,7 @@ paper.setup('myCanvas');
 
     // Used to keep track of active touches.
     var currentTouches = [];
+    var currentPaths = [];
 
     // The rest of the code goes here...
 
@@ -63,12 +64,18 @@ paper.setup('myCanvas');
                 color: touchColor
             });
 
+            currentPaths.push(new Path().style({
+                strokeColor: 'red',
+                strokeWidth: 4
+            }));
+
             ctx.beginPath();
             ctx.arc(touch.pageX, touch.pageY, 2.5, Math.PI*2, false);
             ctx.fillStyle = touchColor;
             ctx.fill();
         }
         console.log(currentTouches);
+        console.log(currentPaths);
     };
 
     // Draws a line on the canvas between the previous touch location and
@@ -96,12 +103,14 @@ paper.setup('myCanvas');
 
                 // Store the record.
                 currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                currentPaths.splice(currentTouchIndex, 1, currentTouch);
             } else {
                 console.log('Touch was not found!');
             }
 
         }
         console.log(currentTouches);
+        console.log(currentPaths);
     };
 
     // Draws a line to the final touch position on the canvas and then
@@ -125,6 +134,7 @@ paper.setup('myCanvas');
 
                 // Remove the record.
                 currentTouches.splice(currentTouchIndex, 1);
+                currentPaths.splice(currentTouchIndex, 1);
             } else {
                 console.log('Touch was not found!');
             }
@@ -132,6 +142,7 @@ paper.setup('myCanvas');
         }
 
         console.log(currentTouches);
+        console.log(currentPaths);
     };
 
     // Removes cancelled touches from the currentTouches array.
@@ -144,6 +155,7 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 // Remove the touch record.
                 currentTouches.splice(currentTouchIndex, 1);
+                currentPaths.splice(currentTouchIndex, 1);
             } else {
                 console.log('Touch was not found!');
             }
