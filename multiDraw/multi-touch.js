@@ -113,7 +113,7 @@ var canvasCodeBehind = (function(){
 
 
     // Set up an event listener to catch cancelled touches.
-    canvas.addEventListener('touchcancel', function(e) {
+    codeBehind.canvas.addEventListener('touchcancel', function(e) {
         touchCancelled(e);
     });
 
