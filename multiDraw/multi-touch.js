@@ -11,7 +11,7 @@ paper.setup('myCanvas');
     canvas.height = window.outerHeight;
 
     // Get a 2d drawing context.
-    var ctx = canvas.getContext('2d');
+    //var ctx = canvas.getContext('2d');
 
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
@@ -71,10 +71,10 @@ paper.setup('myCanvas');
 
             currentPaths.push(newPath);
 
-            ctx.beginPath();
-            ctx.arc(touch.pageX, touch.pageY, 2.5, Math.PI*2, false);
-            ctx.fillStyle = touchColor;
-            ctx.fill();
+            //ctx.beginPath();
+            //ctx.arc(touch.pageX, touch.pageY, 2.5, Math.PI*2, false);
+            //ctx.fillStyle = touchColor;
+            //ctx.fill();
         }
         console.log(currentTouches);
         console.log(currentPaths);
@@ -92,16 +92,16 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
                 var currentPath = currentPaths[currentTouchIndex];
-                
+
                 var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 currentPath.add(newPoint);
 
-                ctx.beginPath();
-                ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
-                ctx.lineTo(touch.pageX, touch.pageY);
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = currentTouch.color;
-                ctx.stroke();
+                //ctx.beginPath();
+                //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
+                //ctx.lineTo(touch.pageX, touch.pageY);
+                //ctx.lineWidth = 4;
+                //ctx.strokeStyle = currentTouch.color;
+                //ctx.stroke();
 
                 // Update the touch record.
                 currentTouch.pageX = touch.pageX;
@@ -129,13 +129,15 @@ paper.setup('myCanvas');
 
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
+                var currentPath = currentPaths[currentTouchIndex];
+                currentPath.simplify();
 
-                ctx.beginPath();
-                ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
-                ctx.lineTo(touch.pageX, touch.pageY);
-                ctx.lineWidth = 4;
-                ctx.strokeStyle = currentTouch.color;
-                ctx.stroke();
+                //ctx.beginPath();
+                //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
+                //ctx.lineTo(touch.pageX, touch.pageY);
+                //ctx.lineWidth = 4;
+                //ctx.strokeStyle = currentTouch.color;
+                //ctx.stroke();
 
                 // Remove the record.
                 currentTouches.splice(currentTouchIndex, 1);
