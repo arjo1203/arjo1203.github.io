@@ -147,10 +147,10 @@ paper.setup('myCanvas');
                     if (currentTouchIndex >= 0) {
                         var currentTouch = currentTouches[currentTouchIndex];
                         var currentItem = currentItems[currentTouchIndex];
-                        console.log(currentItem);
+                        console.log(currentItem.position);
 
-                        currentItem.position._x = currentTouch.pageX;
-                        currentItem.position._y = currentTouch.pageY;
+                        currentItem.position.x = currentTouch.pageX;
+                        currentItem.position.y = currentTouch.pageY;
 
                         // Update the trackedTouch record.
                         currentTouch.pageX = touch.pageX;
@@ -164,8 +164,6 @@ paper.setup('myCanvas');
 
                 }
             }
-
-            paper.view.draw();
         },
         onEnd: function() {
             event.preventDefault();
