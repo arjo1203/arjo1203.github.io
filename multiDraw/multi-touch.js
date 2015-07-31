@@ -43,6 +43,20 @@ paper.setup('myCanvas');
     });
 
 
+    var drawTool = new paper.Tool();
+    drawTool.onMouseDown = function(paperEvent) {
+        console.log(paperEvent);
+    };
+    drawTool.onMouseDrag = function(paperEvent) {
+        console.log(paperEvent);
+    };
+    drawTool.onMouseUp = function(paperEvent) {
+        console.log(paperEvent);
+    };
+    drawTool.minDistance = 1;
+    drawTool.maxDistance = 3;
+
+
     // Used to keep track of active touches.
     var currentTouches = [];
     var currentPaths = [];
@@ -75,6 +89,7 @@ paper.setup('myCanvas');
     // Draws a line on the canvas between the previous touch location and
     // the new location.
     var touchMoved = function (event) {
+        console.log(event);
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
@@ -106,6 +121,7 @@ paper.setup('myCanvas');
     // Draws a line to the final touch position on the canvas and then
     // removes the touh from the currentTouches array.
     var touchEnded = function (event) {
+        console.log(event);
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
