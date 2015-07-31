@@ -42,7 +42,7 @@ paper.setup('myCanvas');
         touchCancelled(e);
     });
 
-    var draw = new Tool();
+    var draw = new paper.Tool();
     draw.onMouseDown = touchStarted;
     draw.onMouseDrag = function(event) {
     };
@@ -60,7 +60,7 @@ paper.setup('myCanvas');
 
     // Creates a new touch in the currentTouches array and draws the starting
     // point on the canvas.
-    var touchStarted = function (paperEvent) {
+    function touchStarted(paperEvent) {
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
 
@@ -79,7 +79,7 @@ paper.setup('myCanvas');
 
             currentPaths.push(newPath);
         }
-    };
+    }
 
     // Draws a line on the canvas between the previous touch location and
     // the new location.
