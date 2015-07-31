@@ -7,17 +7,6 @@ paper.setup(NerdBoard.canvas);
 
 NerdBoard.Tools = window.onload = (function() {
 
-    // Set up an event listener for when a touch leaves the canvas.
-    NerdBoard.canvas.addEventListener('touchleave', function(e) {
-        e.preventDefault();
-        touchEnded(e);
-    });
-
-    // Set up an event listener to catch cancelled touches.
-    NerdBoard.canvas.addEventListener('touchcancel', function(e) {
-        touchCancelled(e);
-    });
-
     function addPoints(point1, point2) {
         var afterMath = new paper.Point({x: point1.x + point2.x, y: point1.y + point2.y});
 
@@ -61,146 +50,33 @@ NerdBoard.Tools = window.onload = (function() {
         myPath.smooth();
     }
 
-    // Used to keep track of active touches.
-    var currentTouches = [];
-    var currentPaths = [];
-
     wbTools.tools.draw = new paper.Tool();
-    wbTools.tools.draw.onMouseDown = function(event) {
-        var touches = event.changedTouches;
-
-        for (var i=0; i < touches.length; i++) {
-            var touch = touches[i];
-
-            currentTouches.push({
-                id: touch.identifier,
-                pageX: touch.pageX,
-                pageY: touch.pageY
-            });
-
-            var newPath = new paper.Path({
-                strokeColor: NerdBoard.theme.penColor, // NerdBoardOriginal is the global module from whiteboard.js
-                strokeWidth: NerdBoard.penStroke,
-                strokeCap: 'round',
-                data: {
-                    name: NerdBoard.theme.pathName
-                }
-            });
-
-            currentPaths.push(newPath);
-        }
+    wbTools.tools.draw.onMouseDown = function() {
+        myPath = new paper.Path({
+            strokeColor: NerdBoard.theme.penColor, // NerdBoardOriginal is the global module from whiteboard.js
+            strokeWidth: NerdBoard.penStroke,
+            strokeCap: 'round',
+            data: {
+                name: NerdBoard.theme.pathName
+            }
+        });
     };
     wbTools.tools.draw.onMouseDrag = function(event) {
-        var touches = event.changedTouches;
-
-        for (var i=0; i < touches.length; i++) {
-            var touch = touches[i];
-            var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
-
-            if (currentTouchIndex >= 0) {
-                var currentTouch = currentTouches[currentTouchIndex];
-                var currentPath = currentPaths[currentTouchIndex];
-
-                var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                currentPath.add(newPoint);
-                currentPath.smooth();
-
-                // Update the touch record.
-                currentTouch.pageX = touch.pageX;
-                currentTouch.pageY = touch.pageY;
-
-                // Store the record.
-                currentTouches.splice(currentTouchIndex, 1, currentTouch);
-            } else {
-                console.log('Touch was not found!');
-            }
-
-        }
-
-        paper.view.draw();
+        myPath.add(event.point);
+        myPath.smooth();
     };
     wbTools.tools.draw.onMouseUp = function(event) {
-        var touches = event.changedTouches;
-
-        for (var i=0; i < touches.length; i++) {
-            var touch = touches[i];
-            var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
-
-            if (currentTouchIndex >= 0) {
-                var currentPath = currentPaths[currentTouchIndex];
-                currentPath.simplify();
-
-                // Remove the record.
-                currentTouches.splice(currentTouchIndex, 1);
-                currentPaths.splice(currentTouchIndex, 1);
-            } else {
-                console.log('Touch was not found!');
-            }
-
+        if(myPath._segments == 0) {
+            myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
+            myPath.style = {
+                fillColor: NerdBoard.theme.penColor,
+                strokeColor: NerdBoard.theme.penColor
+            };
+            myPath.data.name = NerdBoard.theme.pathName + 'Dot';
         }
-        //if(myPath._segments == 0) {
-        //    myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
-        //    myPath.style = {
-        //        fillColor: NerdBoard.theme.penColor,
-        //        strokeColor: NerdBoard.theme.penColor
-        //    };
-        //    myPath.data.name = NerdBoard.theme.pathName + 'Dot';
-        //}
-        //else {
-        //    myPath.simplify();
-        //}
-    };
-
-    // Draws a line to the final touch position on the canvas and then
-    // removes the touh from the currentTouches array.
-    var touchEnded = function (event) {
-        var touches = event.changedTouches;
-
-        for (var i=0; i < touches.length; i++) {
-            var touch = touches[i];
-            var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
-
-            if (currentTouchIndex >= 0) {
-                var currentPath = currentPaths[currentTouchIndex];
-                currentPath.simplify();
-
-                // Remove the record.
-                currentTouches.splice(currentTouchIndex, 1);
-                currentPaths.splice(currentTouchIndex, 1);
-            } else {
-                console.log('Touch was not found!');
-            }
-
+        else {
+            myPath.simplify();
         }
-    };
-
-    // Removes cancelled touches from the currentTouches array.
-    var touchCancelled = function (event) {
-        var touches = event.changedTouches;
-
-        for (var i=0; i < touches.length; i++) {
-            var currentTouchIndex = findCurrentTouchIndex(touches[i].identifier);
-
-            if (currentTouchIndex >= 0) {
-                // Remove the touch record.
-                currentTouches.splice(currentTouchIndex, 1);
-                currentPaths.splice(currentTouchIndex, 1);
-            } else {
-                console.log('Touch was not found!');
-            }
-        }
-    };
-
-    // Finds the array index of a touch in the currentTouches array.
-    var findCurrentTouchIndex = function (id) {
-        for (var i=0; i < currentTouches.length; i++) {
-            if (currentTouches[i].id === id) {
-                return i;
-            }
-        }
-
-        // Touch not found! Return -1.
-        return -1;
     };
     wbTools.tools.draw.minDistance = 1;
     wbTools.tools.draw.maxDistance = 3;
