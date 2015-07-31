@@ -31,23 +31,21 @@ paper.setup('myCanvas');
     //    touchEnded(e);
     //});
     //
-    //// Set up an event listener for when a touch leaves the canvas.
-    //canvas.addEventListener('touchleave', function(e) {
-    //    e.preventDefault();
-    //    touchEnded(e);
-    //});
-    //
-    //// Set up an event listener to catch cancelled touches.
-    //canvas.addEventListener('touchcancel', function(e) {
-    //    touchCancelled(e);
-    //});
+    // Set up an event listener for when a touch leaves the canvas.
+    canvas.addEventListener('touchleave', function(e) {
+        e.preventDefault();
+        touchEnded(e);
+    });
+
+    // Set up an event listener to catch cancelled touches.
+    canvas.addEventListener('touchcancel', function(e) {
+        touchCancelled(e);
+    });
 
     var draw = new paper.Tool();
     draw.onMouseDown = touchStarted;
-    draw.onMouseDrag = function(event) {
-    };
-    draw.onMouseUp = function(event) {
-    };
+    draw.onMouseDrag = touchMoved;
+    draw.onMouseUp = touchEnded;
     draw.minDistance = 1;
     draw.maxDistance = 3;
 
@@ -60,7 +58,8 @@ paper.setup('myCanvas');
 
     // Creates a new touch in the currentTouches array and draws the starting
     // point on the canvas.
-    var touchStarted = function (paperEvent) {
+    function touchStarted(paperEvent) {
+        console.log('started');
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
 
@@ -79,12 +78,14 @@ paper.setup('myCanvas');
 
             currentPaths.push(newPath);
         }
-    };
+    }
 
     // Draws a line on the canvas between the previous touch location and
     // the new location.
-    var touchMoved = function (event) {
-        var touches = event.changedTouches;
+    function touchMoved(paperEvent) {
+        console.log('moved');
+        console.log(paperEvent);
+        var touches = paperEvent.event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
             var touch = touches[i];
@@ -110,12 +111,12 @@ paper.setup('myCanvas');
         }
 
         paper.view.draw();
-    };
+    }
 
     // Draws a line to the final touch position on the canvas and then
     // removes the touh from the currentTouches array.
-    var touchEnded = function (event) {
-        var touches = event.changedTouches;
+    function touchEnded(paperEvent) {
+        var touches = paperEvent.event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
             var touch = touches[i];
@@ -133,7 +134,7 @@ paper.setup('myCanvas');
             }
 
         }
-    };
+    }
 
     // Removes cancelled touches from the currentTouches array.
     var touchCancelled = function (event) {
