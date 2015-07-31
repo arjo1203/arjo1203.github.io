@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdBoard.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdBoard.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdBoard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdBoard.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdBoardTools.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdBoardTranslator.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/NerdUIHandler.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/add.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/decision.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/eraser.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/hand.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/input.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/menu.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/pencil.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/process.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/terminal.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/icons/theme.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard copy/stateDiagram.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,20 +43,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.68">
-              <caret line="79" column="90" selection-start-line="79" selection-start-column="90" selection-end-line="79" selection-end-column="90" />
+            <state vertical-scroll-proportion="0.12430633">
+              <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.6681465">
+            <state vertical-scroll-proportion="-60.12">
               <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
               <folding />
             </state>
@@ -128,7 +110,6 @@
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.js" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.html" />
         <option value="$PROJECT_DIR$/NerdBoard copy/NerdBoard.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/NerdBoard copy/NerdUIHandler.js" />
         <option value="$PROJECT_DIR$/multi-NerdBoard/NerdBoard.js" />
         <option value="$PROJECT_DIR$/multi-NerdBoard/NerdBoard.html" />
@@ -140,6 +121,7 @@
         <option value="$PROJECT_DIR$/multiDraw/multiDrawing.html" />
         <option value="$PROJECT_DIR$/multiDraw/multi-touch.js" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -208,6 +190,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arjo1203.github.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="NerdBoard" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -678,18 +674,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.68">
-          <caret line="79" column="90" selection-start-line="79" selection-start-column="90" selection-end-line="79" selection-end-column="90" />
+        <state vertical-scroll-proportion="-60.12">
+          <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
+    <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.6681465">
-          <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.12430633">
+          <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
           <folding />
         </state>
       </provider>
