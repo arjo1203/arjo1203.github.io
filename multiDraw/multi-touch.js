@@ -1,53 +1,67 @@
+//Install paper on the window to use javascript
 paper.install(window);
+//Sets up the screen graph on the canvas
 paper.setup('myCanvas');
 
 (function(){
+    //Resizes the canvas to the size of the window
     var canvas = document.getElementById('myCanvas');
     canvas.width = window.outerWidth;
     canvas.height = window.outerHeight;
 
+    //Create arrays to store touches and paths
     var currentTouches = [];
-    var currentPaths =[];
+    var currentPaths = [];
 
-    var draw = {
-        onStart: function drawOnStart(event) {
+    //Use the HTML5 Canvas API to track the touches
+    //Use paper to draw the paths
+    var drawTool = {
+        onStart: function(event) {
             var touches = event.changedTouches;
 
             for (var i=0; i < touches.length; i++) {
                 var touch = touches[i];
 
-                currentTouches.push({
+                //Track the newly created touch
+                var trackedTouch = {
                     id: touch.identifier,
                     pageX: touch.pageX,
                     pageY: touch.pageY
-                });
+                };
 
-                var newPath = new Path();
-                newPath.strokeColor = 'green';
-                newPath.strokeWidth = 4;
+                //Store the trackedTouch
+                currentTouches.push(trackedTouch);
 
-                currentPaths.push(newPath);
+                //Create a new path for the trackedTouch
+                var path = new Path();
+                path.strokeColor = 'green';
+                path.strokeWidth = 4;
+
+                //Store the new path
+                currentPaths.push(path);
             }
         },
-        onMove: function drawOnMove(event) {
+        onMove: function(event) {
             var touches = event.changedTouches;
 
             for (var i=0; i < touches.length; i++) {
                 var touch = touches[i];
-                var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if (currentTouchIndex >= 0) {
                     var currentTouch = currentTouches[currentTouchIndex];
                     var currentPath = currentPaths[currentTouchIndex];
 
-                    var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentPath.add(newPoint);
+                    //Creates a paper point based on the currentTouch position.
+                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    currentPath.add(point);
+                    currentPath.smooth();
 
-                    // Update the touch record.
+                    // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
                     currentTouch.pageY = touch.pageY;
 
-                    // Store the record.
+                    // Store the record of the trackedTouch.
                     currentTouches.splice(currentTouchIndex, 1, currentTouch);
                 } else {
                     console.log('Touch was not found!');
@@ -57,18 +71,19 @@ paper.setup('myCanvas');
 
             paper.view.draw();
         },
-        onEnd: function drawOnEnd(event) {
+        onEnd: function(event) {
             var touches = event.changedTouches;
 
-            for (var i=0; i < touches.length; i++) {
+            for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
-                var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if (currentTouchIndex >= 0) {
+                    //Finds the path associated with the currentTouchIndex
                     var currentPath = currentPaths[currentTouchIndex];
                     currentPath.simplify();
 
-                    // Remove the record.
+                    // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
                     currentPaths.splice(currentTouchIndex, 1);
                 } else {
@@ -82,25 +97,25 @@ paper.setup('myCanvas');
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
         e.preventDefault();
-        draw.onStart(e);
+        drawTool.onStart(e);
     });
 
     // Set up an event listener for when the touch instrument is moved.
     canvas.addEventListener('touchmove', function(e) {
         e.preventDefault();
-        draw.onMove(e);
+        drawTool.onMove(e);
     });
 
     // Set up an event listener for when a touch ends.
     canvas.addEventListener('touchend', function(e) {
         e.preventDefault();
-        draw.onEnd(e);
+        drawTool.onEnd(e);
     });
 
     // Set up an event listener for when a touch leaves the canvas.
     canvas.addEventListener('touchleave', function(e) {
         e.preventDefault();
-        draw.onEnd(e);
+        drawTool.onEnd(e);
     });
 
 
@@ -114,11 +129,11 @@ paper.setup('myCanvas');
     function touchCancelled(event) {
         var touches = event.changedTouches;
 
-        for (var i=0; i < touches.length; i++) {
-            var currentTouchIndex = findCurrentTouchIndex(touches[i].identifier);
+        for (var i = 0; i < touches.length; i++) {
+            var currentTouchIndex = findTrackedTouch(touches[i].identifier);
 
             if (currentTouchIndex >= 0) {
-                // Remove the touch record.
+                // Remove the touch record and path record.
                 currentTouches.splice(currentTouchIndex, 1);
                 currentPaths.splice(currentTouchIndex, 1);
             } else {
@@ -127,10 +142,10 @@ paper.setup('myCanvas');
         }
     }
 
-    // Finds the array index of a touch in the currentTouches array.
-    var findCurrentTouchIndex = function (id) {
-        for (var i=0; i < currentTouches.length; i++) {
-            if (currentTouches[i].id === id) {
+    // Finds the array index of a trackedTouch in the currentTouches array.
+    function findTrackedTouch(touchId) {
+        for (var i = 0; i < currentTouches.length; i++) {
+            if (currentTouches[i].id === touchId) {
                 return i;
             }
         }
