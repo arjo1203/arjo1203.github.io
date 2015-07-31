@@ -2,25 +2,12 @@ paper.install(window);
 paper.setup('myCanvas');
 
 var canvasCodeBehind = (function(){
-    var hitOptions = {
-        segments: true,
-        stroke: true,
-        fill: true,
-        tolerance: 2
-    };
 
     var codeBehind = {
         currentTouches: [],
         currentPaths: [],
         canvas: document.getElementById('myCanvas'),
         switchTool:  function switchTool(tool) {
-            if(codeBehind.activeTool) {
-                codeBehind.canvas.removeEventListener('touchstart', codeBehind.activeTool.onStart, false);
-                codeBehind.canvas.removeEventListener('touchmove', codeBehind.activeTool.onStart, false);
-                codeBehind.canvas.removeEventListener('touchend', codeBehind.activeTool.onStart, false);
-                codeBehind.canvas.removeEventListener('touchleave', codeBehind.activeTool.onStart, false);
-            }
-
             // Set up an event listener for new touches.
             codeBehind.canvas.addEventListener('touchstart', function(e) {
                 e.preventDefault();
@@ -45,7 +32,6 @@ var canvasCodeBehind = (function(){
                 tool.onEnd(e);
             });
         },
-        activeTool: {},
         tools: {
             draw: {
                 onStart: function drawOnStart(event) {
@@ -115,40 +101,10 @@ var canvasCodeBehind = (function(){
 
                     }
                 }
-            },
-            move: {
-                onStart: function drawOnStart(event) {
-                    var touches = event.changedTouches;
-
-                    for (var i=0; i < touches.length; i++) {
-                        var touch = touches[i];
-
-                        codeBehind.currentTouches.push({
-                            id: touch.identifier,
-                            pageX: touch.pageX,
-                            pageY: touch.pageY
-                        });
-
-                        var currentPoint = new Point({x: touch.pageX, y: touch.pageY});
-                        var hitResult = paper.project.hitTest(currentPoint, hitOptions);
-                        if (hitResult) {
-                            codeBehind.currentPaths.push(hitResult.item);
-                            console.log(hitResult.item);
-                        }
-                        else {
-                            return ;
-                        }
-                    }
-                },
-                onMove: function drawOnMove(event) {
-                },
-                onEnd: function drawOnEnd(event) {
-                }
             }
         }
     };
-    codeBehind.activeTool = codeBehind.tools.draw;
-    codeBehind.switchTool(codeBehind.activeTool);
+    codeBehind.switchTool(codeBehind.tools.draw);
 
     // Set the canvas to fill the screen.
     codeBehind.canvas.width = window.outerWidth;
@@ -181,8 +137,8 @@ var canvasCodeBehind = (function(){
 
     // Finds the array index of a touch in the currentTouches array.
     var findCurrentTouchIndex = function (id) {
-        for (var i=0; i < codeBehind.currentTouches.length; i++) {
-            if (codeBehind.currentTouches[i].id === id) {
+        for (var i=0; i < currentTouches.length; i++) {
+            if (currentTouches[i].id === id) {
                 return i;
             }
         }
