@@ -50,7 +50,7 @@ function touchStart(ev){
         currentTouches[i].path.strokeWidth = i * 4;
     }
 
-    console.log(touches);
+    console.log(currentTouches);
 
 }
 
