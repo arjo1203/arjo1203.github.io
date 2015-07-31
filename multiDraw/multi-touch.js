@@ -1,7 +1,7 @@
 paper.install(window);
 paper.setup('myCanvas');
 
-var canvasCodeBehind = (function(obj){
+var canvasCodeBehind = (function(){
 
     var codeBehind = {
         currentTouches: [],
@@ -177,4 +177,4 @@ var canvasCodeBehind = (function(obj){
     };
 
     return codeBehind;
-}(obj || {}));
+}());
