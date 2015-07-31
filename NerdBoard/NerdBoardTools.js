@@ -53,11 +53,11 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.draw = new paper.Tool();
     wbTools.tools.draw.onMouseDown = function() {
         myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.penColor, // NerdBoardOriginal is the global module from whiteboard.js
+            strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
             strokeWidth: NerdBoard.penStroke,
             strokeCap: 'round',
             data: {
-                name: NerdBoard.theme.pathName
+                name: NerdBoard.pathName
             }
         });
     };
@@ -69,10 +69,10 @@ NerdBoard.Tools = window.onload = (function() {
         if(myPath._segments == 0) {
             myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
             myPath.style = {
-                fillColor: NerdBoard.theme.penColor,
-                strokeColor: NerdBoard.theme.penColor
+                fillColor: NerdBoard.penColor,
+                strokeColor: NerdBoard.penColor
             };
-            myPath.data.name = NerdBoard.theme.pathName + 'Dot';
+            myPath.data.name = NerdBoard.pathName + 'Dot';
         }
         else {
             myPath.simplify();
@@ -167,14 +167,11 @@ NerdBoard.Tools = window.onload = (function() {
 
 
 
-    wbTools.drawBackground = function () {
-        //if(paper.project.activeLayer.children['bg']) {
-        //    paper.project.activeLayer.children['bg'].remove();
-        //}
+    wbTools.drawBg= function () {
         var rectangle = new paper.Path.Rectangle({
             center: paper.view.center,
             size: [NerdBoard.width, NerdBoard.height],
-            fillColor: NerdBoard.theme.bg,
+            fillColor: NerdBoard.colors.defaultBg,
             name: 'bg',
             data: {
                 name: 'bg'
@@ -183,8 +180,27 @@ NerdBoard.Tools = window.onload = (function() {
 
         paper.view.update();
     };
-    wbTools.drawBackground();
+    wbTools.drawBg();
 
+
+    wbTools.resizeBg = function() {
+        var SW = paper.project.activeLayer.children['bg']._segments[0],
+            NW = paper.project.activeLayer.children['bg']._segments[1],
+            NE = paper.project.activeLayer.children['bg']._segments[2],
+            SE = paper.project.activeLayer.children['bg']._segments[3];
+
+        NW._point._x = 0;
+        NW._point._y = 0;
+
+        SW._point._x = 0;
+        SW._point._y = NerdBoard.height;
+
+        NE._point._x = NerdBoard.width;
+        NE._point._y = 0;
+
+        SE._point._x = NerdBoard.width;
+        SE._point._y = NerdBoard.height;
+    };
 
     wbTools.loadRaster = function(image) {
         new paper.Raster({
@@ -213,81 +229,13 @@ NerdBoard.Tools = window.onload = (function() {
     };
 
 
-    wbTools.convertTheme = function() {
+    wbTools.changeBgColor = function() {
         var paths = paper.project.activeLayer.children;
 
         for(var i = 0; i < paths.length; i++) {
-            var name = paths[i].data.name;
-
-            if(name == 'black') {
-                paths[i].strokeColor = NerdBoard.theme.black;
-            }
-
-            if(name == 'blackDot') {
-                paths[i].strokeColor = NerdBoard.theme.black;
-                paths[i].fillColor = NerdBoard.theme.black;
-            }
-            if(name == 'green') {
-                paths[i].strokeColor = NerdBoard.theme.green;
-            }
-            if(name == 'greenDot') {
-                paths[i].strokeColor = NerdBoard.theme.green;
-                paths[i].fillColor = NerdBoard.theme.green;
-            }
-            if(name == 'blue') {
-                paths[i].strokeColor = NerdBoard.theme.blue;
-            }
-            if(name == 'blueDot') {
-                paths[i].strokeColor = NerdBoard.theme.blue;
-                paths[i].fillColor = NerdBoard.theme.blue;
-            }
-            if(name == 'red') {
-                paths[i].strokeColor = NerdBoard.theme.red;
-            }
-            if(name == 'redDot') {
-                paths[i].strokeColor = NerdBoard.theme.red;
-                paths[i].fillColor = NerdBoard.theme.red;
-            }
-            if(name == 'yellow') {
-                paths[i].strokeColor = NerdBoard.theme.yellow;
-            }
-            if(name == 'yellowDot') {
-                paths[i].strokeColor = NerdBoard.theme.yellow;
-                paths[i].fillColor = NerdBoard.theme.yellow;
-            }
-            if(name == 'plainText') {
-                paths[i].fillColor = NerdBoard.theme.black;
-                paths[i].strokeColor = NerdBoard.theme.black;
-            }
-            if(name == 'erase') {
-                paths[i].strokeColor = NerdBoard.theme.bg;
-            }
             if(paths[i].name) {
                 if(paths[i].name == 'bg') {
-                    paths[i].fillColor = NerdBoard.theme.bg;
-                }
-                else {
-                    var fillColor, strokeColor, id = paths[i]._children[0].data.identifier;
-
-                    if(id == 'Terminal') {
-                        fillColor = NerdBoard.theme.blue;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-                    if(id == 'Process') {
-                        fillColor = NerdBoard.theme.yellow;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-                    if(id == 'Input') {
-                        fillColor = NerdBoard.theme.red;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-                    if(id == 'Decision') {
-                        fillColor = NerdBoard.theme.green;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-
-                    paths[i]._children[0].fillColor = fillColor;
-                    paths[i]._children[0].strokeColor = strokeColor;
+                    paths[i].fillColor = NerdBoard.bgColor;
                 }
             }
         }
@@ -326,8 +274,8 @@ NerdBoard.Tools = window.onload = (function() {
             var rect = new paper.Path.Rectangle({
                 center: pos,
                 size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
-                fillColor: NerdBoard.theme.blue,
-                strokeColor: NerdBoard.theme.black,
+                fillColor: NerdBoard.colors.defaultBlue,
+                strokeColor: NerdBoard.colors.defaultBlack,
                 strokeWidth: 2,
                 radius: NerdBoard.textSize / 2,
                 data: {
@@ -359,8 +307,8 @@ NerdBoard.Tools = window.onload = (function() {
             var rect = new paper.Path.Rectangle({
                 center: pos,
                 size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
-                fillColor: NerdBoard.theme.yellow,
-                strokeColor: NerdBoard.theme.black,
+                fillColor: NerdBoard.colors.defaultYellow,
+                strokeColor: NerdBoard.colors.defaultBlack,
                 strokeWidth: 2,
                 data: {
                     name: 'rect' + NerdBoard.numOfShapes.toString(),
@@ -392,8 +340,8 @@ NerdBoard.Tools = window.onload = (function() {
             var rect = new paper.Path.Rectangle({
                 center: pos,
                 size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
-                fillColor: NerdBoard.theme.green,
-                strokeColor: NerdBoard.theme.black,
+                fillColor: NerdBoard.colors.defaultGreen,
+                strokeColor: NerdBoard.colors.defaultBlack,
                 strokeWidth: 2,
                 data: {
                     name: 'rect' + NerdBoard.numOfShapes.toString(),
@@ -425,8 +373,8 @@ NerdBoard.Tools = window.onload = (function() {
             var rect = new paper.Path.Rectangle({
                 center: pos,
                 size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
-                fillColor: NerdBoard.theme.red,
-                strokeColor: NerdBoard.theme.black,
+                fillColor: NerdBoard.colors.defaultRed,
+                strokeColor: NerdBoard.colors.defaultBlack,
                 strokeWidth: 2,
                 data: {
                     name: 'rect' + NerdBoard.numOfShapes.toString(),
@@ -462,8 +410,8 @@ NerdBoard.Tools = window.onload = (function() {
                 justification: 'center',
                 fontSize: NerdBoard.textSize
             });
-            text.fillColor = NerdBoard.theme.black;
-            text.strokeColor = NerdBoard.theme.black;
+            text.fillColor = NerdBoard.colors.defaultBlack;
+            text.strokeColor = NerdBoard.colors.defaultBlack;
 
             return text;
         }

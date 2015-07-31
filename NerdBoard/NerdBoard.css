@@ -11,6 +11,7 @@ canvas[resize] {
     display: none;
 }
 #my-canvas {
+    top: 0;
     z-index: -5;
 }
 /* custom bootstrap styles */
@@ -250,14 +251,16 @@ fieldset[disabled] .btn-custom.active {
     background : #FFFFFF;
     background : rgba(255, 255, 255, 1);
     position : absolute;
-    left : 0;
+    /*left : 0;*/
+    /*top: 50%;*/
     width : 70px;
     height : 209px;
-    border-radius : 0px 10px 10px 0px;
+    border-radius : 0px 10px 0px 0px;
     -moz-border-radius : 0px 10px 10px 0px;
     -webkit-border-radius : 0px 10px 10px 0px;
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
     z-index: 1;
+    background-color: rgb(176, 176, 176);
 }
 .dropShadow {
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
@@ -315,44 +318,53 @@ fieldset[disabled] .btn-custom.active {
     height: 2px;
     border-top: 2px solid black;
 }
+#drawTool {
+    /*position: relative;*/
+    width: 50px;
+    height: 50px;
+}
 #drawToolOptions {
-    position: absolute;
+    position: relative;
     width: 70px;
     height: 140px;
     left: 0;
     top: 70px;
 }
 #colorDiv {
+    position: relative;
     height: 70px;
-    width: 166px;
-    float: right;
-}
-#activeColor {
-    position: relative;
-    width: 50px;
-    height: 50px;
-    border-radius: 40px;
-}
-#colorOptions {
-    position: relative;
-    width: 166px;
-    height: 30px;
-    top: 0;
-    z-index: -1;
+    width: 335px;
+    left: -265px;
 }
 #colorView {
+    position: absolute;
     width: 70px;
     height: 70px;
     padding: 0;
     margin: 0;
-    float: right;
+    right: 0;
     background-color: white;
     z-index: 1;
+}
+#activeColor {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    background-color: black;
+}
+#colorOptions {
+    position: relative;
+    width: 265px;
+    height: 175px;
+    z-index: -1;
 }
 #widthDiv {
     text-align: center;
     height: 70px;
-    width: 166px;
+    width: 210px;
     float: right;
 }
 #widthView {
@@ -366,13 +378,13 @@ fieldset[disabled] .btn-custom.active {
 }
 .whiteText {
     font-size: 20px;
-    color: white;
+    /*color: white;*/
 }
 #widthOptions {
     position: absolute;
     width: 166px;
     top: 95px;
-    right: 0;
+    left: -130px;
     z-index: -1;
 }
 #widths {
@@ -399,27 +411,28 @@ fieldset[disabled] .btn-custom.active {
     text-align: center;
 }
 #toolsDiv {
-    position: relative;
     width: 250px;
     height: 70px;
     float: right;
+}
+#toolOptions {
+    position: relative;
+    top: 10px;
+    width: 250px;
+    height: 50px;
+    z-index: -1;
 }
 #toolsView {
     width: 70px;
     height: 70px;
     float: right;
     border-radius : 0px 10px 0px 0px;
+    background-color: white;
 }
 #activeTool {
     position: relative;
     width: 50px;
     height: 50px;
-}
-#toolOptions {
-    position: relative;
-    width: 200px;
-    height: 50px;
-    z-index: -1;
 }
 #drawToolIcon {
     width: 50px;
@@ -438,11 +451,6 @@ fieldset[disabled] .btn-custom.active {
     height: 50px;
 }
 #themeToolIcon {
-    width: 50px;
-    height: 50px;
-}
-#drawTool {
-    position: relative;
     width: 50px;
     height: 50px;
 }
@@ -483,18 +491,19 @@ fieldset[disabled] .btn-custom.active {
     border-radius : 0px 0px 10px 0px;
 }
 #shapeToolOptions {
-    position: absolute;
+    position: relative;
     width: 70px;
     height: 210px;
-    top: 70px;
+    top: -70px;
+    border-radius : 0px 0px 10px 0px;
     z-index: -1;
     opacity: 0;
-    border-radius : 0px 0px 10px 0px;
 }
 #shapeDiv {
+    position: absolute;
+    left: -280px;
     height: 70px;
     width: 350px;
-    float: right;
 }
 #activeShape {
     position: relative;
@@ -505,18 +514,16 @@ fieldset[disabled] .btn-custom.active {
     top: 10px;
 }
 #shapeOptions {
-    position: relative;
+    position: absolute;
     width: 350px;
     height: 70px;
-    top: 0;
     z-index: -1;
 }
 #shapeView {
+    position: absolute;
     width: 70px;
     height: 70px;
-    padding: 0;
-    margin: 0;
-    float: right;
+    right: 0;
     background-color: white;
     z-index: 1;
 }
@@ -552,42 +559,43 @@ fieldset[disabled] .btn-custom.active {
     bottom: 210px;
 }
 #textSizeDiv {
+    position: relative;
     text-align: center;
+    top: 70px;
+    left: -100px;
     height: 70px;
-    width: 166px;
-    float: right;
+    width: 170px;
 }
 #textSizeView {
+    position: absolute;
+    right: 0;
     width: 70px;
     height: 70px;
-    float: right;
-    z-index: 1;
 }
 #textSizeOptions {
     position: absolute;
-    width: 166px;
-    top: 165px;
-    right: 0;
+    top: 20px;
+    width: 170px;
     z-index: -1;
 }
 #textInputDiv {
+    position: relative;
     text-align: center;
+    top: 70px;
+    left: -100px;
     height: 70px;
-    width: 166px;
-    float: right;
+    width: 170px;
 }
 #textInputView {
+    position: absolute;
+    right: 0;
     width: 70px;
     height: 70px;
-    float: right;
-    background-color: red;
-    z-index: 1;
 }
 #textInputOptions {
     position: absolute;
     width: 166px;
-    top: 95px;
-    right: 0;
+    top: 16px;
     z-index: -1;
 }
 .top {
@@ -605,12 +613,13 @@ fieldset[disabled] .btn-custom.active {
     width: 100%;
     height: 20%;
     border-radius : 5px 5px 5px 5px;
+    box-shadow : 2px 3px 1px rgba(0, 0, 0, 0.67);
 }
 #menuBtn {
     position: relative;
     width: 30px;
     height: 30px;
-    background-color: black;
+    background-color: white;
 }
 #menu {
     position: absolute;
@@ -657,6 +666,7 @@ fieldset[disabled] .btn-custom.active {
     width: 82px;
     height: 40px;
     left: 80px;
+    top: 0;
     border-radius : 0px 0px 10px 10px;
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
 }
@@ -666,256 +676,242 @@ fieldset[disabled] .btn-custom.active {
     top: 12px;
 }
 #themeToolOptions {
-    position: absolute;
+    position: relative;
     width: 70px;
     height: 70px;
-    top: 70px;
+    top: -280px;
     border-radius : 0px 0px 10px 0px;
     z-index: -1;
+    opacity: 0;
 }
-#theme {
-    position: relative;
-    width: 230px;
-    height: 50px;
-    left: -180px;
-    top: 140px;
-    top: 19%;
+#themes {
+    position: absolute;
+    width: 265px;
+    height: 175px;
+    left: -265px;
+    z-index: -1;
 }
 #themeBtn {
-    position: relative;
+    position: absolute;
+    left: 10px;
+    top: 10px;
     width: 50px;
     height: 50px;
-    left: 190px;
-    z-index: 1;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
 }
 #themeIcon {
     width: 50px;
     height: 50px;
 }
-#default {
+.default {
+    width: 265px;
+    height: 40px;
+}
+.defaultBg {
     position: relative;
     width: 40px;
     height: 40px;
+    background-color: rgb(255, 255, 255);
 }
-#themeOptions {
-    position: relative;
-    bottom: 45px;
-    width: 220px;
-    height: 40px;
-}
-#activeBlack {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    background-color: black;
-}
-#activeRed {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 20%;
-    bottom: 50px;
-    background-color: red;
-}
-#activeGreen {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 40%;
-    bottom: 100px;
-    background-color: green;
-}
-#activeBlue {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 60%;
-    bottom: 150px;
-    background-color: blue;
-}
-#activeYellow {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 80%;
-    bottom: 200px;
-    background-color: yellow;
-}
-#defaultBlack {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    background-color: black;
-}
-#defaultRed {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 20%;
-    bottom: 40px;
-    background-color: red;
-}
-#defaultGreen {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 40%;
-    bottom: 80px;
-    background-color: green;
-}
-#defaultBlue {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 60%;
-    bottom: 120px;
-    background-color: blue;
-}
-#defaultYellow {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 80%;
-    bottom: 160px;
-    background-color: yellow;
-}
-#neon {
+.defaultBlack {
     position: relative;
     width: 40px;
     height: 40px;
     left: 45px;
     bottom: 40px;
-    /*background-color: #080808;*/
+    background-color: rgb(0, 0, 0);
 }
-#neonBlack {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    background-color: rgb(176, 176, 176);
-}
-#neonRed {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 20%;
-    bottom: 40px;
-    background-color: rgb(251, 1, 32);
-}
-#neonGreen {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 40%;
-    bottom: 80px;
-    background-color: rgb(161, 198, 89);
-}
-#neonBlue {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 60%;
-    bottom: 120px;
-    background-color: rgb(111, 179, 216);
-}
-#neonYellow {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 80%;
-    bottom: 160px;
-    background-color: rgb(253, 163, 49);
-}
-#night {
+.defaultRed {
     position: relative;
     width: 40px;
     height: 40px;
     left: 90px;
     bottom: 80px;
-    /*background-color: #080808;*/
+    background-color: rgb(255, 0, 0);
 }
-#nightBlack {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    background-color: rgb(101, 123, 131);
-}
-#nightRed {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 20%;
-    bottom: 40px;
-    background-color: rgb(220, 50, 47);
-}
-#nightGreen {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 40%;
-    bottom: 80px;
-    background-color: rgb(72, 139, 60);
-}
-#nightBlue {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 60%;
-    bottom: 120px;
-    background-color: rgb(38, 139, 210);
-}
-#nightYellow {
-    position: relative;
-    width: 20%;
-    height: 100%;
-    left: 80%;
-    bottom: 160px;
-    background-color: rgb(241, 196, 15);
-}
-#slate {
+.defaultGreen {
     position: relative;
     width: 40px;
     height: 40px;
     left: 135px;
     bottom: 120px;
-    /*background-color: #080808;*/
+    background-color: rgb(0, 128, 0);
 }
-#slateBlack {
+.defaultBlue {
     position: relative;
-    width: 20%;
-    height: 100%;
+    width: 40px;
+    height: 40px;
+    left: 180px;
+    bottom: 160px;
+    background-color: rgb(0, 0, 255);
+}
+.defaultYellow {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 225px;
+    bottom: 200px;
+    background-color: rgb(225, 225, 0);
+}
+.neon {
+    position: relative;
+    width: 265px;
+    height: 40px;
+    top: 5px;
+}
+.neonBg {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(30, 30, 30);
+}
+.neonBlack {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 45px;
+    bottom: 40px;
+    background-color: rgb(176, 176, 176);
+}
+.neonRed {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 90px;
+    bottom: 80px;
+    background-color: rgb(251, 1, 32);
+}
+.neonGreen {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 135px;
+    bottom: 120px;
+    background-color: rgb(161, 198, 89);
+}
+.neonBlue {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 180px;
+    bottom: 160px;
+    background-color: rgb(111, 179, 216);
+}
+.neonYellow {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 225px;
+    bottom: 200px;
+    background-color: rgb(253, 163, 49);
+}
+.night {
+    position: relative;
+    width: 265px;
+    height: 40px;
+    top: 10px;
+}
+.nightBg {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(0, 43, 54);
+}
+.nightBlack {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 45px;
+    bottom: 40px;
+    background-color: rgb(101, 123, 131);
+}
+.nightRed {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 90px;
+    bottom: 80px;
+    background-color: rgb(220, 50, 47);
+}
+.nightGreen {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 135px;
+    bottom: 120px;
+    background-color: rgb(72, 139, 60);
+}
+.nightBlue {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 180px;
+    bottom: 160px;
+    background-color: rgb(38, 139, 210);
+}
+.nightYellow {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 225px;
+    bottom: 200px;
+    background-color: rgb(241, 196, 15);
+}
+.slate {
+    position: relative;
+    width: 265px;
+    height: 40px;
+    top: 15px;
+}
+.slateBg {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(125, 133, 138);
+}
+.slateBlack {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 45px;
+    bottom: 40px;
     background-color: rgb(62, 68, 76);
 }
-#slateRed {
+.slateRed {
     position: relative;
-    width: 20%;
-    height: 100%;
-    left: 20%;
-    bottom: 40px;
+    width: 40px;
+    height: 40px;
+    left: 90px;
+    bottom: 80px;
     background-color: rgb(237, 88, 84);
 }
-#slateGreen {
+.slateGreen {
     position: relative;
-    width: 20%;
-    height: 100%;
-    left: 40%;
-    bottom: 80px;
+    width: 40px;
+    height: 40px;
+    left: 135px;
+    bottom: 120px;
     background-color: rgb(112, 201, 112);
 }
-#slateBlue {
+.slateBlue {
     position: relative;
-    width: 20%;
-    height: 100%;
-    left: 60%;
-    bottom: 120px;
+    width: 40px;
+    height: 40px;
+    left: 180px;
+    bottom: 160px;
     background-color: rgb(108, 199, 225);
 }
-#slateYellow {
+.slateYellow {
     position: relative;
-    width: 20%;
-    height: 100%;
-    left: 80%;
-    bottom: 160px;
-    background-color: rgb(241, 196, 15);
+    width: 40px;
+    height: 40px;
+    left: 225px;
+    bottom: 200px;
+    background-color: rgb(241, 186, 15);
+}
+.border {
+    border: 1px solid black;
 }
 .verticalDivider {
     position: relative;
@@ -934,4 +930,20 @@ fieldset[disabled] .btn-custom.active {
 /*}*/
 #penWidth .slider-selection {
     background: #0077aa;
+}
+.down1 {
+    position: relative;
+    top: 70px;
+}
+.down2 {
+    position: relative;
+    top: 75px;
+}
+.down3 {
+    position: relative;
+    top: 80px;
+}
+.down4 {
+    position: relative;
+    top: 85px;
 }
