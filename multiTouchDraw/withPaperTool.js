@@ -126,7 +126,6 @@ paper.setup('myCanvas');
 
                 if (hitResult) {
                     currentItems.push(hitResult.item);
-                    pathHit = hitResult.item;
                 }
                 else {
                     return ;
@@ -148,6 +147,7 @@ paper.setup('myCanvas');
                     if (currentTouchIndex >= 0) {
                         var currentTouch = currentTouches[currentTouchIndex];
                         var currentItem = currentItems[currentTouchIndex];
+                        console.log(currentItem);
 
                         currentItem.position.x = currentTouch.pageX;
                         currentItem.position.y = currentTouch.pageY;
