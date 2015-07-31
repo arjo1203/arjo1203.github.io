@@ -9,25 +9,25 @@ var canvasCodeBehind = (function(){
         canvas: document.getElementById('myCanvas'),
         switchTool:  function switchTool(tool) {
             // Set up an event listener for new touches.
-            canvas.addEventListener('touchstart', function(e) {
+            codeBehind.canvas.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 tool.onStart(event);
             });
 
             // Set up an event listener for when the touch instrument is moved.
-            canvas.addEventListener('touchmove', function(e) {
+            codeBehind.canvas.addEventListener('touchmove', function(e) {
                 e.preventDefault();
                 tool.onMove(e);
             });
 
             // Set up an event listener for when a touch ends.
-            canvas.addEventListener('touchend', function(e) {
+            codeBehind.canvas.addEventListener('touchend', function(e) {
                 e.preventDefault();
                 tool.onEnd(e);
             });
 
             // Set up an event listener for when a touch leaves the canvas.
-            canvas.addEventListener('touchleave', function(e) {
+            codeBehind.canvas.addEventListener('touchleave', function(e) {
                 e.preventDefault();
                 tool.onEnd(e);
             });
