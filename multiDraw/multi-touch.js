@@ -28,7 +28,7 @@ function touchStart(ev){
     ev.preventDefault();
     var touches = ev.touches;
 
-    for(var i = 0; i < touches.length; i++) {
+    //for(var i = 0; i < touches.length; i++) {
 
         //Create new path per touch
         var path = new Path();
@@ -36,7 +36,7 @@ function touchStart(ev){
         path.strokeColor = 'red';
         path.strokeWidth = 4;
         paths.push(path);
-    }
+    //}
 
     console.log(touches);
 
