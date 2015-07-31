@@ -5,7 +5,7 @@ paper.setup('myCanvas');
 
 (function(){
     //Resize the canvas to the size of the window
-    var canvas = document.getElementById('myCanvas');
+    var canvas = $('#myCanvas')[0];
     canvas.width = window.outerWidth;
     canvas.height = window.outerHeight;
 
@@ -171,6 +171,17 @@ paper.setup('myCanvas');
             event.preventDefault();
         }
     };
+
+    $('#drawTool').on('click', function() {
+        unbindToolToCanvas(moveTool);
+        bindToolToCanvas(drawTool);
+    });
+
+
+    $('#moveTool').on('click', function() {
+        unbindToolToCanvas(drawTool);
+        bindToolToCanvas(moveTool);
+    });
 
     function bindToolToCanvas(Tool) {
         // Set up an event listener for new touches.
