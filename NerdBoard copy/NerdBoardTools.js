@@ -106,7 +106,7 @@ NerdBoard.Tools = window.onload = (function() {
 
                 var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 currentPath.add(newPoint);
-                currentPath.smooth();
+                //currentPath.smooth();
 
                 // Update the touch record.
                 currentTouch.pageX = touch.pageX;
