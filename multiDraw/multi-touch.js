@@ -66,10 +66,8 @@ paper.setup('myCanvas');
             });
 
             var newPath = new Path();
-            newPath.style = {
-                strokeColor: 'red',
-                strokeWidth: 4
-            };
+            newPath.strokeColor = 'red';
+            newPath.strokeWidth = 4;
 
             currentPaths.push(newPath);
 
