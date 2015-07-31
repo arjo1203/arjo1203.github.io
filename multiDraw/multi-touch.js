@@ -14,10 +14,10 @@ paper.setup('myCanvas');
     //var ctx = canvas.getContext('2d');
 
     // Set up an event listener for new touches.
-    canvas.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        touchStarted(event);
-    });
+    //canvas.addEventListener('touchstart', function(e) {
+    //    e.preventDefault();
+    //    touchStarted(event);
+    //});
 
     // Set up an event listener for when the touch instrument is moved.
     canvas.addEventListener('touchmove', function(e) {
@@ -42,6 +42,15 @@ paper.setup('myCanvas');
         touchCancelled(e);
     });
 
+    var draw = new Tool();
+    draw.onMouseDown = touchStarted;
+    draw.onMouseDrag = function(event) {
+    };
+    draw.onMouseUp = function(event) {
+    };
+    draw.minDistance = 1;
+    draw.maxDistance = 3;
+
 
     // Used to keep track of active touches.
     var currentTouches = [];
@@ -51,9 +60,9 @@ paper.setup('myCanvas');
 
     // Creates a new touch in the currentTouches array and draws the starting
     // point on the canvas.
-    var touchStarted = function (event) {
-        console.log(event);
-        var touches = event.changedTouches;
+    var touchStarted = function (paperEvent) {
+        console.log(paperEvent);
+        var touches = paperEvent.event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
             var touch = touches[i];
