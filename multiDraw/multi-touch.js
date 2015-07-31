@@ -65,7 +65,7 @@ paper.setup('myCanvas');
                 path: new Path()
             });
 
-            currentTouches[i].path.strokeColor = 'black';
+            currentTouches[i].path.strokeColor = 'blue';
             currentTouches[i].path.strokeWidth = 4;
 
             //ctx.beginPath();
@@ -89,6 +89,7 @@ paper.setup('myCanvas');
                 var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 console.log(newPoint);
                 currentTouch.path.add(newPoint);
+                currentTouch.path.smooth();
 
                 //ctx.beginPath();
                 //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
