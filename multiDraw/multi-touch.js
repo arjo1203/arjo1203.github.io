@@ -1,119 +1,110 @@
 paper.install(window);
 paper.setup('myCanvas');
 
-var canvasCodeBehind = (function(){
+(function(){
+    var canvas = document.getElementById('myCanvas');
+    canvas.width = window.outerWidth;
+    canvas.height = window.outerHeight;
 
-    var codeBehind = {
-        currentTouches: [],
-        currentPaths: [],
-        canvas: document.getElementById('myCanvas'),
-        switchTool:  function switchTool(tool) {
-            // Set up an event listener for new touches.
-            codeBehind.canvas.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                tool.onStart(event);
-            });
+    var currentTouches = [];
 
-            // Set up an event listener for when the touch instrument is moved.
-            codeBehind.canvas.addEventListener('touchmove', function(e) {
-                e.preventDefault();
-                tool.onMove(e);
-            });
+    var draw = {
+        onStart: function drawOnStart(event) {
+            var touches = event.changedTouches;
 
-            // Set up an event listener for when a touch ends.
-            codeBehind.canvas.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                tool.onEnd(e);
-            });
+            for (var i=0; i < touches.length; i++) {
+                var touch = touches[i];
 
-            // Set up an event listener for when a touch leaves the canvas.
-            codeBehind.canvas.addEventListener('touchleave', function(e) {
-                e.preventDefault();
-                tool.onEnd(e);
-            });
+                codeBehind.currentTouches.push({
+                    id: touch.identifier,
+                    pageX: touch.pageX,
+                    pageY: touch.pageY
+                });
+
+                var newPath = new Path();
+                newPath.strokeColor = 'green';
+                newPath.strokeWidth = 4;
+
+                codeBehind.currentPaths.push(newPath);
+            }
         },
-        tools: {
-            draw: {
-                onStart: function drawOnStart(event) {
-                    var touches = event.changedTouches;
+        onMove: function drawOnMove(event) {
+            var touches = event.changedTouches;
 
-                    for (var i=0; i < touches.length; i++) {
-                        var touch = touches[i];
+            for (var i=0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
 
-                        codeBehind.currentTouches.push({
-                            id: touch.identifier,
-                            pageX: touch.pageX,
-                            pageY: touch.pageY
-                        });
+                if (currentTouchIndex >= 0) {
+                    var currentTouch = codeBehind.currentTouches[currentTouchIndex];
+                    var currentPath = codeBehind.currentPaths[currentTouchIndex];
 
-                        var newPath = new Path();
-                        newPath.strokeColor = 'green';
-                        newPath.strokeWidth = 4;
+                    var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    currentPath.add(newPoint);
 
-                        codeBehind.currentPaths.push(newPath);
-                    }
-                },
-                onMove: function drawOnMove(event) {
-                    var touches = event.changedTouches;
+                    // Update the touch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
 
-                    for (var i=0; i < touches.length; i++) {
-                        var touch = touches[i];
-                        var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
-
-                        if (currentTouchIndex >= 0) {
-                            var currentTouch = codeBehind.currentTouches[currentTouchIndex];
-                            var currentPath = codeBehind.currentPaths[currentTouchIndex];
-
-                            var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                            currentPath.add(newPoint);
-
-                            // Update the touch record.
-                            currentTouch.pageX = touch.pageX;
-                            currentTouch.pageY = touch.pageY;
-
-                            // Store the record.
-                            codeBehind.currentTouches.splice(currentTouchIndex, 1, currentTouch);
-                        } else {
-                            console.log('Touch was not found!');
-                        }
-
-                    }
-
-                    paper.view.draw();
-                },
-                onEnd: function drawOnEnd(event) {
-                    var touches = event.changedTouches;
-
-                    for (var i=0; i < touches.length; i++) {
-                        var touch = touches[i];
-                        var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
-
-                        if (currentTouchIndex >= 0) {
-                            var currentPath = codeBehind.currentPaths[currentTouchIndex];
-                            currentPath.simplify();
-
-                            // Remove the record.
-                            codeBehind.currentTouches.splice(currentTouchIndex, 1);
-                            codeBehind.currentPaths.splice(currentTouchIndex, 1);
-                        } else {
-                            console.log('Touch was not found!');
-                        }
-
-                    }
+                    // Store the record.
+                    codeBehind.currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                } else {
+                    console.log('Touch was not found!');
                 }
+
+            }
+
+            paper.view.draw();
+        },
+        onEnd: function drawOnEnd(event) {
+            var touches = event.changedTouches;
+
+            for (var i=0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
+
+                if (currentTouchIndex >= 0) {
+                    var currentPath = codeBehind.currentPaths[currentTouchIndex];
+                    currentPath.simplify();
+
+                    // Remove the record.
+                    codeBehind.currentTouches.splice(currentTouchIndex, 1);
+                    codeBehind.currentPaths.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
             }
         }
     };
-    codeBehind.switchTool(codeBehind.tools.draw);
 
-    // Set the canvas to fill the screen.
-    codeBehind.canvas.width = window.outerWidth;
-    codeBehind.canvas.height = window.outerHeight;
+    // Set up an event listener for new touches.
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        draw.onStart(e);
+    });
 
+    // Set up an event listener for when the touch instrument is moved.
+    canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        draw.onMove(e);
+    });
+
+    // Set up an event listener for when a touch ends.
+    canvas.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        draw.onEnd(e);
+    });
+
+    // Set up an event listener for when a touch leaves the canvas.
+    canvas.addEventListener('touchleave', function(e) {
+        e.preventDefault();
+        draw.onEnd(e);
+    });
 
 
     // Set up an event listener to catch cancelled touches.
-    codeBehind.canvas.addEventListener('touchcancel', function(e) {
+    canvas.addEventListener('touchcancel', function(e) {
         touchCancelled(e);
     });
 
@@ -146,6 +137,4 @@ var canvasCodeBehind = (function(){
         // Touch not found! Return -1.
         return -1;
     };
-
-    return codeBehind;
 }());
