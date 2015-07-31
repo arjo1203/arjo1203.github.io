@@ -9,8 +9,8 @@ paper.setup('myCanvas');
     canvas.width = window.outerWidth;
     canvas.height = window.outerHeight;
 
-    //// Get a 2d drawing context.
-    //var ctx = canvas.getContext('2d');
+    // Get a 2d drawing context.
+    var ctx = canvas.getContext('2d');
 
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
