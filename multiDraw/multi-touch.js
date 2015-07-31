@@ -52,6 +52,7 @@ paper.setup('myCanvas');
     // Creates a new touch in the currentTouches array and draws the starting
     // point on the canvas.
     var touchStarted = function (event) {
+        console.log(event);
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
