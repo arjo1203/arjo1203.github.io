@@ -67,6 +67,7 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.tools.draw = new paper.Tool();
     wbTools.tools.draw.onMouseDown = function(event) {
+        event.preventDefault();
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
@@ -91,6 +92,7 @@ NerdBoard.Tools = window.onload = (function() {
         }
     };
     wbTools.tools.draw.onMouseDrag = function(event) {
+        event.preventDefault();
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
@@ -120,6 +122,7 @@ NerdBoard.Tools = window.onload = (function() {
         paper.view.draw();
     };
     wbTools.tools.draw.onMouseUp = function(event) {
+        event.preventDefault();
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
@@ -154,6 +157,7 @@ NerdBoard.Tools = window.onload = (function() {
     // Draws a line to the final touch position on the canvas and then
     // removes the touh from the currentTouches array.
     var touchEnded = function (event) {
+        event.preventDefault();
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
@@ -176,6 +180,7 @@ NerdBoard.Tools = window.onload = (function() {
 
     // Removes cancelled touches from the currentTouches array.
     var touchCancelled = function (event) {
+        event.preventDefault();
         var touches = event.changedTouches;
 
         for (var i=0; i < touches.length; i++) {
