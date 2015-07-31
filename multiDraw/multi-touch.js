@@ -116,22 +116,22 @@
         }
     };
 
-}());
+    // Returns a random color from an array.
+    var randomColor = function () {
+        var colors = ['#3F3F3F', '#929292', '#00A3EE', '#F5D908', '#D80351'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    };
 
-// Returns a random color from an array.
-var randomColor = function () {
-    var colors = ['#3F3F3F', '#929292', '#00A3EE', '#F5D908', '#D80351'];
-    return colors[Math.floor(Math.random() * colors.length)];
-};
-
-// Finds the array index of a touch in the currentTouches array.
-var findCurrentTouchIndex = function (id) {
-    for (var i=0; i < currentTouches.length; i++) {
-        if (currentTouches[i].id === id) {
-            return i;
+    // Finds the array index of a touch in the currentTouches array.
+    var findCurrentTouchIndex = function (id) {
+        for (var i=0; i < currentTouches.length; i++) {
+            if (currentTouches[i].id === id) {
+                return i;
+            }
         }
-    }
 
-    // Touch not found! Return -1.
-    return -1;
-};
+        // Touch not found! Return -1.
+        return -1;
+    };
+
+}());
