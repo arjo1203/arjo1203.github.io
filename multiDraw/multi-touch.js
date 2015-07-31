@@ -76,7 +76,8 @@ function touchmove(ev){
 
         if(currentTouchIndex >= 0) {
             var currentTouch = currentTouches[currentTouchIndex];
-            currentTouch.path.add(ev.point);
+            console.log(ev);
+            currentTouch.path.add(new Point({x: currentTouch.pageX, y: currentTouch.pageY}));
         }
     }
 }
