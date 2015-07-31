@@ -70,11 +70,6 @@ paper.setup('myCanvas');
             newPath.strokeWidth = 4;
 
             currentPaths.push(newPath);
-
-            //ctx.beginPath();
-            //ctx.arc(touch.pageX, touch.pageY, 2.5, Math.PI*2, false);
-            //ctx.fillStyle = touchColor;
-            //ctx.fill();
         }
         console.log(currentTouches);
         console.log(currentPaths);
@@ -95,13 +90,6 @@ paper.setup('myCanvas');
 
                 var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 currentPath.add(newPoint);
-
-                //ctx.beginPath();
-                //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
-                //ctx.lineTo(touch.pageX, touch.pageY);
-                //ctx.lineWidth = 4;
-                //ctx.strokeStyle = currentTouch.color;
-                //ctx.stroke();
 
                 // Update the touch record.
                 currentTouch.pageX = touch.pageX;
@@ -132,7 +120,7 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
                 var currentPath = currentPaths[currentTouchIndex];
-                //currentPath.simplify();
+                currentPath.simplify();
 
                 //ctx.beginPath();
                 //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
