@@ -147,7 +147,8 @@ paper.setup('myCanvas');
                     if (currentTouchIndex >= 0) {
                         var currentTouch = currentTouches[currentTouchIndex];
                         var currentItem = currentItems[currentTouchIndex];
-                        console.log(currentItem.position);
+                        console.log(currentItem);
+                        console.log(paper.project.activeLayer.children[currentItem.id]);
 
                         currentItem.position.x = currentTouch.pageX;
                         currentItem.position.y = currentTouch.pageY;
