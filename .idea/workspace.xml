@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiDraw/multi-touch.js" afterPath="$PROJECT_DIR$/multiDraw/multi-touch.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/multiDraw/multi-touch.js" afterPath="$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/multiDraw/multiDrawing.html" afterPath="$PROJECT_DIR$/multiTouchDraw/multiDrawing.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/multiDraw/multiDrawingScreenShot.png" afterPath="$PROJECT_DIR$/multiTouchDraw/multiDrawingScreenShot.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,40 +29,30 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="multiDrawing.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/multiDraw/multiDrawing.html">
+        <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiDrawing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.04">
-              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state vertical-scroll-proportion="-9.6">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multi-touch.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/multiDraw/multi-touch.js">
+      <file leaf-file-name="multiTouchDraw.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.088553">
-              <caret line="63" column="55" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="12" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="withPaperTool.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-47.36">
-              <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-60.12">
-              <caret line="296" column="0" selection-start-line="296" selection-start-column="0" selection-end-line="296" selection-end-column="0" />
+            <state vertical-scroll-proportion="2.660907">
+              <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -71,9 +66,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/QuadricSurfaces/2dPlot.html" />
-        <option value="$PROJECT_DIR$/2D_Metaballs/2D_Metaballs.html" />
-        <option value="$PROJECT_DIR$/2D_Metaballs/2D_Metaballs.js" />
         <option value="$PROJECT_DIR$/physicsSimulator/physicsSimulator_2.0.html" />
         <option value="$PROJECT_DIR$/physicsSimulator/physicsSimulator.html" />
         <option value="$PROJECT_DIR$/physicsSimulator/physicsSimulator_2.0.js" />
@@ -122,6 +114,9 @@
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/multiDraw/multi-touch.js" />
+        <option value="$PROJECT_DIR$/multiTouchDraw/multiDrawing.html" />
+        <option value="$PROJECT_DIR$/PAPER/paper-full.js" />
+        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
       </list>
     </option>
   </component>
@@ -203,21 +198,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="NerdBoard" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="arjo1203.github.io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="archTool_1.0" />
+              <option name="myItemId" value="PAPER" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -554,6 +535,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13822894">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -576,6 +558,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="64.96296">
           <caret line="4" column="49862" selection-start-line="4" selection-start-column="49849" selection-end-line="4" selection-end-column="49862" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -642,26 +625,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35529158">
-          <caret line="608" column="5" selection-start-line="608" selection-start-column="1" selection-end-line="608" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9157667">
           <caret line="53" column="49" selection-start-line="53" selection-start-column="49" selection-end-line="53" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/multiDraw/multiDrawing.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.04">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -682,10 +649,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiDraw/multi-touch.js">
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.088553">
-          <caret line="63" column="55" selection-start-line="63" selection-start-column="55" selection-end-line="63" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiDrawing.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.6">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="12" selection-start-line="0" selection-start-column="0" selection-end-line="155" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PAPER/paper-full.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30532545">
+          <caret line="10683" column="45" selection-start-line="10683" selection-start-column="45" selection-end-line="10683" selection-end-column="45" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.660907">
+          <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
           <folding />
         </state>
       </provider>

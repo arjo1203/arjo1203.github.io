@@ -4,7 +4,7 @@ paper.install(window);
 paper.setup('myCanvas');
 
 (function(){
-    //Resizes the canvas to the size of the window
+    //Resize the canvas to the size of the window
     var canvas = document.getElementById('myCanvas');
     canvas.width = window.outerWidth;
     canvas.height = window.outerHeight;
@@ -152,5 +152,5 @@ paper.setup('myCanvas');
 
         // Touch not found! Return -1.
         return -1;
-    };
+    }
 }());
