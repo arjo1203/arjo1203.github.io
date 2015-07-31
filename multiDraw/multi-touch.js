@@ -17,9 +17,9 @@ function startup(){
     document.body.addEventListener('touchstart', function(e) {
         touchStart(e);
     }, false);
-    document.body.addEventListener('touchmove', function(e) {
-        touchMove(e);
-    }, false);
+    //document.body.addEventListener('touchmove', function(e) {
+    //    touchMove(e);
+    //}, false);
     //document.body.addEventListener('touchend', function(e) {
     //    touchEnd(e);
     //}, false);
@@ -32,7 +32,6 @@ var paths = [];
 var currentTouches = [];
 
 function touchStart(ev){
-    console.log(ev);
     ev.preventDefault();
     var touches = ev.touches;
 
@@ -47,12 +46,8 @@ function touchStart(ev){
             path: new Path()
         });
 
-
-        //Create new path per touch
-        //var path = new Path();
         currentTouches[i].path.strokeColor = 'red';
         currentTouches[i].path.strokeWidth = i * 4;
-        //paths.push(path);
     }
 
     console.log(touches);
