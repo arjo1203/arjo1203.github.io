@@ -114,6 +114,8 @@ paper.setup('myCanvas');
             }
 
         }
+
+        paper.view.draw();
         console.log(currentTouches);
         console.log(currentPaths);
     };
@@ -130,7 +132,7 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
                 var currentPath = currentPaths[currentTouchIndex];
-                currentPath.simplify();
+                //currentPath.simplify();
 
                 //ctx.beginPath();
                 //ctx.moveTo(currentTouch.pageX, currentTouch.pageY);
