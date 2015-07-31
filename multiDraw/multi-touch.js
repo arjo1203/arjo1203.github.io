@@ -114,7 +114,7 @@ var canvasCodeBehind = (function(){
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
         e.preventDefault();
-        draw.onStart(event);
+        draw.onStart(e);
     });
 
     // Set up an event listener for when the touch instrument is moved.
