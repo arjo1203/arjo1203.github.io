@@ -14,6 +14,13 @@ var canvasCodeBehind = (function(){
         currentPaths: [],
         canvas: document.getElementById('myCanvas'),
         switchTool:  function switchTool(tool) {
+            if(codeBehind.activeTool) {
+                codeBehind.canvas.removeEventListener('touchstart', codeBehind.activeTool.onStart, false);
+                codeBehind.canvas.removeEventListener('touchmove', codeBehind.activeTool.onStart, false);
+                codeBehind.canvas.removeEventListener('touchend', codeBehind.activeTool.onStart, false);
+                codeBehind.canvas.removeEventListener('touchleave', codeBehind.activeTool.onStart, false);
+            }
+
             // Set up an event listener for new touches.
             codeBehind.canvas.addEventListener('touchstart', function(e) {
                 e.preventDefault();
@@ -38,6 +45,7 @@ var canvasCodeBehind = (function(){
                 tool.onEnd(e);
             });
         },
+        activeTool: {},
         tools: {
             draw: {
                 onStart: function drawOnStart(event) {
@@ -139,7 +147,8 @@ var canvasCodeBehind = (function(){
             }
         }
     };
-    codeBehind.switchTool(codeBehind.tools.draw);
+    codeBehind.activeTool = codeBehind.tools.draw;
+    codeBehind.switchTool(codeBehind.activeTool);
 
     // Set the canvas to fill the screen.
     codeBehind.canvas.width = window.outerWidth;
