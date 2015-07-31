@@ -17,12 +17,12 @@ function startup(){
     document.body.addEventListener('touchstart', function(e) {
         touchStart(e);
     }, false);
-    document.body.addEventListener('touchmove', function(e) {
-        touchMove(e);
-    }, false);
-    document.body.addEventListener('touchend', function(e) {
-        touchEnd(e);
-    }, false);
+    //document.body.addEventListener('touchmove', function(e) {
+    //    touchMove(e);
+    //}, false);
+    //document.body.addEventListener('touchend', function(e) {
+    //    touchEnd(e);
+    //}, false);
 }
 
 
