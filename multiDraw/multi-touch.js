@@ -33,7 +33,6 @@ function touchStart(ev){
         //Create new path per touch
         var path = new Path();
         path.strokeColor = 'red';
-        path.strokeColor = 'red';
         path.strokeWidth = 4;
         paths.push(path);
     //}
