@@ -7,6 +7,7 @@ paper.setup('myCanvas');
     canvas.height = window.outerHeight;
 
     var currentTouches = [];
+    var currentPaths =[];
 
     var draw = {
         onStart: function drawOnStart(event) {
@@ -15,7 +16,7 @@ paper.setup('myCanvas');
             for (var i=0; i < touches.length; i++) {
                 var touch = touches[i];
 
-                codeBehind.currentTouches.push({
+                currentTouches.push({
                     id: touch.identifier,
                     pageX: touch.pageX,
                     pageY: touch.pageY
@@ -25,7 +26,7 @@ paper.setup('myCanvas');
                 newPath.strokeColor = 'green';
                 newPath.strokeWidth = 4;
 
-                codeBehind.currentPaths.push(newPath);
+                currentPaths.push(newPath);
             }
         },
         onMove: function drawOnMove(event) {
@@ -36,8 +37,8 @@ paper.setup('myCanvas');
                 var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
 
                 if (currentTouchIndex >= 0) {
-                    var currentTouch = codeBehind.currentTouches[currentTouchIndex];
-                    var currentPath = codeBehind.currentPaths[currentTouchIndex];
+                    var currentTouch = currentTouches[currentTouchIndex];
+                    var currentPath = currentPaths[currentTouchIndex];
 
                     var newPoint = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                     currentPath.add(newPoint);
@@ -47,7 +48,7 @@ paper.setup('myCanvas');
                     currentTouch.pageY = touch.pageY;
 
                     // Store the record.
-                    codeBehind.currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -64,12 +65,12 @@ paper.setup('myCanvas');
                 var currentTouchIndex = findCurrentTouchIndex(touch.identifier);
 
                 if (currentTouchIndex >= 0) {
-                    var currentPath = codeBehind.currentPaths[currentTouchIndex];
+                    var currentPath = currentPaths[currentTouchIndex];
                     currentPath.simplify();
 
                     // Remove the record.
-                    codeBehind.currentTouches.splice(currentTouchIndex, 1);
-                    codeBehind.currentPaths.splice(currentTouchIndex, 1);
+                    currentTouches.splice(currentTouchIndex, 1);
+                    currentPaths.splice(currentTouchIndex, 1);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -128,8 +129,8 @@ paper.setup('myCanvas');
 
     // Finds the array index of a touch in the currentTouches array.
     var findCurrentTouchIndex = function (id) {
-        for (var i=0; i < codeBehind.currentTouches.length; i++) {
-            if (codeBehind.currentTouches[i].id === id) {
+        for (var i=0; i < currentTouches.length; i++) {
+            if (currentTouches[i].id === id) {
                 return i;
             }
         }
