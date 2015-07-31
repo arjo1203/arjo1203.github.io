@@ -36,8 +36,8 @@
       <file leaf-file-name="multi-touch.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiDraw/multi-touch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9157667">
-              <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="289" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.7235421">
+              <caret line="140" column="27" selection-start-line="140" selection-start-column="27" selection-end-line="140" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -728,8 +728,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multiDraw/multi-touch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9157667">
-          <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="289" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.7235421">
+          <caret line="140" column="27" selection-start-line="140" selection-start-column="27" selection-end-line="140" selection-end-column="27" />
           <folding />
         </state>
       </provider>
