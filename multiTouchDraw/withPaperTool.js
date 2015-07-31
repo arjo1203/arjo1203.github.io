@@ -94,6 +94,26 @@ paper.setup('myCanvas');
         }
     };
 
+    var moveTool = {
+        onStart: function(event){
+            var touches = event.changedTouches;
+
+            for(var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                //Track the newly created touch
+                var trackedTouch = {
+                    id: touch.identifier,
+                    pageX: touch.pageX,
+                    pageY: touch.pageY
+                };
+
+                //Store the trackedTouch
+                currentTouches.push(trackedTouch);
+            }
+        }
+    };
+
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
         e.preventDefault();
