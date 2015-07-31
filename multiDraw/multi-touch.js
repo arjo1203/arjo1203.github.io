@@ -105,7 +105,6 @@ paper.setup('myCanvas');
 
                 // Store the record.
                 currentTouches.splice(currentTouchIndex, 1, currentTouch);
-                currentPaths.splice(currentTouchIndex, 1, currentTouch);
             } else {
                 console.log('Touch was not found!');
             }
