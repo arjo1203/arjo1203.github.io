@@ -149,8 +149,8 @@ paper.setup('myCanvas');
                         var currentItem = currentItems[currentTouchIndex];
                         console.log(currentItem);
 
-                        currentItem.position.x = currentTouch.pageX;
-                        currentItem.position.y = currentTouch.pageY;
+                        currentItem._position.x = currentTouch.pageX;
+                        currentItem._position.y = currentTouch.pageY;
 
                         // Update the trackedTouch record.
                         currentTouch.pageX = touch.pageX;
