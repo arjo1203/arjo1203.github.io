@@ -146,7 +146,7 @@ paper.setup('myCanvas');
             event.preventDefault();
             var touches = event.changedTouches;
 
-            if(currentItems.length > 0) {
+            if(hitItem) {
                 for (var i = 0; i < touches.length; i++) {
                     var touch = touches[i];
                     var currentTouchIndex = findTrackedTouch(touch.identifier);
@@ -175,6 +175,7 @@ paper.setup('myCanvas');
         },
         onEnd: function() {
             event.preventDefault();
+
             var currentItemIndex = findItemInPaper(touch.identifier);
             var currentItem = paper.project.activeLayer.children[currentItemIndex];
             currentItem.data = {};
