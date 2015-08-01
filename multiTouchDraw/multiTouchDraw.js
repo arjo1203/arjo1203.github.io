@@ -15,11 +15,11 @@ paper.setup('myCanvas');
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
     var drawTool = {
-        onStart: function(event) {
+        onStart: function (event) {
             event.preventDefault();
             var touches = event.changedTouches;
 
-            for (var i=0; i < touches.length; i++) {
+            for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
 
                 //Track the newly created touch
@@ -41,11 +41,11 @@ paper.setup('myCanvas');
                 };
             }
         },
-        onMove: function(event) {
+        onMove: function (event) {
             event.preventDefault();
             var touches = event.changedTouches;
 
-            for (var i=0; i < touches.length; i++) {
+            for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
 
@@ -74,7 +74,7 @@ paper.setup('myCanvas');
 
             paper.view.draw();
         },
-        onEnd: function(event) {
+        onEnd: function (event) {
             event.preventDefault();
             var touches = event.changedTouches;
 
@@ -97,7 +97,8 @@ paper.setup('myCanvas');
                 }
 
             }
-        };
+        }
+    }
 
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
