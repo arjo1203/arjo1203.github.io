@@ -88,8 +88,8 @@ paper.setup('myCanvas');
 
                 if (currentTouchIndex >= 0) {
                     //Finds the path associated with the currentTouchIndex
-                    var currentPath = currentItems[currentTouchIndex];
-                    currentPath.simplify();
+                    //var currentPath = currentItems[currentTouchIndex];
+                    //currentPath.simplify();
 
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
@@ -258,6 +258,7 @@ paper.setup('myCanvas');
         console.log(children);
 
         for(var i = 0; i < children.length; i++) {
+            console.log(children[i]);
             console.log(children[i].data.id);
             if(children[i].data.id == id) {
                 return i;
