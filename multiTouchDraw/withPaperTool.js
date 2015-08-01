@@ -135,6 +135,7 @@ paper.setup('myCanvas');
                     };
                 }
                 else {
+                    hitItem = {};
                     return ;
                 }
 
@@ -181,7 +182,7 @@ paper.setup('myCanvas');
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-                if (currentTouchIndex >= 0) {
+                if (hitItem) {
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
 
