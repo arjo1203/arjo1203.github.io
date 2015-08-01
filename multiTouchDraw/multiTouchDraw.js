@@ -36,6 +36,8 @@ paper.setup('myCanvas');
                 var path = new Path();
                 path.strokeColor = 'green';
                 path.strokeWidth = 10;
+
+                //Associate the path with the touch
                 path.data = {
                     touchId: touch.identifier
                 };
@@ -53,7 +55,6 @@ paper.setup('myCanvas');
                     var currentTouch = currentTouches[currentTouchIndex];
                     var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    //console.log(currentItem);
 
                     //Creates a paper point based on the currentTouch position.
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
@@ -90,8 +91,9 @@ paper.setup('myCanvas');
                     var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.simplify();
+
+                    //Remove the record of the touch.
                     currentItem.data = {};
-                    //console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -169,6 +171,7 @@ paper.setup('myCanvas');
             }
         }
 
+        // Item not found! Return -1.
         return -1;
     }
 }());
