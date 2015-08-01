@@ -125,7 +125,7 @@ paper.setup('myCanvas');
                     pageY: touch.pageY
                 };
 
-                var point = new Point({x: trackedTouch.pageX, y: trackedTouch.pageY});
+                var point = new Point({x: touch.pageX, y: touch.pageY});
                 var hitResult = project.hitTest(point, hitOptions);
 
                 if (hitResult) {
