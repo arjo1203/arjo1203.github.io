@@ -9,8 +9,6 @@ paper.setup('myCanvas');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    var paperDrawTool = new Tool();
-
     //Create arrays to store touches and paths
     var currentTouches = [];
     //var currentItems = [];
@@ -31,17 +29,6 @@ paper.setup('myCanvas');
                     pageX: touch.pageX,
                     pageY: touch.pageY
                 };
-
-                console.log(paper);
-                console.log(paper.project);
-
-                console.log(event);
-                paperDrawTool.onMouseDown = function(paperEvent) {
-                    console.log(paperEvent);
-                };
-                paperDrawTool.onMouseDown(event);
-
-
 
                 //Store the trackedTouch
                 currentTouches.push(trackedTouch);
@@ -144,6 +131,7 @@ paper.setup('myCanvas');
                     pageX: touch.pageX,
                     pageY: touch.pageY
                 };
+
 
                 //Store the trackedTouch
                 currentTouches.push(trackedTouch);

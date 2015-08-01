@@ -11,12 +11,12 @@ paper.setup('myCanvas');
 
     //Create arrays to store touches and paths
     var currentTouches = [];
-    var currentPaths = [];
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
     var drawTool = {
         onStart: function(event) {
+            event.preventDefault();
             var touches = event.changedTouches;
 
             for (var i=0; i < touches.length; i++) {
@@ -35,13 +35,14 @@ paper.setup('myCanvas');
                 //Create a new path for the trackedTouch
                 var path = new Path();
                 path.strokeColor = 'green';
-                path.strokeWidth = 4;
-
-                //Store the new path
-                currentPaths.push(path);
+                path.strokeWidth = 10;
+                path.data = {
+                    touchId: touch.identifier
+                };
             }
         },
         onMove: function(event) {
+            event.preventDefault();
             var touches = event.changedTouches;
 
             for (var i=0; i < touches.length; i++) {
@@ -50,12 +51,14 @@ paper.setup('myCanvas');
 
                 if (currentTouchIndex >= 0) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    var currentPath = currentPaths[currentTouchIndex];
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    //console.log(currentItem);
 
                     //Creates a paper point based on the currentTouch position.
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentPath.add(point);
-                    currentPath.smooth();
+                    currentItem.add(point);
+                    currentItem.smooth();
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
@@ -72,6 +75,7 @@ paper.setup('myCanvas');
             paper.view.draw();
         },
         onEnd: function(event) {
+            event.preventDefault();
             var touches = event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
@@ -79,20 +83,21 @@ paper.setup('myCanvas');
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if (currentTouchIndex >= 0) {
-                    //Finds the path associated with the currentTouchIndex
-                    var currentPath = currentPaths[currentTouchIndex];
-                    currentPath.simplify();
-
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
-                    currentPaths.splice(currentTouchIndex, 1);
+
+                    //Finds the path associated with the currentTouchIndex
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    currentItem.simplify();
+                    currentItem.data = {};
+                    console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
 
             }
-        }
-    };
+        };
 
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
@@ -135,7 +140,6 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 // Remove the touch record and path record.
                 currentTouches.splice(currentTouchIndex, 1);
-                currentPaths.splice(currentTouchIndex, 1);
             } else {
                 console.log('Touch was not found!');
             }
