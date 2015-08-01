@@ -91,7 +91,7 @@ paper.setup('myCanvas');
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.simplify();
                     currentItem.data = {};
-                    console.log(currentItem);
+                    //console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -156,5 +156,18 @@ paper.setup('myCanvas');
 
         // Touch not found! Return -1.
         return -1;
-    };
+    }
+
+
+    function findItemInPaper(id) {
+        var children = paper.project.activeLayer.children;
+
+        for(var i = 0; i < children.length; i++) {
+            if(children[i].data.touchId == id) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
 }());
