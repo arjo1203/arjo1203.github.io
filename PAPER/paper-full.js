@@ -10838,6 +10838,7 @@ var paper = new function(undefined) {
 
 		var viewEvents = {
 			'selectstart dragstart': function(event) {
+				console.log(event);
 				if (dragging)
 					event.preventDefault();
 			}
@@ -10845,6 +10846,7 @@ var paper = new function(undefined) {
 
 		var docEvents = {
 			mouseout: function(event) {
+				console.log(event);
 				var view = View._focused,
 					target = DomEvent.getRelatedTarget(event);
 				if (view && (!target || target.nodeName === 'HTML'))
@@ -10855,6 +10857,7 @@ var paper = new function(undefined) {
 		};
 
 		viewEvents[mousedown] = function(event) {
+			console.log(event);
 			var view = View._focused = getView(event),
 				point = viewToProject(view, event);
 			dragging = true;
@@ -10865,6 +10868,7 @@ var paper = new function(undefined) {
 		};
 
 		docEvents[mousemove] = function(event) {
+			console.log(event);
 			var view = View._focused;
 			if (!dragging) {
 				var target = getView(event);
@@ -10886,6 +10890,7 @@ var paper = new function(undefined) {
 		};
 
 		docEvents[mouseup] = function(event) {
+			console.log(event);
 			var view = View._focused;
 			if (!view || !dragging)
 				return;

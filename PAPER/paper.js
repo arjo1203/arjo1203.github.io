@@ -10865,6 +10865,7 @@ var View = Base.extend(Emitter, {
 	};
 
 	docEvents[mousemove] = function(event) {
+		console.log('hello');
 		var view = View._focused;
 		if (!dragging) {
 			var target = getView(event);
