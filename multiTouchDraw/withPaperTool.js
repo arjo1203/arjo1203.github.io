@@ -183,7 +183,7 @@ paper.setup('myCanvas');
                 //Finds the path associated with the currentTouchIndex
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                currentItem.data = {};
+                //currentItem.data = {};
                 console.log(currentItem);
             }
         }
