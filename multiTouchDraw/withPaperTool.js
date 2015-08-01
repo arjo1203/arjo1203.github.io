@@ -36,7 +36,7 @@ paper.setup('myCanvas');
                 //Create a new path for the trackedTouch
                 var path = new Path();
                 path.strokeColor = 'green';
-                path.strokeWidth = 4;
+                path.strokeWidth = 10;
                 path.data = {
                     touchId: touch.identifier
                 };
