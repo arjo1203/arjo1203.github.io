@@ -98,7 +98,7 @@ paper.setup('myCanvas');
 
             }
         }
-    }
+    };
 
     // Set up an event listener for new touches.
     canvas.addEventListener('touchstart', function(e) {
