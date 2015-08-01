@@ -254,12 +254,14 @@ paper.setup('myCanvas');
 
 
     function findItemInPaper(id) {
+        console.log(id);
         var children = paper.project.activeLayer.children;
         console.log(children);
 
         for(var i = 0; i < children.length; i++) {
             console.log(children[i]);
             console.log(children[i].data.touchId);
+            console.log(typeof children[i].data.touchId);
             if(children[i].data.touchId == id) {
                 return i;
             }
