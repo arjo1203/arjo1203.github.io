@@ -32,11 +32,11 @@ paper.setup('myCanvas');
 
                 console.log(paper.project);
 
-
+                console.log(event);
                 var drawTool = new Tool();
-                drawTool.onMouseDown(function(event) {
-                    console.log(event);
-                });
+                drawTool.onMouseDown = function(paperEvent) {
+                    console.log(paperEvent);
+                };
 
 
 
