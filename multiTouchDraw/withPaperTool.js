@@ -31,9 +31,15 @@ paper.setup('myCanvas');
                 };
 
                 console.log(paper.project);
+
+
                 var drawTool = new Tool();
-                var paperEvent = drawTool.onMouseDown(event);
-                console.log(paperEvent);
+                drawTool.onMouseDown(function(event) {
+                    console.log(event);
+                });
+
+
+
                 //Store the trackedTouch
                 currentTouches.push(trackedTouch);
 
