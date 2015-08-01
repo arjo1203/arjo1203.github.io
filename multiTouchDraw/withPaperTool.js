@@ -190,8 +190,8 @@ paper.setup('myCanvas');
                     //Finds the path associated with the currentTouchIndex
                     var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    currentItem.data = {};
-                    //console.log(currentItem);
+                    //currentItem.data = {};
+                    console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
