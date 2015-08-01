@@ -147,6 +147,7 @@ paper.setup('myCanvas');
             event.preventDefault();
             var touches = event.changedTouches;
 
+            console.log(hitItem);
             if(hitItem) {
                 for (var i = 0; i < touches.length; i++) {
                     var touch = touches[i];
