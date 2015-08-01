@@ -10869,6 +10869,7 @@ var paper = new function(undefined) {
 
 		docEvents[mousemove] = function(event) {
 			console.log(event);
+			//find
 			var view = View._focused;
 			if (!dragging) {
 				var target = getView(event);

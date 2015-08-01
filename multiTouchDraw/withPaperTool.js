@@ -32,6 +32,7 @@ paper.setup('myCanvas');
                     pageY: touch.pageY
                 };
 
+                console.log(paper);
                 console.log(paper.project);
 
                 console.log(event);
