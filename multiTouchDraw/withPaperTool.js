@@ -147,7 +147,7 @@ paper.setup('myCanvas');
         onMove: function() {
             event.preventDefault();
             //var touches = event.changedTouches;
-            //
+
             //if(hitItem) {
             //    for (var i = 0; i < touches.length; i++) {
             //        var touch = touches[i];
@@ -173,7 +173,7 @@ paper.setup('myCanvas');
             //        }
             //
             //    }
-            }
+            //}
         },
         onEnd: function() {
             event.preventDefault();

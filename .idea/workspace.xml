@@ -46,18 +46,9 @@
       <file leaf-file-name="withPaperTool.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.13606912">
-              <caret line="148" column="24" selection-start-line="148" selection-start-column="24" selection-end-line="174" selection-end-column="19" />
-              <folding>
-                <marker date="1438390214000" expanded="true" signature="149:10499" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="527:3692" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="3874:7379" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="4956:6355" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="5085:6345" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="5146:6331" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="5341:6202" placeholder="{...}" />
-                <marker date="1438390214000" expanded="true" signature="6208:6296" placeholder="{...}" />
-              </folding>
+            <state vertical-scroll-proportion="0.6025918">
+              <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -750,18 +741,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13606912">
-          <caret line="148" column="24" selection-start-line="148" selection-start-column="24" selection-end-line="174" selection-end-column="19" />
-          <folding>
-            <marker date="1438390214000" expanded="true" signature="149:10499" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="527:3692" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="3874:7379" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="4956:6355" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="5085:6345" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="5146:6331" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="5341:6202" placeholder="{...}" />
-            <marker date="1438390214000" expanded="true" signature="6208:6296" placeholder="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.6025918">
+          <caret line="149" column="0" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
