@@ -259,8 +259,8 @@ paper.setup('myCanvas');
 
         for(var i = 0; i < children.length; i++) {
             console.log(children[i]);
-            console.log(children[i].data.id);
-            if(children[i].data.id == id) {
+            console.log(children[i].data.touchId);
+            if(children[i].data.touchId == id) {
                 return i;
             }
         }
