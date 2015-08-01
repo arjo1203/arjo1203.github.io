@@ -38,6 +38,7 @@ paper.setup('myCanvas');
                 paperDrawTool.onMouseDown = function(paperEvent) {
                     console.log(paperEvent);
                 };
+                paperDrawTool.onMouseDown();
 
 
 
