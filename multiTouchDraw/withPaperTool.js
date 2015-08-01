@@ -133,6 +133,7 @@ paper.setup('myCanvas');
                     hitItem.data = {
                         touchId: touch.identifier
                     };
+                    console.log(hitItem);
                 }
                 else {
                     hitItem = {};
@@ -182,7 +183,7 @@ paper.setup('myCanvas');
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-                if (hitItem) {
+                if (currentTouchIndex >= 0) {
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
 
