@@ -118,6 +118,9 @@ paper.setup('myCanvas');
             for(var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
 
+                var point = new Point({x: touch.pageX, y: touch.pageY});
+                var hitResult = paper.project.hitTest(point, hitOptions);
+
                 //Track the newly created touch
                 var trackedTouch = {
                     id: touch.identifier,
@@ -125,8 +128,8 @@ paper.setup('myCanvas');
                     pageY: touch.pageY
                 };
 
-                var point = new Point({x: touch.pageX, y: touch.pageY});
-                var hitResult = paper.project.hitTest(point, hitOptions);
+                //Store the trackedTouch
+                currentTouches.push(trackedTouch);
 
                 if (hitResult) {
                     hitItem = hitResult.item;
@@ -138,9 +141,6 @@ paper.setup('myCanvas');
                 else {
                     hitItem = false;
                 }
-
-                //Store the trackedTouch
-                currentTouches.push(trackedTouch);
             }
         },
         onMove: function() {
