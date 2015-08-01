@@ -255,6 +255,7 @@ paper.setup('myCanvas');
 
     function findItemInPaper(id) {
         var children = paper.project.activeLayer.children;
+        console.log(children);
 
         for(var i = 0; i < children.length; i++) {
             console.log(children[i].data.id);
