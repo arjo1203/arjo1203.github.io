@@ -93,7 +93,11 @@ paper.setup('myCanvas');
 
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
-                    currentItems.splice(currentTouchIndex, 1);
+                    var currentPathIndex = findItemInPaper(touch.identifier);
+                    var currentPath = paper.project.activeLayer.children[currentPathIndex];
+                    currentPath.data = {};
+                    console.log(currentPath);
+                    //currentItems.splice(currentTouchIndex, 1);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -236,7 +240,7 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 // Remove the touch record and path record.
                 currentTouches.splice(currentTouchIndex, 1);
-                currentItems.splice(currentTouchIndex, 1);
+                //currentItems.splice(currentTouchIndex, 1);
             } else {
                 console.log('Touch was not found!');
             }
