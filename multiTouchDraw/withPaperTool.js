@@ -30,6 +30,7 @@ paper.setup('myCanvas');
                     pageY: touch.pageY
                 };
 
+                console.log(paper.project);
                 //Store the trackedTouch
                 currentTouches.push(trackedTouch);
 
