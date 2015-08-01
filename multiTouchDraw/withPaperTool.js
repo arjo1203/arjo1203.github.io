@@ -11,7 +11,7 @@ paper.setup('myCanvas');
 
     //Create arrays to store touches and paths
     var currentTouches = [];
-    var currentItems = [];
+    //var currentItems = [];
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
@@ -37,9 +37,12 @@ paper.setup('myCanvas');
                 var path = new Path();
                 path.strokeColor = 'green';
                 path.strokeWidth = 4;
+                path.data = {
+                    touchId: touch.identifier
+                };
 
                 //Store the new path
-                currentItems.push(path);
+                //currentItems.push(path);
             }
         },
         onMove: function(event) {
@@ -52,7 +55,8 @@ paper.setup('myCanvas');
 
                 if (currentTouchIndex >= 0) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    var currentPath = currentItems[currentTouchIndex];
+                    var currentPath = findItemInPaper(currentTouch.identifier);
+                    console.log(currentPath);
 
                     //Creates a paper point based on the currentTouch position.
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
@@ -147,7 +151,7 @@ paper.setup('myCanvas');
                     if (currentTouchIndex >= 0) {
                         var currentTouch = currentTouches[currentTouchIndex];
                         var currentItem = currentItems[currentTouchIndex];
-                        console.log(currentItem);
+                        //console.log(currentItem);
                         console.log(paper.project.activeLayer.children[currentItem.id]);
 
                         currentItem.position.x = currentTouch.pageX;
@@ -243,6 +247,20 @@ paper.setup('myCanvas');
         }
 
         // Touch not found! Return -1.
+        return -1;
+    }
+
+
+
+    function findItemInPaper(id) {
+        var children = paper.project.activeLayer.children;
+
+        for(var i = 0; i < children.length; i++) {
+            if(children[i].data.id == id) {
+                return children[i];
+            }
+        }
+
         return -1;
     }
 }());
