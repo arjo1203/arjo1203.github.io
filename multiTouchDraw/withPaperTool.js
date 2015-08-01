@@ -175,11 +175,28 @@ paper.setup('myCanvas');
         },
         onEnd: function() {
             event.preventDefault();
+            var touches = event.changedTouches;
 
-            var currentItemIndex = findItemInPaper(touch.identifier);
-            var currentItem = paper.project.activeLayer.children[currentItemIndex];
-            currentItem.data = {};
-            //console.log(currentItem);
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex >= 0) {
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+
+                    //Finds the path associated with the currentTouchIndex
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    currentItem.data = {};
+                    //console.log(currentItem);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+            event.preventDefault();
+
         }
     };
 
