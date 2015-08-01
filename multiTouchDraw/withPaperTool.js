@@ -92,7 +92,7 @@ paper.setup('myCanvas');
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.simplify();
                     currentItem.data = {};
-                    //console.log(currentItem);
+                    console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -120,6 +120,8 @@ paper.setup('myCanvas');
 
                 var point = new Point({x: touch.pageX, y: touch.pageY});
                 console.log(point);
+                console.log(paper);
+                console.log(paper.project);
                 var hitResult = paper.project.hitTest(point, hitOptions);
                 console.log(hitResult);
 
