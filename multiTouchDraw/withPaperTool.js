@@ -55,7 +55,7 @@ paper.setup('myCanvas');
 
                 if (currentTouchIndex >= 0) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    var currentPathIndex = findItemInPaper(currentTouch.identifier);
+                    var currentPathIndex = findItemInPaper(touch.identifier);
                     var currentPath = paper.project.activeLayer.children[currentPathIndex];
                     console.log(currentPath);
 
