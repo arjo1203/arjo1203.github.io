@@ -9,6 +9,8 @@ paper.setup('myCanvas');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
+    var paperDrawTool = new Tool();
+
     //Create arrays to store touches and paths
     var currentTouches = [];
     //var currentItems = [];
@@ -33,8 +35,7 @@ paper.setup('myCanvas');
                 console.log(paper.project);
 
                 console.log(event);
-                var drawTool = new Tool();
-                drawTool.onMouseDown = function(paperEvent) {
+                paperDrawTool.onMouseDown = function(paperEvent) {
                     console.log(paperEvent);
                 };
 
