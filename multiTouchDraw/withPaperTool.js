@@ -6,7 +6,7 @@ paper.setup('myCanvas');
 (function(){
     //Resize the canvas to the size of the window
     var canvas = $('#myCanvas')[0];
-    canvas.width = window.innnerWidth;
+    canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
     //Create arrays to store touches and paths
