@@ -122,7 +122,7 @@ paper.setup('myCanvas');
                 console.log(point);
                 console.log(paper);
                 console.log(paper.project);
-                var hitResult = paper.project.hitTest(point, hitOptions);
+                var hitResult = paper.project.activeLayer.hitTest(point, hitOptions);
                 console.log(hitResult);
 
                 //Track the newly created touch
