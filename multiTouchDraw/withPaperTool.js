@@ -107,7 +107,7 @@ paper.setup('myCanvas');
         segments: true,
         stroke: true,
         fill: true,
-        tolerance: 2
+        tolerance: 5
     }, hitItem;
 
     var moveTool = {
@@ -126,7 +126,7 @@ paper.setup('myCanvas');
                 };
 
                 var point = new Point({x: touch.pageX, y: touch.pageY});
-                var hitResult = project.hitTest(point, hitOptions);
+                var hitResult = paper.project.hitTest(point, hitOptions);
 
                 if (hitResult) {
                     hitItem = hitResult.item;
@@ -137,7 +137,6 @@ paper.setup('myCanvas');
                 }
                 else {
                     hitItem = false;
-                    return ;
                 }
 
                 //Store the trackedTouch
@@ -156,6 +155,7 @@ paper.setup('myCanvas');
                     if (currentTouchIndex >= 0) {
                         var currentTouch = currentTouches[currentTouchIndex];
                         var currentItemIndex = findItemInPaper(touch.identifier);
+                        console.log(currentItemIndex);
                         var currentItem = paper.project.activeLayer.children[currentItemIndex];
                         console.log(currentItem);
 
@@ -281,14 +281,9 @@ paper.setup('myCanvas');
 
 
     function findItemInPaper(id) {
-        console.log(id);
         var children = paper.project.activeLayer.children;
-        console.log(children);
 
         for(var i = 0; i < children.length; i++) {
-            console.log(children[i]);
-            console.log(children[i].data.touchId);
-            console.log(typeof children[i].data.touchId);
             if(children[i].data.touchId == id) {
                 return i;
             }
