@@ -40,9 +40,6 @@ paper.setup('myCanvas');
                 path.data = {
                     touchId: touch.identifier
                 };
-
-                //Store the new path
-                //currentItems.push(path);
             }
         },
         onMove: function(event) {
@@ -55,14 +52,14 @@ paper.setup('myCanvas');
 
                 if (currentTouchIndex >= 0) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    var currentPathIndex = findItemInPaper(touch.identifier);
-                    var currentPath = paper.project.activeLayer.children[currentPathIndex];
-                    console.log(currentPath);
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    //console.log(currentItem);
 
                     //Creates a paper point based on the currentTouch position.
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentPath.add(point);
-                    currentPath.smooth();
+                    currentItem.add(point);
+                    currentItem.smooth();
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
@@ -87,17 +84,15 @@ paper.setup('myCanvas');
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if (currentTouchIndex >= 0) {
-                    //Finds the path associated with the currentTouchIndex
-                    //var currentPath = currentItems[currentTouchIndex];
-                    //currentPath.simplify();
-
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
-                    var currentPathIndex = findItemInPaper(touch.identifier);
-                    var currentPath = paper.project.activeLayer.children[currentPathIndex];
-                    currentPath.data = {};
-                    console.log(currentPath);
-                    //currentItems.splice(currentTouchIndex, 1);
+
+                    //Finds the path associated with the currentTouchIndex
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    currentItem.simplify();
+                    currentItem.data = {};
+                    //console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -113,7 +108,7 @@ paper.setup('myCanvas');
         stroke: true,
         fill: true,
         tolerance: 2
-    };
+    }, hitItem;
 
     var moveTool = {
         onStart: function(event){
@@ -134,7 +129,10 @@ paper.setup('myCanvas');
                 var hitResult = project.hitTest(point, hitOptions);
 
                 if (hitResult) {
-                    currentItems.push(hitResult.item);
+                    hitItem = hitResult.item;
+                    hitItem.data = {
+                        touchId: touch.identifier
+                    };
                 }
                 else {
                     return ;
@@ -155,9 +153,9 @@ paper.setup('myCanvas');
 
                     if (currentTouchIndex >= 0) {
                         var currentTouch = currentTouches[currentTouchIndex];
-                        var currentItem = currentItems[currentTouchIndex];
+                        var currentItemIndex = findItemInPaper(touch.identifier);
+                        var currentItem = paper.project.activeLayer.children[currentItemIndex];
                         //console.log(currentItem);
-                        console.log(paper.project.activeLayer.children[currentItem.id]);
 
                         currentItem.position.x = currentTouch.pageX;
                         currentItem.position.y = currentTouch.pageY;
@@ -177,6 +175,10 @@ paper.setup('myCanvas');
         },
         onEnd: function() {
             event.preventDefault();
+            var currentItemIndex = findItemInPaper(touch.identifier);
+            var currentItem = paper.project.activeLayer.children[currentItemIndex];
+            currentItem.data = {};
+            //console.log(currentItem);
         }
     };
 
@@ -240,7 +242,6 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 // Remove the touch record and path record.
                 currentTouches.splice(currentTouchIndex, 1);
-                //currentItems.splice(currentTouchIndex, 1);
             } else {
                 console.log('Touch was not found!');
             }
