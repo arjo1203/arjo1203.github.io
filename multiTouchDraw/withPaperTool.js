@@ -151,27 +151,21 @@ paper.setup('myCanvas');
                 for (var i = 0; i < touches.length; i++) {
                     var touch = touches[i];
                     var currentTouchIndex = findTrackedTouch(touch.identifier);
+                    var currentTouch = currentTouches[currentTouchIndex];
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    console.log(currentItemIndex);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    console.log(currentItem);
 
-                    if (currentTouchIndex >= 0) {
-                        var currentTouch = currentTouches[currentTouchIndex];
-                        var currentItemIndex = findItemInPaper(touch.identifier);
-                        console.log(currentItemIndex);
-                        var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                        console.log(currentItem);
+                    currentItem.position.x = currentTouch.pageX;
+                    currentItem.position.y = currentTouch.pageY;
 
-                        currentItem.position.x = currentTouch.pageX;
-                        currentItem.position.y = currentTouch.pageY;
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
 
-                        // Update the trackedTouch record.
-                        currentTouch.pageX = touch.pageX;
-                        currentTouch.pageY = touch.pageY;
-
-                        // Store the record of the trackedTouch.
-                        currentTouches.splice(currentTouchIndex, 1, currentTouch);
-                    } else {
-                        console.log('Touch was not found!');
-                    }
-
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
                 }
             }
         },
@@ -183,19 +177,14 @@ paper.setup('myCanvas');
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-                if (currentTouchIndex >= 0) {
-                    // Remove the record of the touch and path record.
-                    currentTouches.splice(currentTouchIndex, 1);
+                // Remove the record of the touch and path record.
+                currentTouches.splice(currentTouchIndex, 1);
 
-                    //Finds the path associated with the currentTouchIndex
-                    var currentItemIndex = findItemInPaper(touch.identifier);
-                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    //currentItem.data = {};
-                    console.log(currentItem);
-                } else {
-                    console.log('Touch was not found!');
-                }
-
+                //Finds the path associated with the currentTouchIndex
+                var currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.data = {};
+                console.log(currentItem);
             }
         }
     };
