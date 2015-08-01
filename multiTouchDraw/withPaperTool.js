@@ -119,6 +119,7 @@ paper.setup('myCanvas');
                 var touch = touches[i];
 
                 var point = new Point({x: touch.pageX, y: touch.pageY});
+                console.log(point);
                 var hitResult = paper.project.hitTest(point, hitOptions);
 
                 //Track the newly created touch
