@@ -162,8 +162,8 @@ paper.setup('myCanvas');
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     console.log(currentItem);
 
-                    currentItem.position.x = currentTouch.pageX;
-                    currentItem.position.y = currentTouch.pageY;
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    currentItem.position = point;
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
