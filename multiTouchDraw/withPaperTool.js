@@ -18,7 +18,7 @@ paper.setup('myCanvas');
 
     var paperDrawTool = new Tool();
     paperDrawTool.onMouseDown = function(event) {
-        var touches = event.touches;
+        var touches = event.changedTouches;
         console.log(touches);
     };
     paperDrawTool.onMouseDrag = function(event) {
@@ -34,7 +34,7 @@ paper.setup('myCanvas');
             //console.log('draw');
             //console.log(event);
             event.preventDefault();
-            var touches = event.touches;
+            var touches = event.changedTouches;
             console.log(touches);
 
             for (var i=0; i < touches.length; i++) {
