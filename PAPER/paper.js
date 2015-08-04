@@ -11457,9 +11457,8 @@ var Tool = PaperScopeItem.extend({
 	},
 
 	_fireEvent: function(type, event) {
-		console.log(type);
-		console.log('fire');
 		var sets = paper.project._removeSets;
+        console.log(sets);
 		if (sets) {
 			if (type === 'mouseup')
 				sets.mousedrag = null;
