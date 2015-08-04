@@ -90,16 +90,9 @@ paper.setup('myCanvas');
 
         }
     };
-    //paperDrawTool.onMouseUp = function() {};
-    paperDrawTool.minDistance = 1;
-    paperDrawTool.maxDistance = 3;
-
-    canvas.addEventListener('touchend', onMouseUp);
-
-
-    function onMouseUp(event) {
-        event.preventDefault();
-        var touches = event.changedTouches;
+    paperDrawTool.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+        var touches = paperEvent.event.changedTouches;
 
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
@@ -115,16 +108,19 @@ paper.setup('myCanvas');
                 //currentItem.simplify();
                 currentItem.data = {};
 
-                //if(currentTouches.length > 0) {
-                //    paper.tool.__proto__._updateEvent('mousedrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
-                //}
+                if(currentTouches.length > 0) {
+                    paper.tool.__proto__._updateEvent('mousedrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
+                }
                 //console.log(currentItem);
             } else {
                 console.log('Touch was not found!');
             }
 
         }
-    }
+    };
+    paperDrawTool.minDistance = 1;
+    paperDrawTool.maxDistance = 3;
+
 
     var drawTool = {
         onStart: function(event) {
