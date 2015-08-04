@@ -25,6 +25,16 @@ NerdBoard.Tools = window.onload = (function() {
     }, pathHit, myPath;
 
 
+    function onKeyDown(event) {
+        // When a key is pressed, set the content of the text item:
+        if(event.key == 'z') {
+            wbTools.undo();
+        }
+        if(event.key == 'c') {
+            NerdBoard.clear();
+        }
+    }
+
 
     function dynamicStroke(event) {
         var step, avgStep;
@@ -78,6 +88,7 @@ NerdBoard.Tools = window.onload = (function() {
             myPath.simplify();
         }
     };
+    wbTools.tools.draw.onKeyDown = onKeyDown;
     wbTools.tools.draw.minDistance = 1;
     wbTools.tools.draw.maxDistance = 3;
 

@@ -77,63 +77,63 @@
                         <div id="activeColor"></div>
                     </div>
                     <div id="colorOptions">
-                        <div class="default">
-                            <div class="border defaultBg" onclick="NerdBoard.setColor('defaultBg')">
+                        <div class="row1">
+                            <div class="col1 defaultBg border" onclick="NerdBoard.setColor('defaultBg')">
                             </div>
-                            <div class="border defaultBlack" onclick="NerdBoard.setColor('defaultBlack')">
+                            <div class="col2 slateBlack border" onclick="NerdBoard.setColor('slateBlack')">
                             </div>
-                            <div class="border defaultRed" onclick="NerdBoard.setColor('defaultRed')">
+                            <div class="col3 slateRed border" onclick="NerdBoard.setColor('slateRed')">
                             </div>
-                            <div class="border defaultGreen" onclick="NerdBoard.setColor('defaultGreen')">
+                            <div class="col4 neonGreen border" onclick="NerdBoard.setColor('neonGreen')">
                             </div>
-                            <div class="border defaultBlue" onclick="NerdBoard.setColor('defaultBlue')">
+                            <div class="col5 slateBlue border" onclick="NerdBoard.setColor('slateBlue')">
                             </div>
-                            <div class="border defaultYellow" onclick="NerdBoard.setColor('defaultYellow')">
-                            </div>
-                        </div>
-
-                        <div class="neon">
-                            <div class="border neonBg" onclick="NerdBoard.setColor('neonBg')">
-                            </div>
-                            <div class="border neonBlack" onclick="NerdBoard.setColor('neonBlack')">
-                            </div>
-                            <div class="border neonRed" onclick="NerdBoard.setColor('neonRed')">
-                            </div>
-                            <div class="border neonGreen" onclick="NerdBoard.setColor('neonGreen')">
-                            </div>
-                            <div class="border neonBlue" onclick="NerdBoard.setColor('neonBlue')">
-                            </div>
-                            <div class="border neonYellow" onclick="NerdBoard.setColor('neonYellow')">
+                            <div class="col6 defaultYellow border" onclick="NerdBoard.setColor('defaultYellow')">
                             </div>
                         </div>
 
-                        <div class="night">
-                            <div class="border nightBg" onclick="NerdBoard.setColor('nightBg')">
+                        <div class="row2">
+                            <div class="col1 neonBlack border" onclick="NerdBoard.setColor('neonBlack')">
                             </div>
-                            <div class="border nightBlack" onclick="NerdBoard.setColor('nightBlack')">
+                            <div class="col2 nightBg border" onclick="NerdBoard.setColor('nightBg')">
                             </div>
-                            <div class="border nightRed" onclick="NerdBoard.setColor('nightRed')">
+                            <div class="col3 nightRed border" onclick="NerdBoard.setColor('nightRed')">
                             </div>
-                            <div class="border nightGreen" onclick="NerdBoard.setColor('nightGreen')">
+                            <div class="col4 slateGreen border" onclick="NerdBoard.setColor('slateGreen')">
                             </div>
-                            <div class="border nightBlue" onclick="NerdBoard.setColor('nightBlue')">
+                            <div class="col5 neonBlue border" onclick="NerdBoard.setColor('neonBlue')">
                             </div>
-                            <div class="border nightYellow" onclick="NerdBoard.setColor('nightYellow')">
+                            <div class="col6 nightYellow border" onclick="NerdBoard.setColor('nightYellow')">
                             </div>
                         </div>
 
-                        <div class="slate">
-                            <div class="border slateBg" onclick="NerdBoard.setColor('slateBg')">
+                        <div class="row3">
+                            <div class="col1 slateBg border" onclick="NerdBoard.setColor('slateBg')">
                             </div>
-                            <div class="border slateBlack" onclick="NerdBoard.setColor('slateBlack')">
+                            <div class="col2 neonBg border" onclick="NerdBoard.setColor('neonBg')">
                             </div>
-                            <div class="border slateRed" onclick="NerdBoard.setColor('slateRed')">
+                            <div class="col3 neonRed border" onclick="NerdBoard.setColor('neonRed')">
                             </div>
-                            <div class="border slateGreen" onclick="NerdBoard.setColor('slateGreen')">
+                            <div class="col4 nightGreen border" onclick="NerdBoard.setColor('nightGreen')">
                             </div>
-                            <div class="border slateBlue" onclick="NerdBoard.setColor('slateBlue')">
+                            <div class="col5 nightBlue border" onclick="NerdBoard.setColor('nightBlue')">
                             </div>
-                            <div class="border slateYellow" onclick="NerdBoard.setColor('slateYellow')">
+                            <div class="col6 slateYellow border" onclick="NerdBoard.setColor('slateYellow')">
+                            </div>
+                        </div>
+
+                        <div class="row4">
+                            <div class="col1 nightBlack border" onclick="NerdBoard.setColor('nightBlack')">
+                            </div>
+                            <div class="col2 defaultBlack border" onclick="NerdBoard.setColor('defaultBlack')">
+                            </div>
+                            <div class="col3 defaultRed border" onclick="NerdBoard.setColor('defaultRed')">
+                            </div>
+                            <div class="col4 defaultGreen border" onclick="NerdBoard.setColor('defaultGreen')">
+                            </div>
+                            <div class="col5 defaultBlue border" onclick="NerdBoard.setColor('defaultBlue')">
+                            </div>
+                            <div class="col6 neonYellow border" onclick="NerdBoard.setColor('neonYellow')">
                             </div>
                         </div>
                     </div>
@@ -165,15 +165,10 @@
 
                     <div id="shapeView">
                         <div id="activeShape">
-                            <img src="icons/text.png" id="activeShapeIcon">
+                            <img src="icons/roundedRect.png" id="activeShapeIcon">
                         </div>
                     </div>
                     <div id="shapeOptions">
-                        <div id="Text" class="IconDiv">
-                            <div class="Icon centerIcon">
-                                <img class="Icon" src="icons/text.png">
-                            </div>
-                        </div>
                         <div id="Terminal" class="IconDiv">
                             <div class="Icon centerIcon">
                                 <img class="Icon" src="icons/roundedRect.png">
@@ -192,6 +187,11 @@
                         <div id="Decision" class="IconDiv">
                             <div class="Icon centerIcon">
                                 <img class="Icon" src="icons/diamond.png">
+                            </div>
+                        </div>
+                        <div id="Text" class="IconDiv">
+                            <div class="Icon centerIcon">
+                                <img class="Icon" src="icons/text.png">
                             </div>
                         </div>
                     </div>
@@ -229,65 +229,65 @@
                 <div id="themeBtn">
                 </div>
                 <div id="themes">
-                        <div class="default">
-                            <div class="border defaultBg" onclick="NerdBoard.setBg('defaultBg')">
-                            </div>
-                            <div class="border defaultBlack" onclick="NerdBoard.setBg('defaultBlack')">
-                            </div>
-                            <div class="border defaultRed" onclick="NerdBoard.setBg('defaultRed')">
-                            </div>
-                            <div class="border defaultGreen" onclick="NerdBoard.setBg('defaultGreen')">
-                            </div>
-                            <div class="border defaultBlue" onclick="NerdBoard.setBg('defaultBlue')">
-                            </div>
-                            <div class="border defaultYellow" onclick="NerdBoard.setBg('defaultYellow')">
-                            </div>
+                    <div class="row1">
+                        <div class="col1 defaultBg border" onclick="NerdBoard.setBg('defaultBg')">
                         </div>
+                        <div class="col2 slateBlack border" onclick="NerdBoard.setBg('slateBlack')">
+                        </div>
+                        <div class="col3 slateRed border" onclick="NerdBoard.setBg('slateRed')">
+                        </div>
+                        <div class="col4 neonGreen border" onclick="NerdBoard.setBg('neonGreen')">
+                        </div>
+                        <div class="col5 slateBlue border" onclick="NerdBoard.setBg('slateBlue')">
+                        </div>
+                        <div class="col6 defaultYellow border" onclick="NerdBoard.setBg('defaultYellow')">
+                        </div>
+                    </div>
 
-                        <div class="neon">
-                            <div class="border neonBg" onclick="NerdBoard.setBg('neonBg')">
-                            </div>
-                            <div class="border neonBlack" onclick="NerdBoard.setBg('neonBlack')">
-                            </div>
-                            <div class="border neonRed" onclick="NerdBoard.setBg('neonRed')">
-                            </div>
-                            <div class="border neonGreen" onclick="NerdBoard.setBg('neonGreen')">
-                            </div>
-                            <div class="border neonBlue" onclick="NerdBoard.setBg('neonBlue')">
-                            </div>
-                            <div class="border neonYellow" onclick="NerdBoard.setBg('neonYellow')">
-                            </div>
+                    <div class="row2">
+                        <div class="col1 neonBlack border" onclick="NerdBoard.setBg('neonBlack')">
                         </div>
+                        <div class="col2 nightBg border" onclick="NerdBoard.setBg('nightBg')">
+                        </div>
+                        <div class="col3 nightRed border" onclick="NerdBoard.setBg('nightRed')">
+                        </div>
+                        <div class="col4 slateGreen border" onclick="NerdBoard.setBg('slateGreen')">
+                        </div>
+                        <div class="col5 neonBlue border" onclick="NerdBoard.setBg('neonBlue')">
+                        </div>
+                        <div class="col6 nightYellow border" onclick="NerdBoard.setBg('nightYellow')">
+                        </div>
+                    </div>
 
-                        <div class="night">
-                            <div class="border nightBg" onclick="NerdBoard.setBg('nightBg')">
-                            </div>
-                            <div class="border nightBlack" onclick="NerdBoard.setBg('nightBlack')">
-                            </div>
-                            <div class="border nightRed" onclick="NerdBoard.setBg('nightRed')">
-                            </div>
-                            <div class="border nightGreen" onclick="NerdBoard.setBg('nightGreen')">
-                            </div>
-                            <div class="border nightBlue" onclick="NerdBoard.setBg('nightBlue')">
-                            </div>
-                            <div class="border nightYellow" onclick="NerdBoard.setBg('nightYellow')">
-                            </div>
+                    <div class="row3">
+                        <div class="col1 slateBg border" onclick="NerdBoard.setBg('slateBg')">
                         </div>
+                        <div class="col2 neonBg border" onclick="NerdBoard.setBg('neonBg')">
+                        </div>
+                        <div class="col3 neonRed border" onclick="NerdBoard.setBg('neonRed')">
+                        </div>
+                        <div class="col4 nightGreen border" onclick="NerdBoard.setBg('nightGreen')">
+                        </div>
+                        <div class="col5 nightBlue border" onclick="NerdBoard.setBg('nightBlue')">
+                        </div>
+                        <div class="col6 slateYellow border" onclick="NerdBoard.setBg('slateYellow')">
+                        </div>
+                    </div>
 
-                        <div class="slate">
-                            <div class="border slateBg" onclick="NerdBoard.setBg('slateBg')">
-                            </div>
-                            <div class="border slateBlack" onclick="NerdBoard.setBg('slateBlack')">
-                            </div>
-                            <div class="border slateRed" onclick="NerdBoard.setBg('slateRed')">
-                            </div>
-                            <div class="border slateGreen" onclick="NerdBoard.setBg('slateGreen')">
-                            </div>
-                            <div class="border slateBlue" onclick="NerdBoard.setBg('slateBlue')">
-                            </div>
-                            <div class="border slateYellow" onclick="NerdBoard.setBg('slateYellow')">
-                            </div>
+                    <div class="row4">
+                        <div class="col1 nightBlack border" onclick="NerdBoard.setBg('nightBlack')">
                         </div>
+                        <div class="col2 defaultBlack border" onclick="NerdBoard.setBg('defaultBlack')">
+                        </div>
+                        <div class="col3 defaultRed border" onclick="NerdBoard.setBg('defaultRed')">
+                        </div>
+                        <div class="col4 defaultGreen border" onclick="NerdBoard.setBg('defaultGreen')">
+                        </div>
+                        <div class="col5 defaultBlue border" onclick="NerdBoard.setBg('defaultBlue')">
+                        </div>
+                        <div class="col6 neonYellow border" onclick="NerdBoard.setBg('neonYellow')">
+                        </div>
+                    </div>
                 </div>
             </div>
 

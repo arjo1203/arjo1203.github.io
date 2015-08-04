@@ -544,20 +544,23 @@ fieldset[disabled] .btn-custom.active {
 }
 #Terminal {
     position: relative;
+}
+#Process {
+    position: relative;
     left: 70px;
     bottom: 70px;
 }
-#Process {
+#Input {
     position: relative;
     left: 140px;
     bottom: 140px;
 }
-#Input {
+#Decision {
     position: relative;
     left: 210px;
     bottom: 210px;
 }
-#Decision {
+#Text {
     position: relative;
     left: 280px;
     bottom: 280px;
@@ -730,210 +733,138 @@ fieldset[disabled] .btn-custom.active {
     width: 50px;
     height: 50px;
 }
-.default {
+.row1 {
     width: 265px;
     height: 40px;
 }
-.defaultBg {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    background-color: rgb(255, 255, 255);
-}
-.defaultBlack {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 45px;
-    bottom: 40px;
-    background-color: rgb(0, 0, 0);
-}
-.defaultRed {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 90px;
-    bottom: 80px;
-    background-color: rgb(255, 0, 0);
-}
-.defaultGreen {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 135px;
-    bottom: 120px;
-    background-color: rgb(0, 128, 0);
-}
-.defaultBlue {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 180px;
-    bottom: 160px;
-    background-color: rgb(0, 0, 255);
-}
-.defaultYellow {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 225px;
-    bottom: 200px;
-    background-color: rgb(225, 225, 0);
-}
-.neon {
+.row2 {
     position: relative;
     width: 265px;
     height: 40px;
     top: 5px;
 }
-.neonBg {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    background-color: rgb(30, 30, 30);
-}
-.neonBlack {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 45px;
-    bottom: 40px;
-    background-color: rgb(176, 176, 176);
-}
-.neonRed {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 90px;
-    bottom: 80px;
-    background-color: rgb(251, 1, 32);
-}
-.neonGreen {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 135px;
-    bottom: 120px;
-    background-color: rgb(161, 198, 89);
-}
-.neonBlue {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 180px;
-    bottom: 160px;
-    background-color: rgb(111, 179, 216);
-}
-.neonYellow {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 225px;
-    bottom: 200px;
-    background-color: rgb(253, 163, 49);
-}
-.night {
+.row3 {
     position: relative;
     width: 265px;
     height: 40px;
     top: 10px;
 }
-.nightBg {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    background-color: rgb(0, 43, 54);
-}
-.nightBlack {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 45px;
-    bottom: 40px;
-    background-color: rgb(101, 123, 131);
-}
-.nightRed {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 90px;
-    bottom: 80px;
-    background-color: rgb(220, 50, 47);
-}
-.nightGreen {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 135px;
-    bottom: 120px;
-    background-color: rgb(72, 139, 60);
-}
-.nightBlue {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 180px;
-    bottom: 160px;
-    background-color: rgb(38, 139, 210);
-}
-.nightYellow {
-    position: relative;
-    width: 40px;
-    height: 40px;
-    left: 225px;
-    bottom: 200px;
-    background-color: rgb(241, 196, 15);
-}
-.slate {
+.row4 {
     position: relative;
     width: 265px;
     height: 40px;
     top: 15px;
 }
-.slateBg {
+.col1 {
     position: relative;
     width: 40px;
     height: 40px;
-    background-color: rgb(125, 133, 138);
 }
-.slateBlack {
+.col2 {
     position: relative;
     width: 40px;
     height: 40px;
     left: 45px;
     bottom: 40px;
-    background-color: rgb(62, 68, 76);
 }
-.slateRed {
+.col3 {
     position: relative;
     width: 40px;
     height: 40px;
     left: 90px;
     bottom: 80px;
-    background-color: rgb(237, 88, 84);
 }
-.slateGreen {
+.col4 {
     position: relative;
     width: 40px;
     height: 40px;
     left: 135px;
     bottom: 120px;
-    background-color: rgb(112, 201, 112);
 }
-.slateBlue {
+.col5 {
     position: relative;
     width: 40px;
     height: 40px;
     left: 180px;
     bottom: 160px;
-    background-color: rgb(108, 199, 225);
 }
-.slateYellow {
+.col6 {
     position: relative;
     width: 40px;
     height: 40px;
     left: 225px;
     bottom: 200px;
+}
+.defaultBg {
+    background-color: rgb(255, 255, 255);
+}
+.defaultBlack {
+    background-color: rgb(0, 0, 0);
+}
+.defaultRed {
+    background-color: rgb(255, 0, 0);
+}
+.defaultGreen {
+    background-color: rgb(0, 128, 0);
+}
+.defaultBlue {
+    background-color: rgb(0, 0, 255);
+}
+.defaultYellow {
+    background-color: rgb(225, 225, 0);
+}
+.neonBg {
+    background-color: rgb(30, 30, 30);
+}
+.neonBlack {
+    background-color: rgb(176, 176, 176);
+}
+.neonRed {
+    background-color: rgb(251, 1, 32);
+}
+.neonGreen {
+    background-color: rgb(161, 198, 89);
+}
+.neonBlue {
+    background-color: rgb(111, 179, 216);
+}
+.neonYellow {
+    background-color: rgb(253, 163, 49);
+}
+.nightBg {
+    background-color: rgb(0, 43, 54);
+}
+.nightBlack {
+    background-color: rgb(101, 123, 131);
+}
+.nightRed {
+    background-color: rgb(220, 50, 47);
+}
+.nightGreen {
+    background-color: rgb(72, 139, 60);
+}
+.nightBlue {
+    background-color: rgb(38, 139, 210);
+}
+.nightYellow {
+    background-color: rgb(241, 196, 15);
+}
+.slateBg {
+    background-color: rgb(125, 133, 138);
+}
+.slateBlack {
+    background-color: rgb(62, 68, 76);
+}
+.slateRed {
+    background-color: rgb(237, 88, 84);
+}
+.slateGreen {
+    background-color: rgb(112, 201, 112);
+}
+.slateBlue {
+    background-color: rgb(108, 199, 225);
+}
+.slateYellow {
     background-color: rgb(241, 186, 15);
 }
 .border {
