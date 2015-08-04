@@ -58,7 +58,7 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
         //console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
-        //console.log(touches);
+        console.log('moving');
 
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
@@ -97,7 +97,7 @@ paper.setup('myCanvas');
             var touch = touches[i];
             var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-            if (currentTouchIndex >= 0) {
+            if (currentTouchIndex !== -1) {
                 // Remove the record of the touch and path record.
                 currentTouches.splice(currentTouchIndex, 1);
 
