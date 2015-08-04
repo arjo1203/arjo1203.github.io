@@ -11464,6 +11464,7 @@ var Tool = PaperScopeItem.extend({
 				sets.mousedrag = null;
 			var set = sets[type];
 			if (set) {
+                console.log(set);
 				for (var id in set) {
 					var item = set[id];
 					for (var key in sets) {
