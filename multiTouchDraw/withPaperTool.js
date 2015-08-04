@@ -62,9 +62,9 @@ paper.setup('myCanvas');
                 //console.log(currentItem);
 
                 //Creates a paper point based on the currentTouch position.
-                //var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                currentItem.add(paperEvent.point);
-                //currentItem.smooth();
+                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.add(point);
+                currentItem.smooth();
 
                 // Update the trackedTouch record.
                 currentTouch.pageX = touch.pageX;
