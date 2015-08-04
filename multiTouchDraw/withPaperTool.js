@@ -26,26 +26,28 @@ paper.setup('myCanvas');
         console.log(touches);
         console.log(currentTouches);
 
-        for (var i = 0; i < touches.length; i++) {
-            var touch = touches[i];
+        if(currentTouches.length !== touches.length) {
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
 
-            //Track the newly created touch
-            var trackedTouch = {
-                id: touch.identifier,
-                pageX: touch.pageX,
-                pageY: touch.pageY
-            };
+                //Track the newly created touch
+                var trackedTouch = {
+                    id: touch.identifier,
+                    pageX: touch.pageX,
+                    pageY: touch.pageY
+                };
 
-            //Store the trackedTouch
-            currentTouches.push(trackedTouch);
+                //Store the trackedTouch
+                currentTouches.push(trackedTouch);
 
-            //Create a new path for the trackedTouch
-            var path = new Path();
-            path.strokeColor = 'green';
-            path.strokeWidth = 10;
-            path.data = {
-                touchId: touch.identifier
-            };
+                //Create a new path for the trackedTouch
+                var path = new Path();
+                path.strokeColor = 'green';
+                path.strokeWidth = 10;
+                path.data = {
+                    touchId: touch.identifier
+                };
+            }
         }
 
         counter++;
