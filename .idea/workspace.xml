@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PAPER/paper.js" afterPath="$PROJECT_DIR$/PAPER/paper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" afterPath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="withPaperTool.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="withPaperTool.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.39740822">
+              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -78,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paper.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="paper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PAPER/paper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62485206">
-              <caret line="11505" column="38" selection-start-line="11505" selection-start-column="38" selection-end-line="11509" selection-end-column="37" />
+            <state vertical-scroll-proportion="-6.3209877">
+              <caret line="11494" column="64" selection-start-line="11494" selection-start-column="64" selection-end-line="11494" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -163,10 +164,10 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
-        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
         <option value="$PROJECT_DIR$/PAPER/paper-full.js" />
         <option value="$PROJECT_DIR$/multiTouchDraw/withPaper.html" />
         <option value="$PROJECT_DIR$/PAPER/paper.js" />
+        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
       </list>
     </option>
   </component>
@@ -799,18 +800,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
+    <entry file="file://$PROJECT_DIR$/PAPER/paper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="27" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
+        <state vertical-scroll-proportion="-6.3209877">
+          <caret line="11494" column="64" selection-start-line="11494" selection-start-column="64" selection-end-line="11494" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PAPER/paper.js">
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62485206">
-          <caret line="11505" column="38" selection-start-line="11505" selection-start-column="38" selection-end-line="11509" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.39740822">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
           <folding />
         </state>
       </provider>

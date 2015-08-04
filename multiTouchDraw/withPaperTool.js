@@ -21,6 +21,7 @@ paper.setup('myCanvas');
     paperDrawTool.onMouseDown = function(paperEvent) {
         console.log('called' + counter.toString());
         paperEvent.preventDefault();
+        console.log(paper);
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
         console.log(touches);
