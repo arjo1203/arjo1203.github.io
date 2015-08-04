@@ -23,7 +23,7 @@ var NerdBoard = (function(wb) {
 
     wb.activeMode = 'draw';
 
-    wb.shape = 'Text';
+    wb.shape = 'Terminal';
     wb.numOfShapes = 0;
     wb.shapeStrokeColor = '#95B1BD';
     wb.erasing = false;
@@ -73,7 +73,7 @@ var NerdBoard = (function(wb) {
 
     wb.styleEle = function(ele, components) {
         ele.css("background-color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
-        ele.css("border", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
+        //ele.css("border", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     };
 
 
