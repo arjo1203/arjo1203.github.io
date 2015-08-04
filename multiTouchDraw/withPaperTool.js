@@ -15,12 +15,27 @@ paper.setup('myCanvas');
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
+
+    var paperDrawTool = new Tool();
+    paperDrawTool.onMouseDown = function(event) {
+        var touches = event.changedTouches;
+        console.log(touches);
+    };
+    paperDrawTool.onMouseDrag = function(event) {
+        var touches = event.changedTouches;
+        console.log(touches);
+    };
+    paperDrawTool.minDistance = 1;
+    paperDrawTool.maxDistance = 3;
+
+
     var drawTool = {
         onStart: function(event) {
-            console.log('draw');
+            //console.log('draw');
             //console.log(event);
             event.preventDefault();
             var touches = event.changedTouches;
+            console.log(touches);
 
             for (var i=0; i < touches.length; i++) {
                 var touch = touches[i];
@@ -47,6 +62,7 @@ paper.setup('myCanvas');
         onMove: function(event) {
             event.preventDefault();
             var touches = event.changedTouches;
+            console.log(touches);
 
             for (var i=0; i < touches.length; i++) {
                 var touch = touches[i];
@@ -165,8 +181,8 @@ paper.setup('myCanvas');
                     var currentItemIndex = findItemInPaper(touch.identifier);
                     //console.log(currentItemIndex);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    console.log(currentItem.position);
-                    console.log(currentItem._position);
+                    //console.log(currentItem.position);
+                    //console.log(currentItem._position);
 
                     var point = new Point({x: touch.pageX, y: touch.pageY});
 
