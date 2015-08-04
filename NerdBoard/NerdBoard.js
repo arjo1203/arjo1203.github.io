@@ -76,10 +76,6 @@ var NerdBoard = (function(wb) {
         ele.css("border", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     };
 
-    wb.styleLogo = function(ele, components) {
-        ele.css("color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
-    };
-
 
 
 

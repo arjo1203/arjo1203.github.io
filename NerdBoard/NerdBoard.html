@@ -47,24 +47,24 @@
             <div id="leftToolsDiv">
                 <div id="toolsView">
                     <div id="activeTool" class="centerIcon">
-                        <img id="toolIcon" src="icons/pencil2.png">
+                        <img id="toolIcon" src="icons/pencil.png">
                     </div>
                 </div>
                 <div id="toolOptions">
                     <div id="drawTool">
-                        <img id="drawToolIcon" src="icons/pencil2.png">
+                        <img id="drawToolIcon" src="icons/pencil.png">
                     </div>
                     <div id="eraseTool">
-                        <img id="eraseToolIcon" src="icons/eraser2.png">
+                        <img id="eraseToolIcon" src="icons/eraser.png">
                     </div>
                     <div id="moveTool">
-                        <img id="moveToolIcon" src="./icons/hand.png">
+                        <img id="moveToolIcon" src="./icons/move.png">
                     </div>
                     <div id="addTool">
                         <img id="addToolIcon" src="./icons/add.png">
                     </div>
                     <div id="themeTool">
-                        <img id="themeToolIcon" src="./icons/theme.png">
+                        <img id="themeToolIcon" src="./icons/settings.png">
                     </div>
                 </div>
             </div>
@@ -165,29 +165,33 @@
 
                     <div id="shapeView">
                         <div id="activeShape">
-                            <img src="icons/terminal.png" id="activeShapeIcon">
+                            <img src="icons/text.png" id="activeShapeIcon">
                         </div>
                     </div>
                     <div id="shapeOptions">
-                        <div id="Text"></div>
+                        <div id="Text" class="IconDiv">
+                            <div class="Icon centerIcon">
+                                <img class="Icon" src="icons/text.png">
+                            </div>
+                        </div>
                         <div id="Terminal" class="IconDiv">
                             <div class="Icon centerIcon">
-                                <img class="Icon" src="icons/terminal.png">
+                                <img class="Icon" src="icons/roundedRect.png">
                             </div>
                         </div>
                         <div id="Process" class="IconDiv">
                             <div class="Icon centerIcon">
-                                <img class="Icon" src="icons/process.png">
+                                <img class="Icon" src="icons/rect.png">
                             </div>
                         </div>
                         <div id="Input" class="IconDiv">
                             <div class="Icon centerIcon">
-                                <img class="Icon" src="icons/input.png">
+                                <img class="Icon" src="icons/slantedRect.png">
                             </div>
                         </div>
                         <div id="Decision" class="IconDiv">
                             <div class="Icon centerIcon">
-                                <img class="Icon" src="icons/decision.png">
+                                <img class="Icon" src="icons/diamond.png">
                             </div>
                         </div>
                     </div>
@@ -197,7 +201,7 @@
                 <div id="textInputDiv">
                     <div id="textInputView">
                         <div id="currentTextInput" class="whiteText">
-                            <p>Add Text</p>
+                            <img class="Icon centerIcon" src="icons/inputText.png">
                         </div>
                     </div>
                     <div id="textInputOptions">
@@ -209,7 +213,7 @@
                 <div id="textSizeDiv">
                     <div id="textSizeView">
                         <div id="currenttextSize" class="whiteText">
-                            <p>Size</p>
+                            <img class="Icon" src="icons/textSize.png">
                             <p id="textSizeSliderVal">40</p>
                         </div>
                     </div>
@@ -289,7 +293,9 @@
 
         </div>
 
-        <img id="NerdLogo" src="icons/NerdBoardLogo.png"/>
+        <div id="NerdLogo">
+            <img src="icons/NerdBoardLogo.png"/>
+        </div>
 
 
 

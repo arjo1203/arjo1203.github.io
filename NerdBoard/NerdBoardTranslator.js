@@ -60,17 +60,17 @@ var toolIcon = $('#toolIcon');
 
 $('#drawTool').click(function() {
     NerdBoard.activateDrawMode();
-    toolIcon.attr('src', 'icons/pencil2.png');
+    toolIcon.attr('src', 'icons/pencil.png');
 });
 
 $('#eraseTool').click(function() {
     NerdBoard.activateEraseMode();
-    toolIcon.attr('src', 'icons/eraser2.png');
+    toolIcon.attr('src', 'icons/eraser.png');
 });
 
 $('#moveTool').click(function() {
     NerdBoard.activateMoveMode();
-    toolIcon.attr('src', 'icons/hand.png');
+    toolIcon.attr('src', 'icons/move.png');
 });
 
 $('#addTool').click(function() {
@@ -80,7 +80,7 @@ $('#addTool').click(function() {
 
 $('#themeTool').click(function() {
     NerdBoard.activateThemeMode();
-    toolIcon.attr('src', 'icons/theme.png');
+    toolIcon.attr('src', 'icons/settings.png');
 });
 
 

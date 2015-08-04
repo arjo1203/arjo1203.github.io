@@ -328,7 +328,7 @@ NerdBoard.UIHandler = (function() {
                 displayOptions: function() {
                     SideBarUIS.LeftSideBarUI.switchUI('addUI');
                     SideBarUIS.LeftSideBarUI.leftSideBar.animate({
-                        height: '279px'
+                        height: '285px'
                     }, 200);
                 },
                 styleUI: function() {

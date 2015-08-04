@@ -542,21 +542,22 @@ fieldset[disabled] .btn-custom.active {
 #Terminal {
     position: relative;
     left: 70px;
+    bottom: 70px;
 }
 #Process {
     position: relative;
     left: 140px;
-    bottom: 70px;
+    bottom: 140px;
 }
 #Input {
     position: relative;
     left: 210px;
-    bottom: 140px;
+    bottom: 210px;
 }
 #Decision {
     position: relative;
     left: 280px;
-    bottom: 210px;
+    bottom: 280px;
 }
 #textSizeDiv {
     position: relative;
@@ -571,6 +572,7 @@ fieldset[disabled] .btn-custom.active {
     right: 0;
     width: 70px;
     height: 70px;
+    border-radius : 0px 0px 10px 0px;
 }
 #textSizeOptions {
     position: absolute;
@@ -597,6 +599,10 @@ fieldset[disabled] .btn-custom.active {
     width: 166px;
     top: 16px;
     z-index: -1;
+}
+#currentTextInput {
+    width: 50px;
+    height: 50px;
 }
 .top {
     position: relative;
@@ -642,8 +648,11 @@ fieldset[disabled] .btn-custom.active {
 }
 #NerdLogo {
     position: absolute;
-    font-size: 40px;
-    color: black;
+    width: 190px;
+    height: 77px;
+    right: 0;
+    top: 0;
+    z-index: 10;
 }
 .undoBtn {
     position: relative;
