@@ -11497,7 +11497,7 @@ var Tool = PaperScopeItem.extend({
 				matchMaxDistance = true;
 			}
 			break;
-		case 'mouseup':
+		//case 'mouseup':
 			//if (!point.equals(this._point)
 			//		&& this._updateEvent('mousedrag', point, this.minDistance,
 			//				this.maxDistance, false, false, false)) {
@@ -11508,7 +11508,7 @@ var Tool = PaperScopeItem.extend({
 			//called = this._fireEvent(type, event) || called;
 			//this._updateEvent(type, point, null, null, true, false, false);
 			//this._firstMove = true;
-			break;
+			//break;
 		case 'mousemove':
 			while (this._updateEvent(type, point, this.minDistance,
 					this.maxDistance, this._firstMove, true, false)) {
