@@ -11503,6 +11503,7 @@ var Tool = PaperScopeItem.extend({
 							this.maxDistance, false, false, false)) {
 				called = this._fireEvent('mousedrag', event);
                 this._updateEvent('mousedrag', point, this.minDistance, this.maxDistance, false, true, true);
+                this._firstMove = false;
 			}
 			//this._updateEvent(type, point, null, this.maxDistance, false,
 			//		false, false);
