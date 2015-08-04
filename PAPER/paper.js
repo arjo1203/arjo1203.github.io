@@ -11507,7 +11507,7 @@ var Tool = PaperScopeItem.extend({
 					false, false);
 			called = this._fireEvent(type, event) || called;
 			//this._updateEvent(type, point, null, null, true, false, false);
-            this._updateEvent(type, point, this.minDistance, this.maxDistance, false, true, true);
+            this._updateEvent('mousedrag', point, this.minDistance, this.maxDistance, false, true, true);
 			//this._firstMove = true;
 			break;
 		case 'mousemove':
