@@ -17,14 +17,14 @@ paper.setup('myCanvas');
     //Use paper to draw the paths
 
     var paperDrawTool = new Tool();
-    paperDrawTool.onMouseDown = function(event) {
-        console.log(event);
-        var touches = event.changedTouches;
+    paperDrawTool.onMouseDown = function(paperEvent) {
+        console.log(paperEvent);
+        var touches = paperEvent.event.changedTouches;
         console.log(touches);
     };
-    paperDrawTool.onMouseDrag = function(event) {
-        console.log(event);
-        var touches = event.changedTouches;
+    paperDrawTool.onMouseDrag = function(paperEvent) {
+        console.log(paperEvent);
+        var touches = paperEvent.event.changedTouches;
         console.log(touches);
     };
     paperDrawTool.minDistance = 1;
