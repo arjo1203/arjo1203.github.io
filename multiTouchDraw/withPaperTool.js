@@ -80,7 +80,7 @@ paper.setup('myCanvas');
 
         paper.view.draw();
     };
-    paperDrawTool.onMouseUp = function() {
+    paperDrawTool.onMouseUp = function(paperEvent) {
         event.preventDefault();
         var touches = paperEvent.event.changedTouches;
 
