@@ -17,6 +17,7 @@ paper.setup('myCanvas');
     //Use paper to draw the paths
     var drawTool = {
         onStart: function(event) {
+            console.log(event);
             event.preventDefault();
             var touches = event.changedTouches;
 
@@ -208,19 +209,19 @@ paper.setup('myCanvas');
 
     function bindToolToCanvas(Tool) {
         // Set up an event listener for new touches.
-        canvas.addEventListener('onmousedown', Tool.onStart);
+        canvas.addEventListener('mousedown', Tool.onStart);
         canvas.addEventListener('touchstart', Tool.onStart);
 
         // Set up an event listener for when the touch instrument is moved.
-        canvas.addEventListener('onmousemove', Tool.onMove);
+        canvas.addEventListener('mousemove', Tool.onMove);
         canvas.addEventListener('touchmove', Tool.onMove);
 
         // Set up an event listener for when a touch ends.
-        canvas.addEventListener('onmouseup', Tool.onEnd);
+        canvas.addEventListener('mouseup', Tool.onEnd);
         canvas.addEventListener('touchend', Tool.onEnd);
 
         // Set up an event listener for when a touch leaves the canvas.
-        canvas.addEventListener('onmouseleave', Tool.onEnd);
+        canvas.addEventListener('mouseleave', Tool.onEnd);
         canvas.addEventListener('touchleave', Tool.onEnd);
     }
 

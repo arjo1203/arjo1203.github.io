@@ -323,7 +323,7 @@ fieldset[disabled] .btn-custom.active {
     width: 50px;
     height: 50px;
 }
-#drawToolOptions {
+#leftDrawToolOptions {
     position: relative;
     width: 70px;
     height: 140px;
@@ -398,7 +398,7 @@ fieldset[disabled] .btn-custom.active {
     height: 150px;
     width: 20px;
 }
-#eraseToolOptions {
+#leftEraseToolOptions {
     position: absolute;
     width: 70px;
     height: 200px;
@@ -410,7 +410,7 @@ fieldset[disabled] .btn-custom.active {
 #eraseView {
     text-align: center;
 }
-#toolsDiv {
+#leftToolsDiv {
     width: 250px;
     height: 70px;
     float: right;
@@ -490,7 +490,7 @@ fieldset[disabled] .btn-custom.active {
 #eraseWidth {
     border-radius : 0px 0px 10px 0px;
 }
-#shapeToolOptions {
+#leftShapeToolOptions {
     position: relative;
     width: 70px;
     height: 210px;
@@ -675,13 +675,12 @@ fieldset[disabled] .btn-custom.active {
     left: 13px;
     top: 12px;
 }
-#themeToolOptions {
+#leftThemeToolOptions {
     position: relative;
     width: 70px;
     height: 70px;
     top: -280px;
     border-radius : 0px 0px 10px 0px;
-    z-index: -1;
     opacity: 0;
 }
 #themes {
