@@ -18,7 +18,7 @@ paper.setup('myCanvas');
 
     var paperDrawTool = new Tool();
     paperDrawTool.onMouseDown = function(paperEvent) {
-        event.preventDefault();
+        paperEvent.preventDefault();
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
         console.log(touches);
@@ -46,7 +46,7 @@ paper.setup('myCanvas');
         }
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
-        event.preventDefault();
+        paperEvent.preventDefault();
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
         console.log(touches);
@@ -81,7 +81,7 @@ paper.setup('myCanvas');
         paper.view.draw();
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
-        event.preventDefault();
+        paperEvent.preventDefault();
         var touches = paperEvent.event.changedTouches;
 
         for (var i = 0; i < touches.length; i++) {
