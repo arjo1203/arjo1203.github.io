@@ -21,7 +21,8 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
-        //console.log(touches);
+        console.log(touches);
+        console.log(currentTouches);
 
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
