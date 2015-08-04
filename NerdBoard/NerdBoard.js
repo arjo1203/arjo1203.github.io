@@ -282,33 +282,5 @@ var NerdBoard = (function(wb) {
     }
 
 
-
-    //STEVE'S STUPID CRAP
-
-    /**
-     * This is my neat type
-     * @type {{farts: string, craps: number}}
-     */
-    var MyType = {
-        farts: 2,
-        craps: 0
-    };
-
-    var x = new MyType();
-
-    /**
-     * This does stuff
-     * @param {Number} stuff
-     * @param {String} things
-     */
-    function eat (stuff, things) {
-
-    }
-
-    eat("", 2);
-
-    //END STEVE'S STUPID CRAP
-
-
     return wb;
 }(NerdBoard || {}));
