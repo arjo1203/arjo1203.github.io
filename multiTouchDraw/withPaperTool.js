@@ -107,6 +107,10 @@ paper.setup('myCanvas');
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
                 //currentItem.simplify();
                 currentItem.data = {};
+
+                if(currentTouches.length > 0) {
+                    paper.tool.__proto__._updateEvent('onMouseDrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
+                }
                 //console.log(currentItem);
             } else {
                 console.log('Touch was not found!');
