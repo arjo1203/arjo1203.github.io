@@ -11027,6 +11027,7 @@ var CanvasView = View.extend({
 
 	return {
 		_handleEvent: function(type, point, event) {
+            console.log(event);
 			if (!this._eventCounters[type])
 				return;
 			var project = this._project,
