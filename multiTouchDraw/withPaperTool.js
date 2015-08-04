@@ -122,11 +122,11 @@ paper.setup('myCanvas');
                 var touch = touches[i];
 
                 var point = new Point({x: touch.pageX, y: touch.pageY});
-                console.log(point);
+                //console.log(point);
                 console.log(paper);
                 console.log(paper.project);
                 var hitResult = paper.project.activeLayer._hitTest(point, hitOptions);
-                console.log(hitResult);
+                //console.log(hitResult);
 
                 //Track the newly created touch
                 var trackedTouch = {
@@ -157,22 +157,20 @@ paper.setup('myCanvas');
 
             console.log(hitItem);
             if(hitItem) {
+                console.log(paper.project.activeLayer.children);
                 for (var i = 0; i < touches.length; i++) {
                     var touch = touches[i];
                     var currentTouchIndex = findTrackedTouch(touch.identifier);
                     var currentTouch = currentTouches[currentTouchIndex];
                     var currentItemIndex = findItemInPaper(touch.identifier);
-                    console.log(currentItemIndex);
+                    //console.log(currentItemIndex);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    console.log(currentItem);
-
-                    var clone = currentItem.clone();
-                    console.log(clone);
+                    //console.log(currentItem);
 
                     var point = new Point({x: touch.pageX, y: touch.pageY});
-                    clone.position = point;
-                        //currentItem.setPosition(point);
-                    //currentItem.position = point;
+
+                    currentItem.position.x = point.x;
+                    currentItem.position.y = point.y;
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
@@ -180,8 +178,6 @@ paper.setup('myCanvas');
 
                     // Store the record of the trackedTouch.
                     currentTouches.splice(currentTouchIndex, 1, currentTouch);
-                    paper.project.activeLayer.children[currentItemIndex].remove();
-                    paper.project.activeLayer.children.splice(currentItemIndex, 1, clone);
                 }
             }
         },
@@ -199,8 +195,8 @@ paper.setup('myCanvas');
                 //Finds the path associated with the currentTouchIndex
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                //currentItem.data = {};
-                console.log(currentItem);
+                currentItem.data = {};
+                //console.log(currentItem);
             }
         }
     };
