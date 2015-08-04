@@ -19,9 +19,9 @@ paper.setup('myCanvas');
     var paperDrawTool = new Tool();
     paperDrawTool.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
-        console.log(paperEvent);
+        //console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
-        console.log(touches);
+        //console.log(touches);
 
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
@@ -47,9 +47,9 @@ paper.setup('myCanvas');
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
-        console.log(paperEvent);
+        //console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
-        console.log(touches);
+        //console.log(touches);
 
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
@@ -95,9 +95,9 @@ paper.setup('myCanvas');
                 //Finds the path associated with the currentTouchIndex
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                //currentItem.simplify();
+                currentItem.simplify();
                 currentItem.data = {};
-                console.log(currentItem);
+                //console.log(currentItem);
             } else {
                 console.log('Touch was not found!');
             }
