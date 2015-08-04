@@ -11,7 +11,7 @@ paper.setup('myCanvas');
 
     //Create arrays to store touches and paths
     var currentTouches = [];
-    //var currentItems = [];
+    var currentPaperEvents = [];
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
@@ -35,6 +35,7 @@ paper.setup('myCanvas');
 
             //Store the trackedTouch
             currentTouches.push(trackedTouch);
+            currentPaperEvents.push(paperEvent);
 
             //Create a new path for the trackedTouch
             var path = new Path();
@@ -57,13 +58,14 @@ paper.setup('myCanvas');
 
             if (currentTouchIndex >= 0) {
                 var currentTouch = currentTouches[currentTouchIndex];
+                var currentPaperEvent = currentPaperEvents[currentTouchIndex];
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
                 //console.log(currentItem);
 
                 //Creates a paper point based on the currentTouch position.
-                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                currentItem.add(point);
+                //var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.add(currentPaperEvent.point);
                 //currentItem.smooth();
 
                 // Update the trackedTouch record.
@@ -91,6 +93,7 @@ paper.setup('myCanvas');
             if (currentTouchIndex >= 0) {
                 // Remove the record of the touch and path record.
                 currentTouches.splice(currentTouchIndex, 1);
+                currentPaperEvents.splice(currentTouchIndex, 1);
 
                 //Finds the path associated with the currentTouchIndex
                 var currentItemIndex = findItemInPaper(touch.identifier);
