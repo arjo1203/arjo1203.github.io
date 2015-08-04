@@ -11473,6 +11473,7 @@ var Tool = PaperScopeItem.extend({
 					item.remove();
 				}
 				sets[type] = null;
+				console.log(sets[type]);
 			}
 		}
 		return this.responds(type)
