@@ -24,8 +24,8 @@ paper.setup('myCanvas');
         console.log(touches);
         console.log(currentTouches);
 
-        for (var i = 0; i < touches.length; i++) {
-            var touch = touches[i];
+        //for (var i = 0; i < touches.length; i++) {
+            var touch = touches[0];
 
             //Track the newly created touch
             var trackedTouch = {
@@ -44,7 +44,7 @@ paper.setup('myCanvas');
             path.data = {
                 touchId: touch.identifier
             };
-        }
+        //}
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
