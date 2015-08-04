@@ -62,9 +62,9 @@ paper.setup('myCanvas');
                 //console.log(currentItem);
 
                 //Creates a paper point based on the currentTouch position.
-                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                currentItem.add(point);
-                currentItem.smooth();
+                //var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.add(paperEvent.point);
+                //currentItem.smooth();
 
                 // Update the trackedTouch record.
                 currentTouch.pageX = touch.pageX;
@@ -72,13 +72,13 @@ paper.setup('myCanvas');
 
                 // Store the record of the trackedTouch.
                 currentTouches.splice(currentTouchIndex, 1, currentTouch);
+
+                paper.view.draw();
             } else {
                 console.log('Touch was not found!');
             }
 
         }
-
-        paper.view.draw();
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
         paperEvent.preventDefault();
@@ -95,7 +95,7 @@ paper.setup('myCanvas');
                 //Finds the path associated with the currentTouchIndex
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                currentItem.simplify();
+                //currentItem.simplify();
                 currentItem.data = {};
                 console.log(currentItem);
             } else {
