@@ -180,6 +180,8 @@ paper.setup('myCanvas');
 
                     // Store the record of the trackedTouch.
                     currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                    paper.project.activeLayer.children[currentItemIndex].remove();
+                    paper.project.activeLayer.children.splice(currentItemIndex, 1, clone);
                 }
             }
         },
