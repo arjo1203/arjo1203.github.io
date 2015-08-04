@@ -4,6 +4,7 @@ paper.install(window);
 paper.setup('myCanvas');
 
 (function(){
+    console.log(window);
     //Resize the canvas to the size of the window
     var canvas = document.getElementById('myCanvas');
     canvas.width = window.innerWidth;
