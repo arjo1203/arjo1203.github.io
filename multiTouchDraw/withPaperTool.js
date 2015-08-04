@@ -108,9 +108,9 @@ paper.setup('myCanvas');
                 //currentItem.simplify();
                 currentItem.data = {};
 
-                //if(currentTouches.length > 0) {
-                //    paper.tool.__proto__._updateEvent('mousedrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
-                //}
+                if(currentTouches.length > 0) {
+                    paper.tool.__proto__._updateEvent('mousedrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
+                }
                 //console.log(currentItem);
             } else {
                 console.log('Touch was not found!');

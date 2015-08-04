@@ -11498,13 +11498,11 @@ var Tool = PaperScopeItem.extend({
 			}
 			break;
 		case 'mouseup':
-			if (!point.equals(this._point)
-					&& this._updateEvent('mousedrag', point, this.minDistance,
-							this.maxDistance, false, false, false)) {
-				called = this._fireEvent('mousedrag', event);
-                this._updateEvent('mousedrag', point, this.minDistance, this.maxDistance, false, true, true);
-                this._firstMove = false;
-			}
+			//if (!point.equals(this._point)
+			//		&& this._updateEvent('mousedrag', point, this.minDistance,
+			//				this.maxDistance, false, false, false)) {
+			//	called = this._fireEvent('mousedrag', event);
+			//}
 			//this._updateEvent(type, point, null, this.maxDistance, false,
 			//		false, false);
 			//called = this._fireEvent(type, event) || called;
