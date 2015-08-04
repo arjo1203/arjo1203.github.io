@@ -496,17 +496,24 @@ fieldset[disabled] .btn-custom.active {
 #leftShapeToolOptions {
     position: relative;
     width: 70px;
-    height: 210px;
+    height: 250px;
     top: -70px;
     border-radius : 0px 0px 10px 0px;
     z-index: -1;
     opacity: 0;
+}
+#drawAfter {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    left: 10px;
 }
 #shapeDiv {
     position: absolute;
     left: -280px;
     height: 70px;
     width: 350px;
+    top: 30px;
 }
 #activeShape {
     position: relative;
@@ -568,9 +575,9 @@ fieldset[disabled] .btn-custom.active {
 #textSizeDiv {
     position: relative;
     text-align: center;
-    top: 70px;
+    top: 100px;
     left: -100px;
-    height: 70px;
+    height: 80px;
     width: 170px;
 }
 #textSizeView {
@@ -589,7 +596,7 @@ fieldset[disabled] .btn-custom.active {
 #textInputDiv {
     position: relative;
     text-align: center;
-    top: 70px;
+    top: 100px;
     left: -100px;
     height: 70px;
     width: 170px;

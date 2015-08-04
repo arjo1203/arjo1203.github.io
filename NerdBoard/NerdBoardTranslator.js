@@ -204,7 +204,6 @@ NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.slider();
 NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.slider();
 
 
-
 NerdBoard.UIHandler.LeftSideBarUI.styleUI();
 
 var canvas = $('#my-canvas'), sideBar = $('#leftSideBar');

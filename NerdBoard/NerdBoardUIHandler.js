@@ -44,7 +44,7 @@ NerdBoard.UIHandler = (function() {
                 activeOption: '',
                 options: {
                     colors: {
-                        tigger: $('#colorView'),
+                        tiger: $('#colorView'),
                         options: $('#colorOptions'),
                         activeColor: $('#activeColor'),
                         isOut: false,
@@ -78,7 +78,7 @@ NerdBoard.UIHandler = (function() {
                         toggleLast: 0
                     },
                     width: {
-                        tigger: $('#widthView'),
+                        tiger: $('#widthView'),
                         options: $('#widthOptions'),
                         input: $('#widths'),
                         slider: function() {
@@ -149,8 +149,8 @@ NerdBoard.UIHandler = (function() {
                 styleUI: function() {
                     var penColor = NerdBoard.getColorComponents(NerdBoard.penColor);
                     var navBg = NerdBoard.getColorComponents(NerdBoard.colors.neonBlack);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.tigger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.tigger, navBg);
+                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.tiger, navBg);
+                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.tiger, navBg);
                     NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.toolsUI.backGround, penColor);
                     NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.activeColor, penColor);
                     NerdBoard.styleEle($('#penWidth .slider-selection'), penColor);
@@ -202,8 +202,11 @@ NerdBoard.UIHandler = (function() {
             addUI: {
                 layer: $('#leftShapeToolOptions'),
                 options: {
+                    drawAfter: {
+                        tiger: $('#drawAfterCheckbox')
+                    },
                     shapes: {
-                        tigger: $('#shapeView'),
+                        tiger: $('#shapeView'),
                         options: $('#shapeOptions'),
                         isOut: false,
                         toggle: function() {
@@ -236,7 +239,7 @@ NerdBoard.UIHandler = (function() {
                         toggleLast: 0
                     },
                     textSize: {
-                        tigger: $('#textSizeView'),
+                        tiger: $('#textSizeView'),
                         options: $('#textSizeOptions'),
                         input: $('#textSizeSlider'),
                         slider: function() {
@@ -292,7 +295,7 @@ NerdBoard.UIHandler = (function() {
                         toggleLast: 0
                     },
                     textInput: {
-                        tigger: $('#textInputView'),
+                        tiger: $('#textInputView'),
                         options: $('#textInputOptions'),
                         isOut: false,
                         toggle: function() {
@@ -328,15 +331,15 @@ NerdBoard.UIHandler = (function() {
                 displayOptions: function() {
                     SideBarUIS.LeftSideBarUI.switchUI('addUI');
                     SideBarUIS.LeftSideBarUI.leftSideBar.animate({
-                        height: '285px'
+                        height: '320px'
                     }, 200);
                 },
                 styleUI: function() {
                     //var eraseColor = NerdBoardOriginal.getColorComponents(NerdBoardOriginal.theme.bg);
                     var navBg = NerdBoard.getColorComponents(NerdBoard.colors.neonBlack);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.tigger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.tigger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.tigger, navBg);
+                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.tiger, navBg);
+                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.tiger, navBg);
+                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.tiger, navBg);
                 },
                 closeOtherOptions: function() {
                     for(var option in SideBarUIS.LeftSideBarUI.UIS.addUI.options) {
@@ -363,7 +366,7 @@ NerdBoard.UIHandler = (function() {
                 activeOption: '',
                 options: {
                     themes: {
-                        tigger: $('#themeBtn'),
+                        tiger: $('#themeBtn'),
                         options: $('#themes'),
                         isOut: false,
                         toggle: function() {
