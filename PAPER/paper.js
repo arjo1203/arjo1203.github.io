@@ -11473,7 +11473,6 @@ var Tool = PaperScopeItem.extend({
 					item.remove();
 				}
 				sets[type] = null;
-				console.log(sets[type]);
 			}
 		}
 		return this.responds(type)
@@ -11507,8 +11506,8 @@ var Tool = PaperScopeItem.extend({
 			this._updateEvent(type, point, null, this.maxDistance, false,
 					false, false);
 			called = this._fireEvent(type, event) || called;
-			this._updateEvent(type, point, null, null, true, false, false);
-			this._firstMove = true;
+			//this._updateEvent(type, point, null, null, true, false, false);
+			//this._firstMove = true;
 			break;
 		case 'mousemove':
 			while (this._updateEvent(type, point, this.minDistance,
