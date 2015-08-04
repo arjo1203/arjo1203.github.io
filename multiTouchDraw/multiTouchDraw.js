@@ -162,6 +162,7 @@ paper.setup('myCanvas');
     }
 
 
+    // Finds the array index of an item in the activeLayer.children array.
     function findItemInPaper(id) {
         var children = paper.project.activeLayer.children;
 
