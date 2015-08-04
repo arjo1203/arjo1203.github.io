@@ -30,7 +30,7 @@ paper.setup('myCanvas');
             var touch = touches[i];
 
             var currentIndex = findTrackedTouch(touch.identifier);
-            if(currentIndex !== -1) {
+            if(currentIndex == -1) {
 
                 //Track the newly created touch
                 var trackedTouch = {
