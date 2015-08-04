@@ -12,20 +12,22 @@ paper.setup('myCanvas');
     //Create arrays to store touches and paths
     var currentTouches = [];
     //var currentItems = [];
+    var counter = 0;
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
 
     var paperDrawTool = new Tool();
     paperDrawTool.onMouseDown = function(paperEvent) {
+        console.log('called' + counter.toString());
         paperEvent.preventDefault();
         console.log(paperEvent);
         var touches = paperEvent.event.changedTouches;
         console.log(touches);
         console.log(currentTouches);
 
-        //for (var i = 0; i < touches.length; i++) {
-            var touch = touches[0];
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
 
             //Track the newly created touch
             var trackedTouch = {
@@ -44,7 +46,9 @@ paper.setup('myCanvas');
             path.data = {
                 touchId: touch.identifier
             };
-        //}
+        }
+
+        counter++;
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
