@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js" afterPath="$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiTouchDraw/multiDrawing.html" afterPath="$PROJECT_DIR$/multiTouchDraw/multiDrawing.html" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,21 +23,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="multiDrawing.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="multiDrawing.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiDrawing.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.4">
-              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.19533852">
+              <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="multiTouchDraw.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="multiTouchDraw.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12095033">
-              <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -100,8 +100,8 @@
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.css" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/multiTouchDraw/multiDrawing.html" />
         <option value="$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js" />
+        <option value="$PROJECT_DIR$/multiTouchDraw/multiDrawing.html" />
       </list>
     </option>
   </component>
@@ -708,18 +708,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiDrawing.html">
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.4">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiTouchDraw.js">
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/multiDrawing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12095033">
-          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.19533852">
+          <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           <folding />
         </state>
       </provider>
