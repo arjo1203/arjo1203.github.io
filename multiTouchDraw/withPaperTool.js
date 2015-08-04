@@ -166,8 +166,12 @@ paper.setup('myCanvas');
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     console.log(currentItem);
 
+                    var clone = currentItem.clone();
+                    console.log(clone);
+
                     var point = new Point({x: touch.pageX, y: touch.pageY});
-                    currentItem.setPosition(point);
+                    clone.position = point;
+                        //currentItem.setPosition(point);
                     //currentItem.position = point;
 
                     // Update the trackedTouch record.
