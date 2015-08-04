@@ -26,9 +26,11 @@ paper.setup('myCanvas');
         console.log(touches);
         console.log(currentTouches);
 
-        if(currentTouches.length !== touches.length) {
-            for (var i = 0; i < touches.length; i++) {
-                var touch = touches[i];
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+
+            var currentIndex = findTrackedTouch(touch.identifier);
+            if(currentIndex !== -1) {
 
                 //Track the newly created touch
                 var trackedTouch = {
