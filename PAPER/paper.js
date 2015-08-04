@@ -11054,6 +11054,7 @@ var CanvasView = View.extend({
 					if (lastPoint && !lastPoint.equals(point))
 						callEvent(this, 'mousedrag', event, point, dragItem,
 								lastPoint);
+                    type = 'mousedrag';
                     stopped = false;
 					if (item !== dragItem) {
 						overPoint = point;
