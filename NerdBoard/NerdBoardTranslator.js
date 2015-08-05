@@ -622,6 +622,7 @@ $('#uploadImg').on('change', function(e) {
 NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.slider();
 NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.slider();
 
+NerdBoard.setColor('defaultBlack');
 
 NerdBoard.UIHandler.LeftSideBarUI.styleUI();
 
