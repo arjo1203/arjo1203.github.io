@@ -260,10 +260,6 @@ paper.setup('myCanvas');
     paperMoveTool.maxDistance = 4;
 
 
-    // Set up an event listener to catch cancelled touches.
-    canvas.addEventListener('touchcancel', function(e) {
-        touchCancelled(e);
-    });
 
     $('#drawTool').on('click', function() {
         paperDrawTool.activate();
@@ -273,6 +269,11 @@ paper.setup('myCanvas');
         paperMoveTool.activate();
     });
 
+
+    // Set up an event listener to catch cancelled touches.
+    canvas.addEventListener('touchcancel', function(e) {
+        touchCancelled(e);
+    });
 
     // Removes cancelled touches from the currentTouches array.
     function touchCancelled(event) {

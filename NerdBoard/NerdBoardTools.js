@@ -206,6 +206,62 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.draw.minDistance = 0;
     wbTools.tools.draw.maxDistance = 2;
 
+    
+    // Set up an event listener to catch cancelled touches.
+    NerdBoard.canvas.addEventListener('touchcancel', function(e) {
+        touchCancelled(e);
+    });
+
+    // Removes cancelled touches from the currentTouches array.
+    function touchCancelled(event) {
+        var touches = event.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+            if (currentTouchIndex !== -1) {
+                // Remove the touch record and path record.
+                currentTouches.splice(currentTouchIndex, 1);
+
+                //Finds the path associated with the currentTouchIndex
+                var currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.simplify();
+                currentItem.data = {};
+                //console.log(currentItem);
+            } else {
+                console.log('Touch was not found!');
+            }
+        }
+    }
+
+    // Finds the array index of a trackedTouch in the currentTouches array.
+    function findTrackedTouch(touchId) {
+        for (var i = 0; i < currentTouches.length; i++) {
+            if (currentTouches[i].id === touchId) {
+                return i;
+            }
+        }
+
+        // Touch not found! Return -1.
+        return -1;
+    }
+
+
+
+    function findItemInPaper(id) {
+        var children = paper.project.activeLayer.children;
+
+        for(var i = 0; i < children.length; i++) {
+            if(children[i].data.touchId == id) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
 
     wbTools.tools.erase = new paper.Tool();
     wbTools.tools.erase.onMouseDown = function() {

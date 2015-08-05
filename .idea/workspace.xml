@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" afterPath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="150" column="9" selection-start-line="113" selection-start-column="45" selection-end-line="150" selection-end-column="9" />
+              <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="325" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -70,8 +71,18 @@
       <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8812095">
-              <caret line="145" column="54" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.17278618">
+              <caret line="208" column="4" selection-start-line="208" selection-start-column="4" selection-end-line="208" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NerdBoard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="281" column="5" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -133,8 +144,8 @@
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
         <option value="$PROJECT_DIR$/multiTouchDraw/withPaper.html" />
         <option value="$PROJECT_DIR$/PAPER/paper.js" />
-        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
         <option value="$PROJECT_DIR$/PAPER/paper-full.js" />
+        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
       </list>
     </option>
@@ -720,14 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8099352">
-          <caret line="281" column="5" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaper.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.08">
@@ -759,15 +762,23 @@
     <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="150" column="9" selection-start-line="113" selection-start-column="45" selection-end-line="150" selection-end-column="9" />
+          <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="325" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="281" column="5" selection-start-line="281" selection-start-column="5" selection-end-line="281" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8812095">
-          <caret line="145" column="54" selection-start-line="145" selection-start-column="54" selection-end-line="145" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.17278618">
+          <caret line="208" column="4" selection-start-line="208" selection-start-column="4" selection-end-line="208" selection-end-column="4" />
           <folding />
         </state>
       </provider>
