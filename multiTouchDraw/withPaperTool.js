@@ -56,7 +56,10 @@ paper.setup('myCanvas');
                     var path = new Path({
                         strokeColor: 'green',
                         strokeWidth: 10,
-                        strokeCap: 'round'
+                        strokeCap: 'round',
+                        data: {
+                            touchId: touch.identifier
+                        }
                     });
                 }
             }
