@@ -98,12 +98,12 @@ NerdBoard.UIHandler = (function() {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
 
-                                $('.slider-track').css('height', event.value.toString() + 'px');
-                                $('.slider-handle').css('margin-top', -(event.value / 2).toString() + 'px');
+                                $('#penWidthSlider .slider-track').css('height', event.value.toString() + 'px');
+                                $('#penWidthSlider .slider-handle').css('margin-top', -(event.value / 2).toString() + 'px');
 
                                 if(event.value > 3) {
-                                    $('.slider-handle').css('width', (event.value * 2).toString() + 'px');
-                                    $('.slider-handle').css('height', (event.value * 2).toString() + 'px');
+                                    $('#penWidthSlider .slider-handle').css('width', (event.value * 2).toString() + 'px');
+                                    $('#penWidthSlider .slider-handle').css('height', (event.value * 2).toString() + 'px');
                                 }
                             });
                             SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStop', function(event) {
