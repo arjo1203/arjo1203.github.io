@@ -472,7 +472,7 @@
 			} else {
 				// Bind mouse handlers
 				this.mousedown = this._mousedown.bind(this);
-				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
+				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
 				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 			}
 
