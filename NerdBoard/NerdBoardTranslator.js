@@ -120,7 +120,16 @@ $('#themeBtn').click(function() {
 });
 
 
-$('#colorView').click(function() {
+$('#colorView').on('mousedown', function() {
+    colorViewClick();
+});
+
+$('#colorView').on('touchstart', function() {
+    colorViewClick();
+});
+
+
+function colorViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast;
@@ -131,7 +140,7 @@ $('#colorView').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
-});
+}
 
 $('#widthView').click(function() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart = (new Date()).getTime();

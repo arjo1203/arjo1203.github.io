@@ -99,8 +99,8 @@ NerdBoard.Tools = window.onload = (function() {
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
 
-    var paperDrawTool = new Tool();
-    paperDrawTool.onMouseDown = function(paperEvent) {
+    wbTools.tools.draw = new Tool();
+    pwbTools.tools.draw.onMouseDown = function(paperEvent) {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
@@ -148,7 +148,7 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    paperDrawTool.onMouseDrag = function(paperEvent) {
+    wbTools.tools.draw.onMouseDrag = function(paperEvent) {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
@@ -192,7 +192,7 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    paperDrawTool.onMouseUp = function(paperEvent) {
+    wbTools.tools.draw.onMouseUp = function(paperEvent) {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
@@ -236,8 +236,8 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    paperDrawTool.minDistance = 0;
-    paperDrawTool.maxDistance = 2;
+    wbTools.tools.draw.minDistance = 0;
+    wbTools.tools.draw.maxDistance = 2;
 
 
     // Set up an event listener to catch cancelled touches.
