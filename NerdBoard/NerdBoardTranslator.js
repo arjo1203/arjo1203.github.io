@@ -1,116 +1,93 @@
-$('#undo').on('mousedown', function() {
+$('#undo').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.undo();
 });
 
-$('#undo').on('touchstart', function() {
-    NerdBoard.undo();
-});
-
-$('#clear').on('mousedown', function() {
+$('#clear').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.clear();
 });
 
-$('#clear').on('touchstart', function() {
-    NerdBoard.clear();
-});
-
-$('#black').on('mousedown', function() {
+$('#black').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setColor('black');
 });
 
-$('#black').on('touchstart', function() {
-    NerdBoard.setColor('black');
-});
-
-$('#red').on('mousedown', function() {
+$('#red').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setColor('red');
 });
 
-$('#red').on('touchstart', function() {
-    NerdBoard.setColor('red');
-});
-
-$('#green').on('mousedown', function() {
+$('#green').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setColor('green');
 });
 
-$('#green').on('touchstart', function() {
-    NerdBoard.setColor('green');
-});
-
-$('#blue').on('mousedown', function() {
+$('#blue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setColor('blue');
 });
 
-$('#blue').on('touchstart', function() {
-    NerdBoard.setColor('blue');
-});
-
-$('#yellow').on('mousedown', function() {
+$('#yellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setColor('yellow');
 });
 
-$('#yellow').on('touchstart', function() {
-    NerdBoard.setColor('yellow');
-});
-
-$('#Text').on('mousedown', function() {
+$('#Text').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setShape('Text');
 });
 
-$('#Text').on('touchstart', function() {
-    NerdBoard.setShape('Text');
-});
-
-$('#Terminal').on('mousedown', function() {
+$('#Terminal').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setShape('Terminal');
 });
 
-$('#Terminal').on('touchstart', function() {
-    NerdBoard.setShape('Terminal');
-});
-
-$('#Process').on('mousedown', function() {
+$('#Process').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setShape('Process');
 });
 
-$('#Process').on('touchstart', function() {
-    NerdBoard.setShape('Process');
-});
-
-$('#Input').on('mousedown', function() {
+$('#Input').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setShape('Input');
 });
 
-$('#Input').on('touchstart', function() {
-    NerdBoard.setShape('Input');
-});
-
-$('#Decision').on('mousedown', function() {
+$('#Decision').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setShape('Decision');
 });
 
-$('#Decision').on('touchstart', function() {
-    NerdBoard.setShape('Decision');
-});
-
-$('#saveWorkSpace').on('mousedown', function() {
+$('#saveWorkSpace').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.saveAsWorkSpace();
 });
 
-$('#saveWorkSpace').on('touchstart', function() {
-    NerdBoard.saveAsWorkSpace();
-});
-
-$('#loadWorkSpace').on('mousedown', function() {
+$('#loadWorkSpace').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.loadWorkSpace();
 });
 
-$('#loadWorkSpace').on('touchstart', function() {
-    NerdBoard.loadWorkSpace();
-});
 
-$('#defaultBg').bind('mousedown touchstart', function() {
+
+
+$('#defaultBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     NerdBoard.setColor('defaultBg');
 });
 
@@ -118,11 +95,9 @@ $('#defaultBg').bind('mousedown touchstart', function() {
 
 var toolIcon = $('#toolIcon');
 
-$('#drawTool').on('mousedown', function() {
-    updateToDrawMode();
-});
-
-$('#drawTool').on('touchstart', function() {
+$('#drawTool').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     updateToDrawMode();
 });
 
@@ -131,11 +106,9 @@ function updateToDrawMode() {
     toolIcon.attr('src', 'icons/pencil.png');
 }
 
-$('#eraseTool').on('mousedown', function() {
-    updateToEraseMode();
-});
-
-$('#eraseTool').on('touchstart', function() {
+$('#eraseTool').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     updateToEraseMode();
 });
 
@@ -144,11 +117,9 @@ function updateToEraseMode() {
     toolIcon.attr('src', 'icons/eraser.png');
 }
 
-$('#moveTool').on('mousedown', function() {
-    updateToMoveMode();
-});
-
-$('#moveTool').on('touchstart', function() {
+$('#moveTool').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     updateToMoveMode();
 });
 
@@ -157,11 +128,9 @@ function updateToMoveMode() {
     toolIcon.attr('src', 'icons/move.png');
 }
 
-$('#addTool').on('mousedown', function() {
-    updateToAddMode();
-});
-
-$('#addTool').on('touchstart', function() {
+$('#addTool').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     updateToAddMode();
 });
 
@@ -170,11 +139,9 @@ function updateToAddMode() {
     toolIcon.attr('src', 'icons/add.png');
 }
 
-$('#themeTool').on('mousedown', function() {
-    updateToThemeMode()
-});
-
-$('#themeTool').on('touchstart', function() {
+$('#themeTool').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     updateToThemeMode();
 });
 
@@ -186,11 +153,8 @@ function updateToThemeMode() {
 
 
 
-$('#toolsView').on('mousedown', function() {
-    toolsViewClick();
-});
 
-$('#toolsView').on('touchstart', function() {
+$('#toolsView').bind('mousedown touchstart', function() {
     toolsViewClick();
 });
 
@@ -208,11 +172,9 @@ function toolsViewClick() {
 }
 
 
-$('#themeBtn').on('mousedown', function() {
-    themeBtnClick();
-});
-
-$('#themeBtn').on('touchstart', function() {
+$('#themeBtn').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     themeBtnClick();
 });
 
@@ -230,11 +192,10 @@ function themeBtnClick() {
 }
 
 
-$('#colorView').on('mousedown', function() {
-    colorViewClick();
-});
 
-$('#colorView').on('touchstart', function() {
+$('#colorView').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     colorViewClick();
 });
 
@@ -252,11 +213,9 @@ function colorViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
 }
 
-$('#widthView').on('mousedown', function() {
-    widthViewClick();
-});
-
-$('#widthView').on('touchstart', function() {
+$('#widthView').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     widthViewClick();
 });
 
@@ -274,11 +233,9 @@ function widthViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart;
 }
 
-$('#shapeView').on('mousedown', function() {
-    shapeViewClick();
-});
-
-$('#shapeView').on('touchstart', function() {
+$('#shapeView').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     shapeViewClick();
 });
 
@@ -295,11 +252,9 @@ function shapeViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
 }
 
-$('#textSizeView').on('mousedown', function() {
-    textSizeViewClick()
-});
-
-$('#textSizeView').on('touchstart', function() {
+$('#textSizeView').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     textSizeViewClick();
 });
 
@@ -316,11 +271,9 @@ function textSizeViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart;
 }
 
-$('#textInputView').on('mousedown', function() {
-    textInputViewClick();
-});
-
-$('#textInputView').on('touchstart', function() {
+$('#textInputView').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
     textInputViewClick();
 });
 
@@ -340,11 +293,7 @@ function textInputViewClick() {
 
 
 
-$('#saveImg').on('mousedown', function() {
-    saveImgClick();
-});
-
-$('#saveImg').on('touchstart', function() {
+$('#saveImg').bind('mousedown touchstart', function() {
     saveImgClick();
 });
 
