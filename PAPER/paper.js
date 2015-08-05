@@ -10719,7 +10719,15 @@ var paper = new function(undefined) {
             if (!view || !dragging)
                 return;
             var point = viewToProject(view, event);
-            //dragging = false;
+            console.log(event);
+
+            if(event.type == 'mouseup') {
+                dragging = false;
+            }
+
+            if(event.type == 'touchend') {
+                dragging = true;
+            }
             view._handleEvent('mouseup', point, event);
             if (tool)
                 tool._handleEvent('mouseup', point, event);
