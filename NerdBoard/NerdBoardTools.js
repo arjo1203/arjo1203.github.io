@@ -193,10 +193,10 @@ NerdBoard.Tools = window.onload = (function() {
         }
     };
     wbTools.tools.draw.onKeyDown = function(paperEvent) {
-        if(paperEvent.content == 'z') {
+        if(paperEvent.key == 'z') {
             NerdBoard.undo();
         }
-        if(paperEvent.content == 'c') {
+        if(paperEvent.key == 'c') {
             NerdBoard.clear();
         }
     };
