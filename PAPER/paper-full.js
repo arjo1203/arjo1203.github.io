@@ -10722,8 +10722,12 @@ var View = Base.extend(Callback, {
 		if(event.type == 'mouseup') {
 			dragging = false;
 		}
-		if(event.type == 'touchend') {
+
+		if(event.changedTouches.length > 1) {
 			dragging = true;
+		}
+		else {
+			dragging = false;
 		}
 
 		view._handleEvent('mouseup', point, event);

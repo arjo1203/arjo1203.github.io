@@ -240,36 +240,36 @@ NerdBoard.Tools = window.onload = (function() {
     paperDrawTool.maxDistance = 2;
 
 
-    // Set up an event listener to catch cancelled touches.
-    NerdBoard.canvas.addEventListener('touchcancel', function(e) {
-        touchCancelled(e);
-    });
-
-    // Removes cancelled touches from the currentTouches array.
-    function touchCancelled(event) {
-        var touches = event.changedTouches;
-
-        for (var i = 0; i < touches.length; i++) {
-            var touch = touches[i];
-            var currentTouchIndex = findTrackedTouch(touch.identifier);
-
-            if (currentTouchIndex !== -1) {
-                // Remove the touch record and path record.
-                currentTouches.splice(currentTouchIndex, 1);
-
-                //Finds the path associated with the currentTouchIndex
-                var currentItemIndex = findItemInPaper(touch.identifier);
-                var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                currentItem.simplify();
-                currentItem.data = {
-                    name: NerdBoard.pathName
-                };
-                //console.log(currentItem);
-            } else {
-                console.log('Touch was not found!');
-            }
-        }
-    }
+    //// Set up an event listener to catch cancelled touches.
+    //NerdBoard.canvas.addEventListener('touchcancel', function(e) {
+    //    touchCancelled(e);
+    //});
+    //
+    //// Removes cancelled touches from the currentTouches array.
+    //function touchCancelled(event) {
+    //    var touches = event.changedTouches;
+    //
+    //    for (var i = 0; i < touches.length; i++) {
+    //        var touch = touches[i];
+    //        var currentTouchIndex = findTrackedTouch(touch.identifier);
+    //
+    //        if (currentTouchIndex !== -1) {
+    //            // Remove the touch record and path record.
+    //            currentTouches.splice(currentTouchIndex, 1);
+    //
+    //            //Finds the path associated with the currentTouchIndex
+    //            var currentItemIndex = findItemInPaper(touch.identifier);
+    //            var currentItem = paper.project.activeLayer.children[currentItemIndex];
+    //            currentItem.simplify();
+    //            currentItem.data = {
+    //                name: NerdBoard.pathName
+    //            };
+    //            //console.log(currentItem);
+    //        } else {
+    //            console.log('Touch was not found!');
+    //        }
+    //    }
+    //}
 
     // Finds the array index of a trackedTouch in the currentTouches array.
     function findTrackedTouch(touchId) {
