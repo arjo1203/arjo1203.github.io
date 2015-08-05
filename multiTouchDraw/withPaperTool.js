@@ -108,7 +108,7 @@ paper.setup('myCanvas');
             }
         }
 
-        paper.view.draw();
+        //paper.view.draw();
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
         //console.log(paperEvent.event.type);
