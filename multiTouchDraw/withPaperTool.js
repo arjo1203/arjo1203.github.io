@@ -213,8 +213,8 @@ paper.setup('myCanvas');
 
         }
     };
-    paperMoveTool.minDistance = 1;
-    paperMoveTool.maxDistance = 3;
+    paperMoveTool.minDistance = 2;
+    paperMoveTool.maxDistance = 4;
 
 
     // Set up an event listener to catch cancelled touches.

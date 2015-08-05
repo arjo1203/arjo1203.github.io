@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/PAPER/paper.js" afterPath="$PROJECT_DIR$/PAPER/paper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" afterPath="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="withPaperTool.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="withPaperTool.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="229" column="33" selection-start-line="229" selection-start-column="33" selection-end-line="229" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.34557235">
+              <caret line="216" column="33" selection-start-line="216" selection-start-column="33" selection-end-line="216" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -43,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="paper.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="paper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PAPER/paper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29699665">
+            <state vertical-scroll-proportion="-85.14815">
               <caret line="11570" column="26" selection-start-line="11570" selection-start-column="26" selection-end-line="11574" selection-end-column="23" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -122,8 +122,8 @@
         <option value="$PROJECT_DIR$/PAPER/paper-full.js" />
         <option value="$PROJECT_DIR$/multiTouchDraw/withPaper.html" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
-        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
         <option value="$PROJECT_DIR$/PAPER/paper.js" />
+        <option value="$PROJECT_DIR$/multiTouchDraw/withPaperTool.js" />
       </list>
     </option>
   </component>
@@ -742,21 +742,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="229" column="33" selection-start-line="229" selection-start-column="33" selection-end-line="229" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PAPER/paper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29699665">
+        <state vertical-scroll-proportion="-85.14815">
           <caret line="11570" column="26" selection-start-line="11570" selection-start-column="26" selection-end-line="11574" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multiTouchDraw/withPaperTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34557235">
+          <caret line="216" column="33" selection-start-line="216" selection-start-column="33" selection-end-line="216" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
