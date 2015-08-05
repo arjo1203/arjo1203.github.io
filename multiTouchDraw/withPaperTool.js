@@ -207,11 +207,11 @@ paper.setup('myCanvas');
             var currentTouchIndex = findTrackedTouch(touch.identifier);
             //var currentItemIndex = findItemInPaper(touch.identifier);
 
-            if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+            if (currentTouchIndex !== -1) {
                 var currentTouch = currentTouches[currentTouchIndex];
 
                 var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                var currentItem = project.hitTest(point, hitOptions).item;
+                var currentItem = project.hitTest(point, hitOptions);
                 //console.log(currentItem);
 
                 //Creates a paper point based on the currentTouch position.
