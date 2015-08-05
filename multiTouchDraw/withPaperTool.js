@@ -106,8 +106,8 @@ paper.setup('myCanvas');
 
         }
     };
-    paperDrawTool.minDistance = 5;
-    paperDrawTool.maxDistance = 10;
+    paperDrawTool.minDistance = 3;
+    paperDrawTool.maxDistance = 6;
 
 
     // Set up an event listener to catch cancelled touches.
