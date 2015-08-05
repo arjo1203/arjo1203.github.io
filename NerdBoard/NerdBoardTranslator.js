@@ -10,6 +10,11 @@ $('#clear').bind('mousedown touchstart', function(event) {
     NerdBoard.clear();
 });
 
+$('#menu').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+});
+
 $('#black').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -197,7 +202,7 @@ $('#colorSlateYellow').bind('mousedown touchstart', function(event) {
     NerdBoard.setColor('slateYellow');
 });
 
-//row3
+//row4
 $('#colorNightBlack').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -351,7 +356,7 @@ $('#themeSlateYellow').bind('mousedown touchstart', function(event) {
     NerdBoard.setBg('slateYellow');
 });
 
-//row3
+//row4
 $('#themeNightBlack').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
