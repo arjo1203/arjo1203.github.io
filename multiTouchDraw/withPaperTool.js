@@ -18,9 +18,10 @@ paper.setup('myCanvas');
     var paperDrawTool = new Tool();
     paperDrawTool.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
-        console.log(paperEvent);
+        //console.log(paperEvent);
+        console.log(paperEvent.event.type);
 
-        if(paperEvent.type == 'mousedown') {
+        if(paperEvent.event.type == 'mousedown') {
             var path = new paper.Path({
                 strokeColor: 'black', // NerdBoardOriginal is the global module from whiteboard.js
                 strokeWidth: 10,
@@ -30,7 +31,7 @@ paper.setup('myCanvas');
                 }
             });
         }
-        else {
+        if(paperEvent.event.type == 'touchstart') {
             var touches = paperEvent.event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
@@ -62,9 +63,10 @@ paper.setup('myCanvas');
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
-        console.log(paperEvent);
+        //console.log(paperEvent);
+        console.log(paperEvent.event.type);
 
-        if(paperEvent.type == 'mousedrag') {
+        if(paperEvent.event.type == 'mousemove') {
             var currentItemIndex = findItemInPaper(0);
             if(currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
@@ -73,7 +75,7 @@ paper.setup('myCanvas');
                 currentItem.smooth();
             }
         }
-        else {
+        if(paperEvent.event.type == 'touchmove') {
             var touches = paperEvent.event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
@@ -107,16 +109,17 @@ paper.setup('myCanvas');
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
         paperEvent.preventDefault();
-        console.log(paperEvent);
+        //console.log(paperEvent);
+        console.log(paperEvent.event.type);
 
-        if(paperEvent.type == 'mouseup') {
+        if(paperEvent.event.type == 'mouseup') {
             var currentItemIndex = findItemInPaper(0);
             var currentItem = paper.project.activeLayer.children[currentItemIndex];
             currentItem.add(paperEvent.point);
             currentItem.simplify();
             currentItem.data = {};
         }
-        else {
+        if(paperEvent.event.type == 'touchend') {
             var touches = paperEvent.event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
