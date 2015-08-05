@@ -1,56 +1,112 @@
-$('#undo').on('click', function() {
+$('#undo').on('mousedown', function() {
     NerdBoard.undo();
 });
 
-$('#clear').on('click', function() {
+$('#undo').on('touchstart', function() {
+    NerdBoard.undo();
+});
+
+$('#clear').on('mousedown', function() {
     NerdBoard.clear();
 });
 
-$('#black').on('click', function() {
+$('#clear').on('touchstart', function() {
+    NerdBoard.clear();
+});
+
+$('#black').on('mousedown', function() {
     NerdBoard.setColor('black');
 });
 
-$('#red').on('click', function() {
+$('#black').on('touchstart', function() {
+    NerdBoard.setColor('black');
+});
+
+$('#red').on('mousedown', function() {
     NerdBoard.setColor('red');
 });
 
-$('#green').on('click', function() {
+$('#red').on('touchstart', function() {
+    NerdBoard.setColor('red');
+});
+
+$('#green').on('mousedown', function() {
     NerdBoard.setColor('green');
 });
 
-$('#blue').on('click', function() {
+$('#green').on('touchstart', function() {
+    NerdBoard.setColor('green');
+});
+
+$('#blue').on('mousedown', function() {
     NerdBoard.setColor('blue');
 });
 
-$('#yellow').on('click', function() {
+$('#blue').on('touchstart', function() {
+    NerdBoard.setColor('blue');
+});
+
+$('#yellow').on('mousedown', function() {
     NerdBoard.setColor('yellow');
 });
 
-$('#Text').on('click', function() {
+$('#yellow').on('touchstart', function() {
+    NerdBoard.setColor('yellow');
+});
+
+$('#Text').on('mousedown', function() {
     NerdBoard.setShape('Text');
 });
 
-$('#Terminal').on('click', function() {
+$('#Text').on('touchstart', function() {
+    NerdBoard.setShape('Text');
+});
+
+$('#Terminal').on('mousedown', function() {
     NerdBoard.setShape('Terminal');
 });
 
-$('#Process').on('click', function() {
+$('#Terminal').on('touchstart', function() {
+    NerdBoard.setShape('Terminal');
+});
+
+$('#Process').on('mousedown', function() {
     NerdBoard.setShape('Process');
 });
 
-$('#Input').on('click', function() {
+$('#Process').on('touchstart', function() {
+    NerdBoard.setShape('Process');
+});
+
+$('#Input').on('mousedown', function() {
     NerdBoard.setShape('Input');
 });
 
-$('#Decision').on('click', function() {
+$('#Input').on('touchstart', function() {
+    NerdBoard.setShape('Input');
+});
+
+$('#Decision').on('mousedown', function() {
     NerdBoard.setShape('Decision');
 });
 
-$('#saveWorkSpace').on('click', function() {
+$('#Decision').on('touchstart', function() {
+    NerdBoard.setShape('Decision');
+});
+
+$('#saveWorkSpace').on('mousedown', function() {
     NerdBoard.saveAsWorkSpace();
 });
 
-$('#loadWorkSpace').on('click', function() {
+$('#saveWorkSpace').on('touchstart', function() {
+    NerdBoard.saveAsWorkSpace();
+});
+
+$('#loadWorkSpace').on('mousedown', function() {
+    NerdBoard.loadWorkSpace();
+});
+
+$('#loadWorkSpace').on('touchstart', function() {
     NerdBoard.loadWorkSpace();
 });
 
@@ -71,30 +127,71 @@ function updateToDrawMode() {
     toolIcon.attr('src', 'icons/pencil.png');
 }
 
-$('#eraseTool').click(function() {
+$('#eraseTool').on('mousedown', function() {
+    updateToEraseMode();
+});
+
+$('#eraseTool').on('touchstart', function() {
+    updateToEraseMode();
+});
+
+function updateToEraseMode() {
     NerdBoard.activateEraseMode();
     toolIcon.attr('src', 'icons/eraser.png');
+}
+
+$('#moveTool').on('mousedown', function() {
+    updateToMoveMode();
 });
 
-$('#moveTool').click(function() {
+$('#moveTool').on('touchstart', function() {
+    updateToMoveMode();
+});
+
+function updateToMoveMode() {
     NerdBoard.activateMoveMode();
     toolIcon.attr('src', 'icons/move.png');
+}
+
+$('#addTool').on('mousedown', function() {
+    updateToAddMode();
 });
 
-$('#addTool').click(function() {
+$('#addTool').on('touchstart', function() {
+    updateToAddMode();
+});
+
+function updateToAddMode() {
     NerdBoard.activateShapeMode();
     toolIcon.attr('src', 'icons/add.png');
+}
+
+$('#themeTool').on('mousedown', function() {
+    updateToThemeMode()
 });
 
-$('#themeTool').click(function() {
+$('#themeTool').on('touchstart', function() {
+    updateToThemeMode();
+});
+
+function updateToThemeMode() {
     NerdBoard.activateThemeMode();
     toolIcon.attr('src', 'icons/settings.png');
+}
+
+
+
+
+$('#toolsView').on('mousedown', function() {
+    toolsViewClick();
+});
+
+$('#toolsView').on('touchstart', function() {
+    toolsViewClick();
 });
 
 
-
-
-$('#toolsView').click(function() {
+function toolsViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleLast;
@@ -104,10 +201,19 @@ $('#toolsView').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleStart;
+}
+
+
+$('#themeBtn').on('mousedown', function() {
+    themeBtnClick();
+});
+
+$('#themeBtn').on('touchstart', function() {
+    themeBtnClick();
 });
 
 
-$('#themeBtn').click(function() {
+function themeBtnClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleLast;
@@ -117,7 +223,7 @@ $('#themeBtn').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleStart;
-});
+}
 
 
 $('#colorView').on('mousedown', function() {
@@ -142,7 +248,16 @@ function colorViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
 }
 
-$('#widthView').click(function() {
+$('#widthView').on('mousedown', function() {
+    widthViewClick();
+});
+
+$('#widthView').on('touchstart', function() {
+    widthViewClick();
+});
+
+
+function widthViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleLast;
@@ -153,9 +268,17 @@ $('#widthView').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart;
+}
+
+$('#shapeView').on('mousedown', function() {
+    shapeViewClick();
 });
 
-$('#shapeView').click(function() {
+$('#shapeView').on('touchstart', function() {
+    shapeViewClick();
+});
+
+function shapeViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleLast;
@@ -166,9 +289,17 @@ $('#shapeView').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
+}
+
+$('#textSizeView').on('mousedown', function() {
+    textSizeViewClick()
 });
 
-$('#textSizeView').click(function() {
+$('#textSizeView').on('touchstart', function() {
+    textSizeViewClick();
+});
+
+function textSizeViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleLast;
@@ -179,9 +310,17 @@ $('#textSizeView').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart;
+}
+
+$('#textInputView').on('mousedown', function() {
+    textInputViewClick();
 });
 
-$('#textInputView').click(function() {
+$('#textInputView').on('touchstart', function() {
+    textInputViewClick();
+});
+
+function textInputViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleLast;
@@ -192,15 +331,23 @@ $('#textInputView').click(function() {
     }
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart;
+}
+
+
+
+
+$('#saveImg').on('mousedown', function() {
+    saveImgClick();
 });
 
+$('#saveImg').on('touchstart', function() {
+    saveImgClick();
+});
 
-
-
-$('#saveImg').on('click', function() {
+function saveImgClick() {
     this.download = NerdBoard.getDate();
     this.href = NerdBoard.canvas.toDataURL('image/png');
-});
+}
 
 $('#uploadImg').on('change', function(e) {
     var file = e.target.files[0];

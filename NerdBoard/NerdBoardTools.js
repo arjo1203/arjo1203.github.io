@@ -49,49 +49,6 @@ NerdBoard.Tools = window.onload = (function() {
         myPath.smooth();
     }
 
-    //wbTools.tools.draw = new paper.Tool();
-    //wbTools.tools.draw.onMouseDown = function() {
-    //    myPath = new paper.Path({
-    //        strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
-    //        strokeWidth: NerdBoard.penStroke,
-    //        strokeCap: 'round',
-    //        data: {
-    //            name: NerdBoard.pathName
-    //        }
-    //    });
-    //};
-    //wbTools.tools.draw.onMouseDrag = function(event) {
-    //    myPath.add(event.point);
-    //};
-    //wbTools.tools.draw.onMouseUp = function(event) {
-    //    if(myPath._segments == 0) {
-    //        myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
-    //        myPath.style = {
-    //            fillColor: NerdBoard.penColor,
-    //            strokeColor: NerdBoard.penColor
-    //        };
-    //        myPath.data.name = NerdBoard.pathName + 'Dot';
-    //    }
-    //    else {
-    //        myPath.smooth();
-    //        myPath.simplify();
-    //    }
-    //};
-    //wbTools.tools.draw.onKeyDown =  function(event) {
-    //    if(event.key == 'z') {
-    //        wbTools.undo();
-    //    }
-    //    if(event.key == 'c') {
-    //        NerdBoard.clear();
-    //    }
-    //};
-    //wbTools.tools.draw.minDistance = 1;
-    //wbTools.tools.draw.maxDistance = 3;
-
-
-
-
-
 
     //Create arrays to store touches and paths
     var currentTouches = [];
@@ -228,7 +185,6 @@ NerdBoard.Tools = window.onload = (function() {
                     currentItem.data = {
                         name: NerdBoard.pathName
                     };
-                    //console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
@@ -264,7 +220,6 @@ NerdBoard.Tools = window.onload = (function() {
                 currentItem.data = {
                     name: NerdBoard.pathName
                 };
-                //console.log(currentItem);
             } else {
                 console.log('Touch was not found!');
             }
