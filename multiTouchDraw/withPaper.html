@@ -9,6 +9,7 @@
     <style>
         body, html {
             margin: 0;
+            height: 100%;
         }
         canvas[resize] {
             width: 100%;
@@ -19,7 +20,7 @@
 <body>
 <button id="drawTool">Draw</button>
 <button id="moveTool">Move</button>
-<canvas id="myCanvas" width="100%" height="100%"></canvas>
+<canvas id="myCanvas" width="100%" height="100%" resize></canvas>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="../PAPER/paper.js"></script>
 <script src="withPaperTool.js"></script>
