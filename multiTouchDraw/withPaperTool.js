@@ -17,132 +17,101 @@ paper.setup('myCanvas');
 
     var paperDrawTool = new Tool();
     paperDrawTool.onMouseDown = function(paperEvent) {
-        paperEvent.preventDefault();
-        //console.log(paperEvent);
         console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+        var touches = paperEvent.event.changedTouches;
 
-        //if(paperEvent.event.type == 'mousedown') {
-        //    var path = new paper.Path({
-        //        strokeColor: 'black', // NerdBoardOriginal is the global module from whiteboard.js
-        //        strokeWidth: 10,
-        //        strokeCap: 'round',
-        //        data: {
-        //            touchId: 0
-        //        }
-        //    });
-        //}
-        //if(paperEvent.event.type == 'touchstart') {
-            var touches = paperEvent.event.changedTouches;
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
 
-            for (var i = 0; i < touches.length; i++) {
-                var touch = touches[i];
+            var currentIndex = findTrackedTouch(touch.identifier);
+            if(currentIndex == -1) {
 
-                var currentIndex = findTrackedTouch(touch.identifier);
-                if(currentIndex == -1) {
+                //Track the newly created touch
+                var trackedTouch = {
+                    id: touch.identifier,
+                    pageX: touch.pageX,
+                    pageY: touch.pageY
+                };
 
-                    //Track the newly created touch
-                    var trackedTouch = {
-                        id: touch.identifier,
-                        pageX: touch.pageX,
-                        pageY: touch.pageY
-                    };
+                //Store the trackedTouch
+                currentTouches.push(trackedTouch);
 
-                    //Store the trackedTouch
-                    currentTouches.push(trackedTouch);
-
-                    //Create a new path for the trackedTouch
-                    var path = new Path();
-                    path.strokeColor = 'green';
-                    path.strokeWidth = 10;
-                    path.data = {
-                        touchId: touch.identifier
-                    };
-                }
+                //Create a new path for the trackedTouch
+                var path = new Path();
+                path.strokeColor = 'green';
+                path.strokeWidth = 10;
+                path.data = {
+                    touchId: touch.identifier
+                };
             }
-        //}
+        }
+
+        counter++;
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
-        paperEvent.preventDefault();
-        //console.log(paperEvent);
         console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
 
-        //if(paperEvent.event.type == 'mousemove') {
-        //    var currentItemIndex = findItemInPaper(0);
-        //    if(currentItemIndex !== -1) {
-        //        var currentItem = paper.project.activeLayer.children[currentItemIndex];
-        //        //console.log(currentItem);
-        //        currentItem.add(paperEvent.point);
-        //        currentItem.smooth();
-        //    }
-        //}
-        //if(paperEvent.event.type == 'touchmove') {
-            var touches = paperEvent.event.changedTouches;
+        var touches = paperEvent.event.changedTouches;
+        console.log('moving');
 
-            for (var i = 0; i < touches.length; i++) {
-                var touch = touches[i];
-                var currentTouchIndex = findTrackedTouch(touch.identifier);
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-                if (currentTouchIndex >= 0) {
-                    var currentTouch = currentTouches[currentTouchIndex];
-                    var currentItemIndex = findItemInPaper(touch.identifier);
-                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+            if (currentTouchIndex >= 0) {
+                var currentTouch = currentTouches[currentTouchIndex];
+                var currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
 
-                    //Creates a paper point based on the currentTouch position.
-                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentItem.add(point);
-                    currentItem.smooth();
+                //Creates a paper point based on the currentTouch position.
+                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.add(point);
+                currentItem.smooth();
 
-                    // Update the trackedTouch record.
-                    currentTouch.pageX = touch.pageX;
-                    currentTouch.pageY = touch.pageY;
+                // Update the trackedTouch record.
+                currentTouch.pageX = touch.pageX;
+                currentTouch.pageY = touch.pageY;
 
-                    // Store the record of the trackedTouch.
-                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
 
-                    paper.view.draw();
-                } else {
-                    console.log('Touch was not found!');
-                }
-
+                paper.view.draw();
+            } else {
+                console.log('Touch was not found!');
             }
-        //}
+
+        }
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
-        paperEvent.preventDefault();
-        //console.log(paperEvent);
         console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+        var touches = paperEvent.event.changedTouches;
 
-        //if(paperEvent.event.type == 'mouseup') {
-        //    var currentItemIndex = findItemInPaper(0);
-        //    var currentItem = paper.project.activeLayer.children[currentItemIndex];
-        //    currentItem.add(paperEvent.point);
-        //    currentItem.simplify();
-        //    currentItem.data = {};
-        //}
-        //if(paperEvent.event.type == 'touchend') {
-            var touches = paperEvent.event.changedTouches;
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-            for (var i = 0; i < touches.length; i++) {
-                var touch = touches[i];
-                var currentTouchIndex = findTrackedTouch(touch.identifier);
+            if (currentTouchIndex !== -1) {
+                // Remove the record of the touch and path record.
+                currentTouches.splice(currentTouchIndex, 1);
 
-                if (currentTouchIndex !== -1) {
-                    // Remove the record of the touch and path record.
-                    currentTouches.splice(currentTouchIndex, 1);
+                //Finds the path associated with the currentTouchIndex
+                var currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.simplify();
+                currentItem.data = {};
 
-                    //Finds the path associated with the currentTouchIndex
-                    var currentItemIndex = findItemInPaper(touch.identifier);
-                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    currentItem.simplify();
-                    currentItem.data = {};
-                    
-                    //console.log(currentItem);
-                } else {
-                    console.log('Touch was not found!');
+                if(currentTouches.length > 0) {
+                    paper.tool.__proto__._updateEvent('mousedrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
                 }
-
+                //console.log(currentItem);
+            } else {
+                console.log('Touch was not found!');
             }
-        //}
+
+        }
     };
     paperDrawTool.minDistance = 5;
     paperDrawTool.maxDistance = 10;
