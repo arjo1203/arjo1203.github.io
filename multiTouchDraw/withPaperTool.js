@@ -60,7 +60,7 @@ paper.setup('myCanvas');
             var touch = touches[i];
             var currentTouchIndex = findTrackedTouch(touch.identifier);
 
-            if (currentTouchIndex >= 0) {
+            if (currentTouchIndex !== -1) {
                 var currentTouch = currentTouches[currentTouchIndex];
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
