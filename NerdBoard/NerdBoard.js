@@ -222,38 +222,30 @@ var NerdBoard = (function(wb) {
     };
 
     wb.loadWorkSpace = function() {
-        var body = document.getElementById('body'),
-            file = document.createElement('input');
+        var file = document.createElement('input');
 
         file.type = 'file';
         file.click();
 
         file.addEventListener('change', function () {
-                var reader = new FileReader();
+            var reader = new FileReader();
 
-                reader.onloadstart = function () {
-                };
-                reader.onprogress = function () {
-                };
-                reader.onloadend = function () {
-                };
-                reader.onload = function (e) {
-                    var inputFile = JSON.parse(e.target.result);
+            reader.onload = function (e) {
+                var inputFile = JSON.parse(e.target.result);
 
-                    if(paper.project.activeLayer) {
-                        paper.project.activeLayer.remove();
-                    }
+                if(paper.project.activeLayer) {
+                    paper.project.activeLayer.remove();
+                }
 
-                    paper.project.importJSON(inputFile[0]);
+                paper.project.importJSON(inputFile[0]);
 
-                    paper.project.activeLayer.position = paper.view.center;
-                    NerdBoard.resizeBg();
-                    NerdBoard.Tools.convertTheme();
-                    paper.view.draw();
-                };
-                reader.readAsText(file.files[0]);
-            },
-            false);
+                paper.project.activeLayer.position = paper.view.center;
+                NerdBoard.Tools.resizeBg();
+                paper.view.draw();
+            };
+            reader.readAsText(file.files[0]);
+        },
+        false);
     };
 
 

@@ -39,6 +39,38 @@ NerdBoard.UIHandler = (function() {
                 toggleDelta: 0,
                 toggleLast: 0
             },
+            menuUI: {
+                tiger: $('#menuBtn'),
+                options: $('#menuOptions'),
+                isOut: false,
+                toggle: function() {
+                    if(SideBarUIS.LeftSideBarUI.UIS.menuUI.isOut) {
+                        SideBarUIS.LeftSideBarUI.UIS.menuUI.close();
+                    }
+                    else {
+                        SideBarUIS.LeftSideBarUI.UIS.menuUI.open();
+                    }
+                },
+                open: function() {
+                    SideBarUIS.LeftSideBarUI.UIS.menuUI.options.animate({
+                            left: '0'
+                        }, 300,
+                        function() {
+                            //SideBarUIS.LeftSideBarUI.UIS.menuUI.options.css('z-index', '1');
+                        });
+                    SideBarUIS.LeftSideBarUI.UIS.menuUI.isOut = true;
+                },
+                close: function() {
+                    //SideBarUIS.LeftSideBarUI.UIS.menuUI.options.css('z-index', '-1');
+                    SideBarUIS.LeftSideBarUI.UIS.menuUI.options.animate({
+                        left: '-185'
+                    }, 250);
+                    SideBarUIS.LeftSideBarUI.UIS.menuUI.isOut = false;
+                },
+                toggleStart: 0,
+                toggleDelta: 0,
+                toggleLast: 0
+            },
             drawUI: {
                 layer: $('#leftDrawToolOptions'),
                 activeOption: '',
@@ -449,7 +481,7 @@ NerdBoard.UIHandler = (function() {
             for(var UI in SideBarUIS.LeftSideBarUI.UIS) {
                 var id = UI.slice(UI.length - 2, UI.length);
                 if(id == 'UI') {
-                    if(UI !== 'toolsUI') {
+                    if(UI !== 'toolsUI' && UI !== 'menuUI') {
                         if(UI !== selectedUI) {
                             SideBarUIS.LeftSideBarUI.UIS[UI].layer.css('opacity', '0');
                             SideBarUIS.LeftSideBarUI.UIS[UI].layer.css('z-index', '-1');

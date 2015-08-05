@@ -242,8 +242,6 @@ fieldset[disabled] .btn-custom.active {
     width: 32px;
 }
 #loadWorkSpace {
-    padding: 0;
-    padding-left: 13px;
 }
 #loadImg {
     margin: 0;
@@ -647,9 +645,19 @@ fieldset[disabled] .btn-custom.active {
     top: 5px;
     background-color: black;
 }
+#menuOptions {
+    position: relative;
+    width: 180px;
+    height: 150px;
+    left: -185px;
+    font-size: 20px;
+    /*background-color: #0077aa;*/
+}
 #menuIcon {
     width: 30px;
     height: 30px;
+}
+#uploadImg {
 }
 .dropdown-menu {
     width: 50px!important;

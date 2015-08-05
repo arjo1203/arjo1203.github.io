@@ -10,11 +10,6 @@ $('#clear').bind('mousedown touchstart', function(event) {
     NerdBoard.clear();
 });
 
-$('#menu').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-});
-
 
 
 $('#saveWorkSpace').bind('mousedown touchstart', function(event) {
@@ -574,17 +569,45 @@ function textInputViewClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart;
 }
 
+NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.tiger.bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    textInputViewClick();
+});
+
+function textInputViewClick() {
+    NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart = (new Date()).getTime();
+
+    NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleLast;
+
+    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleDelta > 300) {
+        NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggle();
+    }
+
+    NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart;
+}
+
 
 
 
 $('#saveImg').bind('mousedown touchstart', function() {
-    saveImgClick();
-});
+    console.log('clicked');
+    //this.download = NerdBoard.getDate();
+    //this.href = NerdBoard.canvas.toDataURL('image/png');
 
-function saveImgClick() {
-    this.download = NerdBoard.getDate();
-    this.href = NerdBoard.canvas.toDataURL('image/png');
-}
+    var link = document.createElement("a");
+    var name = window.prompt("Please name your Image: ");
+    if(name != null){
+        link.href = NerdBoard.canvas.toDataURL('image/png');
+        link.download = name;
+        link.click();
+
+        window.alert("Image was saved!");
+    }
+    else{
+        window.alert("Image was NOT saved!!");
+    }
+});
 
 $('#uploadImg').on('change', function(e) {
     var file = e.target.files[0];
@@ -597,6 +620,38 @@ $('#uploadImg').on('change', function(e) {
 
     fileReader.readAsDataURL(file);
 });
+
+
+$('#uploadImg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    loadImage();
+});
+
+
+function loadImage() {
+    var file = document.createElement('input');
+
+    file.type = 'file';
+    file.click();
+
+    file.addEventListener('change', function () {
+            console.log('changed');
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            //console.log(e.target.result);
+            //NerdBoard.clear();
+            NerdBoard.Tools.loadRaster(e.target.result);
+
+            paper.project.activeLayer.position = paper.view.center;
+            NerdBoard.Tools.resizeBg();
+            paper.view.draw();
+        };
+        reader.readAsDataURL(file.files[0]);
+    },
+    false);
+}
 
 
 
