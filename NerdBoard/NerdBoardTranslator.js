@@ -110,6 +110,10 @@ $('#loadWorkSpace').on('touchstart', function() {
     NerdBoard.loadWorkSpace();
 });
 
+$('#defaultBg').bind('mousedown touchstart', function() {
+    NerdBoard.setColor('defaultBg');
+});
+
 
 
 var toolIcon = $('#toolIcon');
