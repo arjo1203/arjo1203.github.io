@@ -97,9 +97,9 @@ var NerdBoard = (function(wb) {
         var penColor = wb.getColorComponents(NerdBoard.penColor);
         NerdBoard.styleEle(NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.backGround, penColor);
         NerdBoard.styleEle(NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.activeColor, penColor);
-        NerdBoard.styleEle($('#penWidth .slider-selection'), penColor);
+        NerdBoard.styleEle($('#penWidthSlider .slider-selection'), penColor);
 
-        $('#penWidth .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
+        $('#penWidthSlider .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
 
         NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.close();
     };
