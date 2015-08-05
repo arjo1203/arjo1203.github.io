@@ -100,7 +100,7 @@ NerdBoard.Tools = window.onload = (function() {
     //Use paper to draw the paths
 
     wbTools.tools.draw = new Tool();
-    pwbTools.tools.draw.onMouseDown = function(paperEvent) {
+    wbTools.tools.draw.onMouseDown = function(paperEvent) {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
