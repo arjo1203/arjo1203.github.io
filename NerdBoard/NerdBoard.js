@@ -126,6 +126,7 @@ var NerdBoard = (function(wb) {
         wb.shape = shape;
 
         NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.close();
+        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.open();
     };
 
 

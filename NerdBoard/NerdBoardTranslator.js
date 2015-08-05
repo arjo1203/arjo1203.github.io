@@ -15,65 +15,7 @@ $('#menu').bind('mousedown touchstart', function(event) {
     event.stopPropagation();
 });
 
-$('#black').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setColor('black');
-});
 
-$('#red').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setColor('red');
-});
-
-$('#green').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setColor('green');
-});
-
-$('#blue').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setColor('blue');
-});
-
-$('#yellow').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setColor('yellow');
-});
-
-$('#Text').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Text');
-});
-
-$('#Terminal').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Terminal');
-});
-
-$('#Process').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Process');
-});
-
-$('#Input').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Input');
-});
-
-$('#Decision').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Decision');
-});
 
 $('#saveWorkSpace').bind('mousedown touchstart', function(event) {
     event.preventDefault();
@@ -87,6 +29,46 @@ $('#loadWorkSpace').bind('mousedown touchstart', function(event) {
     NerdBoard.loadWorkSpace();
 });
 
+
+
+
+
+var activeShapeIcon =  $('#activeShapeIcon');
+
+$('#Text').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Text');
+    activeShapeIcon.attr('src', 'icons/text.png');
+});
+
+$('#Terminal').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Terminal');
+    activeShapeIcon.attr('src', 'icons/roundedRect.png');
+});
+
+$('#Process').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Process');
+    activeShapeIcon.attr('src', 'icons/rect.png');
+});
+
+$('#Input').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Input');
+    activeShapeIcon.attr('src', 'icons/slantedRect.png');
+});
+
+$('#Decision').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Decision');
+    activeShapeIcon.attr('src', 'icons/diamond.png');
+});
 
 
 
