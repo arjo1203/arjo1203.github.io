@@ -27,7 +27,7 @@ paper.setup('myCanvas');
                 strokeWidth: 10,
                 strokeCap: 'round',
                 data: {
-                    touchId: -2
+                    touchId: 0
                 }
             });
         }
@@ -69,7 +69,7 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousemove') {
-            var currentItemIndex = findItemInPaper(-2);
+            var currentItemIndex = findItemInPaper(0);
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
@@ -107,15 +107,13 @@ paper.setup('myCanvas');
 
             }
         }
-
-        //paper.view.draw();
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mouseup') {
-            var currentItemIndex = findItemInPaper(-2);
+            var currentItemIndex = findItemInPaper(0);
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
@@ -207,15 +205,16 @@ paper.setup('myCanvas');
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
             var currentTouchIndex = findTrackedTouch(touch.identifier);
-            var currentItemIndex = findItemInPaper(touch.identifier);
+            //var currentItemIndex = findItemInPaper(touch.identifier);
 
             if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                 var currentTouch = currentTouches[currentTouchIndex];
-                var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                console.log(currentItem);
+
+                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                var currentItem = project.hitTest(point, hitOptions);
+                //console.log(currentItem);
 
                 //Creates a paper point based on the currentTouch position.
-                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 currentItem.position = point;
 
                 // Update the trackedTouch record.
