@@ -85,6 +85,8 @@ $('#loadWorkSpace').bind('mousedown touchstart', function(event) {
 
 
 
+
+//row1
 $('#colorDefaultBg').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
@@ -119,6 +121,271 @@ $('#colorDefaultYellow').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
     NerdBoard.setColor('defaultYellow');
+});
+
+//row2
+$('#colorNeonBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonBlack');
+});
+
+$('#colorNightBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('nightBg');
+});
+
+$('#colorSlateGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('slateGreen');
+});
+
+$('#colorNeonGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonGreen');
+});
+
+$('#colorNeonBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonBlue');
+});
+
+$('#colorNightYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('nightYellow');
+});
+
+//row3
+$('#colorSlateBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('slateBg');
+});
+
+$('#colorNeonBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonBg');
+});
+
+$('#colorNeonRed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonRed');
+});
+
+$('#colorNightGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('nightGreen');
+});
+
+$('#colorNightBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('nightBlue');
+});
+
+$('#colorSlateYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('slateYellow');
+});
+
+//row3
+$('#colorNightBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('nightBlack');
+});
+
+$('#colorDefaultBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('defaultBlack');
+});
+
+$('#colorDefaultRed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('defaultRed');
+});
+
+$('#colorDefaultGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('defaultGreen');
+});
+
+$('#colorDefaultBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('defaultBlue');
+});
+
+$('#colorNeonYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonYellow');
+});
+
+
+
+
+
+
+
+//row1
+$('#themeDefaultBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('defaultBg');
+});
+
+$('#themeSlateBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('slateBlack');
+});
+
+$('#themeSlateRed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('slateRed');
+});
+
+$('#themeNeonGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonGreen');
+});
+
+$('#themeSlateBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('slateBlue');
+});
+
+$('#themeDefaultYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('defaultYellow');
+});
+
+//row2
+$('#themeNeonBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonBlack');
+});
+
+$('#themeNightBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('nightBg');
+});
+
+$('#themeSlateGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('slateGreen');
+});
+
+$('#themeNeonGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonGreen');
+});
+
+$('#themeNeonBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonBlue');
+});
+
+$('#themeNightYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('nightYellow');
+});
+
+//row3
+$('#themeSlateBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('slateBg');
+});
+
+$('#themeNeonBg').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonBg');
+});
+
+$('#themeNeonRed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonRed');
+});
+
+$('#themeNightGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('nightGreen');
+});
+
+$('#themeNightBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('nightBlue');
+});
+
+$('#themeSlateYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('slateYellow');
+});
+
+//row3
+$('#themeNightBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('nightBlack');
+});
+
+$('#themeDefaultBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('defaultBlack');
+});
+
+$('#themeDefaultRed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('defaultRed');
+});
+
+$('#themeDefaultGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('defaultGreen');
+});
+
+$('#themeDefaultBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('defaultBlue');
+});
+
+$('#themeNeonYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setBg('neonYellow');
 });
 
 
