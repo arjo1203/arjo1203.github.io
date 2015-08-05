@@ -97,7 +97,8 @@ NerdBoard.UIHandler = (function() {
                             SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slide', function(event) {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
-                                $('.slider.slider-horizontal .slider-track').css('height', event.value.toString() + 'px');
+
+                                $('.slider-track').css('height', event.value.toString() + 'px');
                                 $('.slider-handle').css('margin-top', -(event.value / 2).toString() + 'px');
 
                                 if(event.value > 3) {
@@ -203,7 +204,10 @@ NerdBoard.UIHandler = (function() {
                 layer: $('#leftShapeToolOptions'),
                 options: {
                     drawAfter: {
-                        tiger: $('#drawAfterCheckbox')
+                        tiger: $('#drawAfterCheckbox'),
+                        checkBox: function() {
+                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.drawAfter.tiger.checkbox();
+                        }
                     },
                     shapes: {
                         tiger: $('#shapeView'),
