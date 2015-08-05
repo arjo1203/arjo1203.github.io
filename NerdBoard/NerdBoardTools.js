@@ -192,6 +192,14 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
+    wbTools.tools.draw.onKeyDown = function(paperEvent) {
+        if(paperEvent.content == 'z') {
+            NerdBoard.undo();
+        }
+        if(paperEvent.content == 'c') {
+            NerdBoard.clear();
+        }
+    };
     wbTools.tools.draw.minDistance = 0;
     wbTools.tools.draw.maxDistance = 2;
 
