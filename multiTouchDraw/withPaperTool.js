@@ -171,6 +171,7 @@ paper.setup('myCanvas');
             if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                 var currentTouch = currentTouches[currentTouchIndex];
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                console.log(currentItem);
 
                 //Creates a paper point based on the currentTouch position.
                 var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
