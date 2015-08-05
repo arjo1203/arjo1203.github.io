@@ -58,10 +58,18 @@ $('#loadWorkSpace').on('click', function() {
 
 var toolIcon = $('#toolIcon');
 
-$('#drawTool').click(function() {
+$('#drawTool').on('mousedown', function() {
+    updateToDrawMode();
+});
+
+$('#drawTool').on('touchstart', function() {
+    updateToDrawMode();
+});
+
+function updateToDrawMode() {
     NerdBoard.activateDrawMode();
     toolIcon.attr('src', 'icons/pencil.png');
-});
+}
 
 $('#eraseTool').click(function() {
     NerdBoard.activateEraseMode();
