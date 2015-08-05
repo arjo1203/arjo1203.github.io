@@ -124,7 +124,7 @@ paper.setup('myCanvas');
     paperMoveTool.onMouseDown = function(paperEvent) {
         console.log(paperEvent.event.type);
         paperEvent.preventDefault();
-        var touches = paperEvent.event.changedTouches;
+        var touches = paperEvent.event.touches;
 
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
@@ -145,10 +145,11 @@ paper.setup('myCanvas');
                 var point = new Point({x: touch.pageX, y: touch.pageY});
                 var hitResult = project.hitTest(point, hitOptions);
                 if (hitResult) {
-                    var pathHit = hitResult.item;
-                    pathHit.data = {
+                    var hitItem = hitResult.item;
+                    hitItem.data = {
                         touchId: touch.identifier
                     };
+                    console.log(hitItem);
                 }
                 else {
                     return ;
