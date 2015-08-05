@@ -38,12 +38,14 @@ paper.setup('myCanvas');
                 currentTouches.push(trackedTouch);
 
                 //Create a new path for the trackedTouch
-                var path = new Path();
-                path.strokeColor = 'green';
-                path.strokeWidth = 10;
-                path.data = {
-                    touchId: touch.identifier
-                };
+                var path = new Path({
+                    strokeColor: 'green',
+                    strokeWidth: 10,
+                    strokeCap: 'round',
+                    data: {
+                        touchId: touch.identifier
+                    }
+                });
             }
         }
     };
@@ -65,7 +67,7 @@ paper.setup('myCanvas');
                 //Creates a paper point based on the currentTouch position.
                 var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                 currentItem.add(point);
-                //currentItem.smooth();
+                currentItem.smooth();
 
                 // Update the trackedTouch record.
                 currentTouch.pageX = touch.pageX;
@@ -79,7 +81,7 @@ paper.setup('myCanvas');
 
         }
 
-        paper.view.draw();
+        //paper.view.draw();
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
         console.log(paperEvent.event.type);
