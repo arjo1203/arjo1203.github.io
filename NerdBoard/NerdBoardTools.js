@@ -48,34 +48,152 @@ NerdBoard.Tools = window.onload = (function() {
         myPath.insert(0, bottom);
         myPath.smooth();
     }
+    //Create arrays to store touches and paths
+    var currentTouches = [];
+
 
     wbTools.tools.draw = new paper.Tool();
     wbTools.tools.draw.onMouseDown = function() {
-        myPath = new paper.Path({
-            strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
-            strokeWidth: NerdBoard.penStroke,
-            strokeCap: 'round',
-            data: {
-                name: NerdBoard.pathName
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mousedown') {
+            //Create a new path for the trackedTouch
+            var path = new Path({
+                strokeColor: 'green',
+                strokeWidth: 10,
+                strokeCap: 'round',
+                data: {
+                    touchId: 0
+                }
+            });
+        }
+
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+
+                    //Track the newly created touch
+                    var trackedTouch = {
+                        id: touch.identifier,
+                        pageX: touch.pageX,
+                        pageY: touch.pageY
+                    };
+
+                    //Store the trackedTouch
+                    currentTouches.push(trackedTouch);
+
+                    //Create a new path for the trackedTouch
+                    var path = new Path({
+                        strokeColor: 'green',
+                        strokeWidth: 10,
+                        strokeCap: 'round',
+                        data: {
+                            touchId: touch.identifier
+                        }
+                    });
+                }
             }
-        });
+        }
     };
     wbTools.tools.draw.onMouseDrag = function(event) {
-        myPath.add(event.point);
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mousemove') {
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.add(paperEvent.point);
+            }
+        }
+
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    var currentTouch = currentTouches[currentTouchIndex];
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+
+                    //Creates a paper point based on the currentTouch position.
+                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    currentItem.add(point);
+                    //currentItem.smooth();
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+        }
     };
     wbTools.tools.draw.onMouseUp = function(event) {
-        if(myPath._segments == 0) {
-            myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
-            myPath.style = {
-                fillColor: NerdBoard.penColor,
-                strokeColor: NerdBoard.penColor
-            };
-            myPath.data.name = NerdBoard.pathName + 'Dot';
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.smooth();
+                currentItem.simplify();
+                currentItem.data = {};
+            }
         }
-        else {
-            myPath.smooth();
-            myPath.simplify();
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+
+                    //Finds the path associated with the currentTouchIndex
+                    var currentItemIndex = findItemInPaper(touch.identifier);
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    currentItem.smooth();
+                    currentItem.simplify();
+                    currentItem.data = {};
+                    //console.log(currentItem);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
         }
+
+        //if(myPath._segments == 0) {
+        //    myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
+        //    myPath.style = {
+        //        fillColor: NerdBoard.penColor,
+        //        strokeColor: NerdBoard.penColor
+        //    };
+        //    myPath.data.name = NerdBoard.pathName + 'Dot';
+        //}
+        //else {
+        //    myPath.smooth();
+        //    myPath.simplify();
+        //}
     };
     wbTools.tools.draw.onKeyDown =  function(event) {
         if(event.key == 'z') {
@@ -85,8 +203,8 @@ NerdBoard.Tools = window.onload = (function() {
             NerdBoard.clear();
         }
     };
-    wbTools.tools.draw.minDistance = 1;
-    wbTools.tools.draw.maxDistance = 3;
+    wbTools.tools.draw.minDistance = 0;
+    wbTools.tools.draw.maxDistance = 2;
 
 
     wbTools.tools.erase = new paper.Tool();
