@@ -53,7 +53,7 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     wbTools.tools.draw = new paper.Tool();
-    wbTools.tools.draw.onMouseDown = function() {
+    wbTools.tools.draw.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousedown') {
@@ -100,7 +100,7 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    wbTools.tools.draw.onMouseDrag = function(event) {
+    wbTools.tools.draw.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousemove') {
@@ -143,7 +143,7 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    wbTools.tools.draw.onMouseUp = function(event) {
+    wbTools.tools.draw.onMouseUp = function(paperEvent) {
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mouseup') {
