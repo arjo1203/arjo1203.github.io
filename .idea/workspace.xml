@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.js" afterPath="$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +36,8 @@
       <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.24">
-              <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="52" />
+            <state vertical-scroll-proportion="-15.36">
+              <caret line="91" column="55" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="55" />
               <folding>
                 <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
@@ -50,8 +48,8 @@
       <file leaf-file-name="NerdBoardTranslator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24190065">
-              <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.7084233">
+              <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -760,8 +758,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.24">
-          <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="52" />
+        <state vertical-scroll-proportion="-15.36">
+          <caret line="91" column="55" selection-start-line="91" selection-start-column="37" selection-end-line="91" selection-end-column="55" />
           <folding>
             <element signature="n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
@@ -770,8 +768,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24190065">
-          <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.7084233">
+          <caret line="120" column="40" selection-start-line="120" selection-start-column="40" selection-end-line="120" selection-end-column="40" />
           <folding />
         </state>
       </provider>

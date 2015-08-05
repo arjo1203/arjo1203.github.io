@@ -85,10 +85,40 @@ $('#loadWorkSpace').bind('mousedown touchstart', function(event) {
 
 
 
-$('#defaultBg').bind('mousedown touchstart', function(event) {
+$('#colorDefaultBg').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
     NerdBoard.setColor('defaultBg');
+});
+
+$('#colorSlateBlack').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('slateBlack');
+});
+
+$('#colorSlateRed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('slateRed');
+});
+
+$('#colorNeonGreen').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('neonGreen');
+});
+
+$('#colorSlateBlue').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('slateBlue');
+});
+
+$('#colorDefaultYellow').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setColor('defaultYellow');
 });
 
 
