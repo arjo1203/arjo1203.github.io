@@ -70,7 +70,9 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousemove') {
-            mousePath.add(paperEvent.point);
+            if(mousePath) {
+                mousePath.add(paperEvent.point);
+            }
         }
 
 
@@ -113,6 +115,7 @@ paper.setup('myCanvas');
         if(paperEvent.event.type == 'mouseup') {
             mousePath.smooth();
             mousePath.simplify();
+            mousePath = {};
         }
 
         if(paperEvent.event.type == 'touchend') {
