@@ -264,7 +264,9 @@ NerdBoard.Tools = window.onload = (function() {
                 var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
                 currentItem.simplify();
-                currentItem.data = {};
+                currentItem.data = {
+                    name: NerdBoard.pathName
+                };
                 //console.log(currentItem);
             } else {
                 console.log('Touch was not found!');
