@@ -96,9 +96,12 @@ NerdBoard.Tools = window.onload = (function() {
     //Create arrays to store touches and paths
     var currentTouches = [];
 
+    //Use the HTML5 Canvas API to track the touches
+    //Use paper to draw the paths
 
-    wbTools.tools.draw = new paper.Tool();
-    wbTools.tools.draw.onMouseDown = function(paperEvent) {
+    var paperDrawTool = new Tool();
+    paperDrawTool.onMouseDown = function(paperEvent) {
+        //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousedown') {
@@ -145,7 +148,8 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    wbTools.tools.draw.onMouseDrag = function(paperEvent) {
+    paperDrawTool.onMouseDrag = function(paperEvent) {
+        //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousemove') {
@@ -164,10 +168,10 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
 
-                if (currentTouchIndex !== -1) {
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
 
                     //Creates a paper point based on the currentTouch position.
@@ -188,7 +192,8 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    wbTools.tools.draw.onMouseUp = function(paperEvent) {
+    paperDrawTool.onMouseUp = function(paperEvent) {
+        //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mouseup') {
@@ -210,13 +215,13 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
 
-                if (currentTouchIndex !== -1) {
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
 
                     //Finds the path associated with the currentTouchIndex
-                    var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.smooth();
                     currentItem.simplify();
@@ -231,16 +236,8 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    wbTools.tools.draw.onKeyDown =  function(event) {
-        if(event.key == 'z') {
-            wbTools.undo();
-        }
-        if(event.key == 'c') {
-            NerdBoard.clear();
-        }
-    };
-    wbTools.tools.draw.minDistance = 0;
-    wbTools.tools.draw.maxDistance = 2;
+    paperDrawTool.minDistance = 0;
+    paperDrawTool.maxDistance = 2;
 
 
     // Set up an event listener to catch cancelled touches.
