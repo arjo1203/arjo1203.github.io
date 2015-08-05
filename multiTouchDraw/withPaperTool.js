@@ -21,17 +21,17 @@ paper.setup('myCanvas');
         //console.log(paperEvent);
         console.log(paperEvent.event.type);
 
-        if(paperEvent.event.type == 'mousedown') {
-            var path = new paper.Path({
-                strokeColor: 'black', // NerdBoardOriginal is the global module from whiteboard.js
-                strokeWidth: 10,
-                strokeCap: 'round',
-                data: {
-                    touchId: 0
-                }
-            });
-        }
-        if(paperEvent.event.type == 'touchstart') {
+        //if(paperEvent.event.type == 'mousedown') {
+        //    var path = new paper.Path({
+        //        strokeColor: 'black', // NerdBoardOriginal is the global module from whiteboard.js
+        //        strokeWidth: 10,
+        //        strokeCap: 'round',
+        //        data: {
+        //            touchId: 0
+        //        }
+        //    });
+        //}
+        //if(paperEvent.event.type == 'touchstart') {
             var touches = paperEvent.event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
@@ -59,23 +59,23 @@ paper.setup('myCanvas');
                     };
                 }
             }
-        }
+        //}
     };
     paperDrawTool.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
         //console.log(paperEvent);
         console.log(paperEvent.event.type);
 
-        if(paperEvent.event.type == 'mousemove') {
-            var currentItemIndex = findItemInPaper(0);
-            if(currentItemIndex !== -1) {
-                var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                //console.log(currentItem);
-                currentItem.add(paperEvent.point);
-                currentItem.smooth();
-            }
-        }
-        if(paperEvent.event.type == 'touchmove') {
+        //if(paperEvent.event.type == 'mousemove') {
+        //    var currentItemIndex = findItemInPaper(0);
+        //    if(currentItemIndex !== -1) {
+        //        var currentItem = paper.project.activeLayer.children[currentItemIndex];
+        //        //console.log(currentItem);
+        //        currentItem.add(paperEvent.point);
+        //        currentItem.smooth();
+        //    }
+        //}
+        //if(paperEvent.event.type == 'touchmove') {
             var touches = paperEvent.event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
@@ -105,21 +105,21 @@ paper.setup('myCanvas');
                 }
 
             }
-        }
+        //}
     };
     paperDrawTool.onMouseUp = function(paperEvent) {
         paperEvent.preventDefault();
         //console.log(paperEvent);
         console.log(paperEvent.event.type);
 
-        if(paperEvent.event.type == 'mouseup') {
-            var currentItemIndex = findItemInPaper(0);
-            var currentItem = paper.project.activeLayer.children[currentItemIndex];
-            currentItem.add(paperEvent.point);
-            currentItem.simplify();
-            currentItem.data = {};
-        }
-        if(paperEvent.event.type == 'touchend') {
+        //if(paperEvent.event.type == 'mouseup') {
+        //    var currentItemIndex = findItemInPaper(0);
+        //    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+        //    currentItem.add(paperEvent.point);
+        //    currentItem.simplify();
+        //    currentItem.data = {};
+        //}
+        //if(paperEvent.event.type == 'touchend') {
             var touches = paperEvent.event.changedTouches;
 
             for (var i = 0; i < touches.length; i++) {
@@ -135,17 +135,14 @@ paper.setup('myCanvas');
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.simplify();
                     currentItem.data = {};
-
-                    if(currentTouches.length > 0) {
-                        paper.tool.__proto__._updateEvent('mousedrag', paperEvent.point, paperDrawTool.minDistance, paperDrawTool.maxDistance, true, false, false);
-                    }
+                    
                     //console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
                 }
 
             }
-        }
+        //}
     };
     paperDrawTool.minDistance = 5;
     paperDrawTool.maxDistance = 10;
