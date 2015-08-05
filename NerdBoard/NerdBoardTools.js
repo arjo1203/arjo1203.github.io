@@ -198,7 +198,9 @@ NerdBoard.Tools = window.onload = (function() {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
                 currentItem.smooth();
                 currentItem.simplify();
-                currentItem.data = {};
+                currentItem.data = {
+                    name: NerdBoard.pathName
+                };
             }
         }
 
@@ -218,7 +220,9 @@ NerdBoard.Tools = window.onload = (function() {
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.smooth();
                     currentItem.simplify();
-                    currentItem.data = {};
+                    currentItem.data = {
+                        name: NerdBoard.pathName
+                    };
                     //console.log(currentItem);
                 } else {
                     console.log('Touch was not found!');
@@ -226,19 +230,6 @@ NerdBoard.Tools = window.onload = (function() {
 
             }
         }
-
-        //if(myPath._segments == 0) {
-        //    myPath = new paper.Path.Circle(event.point, NerdBoard.penStroke / 2);
-        //    myPath.style = {
-        //        fillColor: NerdBoard.penColor,
-        //        strokeColor: NerdBoard.penColor
-        //    };
-        //    myPath.data.name = NerdBoard.pathName + 'Dot';
-        //}
-        //else {
-        //    myPath.smooth();
-        //    myPath.simplify();
-        //}
     };
     wbTools.tools.draw.onKeyDown =  function(event) {
         if(event.key == 'z') {
