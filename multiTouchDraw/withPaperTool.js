@@ -84,10 +84,10 @@ paper.setup('myCanvas');
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
 
-                if (currentTouchIndex !== -1) {
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
 
                     //Creates a paper point based on the currentTouch position.
@@ -129,13 +129,13 @@ paper.setup('myCanvas');
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
 
-                if (currentTouchIndex !== -1) {
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
 
                     //Finds the path associated with the currentTouchIndex
-                    var currentItemIndex = findItemInPaper(touch.identifier);
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     currentItem.smooth();
                     currentItem.simplify();
