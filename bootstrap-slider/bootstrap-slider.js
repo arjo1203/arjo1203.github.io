@@ -468,9 +468,11 @@
 				// Bind touch handlers
 				this.mousedown = this._mousedown.bind(this);
 				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
+				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 			} else {
 				// Bind mouse handlers
 				this.mousedown = this._mousedown.bind(this);
+				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
 			}
 
@@ -910,7 +912,7 @@
 					document.addEventListener("touchmove", this.mousemove, false);
 					document.addEventListener("touchend", this.mouseup, false);
 				}
-				// Bind mouse events:
+				 Bind mouse events:
 				document.addEventListener("mousemove", this.mousemove, false);
 				document.addEventListener("mouseup", this.mouseup, false);
 
