@@ -79,7 +79,7 @@
                     </div>
                     <div id="colorOptions">
                         <div class="row1">
-                            <div class="col1 defaultBg border" onclick="NerdBoard.setColor('defaultBg')">
+                            <div id="defaultBg" class="col1 defaultBg border" onclick="NerdBoard.setColor('defaultBg')">
                             </div>
                             <div class="col2 slateBlack border" onclick="NerdBoard.setColor('slateBlack')">
                             </div>
@@ -320,6 +320,13 @@
         <script src="NerdBoardUIHandler.js"></script>
         <script src="NerdBoardTranslator.js"></script>
         <script>
+            (function ($) {
+                $.fn.tclick = function (onclick) {
+                    this.bind("touchstart", function (e) { onclick.call(this, e); e.stopPropagation(); e.preventDefault(); });
+                    this.bind("click", function (e) { onclick.call(this, e); });   //substitute mousedown event for exact same result as touchstart
+                    return this;
+                };
+            })(jQuery);
         </script>
     </body>
 </html>
