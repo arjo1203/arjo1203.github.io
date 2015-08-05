@@ -62,7 +62,6 @@ NerdBoard.Tools = window.onload = (function() {
     };
     wbTools.tools.draw.onMouseDrag = function(event) {
         myPath.add(event.point);
-        myPath.smooth();
     };
     wbTools.tools.draw.onMouseUp = function(event) {
         if(myPath._segments == 0) {
@@ -74,6 +73,7 @@ NerdBoard.Tools = window.onload = (function() {
             myPath.data.name = NerdBoard.pathName + 'Dot';
         }
         else {
+            myPath.smooth();
             myPath.simplify();
         }
     };

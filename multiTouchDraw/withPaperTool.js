@@ -113,6 +113,113 @@ paper.setup('myCanvas');
     paperDrawTool.maxDistance = 3;
 
 
+    var hitOptions = {
+        segments: true,
+        stroke: true,
+        fill: true,
+        tolerance: 2
+    };
+
+    var paperMoveTool = new Tool();
+    paperMoveTool.onMouseDown = function(paperEvent) {
+        console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+        var touches = paperEvent.event.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+
+            var currentIndex = findTrackedTouch(touch.identifier);
+            if(currentIndex == -1) {
+
+                //Track the newly created touch
+                var trackedTouch = {
+                    id: touch.identifier,
+                    pageX: touch.pageX,
+                    pageY: touch.pageY
+                };
+
+                //Store the trackedTouch
+                currentTouches.push(trackedTouch);
+
+                var point = new Point({x: touch.pageX, y: touch.pageY});
+                var hitResult = project.hitTest(point, hitOptions);
+                if (hitResult) {
+                    var pathHit = hitResult.item;
+                    pathHit.data = {
+                        touchId: touch.identifier
+                    };
+                }
+                else {
+                    return ;
+                }
+            }
+        }
+    };
+    paperMoveTool.onMouseDrag = function(paperEvent) {
+        console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+
+        var touches = paperEvent.event.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+            if (currentTouchIndex !== -1) {
+                var currentTouch = currentTouches[currentTouchIndex];
+                var currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+
+                //Creates a paper point based on the currentTouch position.
+                var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.position.x = event.delta.x;
+                currentItem.position.y = event.delta.y;
+
+                // Update the trackedTouch record.
+                currentTouch.pageX = touch.pageX;
+                currentTouch.pageY = touch.pageY;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
+            } else {
+                console.log('Touch was not found!');
+            }
+
+        }
+
+        paper.view.draw();
+    };
+    paperMoveTool.onMouseUp = function(paperEvent) {
+        console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+        var touches = paperEvent.event.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+            if (currentTouchIndex !== -1) {
+                // Remove the record of the touch and path record.
+                currentTouches.splice(currentTouchIndex, 1);
+
+                //Finds the path associated with the currentTouchIndex
+                var currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.smooth();
+                currentItem.simplify();
+                currentItem.data = {};
+                //console.log(currentItem);
+            } else {
+                console.log('Touch was not found!');
+            }
+
+        }
+    };
+    paperMoveTool.minDistance = 1;
+    paperMoveTool.maxDistance = 3;
+
+
     // Set up an event listener to catch cancelled touches.
     canvas.addEventListener('touchcancel', function(e) {
         touchCancelled(e);
