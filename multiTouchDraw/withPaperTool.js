@@ -140,8 +140,8 @@ paper.setup('myCanvas');
             }
         }
     };
-    paperDrawTool.minDistance = 1;
-    paperDrawTool.maxDistance = 3;
+    paperDrawTool.minDistance = 0;
+    paperDrawTool.maxDistance = 2;
 
 
     var hitOptions = {
