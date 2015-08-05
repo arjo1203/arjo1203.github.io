@@ -464,17 +464,9 @@
 			this.handle2Keydown = this._keydown.bind(this, 1);
 			this.handle2.addEventListener("keydown", this.handle2Keydown, false);
 
-			if (this.touchCapable) {
-				// Bind touch handlers
-				this.mousedown = this._mousedown.bind(this);
-				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
-				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
-			} else {
-				// Bind mouse handlers
-				this.mousedown = this._mousedown.bind(this);
-				this.sliderElem.addEventListener("mousedown", this.mousedown, false);
-				this.sliderElem.addEventListener("touchstart", this.mousedown, false);
-			}
+			this.mousedown = this._mousedown.bind(this);
+			this.sliderElem.addEventListener("mousedown", this.mousedown, false);
+			this.sliderElem.addEventListener("touchstart", this.mousedown, false);
 
 			// Bind tooltip-related handlers
 			if(this.options.tooltip === 'hide') {
