@@ -90,11 +90,13 @@ NerdBoard.UIHandler = (function() {
                                 tooltip: 'hide'
                             });
                             SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStart', function(event) {
+                                console.log(event);
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
 
                             });
                             SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slide', function(event) {
+                                console.log(event);
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
 
@@ -107,6 +109,7 @@ NerdBoard.UIHandler = (function() {
                                 }
                             });
                             SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStop', function(event) {
+                                console.log(event);
                                 SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.close();
                             });
                         },

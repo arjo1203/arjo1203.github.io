@@ -911,7 +911,6 @@
 					document.addEventListener("touchend", this.mouseup, false);
 				}
 				// Bind mouse events:
-				document.addEventListener("mousedown", this.mousedown, false);
 				document.addEventListener("mousemove", this.mousemove, false);
 				document.addEventListener("mouseup", this.mouseup, false);
 
