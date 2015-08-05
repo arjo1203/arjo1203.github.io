@@ -89,12 +89,17 @@ NerdBoard.UIHandler = (function() {
                                 step: 1,
                                 tooltip: 'hide'
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStart', function(event) {
+                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('mousedown', function(event) {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
 
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slide', function(event) {
+                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('touchstart', function(event) {
+                                $('#penWidth').text(event.value);
+                                NerdBoard.penStroke = event.value;
+
+                            });
+                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('mousemove', function(event) {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
                                 $('.slider.slider-horizontal .slider-track').css('height', event.value.toString() + 'px');
@@ -105,7 +110,21 @@ NerdBoard.UIHandler = (function() {
                                     $('.slider-handle').css('height', (event.value * 2).toString() + 'px');
                                 }
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStop', function(event) {
+                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('touchmove', function(event) {
+                                $('#penWidth').text(event.value);
+                                NerdBoard.penStroke = event.value;
+                                $('.slider.slider-horizontal .slider-track').css('height', event.value.toString() + 'px');
+                                $('.slider-handle').css('margin-top', -(event.value / 2).toString() + 'px');
+
+                                if(event.value > 3) {
+                                    $('.slider-handle').css('width', (event.value * 2).toString() + 'px');
+                                    $('.slider-handle').css('height', (event.value * 2).toString() + 'px');
+                                }
+                            });
+                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('mouseup', function(event) {
+                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.close();
+                            });
+                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('touchend', function(event) {
                                 SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.close();
                             });
                         },
