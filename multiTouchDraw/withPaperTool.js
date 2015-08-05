@@ -11,7 +11,6 @@ paper.setup('myCanvas');
 
     //Create arrays to store touches and paths
     var currentTouches = [];
-    var mousePath;
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
@@ -23,7 +22,7 @@ paper.setup('myCanvas');
 
         if(paperEvent.event.type == 'mousedown') {
             //Create a new path for the trackedTouch
-            mousePath = new Path({
+            var path = new Path({
                 strokeColor: 'green',
                 strokeWidth: 10,
                 strokeCap: 'round',
@@ -70,8 +69,11 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousemove') {
-            if(mousePath.data) {
-                mousePath.add(paperEvent.point);
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.add(paperEvent.point);
             }
         }
 
@@ -113,9 +115,14 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mouseup') {
-            mousePath.smooth();
-            mousePath.simplify();
-            mousePath.data = {};
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.smooth();
+                currentItem.simplify();
+                currentItem.data = {};
+            }
         }
 
         if(paperEvent.event.type == 'touchend') {
