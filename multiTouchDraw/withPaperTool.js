@@ -27,7 +27,7 @@ paper.setup('myCanvas');
                 strokeWidth: 10,
                 strokeCap: 'round',
                 data: {
-                    touchId: 0
+                    touchId: -2
                 }
             });
         }
@@ -69,7 +69,7 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousemove') {
-            var currentItemIndex = findItemInPaper(0);
+            var currentItemIndex = findItemInPaper(-2);
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
@@ -115,7 +115,7 @@ paper.setup('myCanvas');
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mouseup') {
-            var currentItemIndex = findItemInPaper(0);
+            var currentItemIndex = findItemInPaper(-2);
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
