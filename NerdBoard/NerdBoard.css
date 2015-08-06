@@ -616,27 +616,28 @@ fieldset[disabled] .btn-custom.active {
 }
 .top {
     position: relative;
-    margin-bottom: 4px;
+    /*margin-bottom: 4px;*/
 }
 .middle {
     position: relative;
-    margin-bottom: 4px;
+    top: 3px;
+    /*margin-bottom: 4px;*/
 }
 .bottom {
+    top: 6px;
     position: relative;
 }
 .hamburger {
-    width: 100%;
-    height: 20%;
+    width: 26px;
+    height: 5px;
     border-radius : 5px 5px 5px 5px;
-    box-shadow : 2px 3px 1px rgba(0, 0, 0, 0.67);
 }
 #menuBtn {
     position: relative;
-    width: 26px;
-    height: 26px;
-    left: 6px;
-    top: 6px;
+    width: 24px;
+    height: 24px;
+    left: 8px;
+    top: 8px;
 }
 #menu {
     position: relative;

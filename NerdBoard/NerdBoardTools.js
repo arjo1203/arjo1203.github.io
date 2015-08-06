@@ -61,7 +61,7 @@ NerdBoard.Tools = window.onload = (function() {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
-        if(paperEvent.event.type == 'mousedown') {
+        //if(paperEvent.event.type == 'mousedown') {
             //Create a new path for the trackedTouch
             var path = new Path({
                 strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
@@ -71,10 +71,10 @@ NerdBoard.Tools = window.onload = (function() {
                     touchId: 0
                 }
             });
-        }
+        //}
 
-        if(paperEvent.event.type == 'touchstart') {
-            var touches = paperEvent.event.changedTouches;
+        var touches = paperEvent.event.changedTouches;
+        if(touches && touches.length > 1) {
 
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
@@ -109,18 +109,18 @@ NerdBoard.Tools = window.onload = (function() {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
-        if(paperEvent.event.type == 'mousemove') {
+        //if(paperEvent.event.type == 'mousemove') {
             var currentItemIndex = findItemInPaper(0);
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
                 currentItem.add(paperEvent.point);
             }
-        }
+        //}
 
 
-        if(paperEvent.event.type == 'touchmove') {
-            var touches = paperEvent.event.changedTouches;
+        var touches = paperEvent.event.changedTouches;
+        if(touches && touches.length > 1) {
 
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
@@ -153,7 +153,7 @@ NerdBoard.Tools = window.onload = (function() {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
-        if(paperEvent.event.type == 'mouseup') {
+        //if(paperEvent.event.type == 'mouseup') {
             var currentItemIndex = findItemInPaper(0);
 
             if (currentItemIndex !== -1) {
@@ -164,10 +164,10 @@ NerdBoard.Tools = window.onload = (function() {
                     name: NerdBoard.pathName
                 };
             }
-        }
+        //}
 
-        if(paperEvent.event.type == 'touchend') {
-            var touches = paperEvent.event.changedTouches;
+        var touches = paperEvent.event.changedTouches;
+        if(touches && touches.length > 1) {
 
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
