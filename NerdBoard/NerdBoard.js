@@ -82,9 +82,9 @@ var NerdBoard = (function(wb) {
     wb.setBg = function(color){
         wb.bgColor = wb.colors[color];
 
-        var bgColor = wb.getColorComponents(NerdBoard.bgColor);
-        NerdBoard.styleEle($('#menuBtn'), bgColor);
-        NerdBoard.styleEle($('#themeBtn'), bgColor);
+        //var bgColor = wb.getColorComponents(NerdBoard.bgColor);
+        //NerdBoard.styleEle($('#menuBtn'), bgColor);
+        //NerdBoard.styleEle($('#themeBtn'), bgColor);
 
         NerdBoard.Tools.changeBgColor();
         NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.close();

@@ -633,17 +633,16 @@ fieldset[disabled] .btn-custom.active {
 }
 #menuBtn {
     position: relative;
-    width: 30px;
-    height: 30px;
-    background-color: white;
+    width: 26px;
+    height: 26px;
+    left: 6px;
+    top: 6px;
 }
 #menu {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    left: 5px;
-    top: 5px;
-    background-color: black;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius : 0px 0px 0px 10px;
 }
 #menuOptions {
     position: relative;
@@ -674,13 +673,16 @@ fieldset[disabled] .btn-custom.active {
     top: 0;
     z-index: 10;
 }
+#undoAndClear {
+    left: 82px;
+    bottom: 120px;
+}
 .undoBtn {
     position: relative;
     width: 40px;
     height: 40px;
-    left: 0;
-    top: 0;
-    border-radius : 0px 0px 0px 10px;
+    left: 42px;
+    bottom: 80px;
 }
 #undoImg {
     position: absolute;
@@ -701,15 +703,15 @@ fieldset[disabled] .btn-custom.active {
     position: relative;
     width: 40px;
     height: 40px;
-    left: 42px;
-    bottom: 80px;
+    left: 84px;
+    bottom: 160px;
     border-radius : 0px 0px 10px 0px;
 }
 #functions {
     position: absolute;
-    width: 82px;
+    width: 124px;
     height: 40px;
-    left: 80px;
+    left: 5px;
     top: 0;
     border-radius : 0px 0px 10px 10px;
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
