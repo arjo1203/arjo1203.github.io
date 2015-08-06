@@ -59,7 +59,7 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.draw = new Tool();
     wbTools.tools.draw.onMouseDown = function(paperEvent) {
         //console.log(paperEvent.event.type);
-        paperEvent.preventDefault();
+        //paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousedown') {
             //Create a new path for the trackedTouch
