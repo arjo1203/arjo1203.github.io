@@ -184,10 +184,8 @@ NerdBoard.Tools = window.onload = (function() {
                 var currentItemIndex = findItemInPaper(touch.identifier);
 
                 if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
-                    // Remove the record of the touch and path record.
-                    currentTouches.splice(currentTouchIndex, 1);
-
                     //Finds the path associated with the currentTouchIndex
+                    var currentTouch = currentTouches[currentTouchIndex];
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
 
                     if(currentItem._segments.length > 0) {
@@ -200,13 +198,19 @@ NerdBoard.Tools = window.onload = (function() {
                     }
                     else {
                         currentItem.remove();
-                        var dot = new Path.Circle(paperEvent.point, NerdBoard.penStroke / 2);
+                        var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                        var dot = new Path.Circle(point, NerdBoard.penStroke / 2);
                         dot.fillColor = NerdBoard.penColor;
+                        dot.data = {
+                            name: NerdBoard.pathName + 'dot'
+                        };
                     }
+
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
                 } else {
                     console.log('Touch was not found!');
                 }
-
             }
         }
     };
