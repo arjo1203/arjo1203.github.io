@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.css" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardUIHandler.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardUIHandler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="" />
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
