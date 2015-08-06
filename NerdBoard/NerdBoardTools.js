@@ -21,8 +21,8 @@ NerdBoard.Tools = window.onload = (function() {
         segments: true,
         stroke: true,
         fill: true,
-        tolerance: 10
-    }, pathHit, myPath;
+        tolerance: 15
+    };
 
 
     function dynamicStroke(event) {
@@ -238,18 +238,18 @@ NerdBoard.Tools = window.onload = (function() {
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
             var currentTouchIndex = findTrackedTouch(touch.identifier);
+            var currentItemIndex = findItemInPaper(touch.identifier);
 
-            if (currentTouchIndex !== -1) {
+            if (currentTouchIndex !== -1 && currentItemIndex !== -1 ) {
                 // Remove the touch record and path record.
                 currentTouches.splice(currentTouchIndex, 1);
 
                 //Finds the path associated with the currentTouchIndex
-                var currentItemIndex = findItemInPaper(touch.identifier);
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                currentItem.simplify();
-                currentItem.data = {
-                    name: NerdBoard.pathName
-                };
+
+                if(currentItem.data.touchId) {
+                    delete currentItem.data.touchId;
+                }
             } else {
                 console.log('Touch was not found!');
             }
