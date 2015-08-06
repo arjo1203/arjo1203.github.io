@@ -666,10 +666,10 @@ fieldset[disabled] .btn-custom.active {
     background-color: white;
     border: 0;
 }
-#NerdLogo {
+.NerdLogo {
     position: absolute;
-    width: 190px;
-    height: 77px;
+    width: 120px;
+    height: 120px;
     right: 0;
     top: 0;
     z-index: 10;

@@ -331,7 +331,7 @@ NerdBoard.Tools = window.onload = (function() {
         var state = $('#drawAfterCheckbox')[0].checked;
         console.log(state);
         if(state) {
-            NerdBoard.activateDrawMode();
+            updateToDrawMode();
         }
     };
     wbTools.tools.shape.minDistance = 1;
@@ -347,6 +347,7 @@ NerdBoard.Tools = window.onload = (function() {
             if (hitResult) {
                 var hitItem = hitResult.item;
                 hitItem.data.touchId = 0;
+                console.log(hitItem);
             }
             else {
                 return ;
@@ -377,6 +378,7 @@ NerdBoard.Tools = window.onload = (function() {
                     if (hitResult) {
                         var hitItem = hitResult.item;
                         hitItem.data.touchId = touch.identifier;
+                        console.log(hitItem.data);
                     }
                     else {
                         return ;
@@ -391,11 +393,13 @@ NerdBoard.Tools = window.onload = (function() {
 
         if(paperEvent.event.type == 'mousemove') {
             var currentItemIndex = findItemInPaper(0);
+            console.log(currentItemIndex);
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
 
                 var firstThree = currentItem.data.name[0] + currentItem.data.name[1]  + currentItem.data.name[2], id;
+                console.log(firstThree);
 
                 if (currentItem.data.name !== 'bg') {
                     if (firstThree == 'rec' || firstThree == 'tex')  {

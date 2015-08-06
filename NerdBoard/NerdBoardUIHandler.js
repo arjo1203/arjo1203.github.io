@@ -454,6 +454,7 @@ NerdBoard.UIHandler = (function() {
         },
         toolSelected: function() {
             SideBarUIS.LeftSideBarUI.updateUIOptions();
+
             if(SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut) {
                 SideBarUIS.LeftSideBarUI.UIS.toolsUI.close();
             }
