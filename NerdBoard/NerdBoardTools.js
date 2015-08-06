@@ -2,7 +2,7 @@
  * Created by Jose Araujo on 07/22/15.
  */
 
-paper.setup(NerdBoard.canvas);
+paper.setup(NerdBoard.canvas[0]);
 
 
 NerdBoard.Tools = window.onload = (function() {
@@ -205,7 +205,7 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     // Set up an event listener to catch cancelled touches.
-    NerdBoard.canvas.addEventListener('touchcancel', function(e) {
+    NerdBoard.canvas[0].addEventListener('touchcancel', function(e) {
         touchCancelled(e);
     });
 

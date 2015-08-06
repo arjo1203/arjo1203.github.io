@@ -13,9 +13,9 @@ var NerdBoard = (function(wb) {
     wb.width = window.innerWidth;
     wb.height = window.innerHeight;
 
-    wb.canvas = $("#my-canvas")[0];
-    wb.canvas.width = wb.width;
-    wb.canvas.height = wb.height;
+    wb.canvas = $("#my-canvas");
+    wb.canvas[0].width = wb.width;
+    wb.canvas[0].height = wb.height;
 
     wb.penStroke = 3;
     wb.eraseStroke = 30;
@@ -253,8 +253,8 @@ var NerdBoard = (function(wb) {
         NerdBoard.width = window.innerWidth;
         NerdBoard.height = window.innerHeight;
 
-        centerDiv(canvas, $('#NerdLogo'), 1, 0);
-        centerDiv(canvas, sideBar, 0, .5);
+        centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.LeftSideBarUI.leftSideBar, 0, .5);
+
         NerdBoard.Tools.resizeBg();
         paper.view.draw();
     }

@@ -663,10 +663,7 @@ NerdBoard.setColor('defaultBlack');
 
 NerdBoard.UIHandler.LeftSideBarUI.styleUI();
 
-var canvas = $('#my-canvas'), sideBar = $('#leftSideBar');
-
-centerDiv(canvas, sideBar, 0, .5);
-centerDiv(canvas, $('#NerdLogo'), 1, 0);
+centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.LeftSideBarUI.leftSideBar, 0, .5);
 
 function centerDiv(outerDiv, innerDiv, left, top) {
     var inWidth = innerDiv[0].clientWidth * left, inHeight = innerDiv[0].clientHeight * top;
