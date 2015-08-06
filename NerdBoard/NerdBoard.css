@@ -650,8 +650,8 @@ fieldset[disabled] .btn-custom.active {
     width: 180px;
     height: 150px;
     left: -185px;
+    top: 20px;
     font-size: 20px;
-    /*background-color: #0077aa;*/
 }
 #menuIcon {
     width: 30px;
