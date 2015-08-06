@@ -572,10 +572,10 @@ function textInputViewClick() {
 NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.tiger.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    textInputViewClick();
+    menuClick();
 });
 
-function textInputViewClick() {
+function menuClick() {
     NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart = (new Date()).getTime();
 
     NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleLast;
