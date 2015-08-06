@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.css" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
@@ -40,8 +39,8 @@
       <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60251045">
-              <caret line="169" column="22" selection-start-line="169" selection-start-column="22" selection-end-line="169" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.11297071">
+              <caret line="159" column="87" selection-start-line="159" selection-start-column="87" selection-end-line="159" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -757,8 +756,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60251045">
-          <caret line="169" column="22" selection-start-line="169" selection-start-column="22" selection-end-line="169" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.11297071">
+          <caret line="159" column="87" selection-start-line="159" selection-start-column="87" selection-end-line="159" selection-end-column="87" />
           <folding />
         </state>
       </provider>
