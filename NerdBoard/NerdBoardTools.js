@@ -329,8 +329,9 @@ NerdBoard.Tools = window.onload = (function() {
     };
     wbTools.tools.shape.onMouseUp = function(event) {
         var state = $('#drawAfterCheckbox')[0].checked;
+        console.log(state);
         if(state) {
-            $('#drawTool').click();
+            NerdBoard.activateDrawMode();
         }
     };
     wbTools.tools.shape.minDistance = 1;
@@ -338,28 +339,148 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     wbTools.tools.move = new paper.Tool();
-    wbTools.tools.move.onMouseDown = function(event) {
-        var hitResult = project.hitTest(event.point, hitOptions);
-        if (hitResult) {
-            pathHit = hitResult.item;
+    wbTools.tools.move.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mousedown') {
+            var hitResult = project.hitTest(paperEvent.point, hitOptions);
+            if (hitResult) {
+                var hitItem = hitResult.item;
+                hitItem.data.touchId = 0;
+            }
+            else {
+                return ;
+            }
         }
-        else {
-            return ;
+
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+
+                    //Track the newly created touch
+                    var trackedTouch = {
+                        id: touch.identifier,
+                        pageX: touch.pageX,
+                        pageY: touch.pageY
+                    };
+
+                    //Store the trackedTouch
+                    currentTouches.push(trackedTouch);
+
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    var hitResult = project.hitTest(point, hitOptions);
+                    if (hitResult) {
+                        var hitItem = hitResult.item;
+                        hitItem.data.touchId = touch.identifier;
+                    }
+                    else {
+                        return ;
+                    }
+                }
+            }
         }
     };
-    wbTools.tools.move.onMouseDrag = function(event) {
-        var firstThree = pathHit.data.name[0] + pathHit.data.name[1]  + pathHit.data.name[2];
-        var last = pathHit.data.name[pathHit.data.name.length - 1], numOfDigits, id;
+    wbTools.tools.move.onMouseDrag = function(paperEvent) {
+        paperEvent.preventDefault();
 
-        if (pathHit && pathHit.data.name !== 'bg') {
-            if (firstThree == 'rec' || firstThree == 'tex')  {
-                id = pathHit.data.name.slice(4, pathHit.data.name.length);
-                paper.project.activeLayer.children['group' + id].position.x += event.delta.x;
-                paper.project.activeLayer.children['group' + id].position.y += event.delta.y;
+
+        if(paperEvent.event.type == 'mousemove') {
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+
+                var firstThree = currentItem.data.name[0] + currentItem.data.name[1]  + currentItem.data.name[2], id;
+
+                if (currentItem.data.name !== 'bg') {
+                    if (firstThree == 'rec' || firstThree == 'tex')  {
+                        id = currentItem.data.name.slice(4, currentItem.data.name.length);
+                        paper.project.activeLayer.children['group' + id].position.x += paperEvent.delta.x;
+                        paper.project.activeLayer.children['group' + id].position.y += paperEvent.delta.y;
+                    }
+                    else{
+                        currentItem.position.x += paperEvent.delta.x;
+                        currentItem.position.y += paperEvent.delta.y;
+                    }
+                }
             }
-            else{
-                pathHit.position.x += event.delta.x;
-                pathHit.position.y += event.delta.y;
+        }
+
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
+
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+                    var currentTouch = currentTouches[currentTouchIndex];
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+
+                    //Creates a paper point based on the currentTouch position.
+                    var firstThree = currentItem.data.name[0] + currentItem.data.name[1]  + currentItem.data.name[2], id;
+
+                    if (currentItem.data.name !== 'bg') {
+                        if (firstThree == 'rec' || firstThree == 'tex')  {
+                            id = currentItem.data.name.slice(4, currentItem.data.name.length);
+                            paper.project.activeLayer.children['group' + id].position = point;
+                        }
+                        else{
+                            currentItem.position = point;
+                        }
+                    }
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+        }
+    };
+    wbTools.tools.move.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                delete currentItem.data.touchId;
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
+
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+                    //Finds the path associated with the currentTouchIndex
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    delete currentItem.data.touchId;
+
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch was not found!');
+                }
             }
         }
     };
