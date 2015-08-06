@@ -484,8 +484,8 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
     };
-    wbTools.tools.move.minDistance = 1;
-    wbTools.tools.move.maxDistance = 3;
+    wbTools.tools.move.minDistance = 0;
+    wbTools.tools.move.maxDistance = 2;
 
 
     wbTools.tools.pan = new paper.Tool();
