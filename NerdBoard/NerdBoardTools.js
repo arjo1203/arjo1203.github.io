@@ -21,7 +21,7 @@ NerdBoard.Tools = window.onload = (function() {
         segments: true,
         stroke: true,
         fill: true,
-        tolerance: 2
+        tolerance: 10
     }, pathHit, myPath;
 
 
