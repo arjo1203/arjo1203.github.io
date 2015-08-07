@@ -440,7 +440,8 @@ NerdBoard.Tools = window.onload = (function() {
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
 
                     if (currentItem.data.name !== 'bg') {
-                        currentItem.position = point;
+                        currentItem.position.x = point.x;
+                        currentItem.position.y = point.y;
                     }
 
                     // Update the trackedTouch record.
