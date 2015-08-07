@@ -61,8 +61,8 @@
       <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24843423">
-              <caret line="378" column="42" selection-start-line="378" selection-start-column="42" selection-end-line="378" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.7348643">
+              <caret line="392" column="51" selection-start-line="392" selection-start-column="51" selection-end-line="392" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -72,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
+              <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -741,14 +741,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="84" column="63" selection-start-line="84" selection-start-column="63" selection-end-line="84" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="59.52">
@@ -762,10 +754,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="163" column="47" selection-start-line="163" selection-start-column="47" selection-end-line="163" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24843423">
-          <caret line="378" column="42" selection-start-line="378" selection-start-column="42" selection-end-line="378" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.7348643">
+          <caret line="392" column="51" selection-start-line="392" selection-start-column="51" selection-end-line="392" selection-end-column="51" />
           <folding />
         </state>
       </provider>
