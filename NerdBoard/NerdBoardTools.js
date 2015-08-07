@@ -261,7 +261,6 @@ NerdBoard.Tools = window.onload = (function() {
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
             var currentTouchIndex = findTrackedTouch(touch.identifier);
-            var currentItemIndex = findItemInPaper(touch.identifier);
 
             if (currentTouchIndex !== -1 && currentItemIndex !== -1 ) {
                 // Remove the touch record and path record.
