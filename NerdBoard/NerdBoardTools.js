@@ -193,10 +193,7 @@ NerdBoard.Tools = window.onload = (function() {
                     if(currentItem._segments.length > 0) {
                         currentItem.smooth();
                         currentItem.simplify();
-
-                        currentItem.data = {
-                            name: NerdBoard.pathName
-                        };
+                        delete currentItem.data.touchId;
                     }
                     else {
                         currentItem.remove();
