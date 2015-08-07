@@ -350,9 +350,9 @@ NerdBoard.Tools = window.onload = (function() {
             if (mouseHit) {
                 var mouseItem = mouseHit.item;
                 var mouseParent = mouseItem._parent;
-                var mouseParentName = mouseParent.name;
+                var mouseParentName = mouseParent.data.name;
 
-                if(mouseParentName == 'layer1' && mouseItem.name !== 'bg') {
+                if(mouseParentName == 'layer1' && mouseItem.data.name !== 'bg') {
                     mouseItem.data.touchId = 0;
                 }
                 else {
@@ -388,9 +388,9 @@ NerdBoard.Tools = window.onload = (function() {
                     if (touchHit) {
                         var touchItem = touchHit.item;
                         var touchParent = touchItem._parent;
-                        var touchParentName = touchParent.name;
+                        var touchParentName = touchParent.data.name;
 
-                        if(touchParentName == 'layer1' && touchItem.name !== 'bg') {
+                        if(touchParentName == 'layer1' && touchItem.data.name !== 'bg') {
                             touchItem.data.touchId = touch.identifier;
                         }
                         else {
@@ -501,7 +501,6 @@ NerdBoard.Tools = window.onload = (function() {
             center: paper.view.center,
             size: [NerdBoard.width, NerdBoard.height],
             fillColor: NerdBoard.colors.defaultBg,
-            name: 'bg',
             data: {
                 name: 'bg'
             }
@@ -574,19 +573,19 @@ NerdBoard.Tools = window.onload = (function() {
         switch(shape) {
             case 'Terminal':
                 var terminal = createTerminal(location, message);
-                terminal.name = 'group' + NerdBoard.numOfShapes.toString();
+                terminal.data.name = 'group' + NerdBoard.numOfShapes.toString();
                 break;
             case 'Process':
                 var process = createProcess(location, message);
-                process.name = 'group' + NerdBoard.numOfShapes.toString();
+                process.data.name = 'group' + NerdBoard.numOfShapes.toString();
                 break;
             case 'Decision':
                 var decision = createDecision(location, message);
-                decision.name = 'group' + NerdBoard.numOfShapes.toString();
+                decision.data.name = 'group' + NerdBoard.numOfShapes.toString();
                 break;
             case 'Input':
                 var input = createInput(location, message);
-                input.name = 'group' + NerdBoard.numOfShapes.toString();
+                input.data.name = 'group' + NerdBoard.numOfShapes.toString();
                 break;
             case 'Text':
                 var text = createText(location, message);
