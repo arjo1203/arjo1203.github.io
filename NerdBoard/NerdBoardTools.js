@@ -321,42 +321,16 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.erase.maxDistance = 3;
 
 
-    wbTools.tools.shape = new paper.Tool();
-    wbTools.tools.shape.onMouseDown = function(event) {
-        wbTools.drawShape(event.point, NerdBoard.shape, $('#textInput')[0].value);
-    };
-    wbTools.tools.shape.onMouseDrag = function(event) {
-        var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
-        last.position = event.point;
-    };
-    wbTools.tools.shape.onMouseUp = function(event) {
-        var state = $('#drawAfterCheckbox')[0].checked;
-
-        if(state) {
-            updateToDrawMode();
-        }
-    };
-    wbTools.tools.shape.minDistance = 1;
-    wbTools.tools.shape.maxDistance = 3;
-
-
     wbTools.tools.move = new paper.Tool();
     wbTools.tools.move.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousedown') {
-            var mouseHit = project.hitTest(paperEvent.point, hitOptions);
-            if (mouseHit) {
-                var mouseItem = mouseHit.item;
-                var mouseParent = mouseItem._parent;
-                var mouseParentName = mouseParent.name;
-
-                if(mouseParentName == 'layer1') {
-                    mouseItem.data.touchId = 0;
-                }
-                else {
-                    mouseParent.data.touchId = 0;
-                }
+            var hitResult = project.hitTest(paperEvent.point, hitOptions);
+            if (hitResult) {
+                var hitItem = hitResult.item;
+                hitItem.data.touchId = 0;
+                console.log(hitItem);
             }
             else {
                 return ;
@@ -383,19 +357,11 @@ NerdBoard.Tools = window.onload = (function() {
                     currentTouches.push(trackedTouch);
 
                     var point = new Point({x: touch.pageX, y: touch.pageY});
-                    var touchHit = project.hitTest(point, hitOptions);
-                    if (touchHit) {
-                        var touchItem = touchHit.item;
-                        var touchParent = touchItem._parent;
-                        var touchParentName = touchParent.name;
-                        console.log(touchParentName);
-
-                        if(touchParentName == 'layer1') {
-                            touchItem.data.touchId = 0;
-                        }
-                        else {
-                            touchParent.data.touchId = 0;
-                        }
+                    var hitResult = project.hitTest(point, hitOptions);
+                    if (hitResult) {
+                        var hitItem = hitResult.item;
+                        hitItem.data.touchId = touch.identifier;
+                        console.log(hitItem.data);
                     }
                     else {
                         return ;
@@ -407,18 +373,27 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.move.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
 
-        var currentItem, currentItemIndex, firstThree, id;
-
 
         if(paperEvent.event.type == 'mousemove') {
-            currentItemIndex = findItemInPaper(0);
+            var currentItemIndex = findItemInPaper(0);
+            console.log(currentItemIndex);
 
             if (currentItemIndex !== -1) {
-                currentItem = paper.project.activeLayer.children[currentItemIndex];
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+
+                var firstThree = currentItem.data.name[0] + currentItem.data.name[1]  + currentItem.data.name[2], id;
+                console.log(firstThree);
 
                 if (currentItem.data.name !== 'bg') {
-                    currentItem.position.x += paperEvent.delta.x;
-                    currentItem.position.y += paperEvent.delta.y;
+                    if (firstThree == 'rec' || firstThree == 'tex')  {
+                        id = currentItem.data.name.slice(4, currentItem.data.name.length);
+                        paper.project.activeLayer.children['group' + id].position.x += paperEvent.delta.x;
+                        paper.project.activeLayer.children['group' + id].position.y += paperEvent.delta.y;
+                    }
+                    else{
+                        currentItem.position.x += paperEvent.delta.x;
+                        currentItem.position.y += paperEvent.delta.y;
+                    }
                 }
             }
         }
@@ -430,14 +405,25 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
-                currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
 
                 if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    currentItem = paper.project.activeLayer.children[currentItemIndex];
-
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentItem.position = point;
+
+                    //Creates a paper point based on the currentTouch position.
+                    var firstThree = currentItem.data.name[0] + currentItem.data.name[1]  + currentItem.data.name[2], id;
+
+                    if (currentItem.data.name !== 'bg') {
+                        if (firstThree == 'rec' || firstThree == 'tex')  {
+                            id = currentItem.data.name.slice(4, currentItem.data.name.length);
+                            paper.project.activeLayer.children['group' + id].position = point;
+                        }
+                        else{
+                            currentItem.position = point;
+                        }
+                    }
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
