@@ -426,15 +426,15 @@ NerdBoard.Tools = window.onload = (function() {
                 }
             }
         }
-        
+
         var state = $('#drawAfterCheckbox')[0].checked;
 
         if(state) {
             updateToDrawMode();
         }
     };
-    wbTools.tools.shape.minDistance = 1;
-    wbTools.tools.shape.maxDistance = 3;
+    wbTools.tools.shape.minDistance = 0;
+    wbTools.tools.shape.maxDistance = 2;
 
 
     wbTools.tools.move = new paper.Tool();
