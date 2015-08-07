@@ -390,6 +390,7 @@ NerdBoard.Tools = window.onload = (function() {
                         hitItem = hitResult.item;
                         parent = hitItem._parent;
                         parentName = parent.name;
+                        console.log(parentName);
 
                         if(parentName == 'layer1') {
                             hitItem.data.touchId = 0;
