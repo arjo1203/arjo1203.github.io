@@ -361,6 +361,13 @@ NerdBoard.Tools = window.onload = (function() {
                 var x = paperEvent.event.x, y = paperEvent.event.y;
                 currentTouch = currentTouches[currentTouchIndex];
 
+                // Update the trackedTouch record.
+                currentTouch.pageX = x;
+                currentTouch.pageY = y;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                
                 //Creates a paper point based on the currentTouch position.
                 point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
 
@@ -376,12 +383,6 @@ NerdBoard.Tools = window.onload = (function() {
                     return ;
                 }
 
-                // Update the trackedTouch record.
-                currentTouch.pageX = x;
-                currentTouch.pageY = y;
-
-                // Store the record of the trackedTouch.
-                currentTouches.splice(currentTouchIndex, 1, currentTouch);
             } else {
                 console.log('Mouse was not found!');
             }
@@ -395,7 +396,16 @@ NerdBoard.Tools = window.onload = (function() {
                 currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if(currentTouchIndex == -1) {
-                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    currentTouch = currentTouches[currentTouchIndex];
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+
+                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                     var touchHit = project.hitTest(point, hitOptions);
 
                     if (touchHit) {
@@ -408,13 +418,6 @@ NerdBoard.Tools = window.onload = (function() {
                     else {
                         return ;
                     }
-
-                    // Update the trackedTouch record.
-                    currentTouch.pageX = touch.pageX;
-                    currentTouch.pageY = touch.pageY;
-
-                    // Store the record of the trackedTouch.
-                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
                 }
             }
         }
