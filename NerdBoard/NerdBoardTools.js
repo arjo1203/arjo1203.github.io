@@ -394,6 +394,7 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 currentTouchIndex = findTrackedTouch(touch.identifier);
+                console.log(currentTouchIndex);
 
                 if(currentTouchIndex == -1) {
                     console.log('found and moving');
