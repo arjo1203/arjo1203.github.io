@@ -344,20 +344,18 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.move.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
 
-        var hitResult, hitItem, parent, parentName;
-
         if(paperEvent.event.type == 'mousedown') {
-            hitResult = project.hitTest(paperEvent.point, hitOptions);
-            if (hitResult) {
-                hitItem = hitResult.item;
-                parent = hitItem._parent;
-                parentName = parent.name;
+            var mouseHit = project.hitTest(paperEvent.point, hitOptions);
+            if (mouseHit) {
+                var mouseItem = mouseHit.item;
+                var mouseParent = mouseItem._parent;
+                var mouseParentName = mouseParent.name;
 
-                if(parentName == 'layer1') {
-                    hitItem.data.touchId = 0;
+                if(mouseParentName == 'layer1') {
+                    mouseItem.data.touchId = 0;
                 }
                 else {
-                    parent.data.touchId = 0;
+                    mouseParent.data.touchId = 0;
                 }
             }
             else {
@@ -385,18 +383,17 @@ NerdBoard.Tools = window.onload = (function() {
                     currentTouches.push(trackedTouch);
 
                     var point = new Point({x: touch.pageX, y: touch.pageY});
-                    hitResult = project.hitTest(point, hitOptions);
-                    if (hitResult) {
-                        hitItem = hitResult.item;
-                        parent = hitItem._parent;
-                        parentName = parent.name;
-                        console.log(parentName);
+                    var touchHit = project.hitTest(point, hitOptions);
+                    if (touchHit) {
+                        var touchItem = touchHit.item;
+                        var touchParent = touchItem._parent;
+                        var touchParentName = touchParent.name;
 
-                        if(parentName == 'layer1') {
-                            hitItem.data.touchId = 0;
+                        if(touchParentName == 'layer1') {
+                            touchItem.data.touchId = 0;
                         }
                         else {
-                            parent.data.touchId = 0;
+                            touchParent.data.touchId = 0;
                         }
                     }
                     else {
@@ -437,12 +434,9 @@ NerdBoard.Tools = window.onload = (function() {
                 if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     var currentTouch = currentTouches[currentTouchIndex];
                     currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
 
-                    if (currentItem.data.name !== 'bg') {
-                        currentItem.position.x = point.x;
-                        currentItem.position.y = point.y;
-                    }
+                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    currentItem.position = point;
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
@@ -460,13 +454,11 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.move.onMouseUp = function(paperEvent) {
         paperEvent.preventDefault();
 
-        var currentItem, currentItemIndex;
-
         if(paperEvent.event.type == 'mouseup') {
-            currentItemIndex = findItemInPaper(0);
+            var currentItemIndex = findItemInPaper(0);
 
             if (currentItemIndex !== -1) {
-                currentItem = paper.project.activeLayer.children[currentItemIndex];
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
                 delete currentItem.data.touchId;
             }
         }
@@ -477,11 +469,11 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
-                currentItemIndex = findItemInPaper(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
 
                 if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     //Finds the path associated with the currentTouchIndex
-                    currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
                     delete currentItem.data.touchId;
 
                     // Remove the record of the touch and path record.
@@ -527,12 +519,10 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     wbTools.resizeBg = function() {
-        var bg = paper.project.activeLayer.children['bg'];
-
-        var SW = bg._segments[0],
-            NW = bg._segments[1],
-            NE = bg._segments[2],
-            SE = bg._segments[3];
+        var SW = paper.project.activeLayer.children['bg']._segments[0],
+            NW = paper.project.activeLayer.children['bg']._segments[1],
+            NE = paper.project.activeLayer.children['bg']._segments[2],
+            SE = paper.project.activeLayer.children['bg']._segments[3];
 
         NW._point._x = 0;
         NW._point._y = 0;
