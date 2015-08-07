@@ -288,8 +288,6 @@ NerdBoard.Tools = window.onload = (function() {
 
 
 
-
-
     wbTools.tools.erase = new paper.Tool();
     wbTools.tools.erase.onMouseDown = function() {
         var hitResult = project.hitTest(event.point, hitOptions);
@@ -322,14 +320,113 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     wbTools.tools.shape = new paper.Tool();
-    wbTools.tools.shape.onMouseDown = function(event) {
-        wbTools.drawShape(event.point, NerdBoard.shape, $('#textInput')[0].value);
+    wbTools.tools.shape.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mousedown') {
+            wbTools.drawShape(paperEvent.point, NerdBoard.shape, $('#textInput')[0].value, 0);
+        }
+
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+
+                    //Track the newly created touch
+                    var trackedTouch = {
+                        id: touch.identifier,
+                        pageX: touch.pageX,
+                        pageY: touch.pageY
+                    };
+
+                    //Store the trackedTouch
+                    currentTouches.push(trackedTouch);
+
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    wbTools.drawShape(point, NerdBoard.shape, $('#textInput')[0].value, touch.identifier);
+                }
+            }
+        }
     };
-    wbTools.tools.shape.onMouseDrag = function(event) {
-        var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
-        last.position = event.point;
+    wbTools.tools.shape.onMouseDrag = function(paperEvent) {
+        paperEvent.preventDefault();
+
+
+        if(paperEvent.event.type == 'mousemove') {
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                currentItem.position.x += paperEvent.delta.x;
+                currentItem.position.y += paperEvent.delta.y;
+            }
+        }
+
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
+
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+                    var currentTouch = currentTouches[currentTouchIndex];
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+
+                    currentItem.position = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+        }
     };
-    wbTools.tools.shape.onMouseUp = function(event) {
+    wbTools.tools.shape.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            var currentItemIndex = findItemInPaper(0);
+
+            if (currentItemIndex !== -1) {
+                var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                delete currentItem.data.touchId;
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+                var currentItemIndex = findItemInPaper(touch.identifier);
+
+                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+                    //Finds the path associated with the currentTouchIndex
+                    var currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    delete currentItem.data.touchId;
+
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch was not found!');
+                }
+            }
+        }
+        
         var state = $('#drawAfterCheckbox')[0].checked;
 
         if(state) {
@@ -413,8 +510,8 @@ NerdBoard.Tools = window.onload = (function() {
 
             if (currentItemIndex !== -1) {
                 var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    currentItem.position.x += paperEvent.delta.x;
-                    currentItem.position.y += paperEvent.delta.y;
+                currentItem.position.x += paperEvent.delta.x;
+                currentItem.position.y += paperEvent.delta.y;
             }
         }
 
@@ -568,182 +665,189 @@ NerdBoard.Tools = window.onload = (function() {
     };
 
 
-    wbTools.drawShape = function(location, shape, message) {
+    wbTools.drawShape = function(location, shape, message, touchId) {
+        var shapeItem;
 
         switch(shape) {
             case 'Terminal':
-                var terminal = createTerminal(location, message);
-                terminal.data.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createTerminal(location, message);
                 break;
             case 'Process':
-                var process = createProcess(location, message);
-                process.data.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createProcess(location, message);
                 break;
             case 'Decision':
-                var decision = createDecision(location, message);
-                decision.data.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createDecision(location, message);
                 break;
             case 'Input':
-                var input = createInput(location, message);
-                input.data.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createInput(location, message);
                 break;
             case 'Text':
-                var text = createText(location, message);
-                text.data.name = 'plainText';
+                shapeItem = createText(location, message);
+                shapeItem.data.name = 'plainText';
                 break;
         }
 
-
-        function createTerminal(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
-                fillColor: NerdBoard.colors.defaultBlue,
-                strokeColor: NerdBoard.colors.defaultBlack,
-                strokeWidth: 2,
-                radius: NerdBoard.textSize / 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Terminal'
-                }
-            });
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.fitBounds(rect.bounds);
-
-            var group = new Group(rect, text);
-
-            return group;
+        if(shape == 'Text') {
+            shapeItem.data.name = 'plainText';
+        }
+        else {
+            shapeItem.data.name = 'group' + NerdBoard.numOfShapes.toString();
         }
 
-
-        function createProcess(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
-                fillColor: NerdBoard.colors.defaultYellow,
-                strokeColor: NerdBoard.colors.defaultBlack,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Process'
-                }
-            });
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.fitBounds(rect.bounds);
-
-
-            var group = new Group(rect, text);
-
-            return group;
-        }
-
-
-        function createDecision(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
-                fillColor: NerdBoard.colors.defaultGreen,
-                strokeColor: NerdBoard.colors.defaultBlack,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Decision'
-                }
-            });
-            rect.rotate(45);
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.position = rect.position;
-
-            var group = new Group(rect, text);
-
-            return group;
-        }
-
-
-        function createInput(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
-                fillColor: NerdBoard.colors.defaultRed,
-                strokeColor: NerdBoard.colors.defaultBlack,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Input'
-                }
-            });
-
-            rect._segments[0].point._x -= NerdBoard.textSize;
-            rect._segments[2].point._x += NerdBoard.textSize;
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.position = rect.position;
-            var group = new Group(rect, text);
-
-            return group;
-        }
-
-
-        function createText(pos, message) {
-            var text = new PointText({
-                point: pos,
-                content: message,
-                justification: 'center',
-                fontSize: NerdBoard.textSize
-            });
-            text.fillColor = NerdBoard.colors.defaultBlack;
-            text.strokeColor = NerdBoard.colors.defaultBlack;
-
-            return text;
-        }
+        shapeItem.data.touchId = touchId;
 
         NerdBoard.numOfShapes++;
 
-        paper.view.draw();
+        //paper.view.draw();
     };
+
+
+
+    function createTerminal(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
+            fillColor: NerdBoard.colors.defaultBlue,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            radius: NerdBoard.textSize / 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Terminal'
+            }
+        });
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.fitBounds(rect.bounds);
+
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createProcess(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
+            fillColor: NerdBoard.colors.defaultYellow,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Process'
+            }
+        });
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.fitBounds(rect.bounds);
+
+
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createDecision(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
+            fillColor: NerdBoard.colors.defaultGreen,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Decision'
+            }
+        });
+        rect.rotate(45);
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.position = rect.position;
+
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createInput(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
+            fillColor: NerdBoard.colors.defaultRed,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Input'
+            }
+        });
+
+        rect._segments[0].point._x -= NerdBoard.textSize;
+        rect._segments[2].point._x += NerdBoard.textSize;
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.position = rect.position;
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createText(pos, message) {
+        var text = new PointText({
+            point: pos,
+            content: message,
+            justification: 'center',
+            fontSize: NerdBoard.textSize
+        });
+        text.fillColor = NerdBoard.colors.defaultBlack;
+        text.strokeColor = NerdBoard.colors.defaultBlack;
+
+        return text;
+    }
 
     return wbTools;
 }());
