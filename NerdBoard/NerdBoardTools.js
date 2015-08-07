@@ -352,7 +352,7 @@ NerdBoard.Tools = window.onload = (function() {
     };
     wbTools.tools.erase.onMouseDrag = function(paperEvent) {
         paperEvent.preventDefault();
-        var currentItem, currentTouch, currentTouchIndex;
+        var point, currentTouch, currentTouchIndex;
 
         if(paperEvent.event.type == 'mousemove') {
             currentTouchIndex = findTrackedTouch(0);
@@ -367,7 +367,7 @@ NerdBoard.Tools = window.onload = (function() {
 
                 // Store the record of the trackedTouch.
                 currentTouches.splice(currentTouchIndex, 1, currentTouch);
-                
+
                 //Creates a paper point based on the currentTouch position.
                 point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
 
@@ -396,6 +396,7 @@ NerdBoard.Tools = window.onload = (function() {
                 currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if(currentTouchIndex == -1) {
+                    console.log('found and moving');
                     currentTouch = currentTouches[currentTouchIndex];
 
                     // Update the trackedTouch record.
@@ -405,8 +406,9 @@ NerdBoard.Tools = window.onload = (function() {
                     // Store the record of the trackedTouch.
                     currentTouches.splice(currentTouchIndex, 1, currentTouch);
 
-                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                     var touchHit = project.hitTest(point, hitOptions);
+                    console.log(touchHit);
 
                     if (touchHit) {
                         var touchItem = touchHit.item;
