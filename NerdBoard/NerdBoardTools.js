@@ -573,7 +573,7 @@ NerdBoard.Tools = window.onload = (function() {
                     //Finds the path associated with the currentTouchIndex
                     currentItem = paper.project.activeLayer.children[currentItemIndex];
                     delete currentItem.data.touchId;
-                    console.log();
+                    console.log(currentItem);
 
                     // Remove the record of the touch and path record.
                     currentTouches.splice(currentTouchIndex, 1);
