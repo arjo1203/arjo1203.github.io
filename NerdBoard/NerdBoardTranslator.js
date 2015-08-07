@@ -124,10 +124,10 @@ $('#colorNightRed').bind('mousedown touchstart', function(event) {
     NerdBoard.setColor('nightRed');
 });
 
-$('#colorNeonGreen').bind('mousedown touchstart', function(event) {
+$('#colorSlateGreen').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    NerdBoard.setColor('neonGreen');
+    NerdBoard.setColor('slateGreen');
 });
 
 $('#colorNeonBlue').bind('mousedown touchstart', function(event) {
@@ -278,10 +278,10 @@ $('#themeNightRed').bind('mousedown touchstart', function(event) {
     NerdBoard.setBg('nightRed');
 });
 
-$('#themeNeonGreen').bind('mousedown touchstart', function(event) {
+$('#themeSlateGreen').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    NerdBoard.setBg('neonGreen');
+    NerdBoard.setBg('slateGreen');
 });
 
 $('#themeNeonBlue').bind('mousedown touchstart', function(event) {
