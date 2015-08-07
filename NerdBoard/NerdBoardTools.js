@@ -389,8 +389,12 @@ NerdBoard.Tools = window.onload = (function() {
                         var touchParent = touchItem._parent;
                         var touchParentName = touchParent.name;
 
-                        //touchItem.data.touchId = touch.identifier;
-                        console.log(touchParentName);
+                        if(touchParentName !== 'layer1' && touchItem.name !== 'bg') {
+                            touchItem.data.touchId = touch.identifier;
+                        }
+                        else {
+                            touchParent.data.touchId =  touch.identifier;
+                        }
                     }
                     else {
                         return ;
@@ -425,20 +429,8 @@ NerdBoard.Tools = window.onload = (function() {
                 if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
                     var currentTouch = currentTouches[currentTouchIndex];
                     var currentItem = paper.project.activeLayer.children[currentItemIndex];
-                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
 
-                    //Creates a paper point based on the currentTouch position.
-                    var firstThree = currentItem.data.name[0] + currentItem.data.name[1]  + currentItem.data.name[2], id;
-
-                    if (currentItem.data.name !== 'bg') {
-                        if (firstThree == 'rec' || firstThree == 'tex')  {
-                            id = currentItem.data.name.slice(4, currentItem.data.name.length);
-                            paper.project.activeLayer.children['group' + id].position = point;
-                        }
-                        else{
-                            currentItem.position = point;
-                        }
-                    }
+                    currentItem.position = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
