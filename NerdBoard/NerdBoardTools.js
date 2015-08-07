@@ -261,18 +261,10 @@ NerdBoard.Tools = window.onload = (function() {
         for (var i = 0; i < touches.length; i++) {
             var touch = touches[i];
             var currentTouchIndex = findTrackedTouch(touch.identifier);
-            var currentItemIndex = findItemInPaper(touch.identifier);
 
-            if (currentTouchIndex !== -1 && currentItemIndex !== -1 ) {
+            if (currentTouchIndex !== -1) {
                 // Remove the touch record and path record.
                 currentTouches.splice(currentTouchIndex, 1);
-
-                //Finds the path associated with the currentTouchIndex
-                var currentItem = paper.project.activeLayer.children[currentItemIndex];
-
-                if(currentItem.data.touchId) {
-                    delete currentItem.data.touchId;
-                }
             } else {
                 console.log('Touch' + i.toString() + 'was not found!');
             }
@@ -288,20 +280,6 @@ NerdBoard.Tools = window.onload = (function() {
         }
 
         // Touch not found! Return -1.
-        return -1;
-    }
-
-
-
-    function findItemInPaper(id) {
-        var children = paper.project.activeLayer.children;
-
-        for(var i = 0; i < children.length; i++) {
-            if(children[i].data.touchId == id) {
-                return i;
-            }
-        }
-
         return -1;
     }
 
