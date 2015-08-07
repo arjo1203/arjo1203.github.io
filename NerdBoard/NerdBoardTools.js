@@ -61,16 +61,28 @@ NerdBoard.Tools = window.onload = (function() {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
+        var newPath;
+
         if(paperEvent.event.type == 'mousedown') {
-            //Create a new path for the trackedTouch
-            new Path({
+            var x = paperEvent.event.x,
+                y = paperEvent.event.y;
+
+            newPath = new Path({
                 strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
                 strokeWidth: NerdBoard.penStroke,
-                strokeCap: 'round',
-                data: {
-                    touchId: 0
-                }
+                strokeCap: 'round'
             });
+
+            //Track the newly created touch
+            var trackMouse = {
+                id: 0,
+                pageX: x,
+                pageY: y,
+                itemIndex: newPath._index
+            };
+
+            //Store the trackedTouch
+            currentTouches.push(trackMouse);
         }
 
         if(paperEvent.event.type == 'touchstart') {
@@ -82,13 +94,10 @@ NerdBoard.Tools = window.onload = (function() {
                 var currentIndex = findTrackedTouch(touch.identifier);
                 if(currentIndex == -1) {
                     //Create a new path for the trackedTouch
-                    var newPath = new Path({
+                    newPath = new Path({
                         strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
                         strokeWidth: NerdBoard.penStroke,
-                        strokeCap: 'round',
-                        data: {
-                            touchId: touch.identifier
-                        }
+                        strokeCap: 'round'
                     });
 
                     //Track the newly created touch
@@ -109,14 +118,27 @@ NerdBoard.Tools = window.onload = (function() {
         //console.log(paperEvent.event.type);
         paperEvent.preventDefault();
 
-        var currentItemIndex, currentItem;
+        var currentItem, currentTouch, currentTouchIndex, point;
 
         if(paperEvent.event.type == 'mousemove') {
-            currentItemIndex = findItemInPaper(0);
+            currentTouchIndex = findTrackedTouch(0);
 
-            if (currentItemIndex !== -1) {
-                currentItem = paper.project.activeLayer.children[currentItemIndex];
-                currentItem.add(paperEvent.point);
+            if (currentTouchIndex !== -1) {
+                var x = paperEvent.event.x,
+                    y = paperEvent.event.y;
+                currentTouch = currentTouches[currentTouchIndex];
+                currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+
+                //Creates a paper point based on the currentTouch position.
+                point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.add(point);
+
+                // Update the trackedTouch record.
+                currentTouch.pageX = x;
+                currentTouch.pageY = y;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
             }
         }
 
@@ -126,16 +148,15 @@ NerdBoard.Tools = window.onload = (function() {
 
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
-                var currentTouchIndex = findTrackedTouch(touch.identifier);
+                currentTouchIndex = findTrackedTouch(touch.identifier);
 
                 if (currentTouchIndex !== -1) {
-                    var currentTouch = currentTouches[currentTouchIndex];
+                    currentTouch = currentTouches[currentTouchIndex];
                     currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
 
                     //Creates a paper point based on the currentTouch position.
-                    var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                     currentItem.add(point);
-                    //currentItem.smooth();
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = touch.pageX;
@@ -157,15 +178,13 @@ NerdBoard.Tools = window.onload = (function() {
         var currentItemIndex, currentItem, dot;
 
         if(paperEvent.event.type == 'mouseup') {
-            currentItemIndex = findItemInPaper(0);
+            currentTouchIndex = findTrackedTouch(0);
 
-            if (currentItemIndex !== -1) {
-                currentItem = paper.project.activeLayer.children[currentItemIndex];
+            if (currentTouchIndex !== -1) {
+                currentTouch = currentTouches[currentTouchIndex];
+                currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
 
                 if(currentItem._segments.length > 0) {
-                    currentItem.data = {
-                        name: NerdBoard.pathName
-                    };
                     currentItem.smooth();
                     currentItem.simplify();
                 }
@@ -175,6 +194,9 @@ NerdBoard.Tools = window.onload = (function() {
                     dot.fillColor = NerdBoard.penColor;
                     dot.data.name = NerdBoard.pathName + 'dot';
                 }
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1);
             }
         }
 
@@ -193,7 +215,6 @@ NerdBoard.Tools = window.onload = (function() {
                     if(currentItem._segments.length > 0) {
                         currentItem.smooth();
                         currentItem.simplify();
-                        delete currentItem.data.touchId;
                     }
                     else {
                         currentItem.remove();
