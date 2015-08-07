@@ -288,34 +288,167 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     wbTools.tools.erase = new paper.Tool();
-    wbTools.tools.erase.onMouseDown = function() {
-        var hitResult = project.hitTest(event.point, hitOptions);
+    wbTools.tools.erase.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
 
-        if (hitResult) {
-            pathHit = hitResult.item;
-            if(pathHit.data.name !== 'bg') {
-                pathHit.remove();
+        if(paperEvent.event.type == 'mousedown') {
+            var mouseHit = project.hitTest(paperEvent.point, hitOptions);
+            if (mouseHit) {
+                var mouseItem = mouseHit.item;
+                var x = paperEvent.event.x, y = paperEvent.event.y;
+
+                if(mouseItem.data.name !== 'bg') {
+                    mouseItem.remove();
+                }
+
+                //Track the newly created touch
+                var trackMouse = {
+                    id: 0,
+                    pageX: x,
+                    pageY: y
+                };
+                //Store the trackedTouch
+                currentTouches.push(trackMouse);
+            }
+            else {
+                return ;
             }
         }
-        else {
-            return ;
-        }
-    };
-    wbTools.tools.erase.onMouseDrag = function(event) {
-        var hitResult = project.hitTest(event.point, hitOptions);
 
-        if (hitResult) {
-            pathHit = hitResult.item;
-            if(pathHit.data.name !== 'bg') {
-                pathHit.remove();
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    var touchHit = project.hitTest(point, hitOptions);
+
+                    if (touchHit) {
+                        var touchItem = touchHit.item;
+
+                        if(touchItem.data.name !== 'bg') {
+                            touchItem.remove();
+                        }
+
+                        //Track the newly created touch
+                        var trackedTouch = {
+                            id: touch.identifier,
+                            pageX: touch.pageX,
+                            pageY: touch.pageY
+                        };
+
+                        //Store the trackedTouch
+                        currentTouches.push(trackedTouch);
+                    }
+                    else {
+                        return ;
+                    }
+                }
             }
         }
-        else {
-            return ;
+    };
+    wbTools.tools.erase.onMouseDrag = function(paperEvent) {
+        paperEvent.preventDefault();
+        var currentItem, currentTouch, currentTouchIndex;
+
+        if(paperEvent.event.type == 'mousemove') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                var x = paperEvent.event.x, y = paperEvent.event.y;
+                currentTouch = currentTouches[currentTouchIndex];
+
+                //Creates a paper point based on the currentTouch position.
+                point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+
+                var mouseHit = project.hitTest(point, hitOptions);
+                if (mouseHit) {
+                    var mouseItem = mouseHit.item;
+
+                    if(mouseItem.data.name !== 'bg') {
+                        mouseItem.remove();
+                    }
+                }
+                else {
+                    return ;
+                }
+
+                // Update the trackedTouch record.
+                currentTouch.pageX = x;
+                currentTouch.pageY = y;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
+            } else {
+                console.log('Mouse was not found!');
+            }
+        }
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if(currentTouchIndex == -1) {
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    var touchHit = project.hitTest(point, hitOptions);
+
+                    if (touchHit) {
+                        var touchItem = touchHit.item;
+
+                        if(touchItem.data.name !== 'bg') {
+                            touchItem.remove();
+                        }
+                    }
+                    else {
+                        return ;
+                    }
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                }
+            }
         }
     };
-    wbTools.tools.erase.minDistance = 1;
-    wbTools.tools.erase.maxDistance = 3;
+    wbTools.tools.erase.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1);
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch' + i.toString() + 'was not found!');
+                }
+            }
+        }
+    };
+    wbTools.tools.erase.minDistance = 0;
+    wbTools.tools.erase.maxDistance = 2;
 
 
     wbTools.tools.shape = new paper.Tool();
