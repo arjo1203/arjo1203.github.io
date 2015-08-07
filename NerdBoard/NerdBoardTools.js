@@ -81,6 +81,16 @@ NerdBoard.Tools = window.onload = (function() {
 
                 var currentIndex = findTrackedTouch(touch.identifier);
                 if(currentIndex == -1) {
+                    //Create a new path for the trackedTouch
+                    var newPath = new Path({
+                        strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
+                        strokeWidth: NerdBoard.penStroke,
+                        strokeCap: 'round',
+                        data: {
+                            touchId: touch.identifier
+                        }
+                    });
+                    console.log(newPath);
 
                     //Track the newly created touch
                     var trackedTouch = {
@@ -91,16 +101,6 @@ NerdBoard.Tools = window.onload = (function() {
 
                     //Store the trackedTouch
                     currentTouches.push(trackedTouch);
-
-                    //Create a new path for the trackedTouch
-                    new Path({
-                        strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
-                        strokeWidth: NerdBoard.penStroke,
-                        strokeCap: 'round',
-                        data: {
-                            touchId: touch.identifier
-                        }
-                    });
                 }
             }
         }
