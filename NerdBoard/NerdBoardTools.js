@@ -446,6 +446,7 @@ NerdBoard.Tools = window.onload = (function() {
         }
     };
     wbTools.tools.move.onMouseUp = function(paperEvent) {
+        console.log(paper.project);
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mouseup') {

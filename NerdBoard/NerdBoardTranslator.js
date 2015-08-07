@@ -636,7 +636,6 @@ function loadImage() {
     file.click();
 
     file.addEventListener('change', function () {
-            console.log('changed');
         var reader = new FileReader();
 
         reader.onload = function (e) {
