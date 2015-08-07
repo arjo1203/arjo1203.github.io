@@ -389,7 +389,7 @@ NerdBoard.Tools = window.onload = (function() {
                         var touchParent = touchItem._parent;
                         var touchParentName = touchParent.name;
 
-                        touchItem.data.touchId = touch.identifier;
+                        //touchItem.data.touchId = touch.identifier;
                         console.log(touchParentName);
                     }
                     else {
