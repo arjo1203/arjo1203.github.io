@@ -394,9 +394,9 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 currentTouchIndex = findTrackedTouch(touch.identifier);
-                console.log(currentTouchIndex);
+                //console.log(currentTouchIndex);
 
-                if(currentTouchIndex == -1) {
+                if(currentTouchIndex !== -1) {
                     console.log('found and moving');
                     currentTouch = currentTouches[currentTouchIndex];
 
@@ -409,7 +409,7 @@ NerdBoard.Tools = window.onload = (function() {
 
                     point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
                     var touchHit = project.hitTest(point, hitOptions);
-                    console.log(touchHit);
+                    //console.log(touchHit);
 
                     if (touchHit) {
                         var touchItem = touchHit.item;
