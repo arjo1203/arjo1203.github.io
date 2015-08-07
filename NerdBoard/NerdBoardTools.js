@@ -90,13 +90,13 @@ NerdBoard.Tools = window.onload = (function() {
                             touchId: touch.identifier
                         }
                     });
-                    console.log(newPath._index);
 
                     //Track the newly created touch
                     var trackedTouch = {
                         id: touch.identifier,
                         pageX: touch.pageX,
-                        pageY: touch.pageY
+                        pageY: touch.pageY,
+                        itemIndex: newPath._index
                     };
 
                     //Store the trackedTouch
@@ -127,11 +127,10 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
-                currentItemIndex = findItemInPaper(touch.identifier);
 
-                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+                if (currentTouchIndex !== -1) {
                     var currentTouch = currentTouches[currentTouchIndex];
-                    currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
 
                     //Creates a paper point based on the currentTouch position.
                     var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
@@ -185,12 +184,11 @@ NerdBoard.Tools = window.onload = (function() {
             for (var i = 0; i < touches.length; i++) {
                 var touch = touches[i];
                 var currentTouchIndex = findTrackedTouch(touch.identifier);
-                currentItemIndex = findItemInPaper(touch.identifier);
 
-                if (currentTouchIndex !== -1 && currentItemIndex !== -1) {
+                if (currentTouchIndex !== -1) {
                     //Finds the path associated with the currentTouchIndex
                     var currentTouch = currentTouches[currentTouchIndex];
-                    currentItem = paper.project.activeLayer.children[currentItemIndex];
+                    currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
 
                     if(currentItem._segments.length > 0) {
                         currentItem.smooth();
