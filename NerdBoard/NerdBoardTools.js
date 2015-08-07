@@ -90,7 +90,7 @@ NerdBoard.Tools = window.onload = (function() {
                             touchId: touch.identifier
                         }
                     });
-                    console.log(newPath);
+                    console.log(newPath._index);
 
                     //Track the newly created touch
                     var trackedTouch = {
