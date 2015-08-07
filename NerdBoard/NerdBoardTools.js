@@ -342,6 +342,7 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.tools.move = new paper.Tool();
     wbTools.tools.move.onMouseDown = function(paperEvent) {
+        console.log(paper.project);
         paperEvent.preventDefault();
 
         if(paperEvent.event.type == 'mousedown') {
