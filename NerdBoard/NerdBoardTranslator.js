@@ -554,3 +554,11 @@ NerdBoard.canvas.bind('mousedown touchstart', function(event) {
     }
 
 });
+
+
+/**
+ * Prevents default page scrolling action; fixes iOS 8 drawing bug.
+ */
+document.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+}, false);
