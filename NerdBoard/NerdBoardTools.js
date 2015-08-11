@@ -398,10 +398,10 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.shape.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
 
-        var itemIndex;
+        var itemIndex, value = $('#leftTextInputUIInput')[0].value;
 
         if(paperEvent.event.type == 'mousedown') {
-            itemIndex = wbTools.drawShape(paperEvent.point, NerdBoard.shape, $('#leftTextInputUIInput')[0].value);
+            itemIndex = wbTools.drawShape(paperEvent.point, NerdBoard.shape, value);
             var x = paperEvent.event.x, y = paperEvent.event.y;
 
             //Track the newly created touch
@@ -424,7 +424,7 @@ NerdBoard.Tools = window.onload = (function() {
                 var currentIndex = findTrackedTouch(touch.identifier);
                 if(currentIndex == -1) {
                     var point = new Point({x: touch.pageX, y: touch.pageY});
-                    itemIndex = wbTools.drawShape(point, NerdBoard.shape, $('#textInput')[0].value, touch.identifier);
+                    itemIndex = wbTools.drawShape(point, NerdBoard.shape, value, touch.identifier);
 
                     //Track the newly created touch
                     var trackedTouch = {

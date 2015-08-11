@@ -182,6 +182,11 @@ NerdBoard.UIHandler = (function() {
             }
         }
     };
+
+
+
+
+
     
     NerdUIS.leftBar = {
         leftSideBar: $('#leftSideBar'),

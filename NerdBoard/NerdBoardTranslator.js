@@ -343,7 +343,7 @@ $('#Decision').bind('mousedown touchstart', function(event) {
 
 
 
-var toolIcon = $('#toolIcon');
+var toolIcon = $('#leftToolsUIBtnIcon');
 
 $('#drawTool').bind('mousedown touchstart', function(event) {
     event.preventDefault();
