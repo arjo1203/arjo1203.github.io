@@ -22,7 +22,6 @@ var NerdBoard = (function(wb) {
     wb.textSize = 40;
 
     wb.activeMode = 'draw';
-
     wb.shape = 'Terminal';
     wb.numOfShapes = 0;
     wb.shapeStrokeColor = '#95B1BD';
@@ -73,7 +72,6 @@ var NerdBoard = (function(wb) {
 
     wb.styleEle = function(ele, components) {
         ele.css("background-color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
-        //ele.css("border", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     };
 
 
@@ -82,11 +80,7 @@ var NerdBoard = (function(wb) {
     wb.setBg = function(color){
         wb.bgColor = wb.colors[color];
 
-        var bgColor = wb.getColorComponents(NerdBoard.bgColor);
-        NerdBoard.styleEle(NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.tiger, bgColor);
-
         NerdBoard.Tools.changeBgColor();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.close();
     };
 
     wb.setColor = function (color) {
@@ -94,13 +88,13 @@ var NerdBoard = (function(wb) {
         wb.penColor = wb.colors[color];
 
         var penColor = wb.getColorComponents(NerdBoard.penColor);
-        NerdBoard.styleEle(NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.backGround, penColor);
-        NerdBoard.styleEle(NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.activeColor, penColor);
+        NerdBoard.styleEle(NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.btn, penColor);
+        NerdBoard.styleEle(NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.btnIcon, penColor);
 
         $('#penWidthSlider .slider-selection').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
         $('#penWidthSlider .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
 
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.close();
+        NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.close();
     };
 
     wb.setPenWidth = function(width) {
@@ -124,8 +118,8 @@ var NerdBoard = (function(wb) {
     wb.setShape = function(shape) {
         wb.shape = shape;
 
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.close();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.open();
+        NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.shapeUI.close();
+        NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textInputUI.open();
     };
 
 
@@ -149,35 +143,35 @@ var NerdBoard = (function(wb) {
     wb.activateThemeMode = function() {
         wb.activeMode = 'theme';
 
-        NerdBoard.UIHandler.LeftSideBarUI.toolSelected();
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
         NerdBoard.Tools.tools.draw.activate();
 
-        NerdBoard.UIHandler.LeftSideBarUI.toolSelected();
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateShapeMode = function() {
         wb.activeMode = 'add';
         NerdBoard.Tools.tools.shape.activate();
 
-        NerdBoard.UIHandler.LeftSideBarUI.toolSelected();
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateEraseMode = function() {
         wb.activeMode = 'erase';
         NerdBoard.Tools.tools.erase.activate();
 
-        NerdBoard.UIHandler.LeftSideBarUI.toolSelected();
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateMoveMode = function() {
         wb.activeMode = 'move';
         NerdBoard.Tools.tools.move.activate();
 
-        NerdBoard.UIHandler.LeftSideBarUI.toolSelected();
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activatePanMode = function() {
@@ -252,17 +246,13 @@ var NerdBoard = (function(wb) {
         NerdBoard.width = window.innerWidth;
         NerdBoard.height = window.innerHeight;
 
-        centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.LeftSideBarUI.leftSideBar, 0, .5);
+        centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.leftBar.leftSideBar, 0, .5);
 
         NerdBoard.Tools.resizeBg();
         paper.view.draw();
     }
 
     window.addEventListener('resize', onWindowResize, false);
-
-    document.addEventListener('touchmove', function(event) {
-        event.preventDefault();
-    }, false);
 
     $(window).bind('beforeunload', function() {
         return "Save your drawing before leaving!!";

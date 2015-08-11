@@ -1,132 +1,297 @@
 NerdBoard.UIHandler = (function() {
-    var SideBarUIS = {};
-    SideBarUIS.LeftSideBarUI = {
-        leftSideBar: $('#leftSideBar'),
-        activeUI: 'drawUI',
-        UIS: {
-            toolsUI: {
-                backGround: $('#toolsView'),
-                options: $('#toolOptions'),
+    var NerdUIS = {};
+    NerdUIS.menu = {
+        btn: $('#menuUIBtn'),
+        options: $('#menuUIOptions'),
+        isOut: false,
+        toggle: function() {
+            if(NerdUIS.menu.isOut) {
+                NerdUIS.menu.close();
+            }
+            else {
+                NerdUIS.menu.open();
+            }
+        },
+        open: function() {
+            NerdUIS.menu.options.animate({
+                left: '0'
+            }, 300);
+            NerdUIS.menu.isOut = true;
+        },
+        close: function() {
+            NerdUIS.menu.options.animate({
+                left: '-50'
+            }, 250);
+            NerdUIS.menu.isOut = false;
+        },
+        click: function() {
+            NerdBoard.UIHandler.menu.toggleStart = (new Date()).getTime();
+
+            NerdBoard.UIHandler.menu.toggleDelta = NerdBoard.UIHandler.menu.toggleStart - NerdBoard.UIHandler.menu.toggleLast;
+
+            if(NerdBoard.UIHandler.menu.toggleDelta > 300) {
+                NerdBoard.UIHandler.menu.toggle();
+                NerdBoard.UIHandler.menu.closeInternalUIS();
+            }
+
+            NerdBoard.UIHandler.menu.toggleLast = NerdBoard.UIHandler.menu.toggleStart;
+        },
+        toggleStart: 0,
+            toggleDelta: 0,
+            toggleLast: 0,
+            closeInternalUIS: function() {
+            for(var UI in NerdUIS.menu.internalUIS) {
+                if(NerdUIS.menu.internalUIS[UI].isOut) {
+                    NerdUIS.menu.internalUIS[UI].close();
+                }
+            }
+        },
+        activeInternalUI: '',
+        internalUIS: {
+            saveUI: {
+                btn: $('#saveUIBtn'),
+                options: $('#saveUIOptions'),
                 isOut: false,
                 toggle: function() {
-                    if(SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut) {
-                        SideBarUIS.LeftSideBarUI.UIS.toolsUI.close();
+                    if(NerdUIS.menu.internalUIS.saveUI.isOut) {
+                        NerdUIS.menu.internalUIS.saveUI.close();
                     }
                     else {
-                        SideBarUIS.LeftSideBarUI.UIS.toolsUI.open();
+                        NerdUIS.menu.internalUIS.saveUI.open();
                     }
-                    SideBarUIS.LeftSideBarUI.UIS.drawUI.closeOptions();
-                    SideBarUIS.LeftSideBarUI.UIS.addUI.closeOptions();
-                    SideBarUIS.LeftSideBarUI.UIS.themeUI.closeOption();
                 },
                 open: function() {
-                    SideBarUIS.LeftSideBarUI.UIS.toolsUI.options.animate({
-                            left: '265px'
-                        }, 300,
-                        function() {
-                            SideBarUIS.LeftSideBarUI.UIS.toolsUI.options.css('z-index', '1');
-                        });
-                    SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut = true;
+                    NerdUIS.menu.activeInternalUI = 'saveUI';
+                    NerdUIS.menu.internalUIS.saveUI.options.animate({
+                        left: '50px'
+                    }, 300);
+                    NerdUIS.menu.internalUIS.saveUI.isOut = true;
                 },
                 close: function() {
-                    SideBarUIS.LeftSideBarUI.UIS.toolsUI.options.css('z-index', '-1');
-                    SideBarUIS.LeftSideBarUI.UIS.toolsUI.options.animate({
-                        left: '0'
+                    NerdUIS.menu.internalUIS.saveUI.options.animate({
+                        left: '-110px'
                     }, 250);
-                    SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut = false;
+                    NerdUIS.menu.internalUIS.saveUI.isOut = false;
+                },
+                click: function() {
+                    NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleStart = (new Date()).getTime();
+
+                    NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleDelta = NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleStart - NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleLast;
+
+                    if(NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleDelta > 300) {
+                        NerdBoard.UIHandler.menu.internalUIS.saveUI.toggle();
+                        NerdBoard.UIHandler.menu.internalUIS.closeOtherInternalUIS();
+                    }
+
+                    NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleLast = NerdBoard.UIHandler.menu.internalUIS.saveUI.toggleStart;
                 },
                 toggleStart: 0,
-                toggleDelta: 0,
-                toggleLast: 0
+                    toggleDelta: 0,
+                    toggleLast: 0
             },
-            menuUI: {
-                tiger: $('#menuBtn'),
-                options: $('#menuOptions'),
+            loadUI: {
+                btn: $('#loadUIBtn'),
+                options: $('#loadUIOptions'),
                 isOut: false,
                 toggle: function() {
-                    if(SideBarUIS.LeftSideBarUI.UIS.menuUI.isOut) {
-                        SideBarUIS.LeftSideBarUI.UIS.menuUI.close();
+                if(NerdUIS.menu.internalUIS.loadUI.isOut) {
+                        NerdUIS.menu.internalUIS.loadUI.close();
                     }
                     else {
-                        SideBarUIS.LeftSideBarUI.UIS.menuUI.open();
+                        NerdUIS.menu.internalUIS.loadUI.open();
                     }
                 },
                 open: function() {
-                    SideBarUIS.LeftSideBarUI.UIS.menuUI.options.animate({
-                            left: '0'
-                        }, 300,
-                        function() {
-                            //SideBarUIS.LeftSideBarUI.UIS.menuUI.options.css('z-index', '1');
-                        });
-                    SideBarUIS.LeftSideBarUI.UIS.menuUI.isOut = true;
+                    NerdUIS.menu.activeInternalUI = 'loadUI';
+                    NerdUIS.menu.internalUIS.loadUI.options.animate({
+                        left: '50px'
+                    }, 300);
+                    NerdUIS.menu.internalUIS.loadUI.isOut = true;
                 },
                 close: function() {
-                    //SideBarUIS.LeftSideBarUI.UIS.menuUI.options.css('z-index', '-1');
-                    SideBarUIS.LeftSideBarUI.UIS.menuUI.options.animate({
-                        left: '-185'
+                    NerdUIS.menu.internalUIS.loadUI.options.animate({
+                        left: '-110px'
                     }, 250);
-                    SideBarUIS.LeftSideBarUI.UIS.menuUI.isOut = false;
+                    NerdUIS.menu.internalUIS.loadUI.isOut = false;
+                },
+                click: function() {
+                    NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleStart = (new Date()).getTime();
+
+                    NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleDelta = NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleStart - NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleLast;
+
+                    if(NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleDelta > 300) {
+                        NerdBoard.UIHandler.menu.internalUIS.loadUI.toggle();
+                        NerdBoard.UIHandler.menu.internalUIS.closeOtherInternalUIS();
+                    }
+
+                    NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleLast = NerdBoard.UIHandler.menu.internalUIS.loadUI.toggleStart;
+                },
+                toggleStart: 0,
+                    toggleDelta: 0,
+                    toggleLast: 0
+            },
+            bgUI: {
+                btn: $('#bgUIBtn'),
+                options: $('#bgUIOptions'),
+                isOut: false,
+                toggle: function() {
+                if(NerdUIS.menu.internalUIS.bgUI.isOut) {
+                        NerdUIS.menu.internalUIS.bgUI.close();
+                    }
+                    else {
+                        NerdUIS.menu.internalUIS.bgUI.open();
+                    }
+                },
+                open: function() {
+                    NerdUIS.menu.activeInternalUI = 'bgUI';
+                    NerdUIS.menu.internalUIS.bgUI.options.animate({
+                        left: '50px'
+                    }, 300);
+                    NerdUIS.menu.internalUIS.bgUI.isOut = true;
+                },
+                close: function() {
+                    NerdUIS.menu.internalUIS.bgUI.options.animate({
+                        left: '-270px'
+                    }, 250);
+                    NerdUIS.menu.internalUIS.bgUI.isOut = false;
+                },
+                click: function() {
+                    NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleStart = (new Date()).getTime();
+
+                    NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleDelta = NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleStart - NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleLast;
+
+                    if(NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleDelta > 300) {
+                        NerdBoard.UIHandler.menu.internalUIS.bgUI.toggle();
+                        NerdBoard.UIHandler.menu.internalUIS.closeOtherInternalUIS();
+                    }
+
+                    NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleLast = NerdBoard.UIHandler.menu.internalUIS.bgUI.toggleStart;
+                },
+                toggleStart: 0,
+                    toggleDelta: 0,
+                    toggleLast: 0
+            },
+            closeOtherInternalUIS: function() {
+                for(var UI in NerdUIS.menu.internalUIS) {
+                    if(UI !== NerdUIS.menu.activeInternalUI) {
+                        if(NerdUIS.menu.internalUIS[UI].isOut) {
+                            NerdUIS.menu.internalUIS[UI].close();
+                        }
+                    }
+                }
+            }
+        }
+    };
+    
+    NerdUIS.leftBar = {
+        leftSideBar: $('#leftSideBar'),
+        activeUI: 'drawUI',
+        internalUIS: {
+            toolsUI: {
+                btn: $('#leftToolsUIBtn'),
+                options: $('#leftToolsUIOptions'),
+                isOut: false,
+                toggle: function() {
+                    if(NerdUIS.leftBar.internalUIS.toolsUI.isOut) {
+                        NerdUIS.leftBar.internalUIS.toolsUI.close();
+                    }
+                    else {
+                        NerdUIS.leftBar.internalUIS.toolsUI.open();
+                    }
+                    NerdUIS.leftBar.internalUIS.drawUI.closeUIS();
+                    NerdUIS.leftBar.internalUIS.addUI.closeUIS();
+                },
+                open: function() {
+                    NerdUIS.leftBar.internalUIS.toolsUI.options.animate({
+                            left: '80px'
+                        }, 300);
+                    NerdUIS.leftBar.internalUIS.toolsUI.isOut = true;
+                },
+                close: function() {
+                    NerdUIS.leftBar.internalUIS.toolsUI.options.animate({
+                        left: '-200px'
+                    }, 250);
+                    NerdUIS.leftBar.internalUIS.toolsUI.isOut = false;
+                },
+                click: function() {
+                    NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleStart = (new Date()).getTime();
+
+                    NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleDelta = NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleStart - NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleLast;
+
+                    if(NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleDelta > 300) {
+                        NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggle();
+                    }
+
+                    NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleLast = NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.toggleStart;
                 },
                 toggleStart: 0,
                 toggleDelta: 0,
                 toggleLast: 0
             },
             drawUI: {
-                layer: $('#leftDrawToolOptions'),
-                activeOption: '',
-                options: {
-                    colors: {
-                        tiger: $('#colorView'),
-                        options: $('#colorOptions'),
-                        activeColor: $('#activeColor'),
+                layer: $('#leftDrawUI'),
+                activeInternalUI: '',
+                internalUIS: {
+                    colorUI: {
+                        btn: $('#leftColorUIBtn'),
+                        options: $('#leftColorUIOptions'),
+                        btnIcon: $('#leftColorUIBtnIcon'),
                         isOut: false,
                         toggle: function() {
-                            if(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.close();
+                            if(NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.close();
                             }
                             else {
-                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.open();
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.open();
                             }
                         },
                         open: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.activeOption = 'colors';
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.options.animate({
-                                    left: '350px'
-                                }, 300,
-                                function() {
-                                    SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.options.css('z-index', '1');
-                                });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.isOut = true;
+                            NerdUIS.leftBar.internalUIS.drawUI.activeInternalUI = 'colorUI';
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.options.animate({
+                                    left: '80px'
+                                }, 300);
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.isOut = true;
                         },
                         close: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.options.css('z-index', '-1');
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.options.animate({
-                                left: '0'
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.options.animate({
+                                left: '-265px'
                             }, 250);
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.isOut = false;
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.isOut = false;
+                        },
+                        click: function() {
+                            NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleStart = (new Date()).getTime();
+
+                            NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleDelta = NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleStart - NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleLast;
+
+                            if(NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleDelta > 300) {
+                                NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggle();
+                                NerdBoard.UIHandler.leftBar.internalUIS.drawUI.closeOtherUIS();
+                            }
+
+                            NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleLast = NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.toggleStart;
                         },
                         toggleStart: 0,
                         toggleDelta: 0,
                         toggleLast: 0
                     },
-                    width: {
-                        tiger: $('#widthView'),
-                        options: $('#widthOptions'),
-                        input: $('#widths'),
+                    widthUI: {
+                        btn: $('#leftWidthUIBtn'),
+                        options: $('#leftWidthUIOptions'),
+                        input: $('#leftWidthUISlider'),
                         slider: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.slider({
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.input.slider({
                                 min  : 1,
                                 max  : 20,
                                 value: 5,
                                 step: 1,
                                 tooltip: 'hide'
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStart', function(event) {
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.input.on('slideStart', function(event) {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
 
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slide', function(event) {
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.input.on('slide', function(event) {
                                 $('#penWidth').text(event.value);
                                 NerdBoard.penStroke = event.value;
 
@@ -138,35 +303,43 @@ NerdBoard.UIHandler = (function() {
                                     $('#penWidthSlider .slider-handle').css('height', (event.value * 2).toString() + 'px');
                                 }
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.input.on('slideStop', function(event) {
-                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.close();
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.input.on('slideStop', function(event) {
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.close();
                             });
                         },
                         isOut: false,
                         toggle: function() {
-                            if(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.close();
+                            if(NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.close();
                             }
                             else {
-                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.open();
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.open();
                             }
                         },
                         open: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.activeOption = 'width';
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.options.animate({
-                                    left: '85px'
-                                }, 300,
-                                function() {
-                                    SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.options.css('z-index', '1');
-                                });
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.isOut = true;
+                            NerdUIS.leftBar.internalUIS.drawUI.activeInternalUI = 'widthUI';
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.options.animate({
+                                    left: '80px'
+                                }, 300);
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.isOut = true;
                         },
                         close: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.options.css('z-index', '-1');
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.options.animate({
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.options.animate({
                                 left: '-130px'
                             }, 250);
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.isOut = false;
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.isOut = false;
+                        },
+                        click: function() {
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleStart = (new Date()).getTime();
+
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleDelta = NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleStart - NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleLast;
+
+                            if(NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleDelta > 300) {
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggle();
+                                NerdBoard.UIHandler.leftBar.internalUIS.drawUI.closeOtherUIS();
+                            }
+
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleLast = NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.toggleStart;
                         },
                         toggleStart: 0,
                         toggleDelta: 0,
@@ -174,47 +347,48 @@ NerdBoard.UIHandler = (function() {
                     }
                 },
                 displayOptions: function(){
-                    SideBarUIS.LeftSideBarUI.switchUI('drawUI');
-                    SideBarUIS.LeftSideBarUI.leftSideBar.animate({
+                    NerdUIS.leftBar.switchUI('drawUI');
+                    NerdUIS.leftBar.leftSideBar.animate({
                         height: '209px'
                     }, 100);
                 },
                 styleUI: function() {
                     var penColor = NerdBoard.getColorComponents(NerdBoard.penColor);
                     var navBg = NerdBoard.getColorComponents(NerdBoard.colors.neonBlack);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.tiger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.width.tiger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.toolsUI.backGround, penColor);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.drawUI.options.colors.activeColor, penColor);
-                    NerdBoard.styleEle($('#penWidth .slider-selection'), penColor);
+                    
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.toolsUI.btn, penColor);
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.btn, navBg);
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.drawUI.internalUIS.colorUI.btnIcon, penColor);
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.drawUI.internalUIS.widthUI.btn, navBg);
 
-                    $('#penWidth .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
+                    NerdBoard.styleEle($('#penWidthSlider .slider-selection'), penColor);
+                    $('#penWidthSlider .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
                 },
-                closeOtherOptions: function() {
-                    for(var option in SideBarUIS.LeftSideBarUI.UIS.drawUI.options) {
-                        if(option !== SideBarUIS.LeftSideBarUI.UIS.drawUI.activeOption) {
-                            if(SideBarUIS.LeftSideBarUI.UIS.drawUI.options[option].isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.drawUI.options[option].close();
+                closeOtherUIS: function() {
+                    for(var UI in NerdUIS.leftBar.internalUIS.drawUI.internalUIS) {
+                        if(UI !== NerdUIS.leftBar.internalUIS.drawUI.activeInternalUI) {
+                            if(NerdUIS.leftBar.internalUIS.drawUI.internalUIS[UI].isOut) {
+                                NerdUIS.leftBar.internalUIS.drawUI.internalUIS[UI].close();
                             }
-                            if(SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.toolsUI.close();
+                            if(NerdUIS.leftBar.internalUIS.toolsUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.toolsUI.close();
                             }
                         }
                     }
                 },
-                closeOptions: function() {
-                    for(var option in SideBarUIS.LeftSideBarUI.UIS.drawUI.options) {
-                        if(SideBarUIS.LeftSideBarUI.UIS.drawUI.options[option].isOut) {
-                            SideBarUIS.LeftSideBarUI.UIS.drawUI.options[option].close();
+                closeUIS: function() {
+                    for(var UI in NerdUIS.leftBar.internalUIS.drawUI.internalUIS) {
+                        if(NerdUIS.leftBar.internalUIS.drawUI.internalUIS[UI].isOut) {
+                            NerdUIS.leftBar.internalUIS.drawUI.internalUIS[UI].close();
                         }
                     }
                 }
             },
             eraseUI: {
-                layer: $('#leftEraseToolOptions'),
+                layer: $('#leftEraseUI'),
                 displayOptions: function() {
-                    SideBarUIS.LeftSideBarUI.switchUI('eraseUI');
-                    SideBarUIS.LeftSideBarUI.leftSideBar.animate({
+                    NerdUIS.leftBar.switchUI('eraseUI');
+                    NerdUIS.leftBar.leftSideBar.animate({
                         height: '70px'
                     }, 200);
                 },
@@ -222,10 +396,10 @@ NerdBoard.UIHandler = (function() {
                 }
             },
             moveUI: {
-                layer: $('#moveToolOptions'),
+                layer: $('#moveToolUI'),
                 displayOptions: function() {
-                    SideBarUIS.LeftSideBarUI.switchUI('moveUI');
-                    SideBarUIS.LeftSideBarUI.leftSideBar.animate({
+                    NerdUIS.leftBar.switchUI('moveUI');
+                    NerdUIS.leftBar.leftSideBar.animate({
                         height: '70px'
                     }, 200);
                 },
@@ -233,131 +407,153 @@ NerdBoard.UIHandler = (function() {
                 }
             },
             addUI: {
-                layer: $('#leftShapeToolOptions'),
-                options: {
-                    drawAfter: {
-                        tiger: $('#drawAfterCheckbox'),
-                        checkBox: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.drawAfter.tiger.checkbox();
-                        }
-                    },
-                    shapes: {
-                        tiger: $('#shapeView'),
-                        options: $('#shapeOptions'),
+                layer: $('#leftAddUI'),
+                activeInternalUI: '',
+                drawAfter: {
+                    checkBox: $('#drawAfterCheckbox')
+                },
+                internalUIS: {
+                    shapeUI: {
+                        btn: $('#leftShapeUIBtn'),
+                        options: $('#leftShapeUIOptions'),
                         isOut: false,
                         toggle: function() {
-                            if(SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.close();
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.close();
                             }
                             else {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.open();
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.open();
                             }
                         },
                         open: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.activeOption = 'shapes';
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.options.animate({
-                                    left: '365px'
-                                }, 300,
-                                function() {
-                                    SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.options.css('z-index', '1');
-                                });
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.isOut = true;
+                            NerdUIS.leftBar.internalUIS.addUI.activeInternalUI = 'shapeUI';
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.options.animate({
+                                    left: '80px'
+                                }, 300);
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.isOut = true;
                         },
                         close: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.options.css('z-index', '-1');
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.options.animate({
-                                left: '0'
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.options.animate({
+                                left: '-300px'
                             }, 250);
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.isOut = false;
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.isOut = false;
+                        },
+                        click: function() {
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleStart = (new Date()).getTime();
+
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleDelta = NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleStart - NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleLast;
+
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleDelta > 300) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggle();
+                                NerdBoard.UIHandler.leftBar.internalUIS.addUI.closeOtherUIS();
+                            }
+
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleLast = NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.toggleStart;
                         },
                         toggleStart: 0,
                         toggleDelta: 0,
                         toggleLast: 0
                     },
-                    textSize: {
-                        tiger: $('#textSizeView'),
-                        options: $('#textSizeOptions'),
-                        input: $('#textSizeSlider'),
+                    textSizeUI: {
+                        btn: $('#leftTextSizeUIBtn'),
+                        options: $('#leftTextSizeUIOptions'),
+                        input: $('#leftTextSizeUISlider'),
                         slider: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.input.slider({
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.input.slider({
                                 min  : 5,
                                 max  : 60,
                                 value: 40,
                                 step: 1,
                                 tooltip: 'hide'
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.input.on('slideStart', function(event) {
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.input.on('slideStart', function(event) {
                                 $('#textSizeSliderVal').text(event.value);
                                 NerdBoard.textSize = event.value;
 
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.input.on('slide', function(event) {
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.input.on('slide', function(event) {
                                 $('#textSizeSliderVal').text(event.value);
                                 NerdBoard.textSize = event.value;
 
                             });
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.input.on('slideStop', function() {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.close();
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.input.on('slideStop', function() {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.close();
                             });
                         },
                         isOut: false,
                         toggle: function() {
-                            if(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.close();
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.close();
                             }
                             else {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.open();
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.open();
                             }
                         },
                         open: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.activeOption = 'textSize';
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.options.animate({
-                                    left: '185px'
-                                }, 300,
-                                function() {
-                                    SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.options.css('z-index', '1');
-                                });
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.isOut = true;
+                            NerdUIS.leftBar.internalUIS.addUI.activeInternalUI = 'textSizeUI';
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.options.animate({
+                                    left: '80px'
+                                }, 300);
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.isOut = true;
                         },
                         close: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.options.css('z-index', '-1');
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.options.animate({
-                                left: '0'
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.options.animate({
+                                left: '-170px'
                             }, 250);
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.isOut = false;
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.isOut = false;
+                        },
+                        click: function() {
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleStart = (new Date()).getTime();
+
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleDelta = NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleStart - NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleLast;
+
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleDelta > 300) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggle();
+                                NerdBoard.UIHandler.leftBar.internalUIS.addUI.closeOtherUIS();
+                            }
+
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleLast = NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.toggleStart;
                         },
                         toggleStart: 0,
                         toggleDelta: 0,
                         toggleLast: 0
                     },
-                    textInput: {
-                        tiger: $('#textInputView'),
-                        options: $('#textInputOptions'),
+                    textInputUI: {
+                        btn: $('#leftTextInputUIBtn'),
+                        options: $('#leftTextInputUIOptions'),
                         isOut: false,
                         toggle: function() {
-                            if(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.close();
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.close();
                             }
                             else {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.open();
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.open();
                             }
                         },
                         open: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.activeOption = 'textInput';
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.options.animate({
-                                    left: '185px'
-                                }, 300,
-                                function() {
-                                    SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.options.css('z-index', '1');
-                                });
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.isOut = true;
+                            NerdUIS.leftBar.internalUIS.addUI.activeInternalUI = 'textInputUI';
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.options.animate({
+                                    left: '80px'
+                                }, 300);
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.isOut = true;
                         },
                         close: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.options.css('z-index', '-1');
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.options.animate({
-                                left: '0'
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.options.animate({
+                                left: '-170px'
                             }, 250);
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.isOut = false;
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.isOut = false;
+                        },
+                        click: function() {
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleStart = (new Date()).getTime();
+
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleDelta = NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleStart - NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleLast;
+
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleDelta > 300) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggle();
+                                NerdBoard.UIHandler.leftBar.internalUIS.addUI.closeOtherUIS();
+                            }
+
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleLast = NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.toggleStart;
                         },
                         toggleStart: 0,
                         toggleDelta: 0,
@@ -365,149 +561,105 @@ NerdBoard.UIHandler = (function() {
                     }
                 },
                 displayOptions: function() {
-                    SideBarUIS.LeftSideBarUI.switchUI('addUI');
-                    SideBarUIS.LeftSideBarUI.leftSideBar.animate({
+                    NerdUIS.leftBar.switchUI('addUI');
+                    NerdUIS.leftBar.leftSideBar.animate({
                         height: '320px'
                     }, 200);
                 },
                 styleUI: function() {
                     //var eraseColor = NerdBoardOriginal.getColorComponents(NerdBoardOriginal.theme.bg);
                     var navBg = NerdBoard.getColorComponents(NerdBoard.colors.neonBlack);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.shapes.tiger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textSize.tiger, navBg);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.addUI.options.textInput.tiger, navBg);
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.addUI.internalUIS.shapeUI.btn, navBg);
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.addUI.internalUIS.textSizeUI.btn, navBg);
+                    NerdBoard.styleEle(NerdUIS.leftBar.internalUIS.addUI.internalUIS.textInputUI.btn, navBg);
                 },
-                closeOtherOptions: function() {
-                    for(var option in SideBarUIS.LeftSideBarUI.UIS.addUI.options) {
-                        if(option !== SideBarUIS.LeftSideBarUI.UIS.addUI.activeOption) {
-                            if(SideBarUIS.LeftSideBarUI.UIS.addUI.options[option].isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.addUI.options[option].close();
+                closeOtherUIS: function() {
+                    for(var UI in NerdUIS.leftBar.internalUIS.addUI.internalUIS) {
+                        if(UI !== NerdUIS.leftBar.internalUIS.addUI.activeInternalUI) {
+                            if(NerdUIS.leftBar.internalUIS.addUI.internalUIS[UI].isOut) {
+                                NerdUIS.leftBar.internalUIS.addUI.internalUIS[UI].close();
                             }
-                            if(SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.toolsUI.close();
+                            if(NerdUIS.leftBar.internalUIS.toolsUI.isOut) {
+                                NerdUIS.leftBar.internalUIS.toolsUI.close();
                             }
                         }
                     }
                 },
-                closeOptions: function() {
-                    for(var option in SideBarUIS.LeftSideBarUI.UIS.addUI.options) {
-                        if(SideBarUIS.LeftSideBarUI.UIS.addUI.options[option].isOut) {
-                            SideBarUIS.LeftSideBarUI.UIS.addUI.options[option].close();
-                        }
-                    }
-                }
-            },
-            themeUI: {
-                layer: $('#leftThemeToolOptions'),
-                activeOption: '',
-                options: {
-                    themes: {
-                        tiger: $('#themeBtn'),
-                        options: $('#themes'),
-                        isOut: false,
-                        toggle: function() {
-                            if(SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.close();
-                            }
-                            else {
-                                SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.open();
-                            }
-                            if(SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut) {
-                                SideBarUIS.LeftSideBarUI.UIS.toolsUI.close();
-                            }
-                        },
-                        open: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.options.animate({
-                                left: '85px'
-                            }, 300);
-                            SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.isOut = true;
-                        },
-                        close: function() {
-                            SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.options.animate({
-                                left: '-265px'
-                            }, 250);
-                            SideBarUIS.LeftSideBarUI.UIS.themeUI.options.themes.isOut = false;
-                        },
-                        toggleStart: 0,
-                        toggleDelta: 0,
-                        toggleLast: 0
-                    }
-                },
-                displayOptions: function() {
-                    SideBarUIS.LeftSideBarUI.switchUI('themeUI');
-                    SideBarUIS.LeftSideBarUI.leftSideBar.animate({
-                        height: '140px'
-                    }, 200);
-                },
-                styleUI: function() {
-                    var navBg = NerdBoard.getColorComponents(NerdBoard.colors.neonBlack);
-                    NerdBoard.styleEle(SideBarUIS.LeftSideBarUI.UIS.themeUI.layer, navBg);
-                },
-                closeOption: function() {
-                    for(var option in SideBarUIS.LeftSideBarUI.UIS.themeUI.options) {
-                        if(SideBarUIS.LeftSideBarUI.UIS.themeUI.options[option].isOut) {
-                            SideBarUIS.LeftSideBarUI.UIS.themeUI.options[option].close();
+                closeUIS: function() {
+                    for(var UI in NerdUIS.leftBar.internalUIS.addUI.internalUIS) {
+                        if(NerdUIS.leftBar.internalUIS.addUI.internalUIS[UI].isOut) {
+                            NerdUIS.leftBar.internalUIS.addUI.internalUIS[UI].close();
                         }
                     }
                 }
             }
         },
         toolSelected: function() {
-            SideBarUIS.LeftSideBarUI.updateUIOptions();
+            NerdUIS.leftBar.updateUIOptions();
 
-            if(SideBarUIS.LeftSideBarUI.UIS.toolsUI.isOut) {
-                SideBarUIS.LeftSideBarUI.UIS.toolsUI.close();
+            if(NerdUIS.leftBar.internalUIS.toolsUI.isOut) {
+                NerdUIS.leftBar.internalUIS.toolsUI.close();
             }
         },
         updateUIOptions: function() {
             switch (NerdBoard.activeMode) {
                 case 'draw':
-                    SideBarUIS.LeftSideBarUI.UIS.drawUI.displayOptions();
+                    NerdUIS.leftBar.internalUIS.drawUI.displayOptions();
                     break;
                 case 'erase':
-                    SideBarUIS.LeftSideBarUI.UIS.eraseUI.displayOptions();
+                    NerdUIS.leftBar.internalUIS.eraseUI.displayOptions();
                     break;
                 case 'move':
-                    SideBarUIS.LeftSideBarUI.UIS.moveUI.displayOptions();
+                    NerdUIS.leftBar.internalUIS.moveUI.displayOptions();
                     break;
                 case 'add':
-                    SideBarUIS.LeftSideBarUI.UIS.addUI.displayOptions();
-                    break;
-                case 'theme':
-                    SideBarUIS.LeftSideBarUI.UIS.themeUI.displayOptions();
+                    NerdUIS.leftBar.internalUIS.addUI.displayOptions();
                     break;
             }
         },
         switchUI: function(selectedUI) {
-            for(var UI in SideBarUIS.LeftSideBarUI.UIS) {
-                var id = UI.slice(UI.length - 2, UI.length);
-                if(id == 'UI') {
-                    if(UI !== 'toolsUI' && UI !== 'menuUI') {
-                        if(UI !== selectedUI) {
-                            SideBarUIS.LeftSideBarUI.UIS[UI].layer.css('opacity', '0');
-                            SideBarUIS.LeftSideBarUI.UIS[UI].layer.css('z-index', '-1');
-                        }
-                        else {
-                            SideBarUIS.LeftSideBarUI.UIS[UI].layer.css('opacity', '1');
-                            SideBarUIS.LeftSideBarUI.UIS[UI].layer.css('z-index', '1');
-                            SideBarUIS.LeftSideBarUI.activeUI = UI;
-                            SideBarUIS.LeftSideBarUI.styleUI();
-                        }
+            for(var UI in NerdUIS.leftBar.internalUIS) {
+                if(UI !== 'toolsUI' && UI !== 'menuUI') {
+                    if(UI !== selectedUI) {
+                        NerdUIS.leftBar.internalUIS[UI].layer.css('opacity', '0');
+                        NerdUIS.leftBar.internalUIS[UI].layer.css('z-index', '-1');
+                    }
+                    else {
+                        NerdUIS.leftBar.internalUIS[UI].layer.css('opacity', '1');
+                        NerdUIS.leftBar.internalUIS[UI].layer.css('z-index', '1');
+                        NerdUIS.leftBar.activeUI = UI;
+                        NerdUIS.leftBar.styleUI();
                     }
                 }
             }
         },
         styleUI: function() {
-            for(var UI in SideBarUIS.LeftSideBarUI.UIS) {
+            for(var UI in NerdUIS.leftBar.internalUIS) {
                 var id = UI.slice(UI.length - 2, UI.length);
                 if(id == 'UI') {
-                    if(UI == SideBarUIS.LeftSideBarUI.activeUI) {
-                        SideBarUIS.LeftSideBarUI.UIS[UI].styleUI();
+                    if(UI == NerdUIS.leftBar.activeUI) {
+                        NerdUIS.leftBar.internalUIS[UI].styleUI();
+                    }
+                }
+            }
+        },
+        closeUIS: function() {
+            for(var UI in NerdUIS.leftBar.internalUIS) {
+
+                if(NerdUIS.leftBar.internalUIS[UI].isOut) {
+                    NerdUIS.leftBar.internalUIS[UI].close();
+                }
+
+
+                for(var internalUI in NerdUIS.leftBar.internalUIS[UI].internalUIS) {
+
+                    if(NerdUIS.leftBar.internalUIS[UI].internalUIS[internalUI].isOut) {
+                        NerdUIS.leftBar.internalUIS[UI].internalUIS[internalUI].close();
                     }
                 }
             }
         }
     };
 
-    return SideBarUIS;
+    return NerdUIS;
 }());

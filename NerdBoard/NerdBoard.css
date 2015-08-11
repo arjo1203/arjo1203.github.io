@@ -198,10 +198,6 @@ fieldset[disabled] .btn-custom.active {
     width: 280px;
     height: 32px;
 }
-#textInput {
-    margin-left: 3px;
-    width: 150px;
-}
 #moveBtn {
     margin-left: 3px;
 }
@@ -255,14 +251,27 @@ fieldset[disabled] .btn-custom.active {
     background : #FFFFFF;
     background : rgba(255, 255, 255, 1);
     position : absolute;
-    /*left : 0;*/
-    /*top: 50%;*/
     width : 70px;
     height : 209px;
     border-radius : 0px 10px 0px 0px;
     -moz-border-radius : 0px 10px 10px 0px;
     -webkit-border-radius : 0px 10px 10px 0px;
     box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+    z-index: 1;
+    background-color: rgb(176, 176, 176);
+}
+.rightBar {
+    background : #FFFFFF;
+    background : rgba(255, 255, 255, 1);
+    position : absolute;
+    top: 40%;
+    right: 0;
+    width : 70px;
+    height : 209px;
+    border-radius : 10px 0px 0px 10px;
+    -moz-border-radius : 10px 0px 0px 10px;
+    -webkit-border-radius : 10px 0px 0px 10px;
+    box-shadow : -3px 4px 2px rgba(0, 0, 0, 0.67);
     z-index: 1;
     background-color: rgb(176, 176, 176);
 }
@@ -323,34 +332,23 @@ fieldset[disabled] .btn-custom.active {
     border-top: 2px solid black;
 }
 #drawTool {
-    /*position: relative;*/
     width: 50px;
     height: 50px;
 }
-#leftDrawToolOptions {
+#leftDrawUI {
     position: relative;
-    width: 70px;
-    height: 140px;
-    left: 0;
-    top: 70px;
 }
-#colorDiv {
+#leftColorUI {
     position: relative;
-    height: 70px;
-    width: 335px;
-    left: -265px;
 }
-#colorView {
+#leftColorUIBtn {
     position: absolute;
     width: 70px;
     height: 70px;
-    padding: 0;
-    margin: 0;
-    right: 0;
     background-color: white;
     z-index: 1;
 }
-#activeColor {
+#leftColorUIBtnIcon {
     position: absolute;
     left: 10px;
     top: 10px;
@@ -359,39 +357,123 @@ fieldset[disabled] .btn-custom.active {
     border-radius: 40px;
     background-color: black;
 }
-#colorOptions {
-    position: relative;
+#leftColorUIOptions {
+    position: absolute;
     width: 265px;
     height: 175px;
+    left: -265px;
     z-index: -1;
 }
-#widthDiv {
+#leftWidthUI {
     text-align: center;
-    height: 70px;
-    width: 210px;
-    float: right;
+    position: relative;
+    top: 70px;
 }
-#widthView {
+#leftWidthUIBtn {
+    position: absolute;
     width: 70px;
     height: 70px;
-    float: right;
     background-color: white;
-    z-index: 1;
     border-radius : 0px 0px 10px 0px;
+    z-index: 1;
 }
 .whiteText {
     font-size: 20px;
     /*color: white;*/
 }
-#widthOptions {
+#leftWidthUIOptions {
     position: absolute;
     width: 166px;
-    top: 95px;
+    top: 30px;
     left: -130px;
     z-index: -1;
 }
-#widths {
+#leftWidthUISlider {
     position: relative;
+}
+#leftAddUI {
+    position: relative;
+    border-radius : 0px 0px 10px 0px;
+    opacity: 0;
+}
+#drawAfter {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    left: 10px;
+}
+#leftShapeUI {
+    position: relative;
+    top: 30px;
+}
+#leftShapeUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    z-index: 1;
+}
+#leftShapeUIBtnIcon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+#leftShapeUIOptions {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    top: 10px;
+    left: -300px;
+    z-index: -1;
+}
+#leftTextInputUI {
+    position: relative;
+    text-align: center;
+    top: 100px;
+}
+#leftTextInputUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+#leftTextInputUIBtnIcon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+#leftTextInputUIOptions {
+    position: absolute;
+    width: 150px;
+    left: -150px;
+    top: 16px;
+    z-index: -1;
+}
+#leftTextInputUIInput {
+    width: 150px;
+}
+#leftTextSizeUI {
+    position: relative;
+    text-align: center;
+    top: 170px;
+}
+#leftTextSizeUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius : 0px 0px 10px 0px;
+    z-index: 1;
+}
+#leftTextSizeUIOptions {
+    position: absolute;
+    top: 20px;
+    width: 170px;
+    left: -170px;
+    z-index: -1;
 }
 .slider.slider-horizontal {
     width: 166px;
@@ -401,7 +483,7 @@ fieldset[disabled] .btn-custom.active {
     height: 150px;
     width: 20px;
 }
-#leftEraseToolOptions {
+#leftEraseUI {
     position: absolute;
     width: 70px;
     height: 200px;
@@ -409,28 +491,6 @@ fieldset[disabled] .btn-custom.active {
     left: 0;
     top: 70px;
     opacity: 0;
-}
-#eraseView {
-    text-align: center;
-}
-#leftToolsDiv {
-    width: 250px;
-    height: 70px;
-    float: right;
-}
-#toolOptions {
-    position: relative;
-    top: 10px;
-    width: 250px;
-    height: 50px;
-    z-index: -1;
-}
-#toolsView {
-    width: 70px;
-    height: 70px;
-    float: right;
-    border-radius : 0px 10px 0px 0px;
-    background-color: white;
 }
 #activeTool {
     position: relative;
@@ -493,28 +553,6 @@ fieldset[disabled] .btn-custom.active {
 #eraseWidth {
     border-radius : 0px 0px 10px 0px;
 }
-#leftShapeToolOptions {
-    position: relative;
-    width: 70px;
-    height: 250px;
-    top: -70px;
-    border-radius : 0px 0px 10px 0px;
-    z-index: -1;
-    opacity: 0;
-}
-#drawAfter {
-    position: absolute;
-    width: 60px;
-    height: 30px;
-    left: 10px;
-}
-#shapeDiv {
-    position: absolute;
-    left: -280px;
-    height: 70px;
-    width: 350px;
-    top: 30px;
-}
 #activeShape {
     position: relative;
     width: 50px;
@@ -522,24 +560,6 @@ fieldset[disabled] .btn-custom.active {
     border-radius: 40px;
     left: 10px;
     top: 10px;
-}
-#shapeOptions {
-    position: absolute;
-    width: 350px;
-    height: 70px;
-    z-index: -1;
-}
-#shapeView {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    right: 0;
-    background-color: white;
-    z-index: 1;
-}
-#activeShapeIcon {
-    width: 50px;
-    height: 50px;
 }
 .IconDiv {
     width: 70px;
@@ -550,68 +570,23 @@ fieldset[disabled] .btn-custom.active {
     height: 50px;
 }
 #Terminal {
-    position: relative;
+    position: absolute;
 }
 #Process {
-    position: relative;
-    left: 70px;
-    bottom: 70px;
+    position: absolute;
+    left: 60px;
 }
 #Input {
-    position: relative;
-    left: 140px;
-    bottom: 140px;
+    position: absolute;
+    left: 120px;
 }
 #Decision {
-    position: relative;
-    left: 210px;
-    bottom: 210px;
+    position: absolute;
+    left: 180px;
 }
 #Text {
-    position: relative;
-    left: 280px;
-    bottom: 280px;
-}
-#textSizeDiv {
-    position: relative;
-    text-align: center;
-    top: 100px;
-    left: -100px;
-    height: 80px;
-    width: 170px;
-}
-#textSizeView {
     position: absolute;
-    right: 0;
-    width: 70px;
-    height: 70px;
-    border-radius : 0px 0px 10px 0px;
-}
-#textSizeOptions {
-    position: absolute;
-    top: 20px;
-    width: 170px;
-    z-index: -1;
-}
-#textInputDiv {
-    position: relative;
-    text-align: center;
-    top: 100px;
-    left: -100px;
-    height: 70px;
-    width: 170px;
-}
-#textInputView {
-    position: absolute;
-    right: 0;
-    width: 70px;
-    height: 70px;
-}
-#textInputOptions {
-    position: absolute;
-    width: 166px;
-    top: 16px;
-    z-index: -1;
+    left: 240px;
 }
 #currentTextInput {
     width: 50px;
@@ -619,48 +594,129 @@ fieldset[disabled] .btn-custom.active {
 }
 .top {
     position: relative;
-    /*margin-bottom: 4px;*/
+    left: 8px;
+    top: 8px;
 }
 .middle {
     position: relative;
-    top: 3px;
-    /*margin-bottom: 4px;*/
+    left: 8px;
+    top: 11px;
 }
 .bottom {
-    top: 6px;
     position: relative;
+    left: 8px;
+    top: 14px;
 }
 .hamburger {
     width: 26px;
     height: 5px;
     border-radius : 5px 5px 5px 5px;
 }
-#menuBtn {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    left: 8px;
-    top: 8px;
-}
-#menu {
+#menuUI {
     position: relative;
     width: 40px;
     height: 40px;
     border-radius : 0px 0px 0px 10px;
 }
-#menuOptions {
+#menuUIBtn {
     position: relative;
-    width: 180px;
+    width: 40px;
+    height: 40px;
+}
+#menuUIOptions {
+    position: relative;
+    width: 40px;
     height: 150px;
-    left: -185px;
+    left: -50px;
     top: 20px;
     font-size: 20px;
 }
-#menuIcon {
-    width: 30px;
-    height: 30px;
+#saveUI {
+    position: relative;
 }
-#uploadImg {
+#saveUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    z-index: 1;
+
+}
+#saveUIBtnIcon {
+    width: 40px;
+    height: 40px;
+}
+#saveUIOptions {
+    position: absolute;
+    left: -110px;
+    top: 0;
+}
+#loadUI {
+    position: relative;
+    top: 10px;
+}
+#loadUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    z-index: 1;
+
+}
+#loadUIBtnIcon {
+    width: 40px;
+    height: 40px;
+}
+#loadUIOptions {
+    position: absolute;
+    left: -110px;
+    top: 0;
+}
+#bgUI {
+    position: relative;
+    top: 20px;
+}
+#bgUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+}
+#bgUIBtnIcon {
+    width: 40px;
+    height: 40px;
+}
+#bgUIOptions {
+    position: absolute;
+    left: -270px;
+    top: 0;
+}
+#leftToolsUI {
+    position: relative;
+}
+#leftToolsUIBtn {
+    width: 70px;
+    height: 70px;
+    border-radius : 0px 10px 0px 0px;
+    background-color: white;
+    z-index: 1;
+}
+#leftToolsUIBtnIcon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+#leftToolsUIOptions {
+    position: absolute;
+    top: 10px;
+    left: -200px;
+    width: 200px;
+    height: 50px;
+    z-index: -1;
 }
 .dropdown-menu {
     width: 50px!important;

@@ -10720,7 +10720,7 @@ var paper = new function(undefined) {
                 return;
             var point = viewToProject(view, event);
 
-            //For multitouch
+            //Enables multitouch
             if(event.type == 'mouseup') {
                 dragging = false;
             }

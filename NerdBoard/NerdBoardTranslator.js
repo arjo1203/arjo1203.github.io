@@ -1,73 +1,3 @@
-$('#undo').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.undo();
-});
-
-$('#clear').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.clear();
-});
-
-
-
-$('#saveWorkSpace').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.saveAsWorkSpace();
-});
-
-$('#loadWorkSpace').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.loadWorkSpace();
-});
-
-
-
-
-
-var activeShapeIcon =  $('#activeShapeIcon');
-
-$('#Text').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Text');
-    activeShapeIcon.attr('src', 'icons/text.png');
-});
-
-$('#Terminal').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Terminal');
-    activeShapeIcon.attr('src', 'icons/roundedRect.png');
-});
-
-$('#Process').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Process');
-    activeShapeIcon.attr('src', 'icons/rect.png');
-});
-
-$('#Input').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Input');
-    activeShapeIcon.attr('src', 'icons/slantedRect.png');
-});
-
-$('#Decision').bind('mousedown touchstart', function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    NerdBoard.setShape('Decision');
-    activeShapeIcon.attr('src', 'icons/diamond.png');
-});
-
-
-
-
 //row1
 $('#colorDefaultBg').bind('mousedown touchstart', function(event) {
     event.preventDefault();
@@ -372,229 +302,178 @@ $('#themeNeonYellow').bind('mousedown touchstart', function(event) {
 
 
 
+
+var activeShapeIcon =  $('#activeShapeIcon');
+
+$('#Text').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Text');
+    activeShapeIcon.attr('src', 'icons/text.png');
+});
+
+$('#Terminal').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Terminal');
+    activeShapeIcon.attr('src', 'icons/roundedRect.png');
+});
+
+$('#Process').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Process');
+    activeShapeIcon.attr('src', 'icons/rect.png');
+});
+
+$('#Input').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Input');
+    activeShapeIcon.attr('src', 'icons/slantedRect.png');
+});
+
+$('#Decision').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.setShape('Decision');
+    activeShapeIcon.attr('src', 'icons/diamond.png');
+});
+
+
+
+
 var toolIcon = $('#toolIcon');
 
 $('#drawTool').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    updateToDrawMode();
-});
 
-function updateToDrawMode() {
     NerdBoard.activateDrawMode();
     toolIcon.attr('src', 'icons/pencil.png');
-}
+});
 
 $('#eraseTool').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    updateToEraseMode();
-});
 
-function updateToEraseMode() {
     NerdBoard.activateEraseMode();
     toolIcon.attr('src', 'icons/eraser.png');
-}
+});
 
 $('#moveTool').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    updateToMoveMode();
-});
 
-function updateToMoveMode() {
     NerdBoard.activateMoveMode();
     toolIcon.attr('src', 'icons/move.png');
-}
+});
 
 $('#addTool').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    updateToAddMode();
-});
 
-function updateToAddMode() {
     NerdBoard.activateShapeMode();
     toolIcon.attr('src', 'icons/add.png');
-}
+});
 
-$('#themeTool').bind('mousedown touchstart', function(event) {
+
+
+
+
+NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.btn.bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.click();
+});
+
+NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    updateToThemeMode();
+
+    NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.click();
 });
 
-function updateToThemeMode() {
-    NerdBoard.activateThemeMode();
-    toolIcon.attr('src', 'icons/settings.png');
-}
-
-
-
-
-
-$('#toolsView').bind('mousedown touchstart', function() {
-    toolsViewClick();
-});
-
-
-function toolsViewClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleStart = (new Date()).getTime();
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleLast;
-
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggle();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.toolsUI.toggleStart;
-}
-
-
-$('#themeBtn').bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.widthUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    themeBtnClick();
+
+    NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.widthUI.click();
 });
 
-
-function themeBtnClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleStart = (new Date()).getTime();
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleLast;
-
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggle();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.themeUI.options.themes.toggleStart;
-}
-
-
-
-$('#colorView').bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.shapeUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    colorViewClick();
+
+    NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.shapeUI.click();
 });
 
-
-function colorViewClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart = (new Date()).getTime();
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast;
-
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggle();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.closeOtherOptions();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
-}
-
-$('#widthView').bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textSizeUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    widthViewClick();
+    NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textSizeUI.click();
 });
 
-
-function widthViewClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart = (new Date()).getTime();
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleLast;
-
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggle();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.closeOtherOptions();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.toggleStart;
-}
-
-$('#shapeView').bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textInputUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    shapeViewClick();
+
+    NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textInputUI.click();
 });
 
-function shapeViewClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleStart = (new Date()).getTime();
 
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleLast;
 
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.shapes.toggle();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.closeOtherOptions();
-    }
 
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.colors.toggleStart;
-}
 
-$('#textSizeView').bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.menu.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    textSizeViewClick();
+    NerdBoard.UIHandler.menu.click();
 });
 
-function textSizeViewClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart = (new Date()).getTime();
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleLast;
-
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggle();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.closeOtherOptions();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.toggleStart;
-}
-
-$('#textInputView').bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.menu.internalUIS.saveUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    textInputViewClick();
+    NerdBoard.UIHandler.menu.internalUIS.saveUI.click();
 });
 
-function textInputViewClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart = (new Date()).getTime();
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleLast;
-
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggle();
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.closeOtherOptions();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textInput.toggleStart;
-}
-
-NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.tiger.bind('mousedown touchstart', function(event) {
+NerdBoard.UIHandler.menu.internalUIS.loadUI.btn.bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    menuClick();
+    NerdBoard.UIHandler.menu.internalUIS.loadUI.click();
 });
 
-function menuClick() {
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart = (new Date()).getTime();
+NerdBoard.UIHandler.menu.internalUIS.bgUI.btn.bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.UIHandler.menu.internalUIS.bgUI.click();
+});
 
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleDelta = NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart - NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleLast;
+$('#undo').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.undo();
+});
 
-    if(NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleDelta > 300) {
-        NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggle();
-    }
-
-    NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleLast = NerdBoard.UIHandler.LeftSideBarUI.UIS.menuUI.toggleStart;
-}
-
+$('#clear').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.clear();
+});
 
 
+$('#saveWorkSpace').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.saveAsWorkSpace();
+});
+
+$('#loadWorkSpace').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    NerdBoard.loadWorkSpace();
+});
 
 $('#saveImg').bind('mousedown touchstart', function() {
-    console.log('clicked');
-    //this.download = NerdBoard.getDate();
-    //this.href = NerdBoard.canvas.toDataURL('image/png');
-
     var link = document.createElement("a");
     var name = window.prompt("Please name your Image: ");
     if(name != null){
@@ -609,27 +488,10 @@ $('#saveImg').bind('mousedown touchstart', function() {
     }
 });
 
-$('#uploadImg').on('change', function(e) {
-    var file = e.target.files[0];
-    var fileReader = new FileReader();
-
-    fileReader.onload = function(e2) {
-        NerdBoard.clear();
-        NerdBoard.Tools.loadRaster(e2.target.result);
-    };
-
-    fileReader.readAsDataURL(file);
-});
-
-
 $('#uploadImg').bind('mousedown touchstart', function(event) {
     event.preventDefault();
     event.stopPropagation();
-    loadImage();
-});
 
-
-function loadImage() {
     var file = document.createElement('input');
 
     file.type = 'file';
@@ -650,19 +512,19 @@ function loadImage() {
         reader.readAsDataURL(file.files[0]);
     },
     false);
-}
+});
 
 
 
 
-NerdBoard.UIHandler.LeftSideBarUI.UIS.drawUI.options.width.slider();
-NerdBoard.UIHandler.LeftSideBarUI.UIS.addUI.options.textSize.slider();
 
-NerdBoard.setColor('defaultBlack');
 
-NerdBoard.UIHandler.LeftSideBarUI.styleUI();
+NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.widthUI.slider();
+NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textSizeUI.slider();
 
-centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.LeftSideBarUI.leftSideBar, 0, .5);
+NerdBoard.UIHandler.leftBar.styleUI();
+
+centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.leftBar.leftSideBar, 0, .5);
 
 function centerDiv(outerDiv, innerDiv, left, top) {
     var inWidth = innerDiv[0].clientWidth * left, inHeight = innerDiv[0].clientHeight * top;
@@ -671,3 +533,24 @@ function centerDiv(outerDiv, innerDiv, left, top) {
     innerDiv[0].style.top = Math.round(outHeight - inHeight).toString() + 'px';
     innerDiv[0].style.left = Math.round(outWidth - inWidth).toString() + 'px';
 }
+
+
+
+NerdBoard.canvas.bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+
+    if(NerdBoard.UIHandler.menu.isOut) {
+        NerdBoard.UIHandler.menu.click();
+    }
+    NerdBoard.UIHandler.leftBar.closeUIS();
+
+    //Left Click
+    if(event.which == 1) {
+    }
+
+    //Right Click
+    if(event.which == 3) {
+
+    }
+
+});
