@@ -477,7 +477,7 @@ $('#saveImg').bind('mousedown touchstart', function() {
     var link = document.createElement("a");
     var name = window.prompt("Please name your Image: ");
     if(name != null){
-        link.href = NerdBoard.canvas.toDataURL('image/png');
+        link.href = NerdBoard.canvas[0].toDataURL('image/png');
         link.download = name;
         link.click();
 

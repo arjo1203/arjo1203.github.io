@@ -394,6 +394,7 @@ fieldset[disabled] .btn-custom.active {
 #leftAddUI {
     position: relative;
     border-radius : 0px 0px 10px 0px;
+    left: -70px;
     opacity: 0;
 }
 #drawAfter {
@@ -482,15 +483,6 @@ fieldset[disabled] .btn-custom.active {
 .slider.slider-vertical {
     height: 150px;
     width: 20px;
-}
-#leftEraseUI {
-    position: absolute;
-    width: 70px;
-    height: 200px;
-    z-index: -1;
-    left: 0;
-    top: 70px;
-    opacity: 0;
 }
 #activeTool {
     position: relative;
@@ -727,8 +719,8 @@ fieldset[disabled] .btn-custom.active {
 }
 .NerdLogo {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     right: 0;
     top: 0;
     z-index: 10;

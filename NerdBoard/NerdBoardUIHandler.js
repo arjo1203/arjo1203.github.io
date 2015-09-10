@@ -628,10 +628,17 @@ NerdBoard.UIHandler = (function() {
                     if(UI !== selectedUI) {
                         NerdUIS.leftBar.internalUIS[UI].layer.css('opacity', '0');
                         NerdUIS.leftBar.internalUIS[UI].layer.css('z-index', '-1');
+                        NerdUIS.leftBar.internalUIS[UI].layer.animate({
+                            left: '-70px'
+                        }, 50);
+                        //NerdUIS.leftBar.internalUIS[UI].layer.css('pointer-events', 'none');
                     }
                     else {
                         NerdUIS.leftBar.internalUIS[UI].layer.css('opacity', '1');
                         NerdUIS.leftBar.internalUIS[UI].layer.css('z-index', '1');
+                        NerdUIS.leftBar.internalUIS[UI].layer.animate({
+                            left: '0'
+                        }, 50);
                         NerdUIS.leftBar.activeUI = UI;
                         NerdUIS.leftBar.styleUI();
                     }

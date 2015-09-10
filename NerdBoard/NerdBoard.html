@@ -7,10 +7,9 @@
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
         <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
         <link rel="stylesheet" href="../bootstrap-slider/bootstrap-slider.css">
-        <!--<link rel="stylesheet" href="../bootStrap/bootstrap-checkbox.css">-->
         <link rel="stylesheet" href="NerdBoard.css">
         <link rel="icon" href="./icons/nerdLogoOnly.png">
-        <!--<meta name="viewport" content="width=devicewidth, minimal-ui">-->
+        <meta name="viewport" content="width=devicewidth, minimal-ui">
     </head>
     <body>
 
@@ -314,14 +313,5 @@
         <script src="NerdBoardTools.js"></script>
         <script src="NerdBoardUIHandler.js"></script>
         <script src="NerdBoardTranslator.js"></script>
-        <script>
-            (function ($) {
-                $.fn.tclick = function (onclick) {
-                    this.bind("touchstart", function (e) { onclick.call(this, e); e.stopPropagation(); e.preventDefault(); });
-                    this.bind("click", function (e) { onclick.call(this, e); });   //substitute mousedown event for exact same result as touchstart
-                    return this;
-                };
-            })(jQuery);
-        </script>
     </body>
 </html>
