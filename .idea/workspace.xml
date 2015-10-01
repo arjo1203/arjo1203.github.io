@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardSVG.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard2Projects/NerdBoard.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard2Projects/NerdBoard.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard2Projects/NerdBoard.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard2Projects/NerdBoardTools.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/NerdBoard2Projects/stateDiagram.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoard.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" afterPath="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.css" afterPath="$PROJECT_DIR$/SCSU/home.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SCSU/home.js" afterPath="$PROJECT_DIR$/SCSU/home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/VizLab/viz.css" afterPath="$PROJECT_DIR$/VizLab/viz.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,30 +37,30 @@
       <file leaf-file-name="NerdBoard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.56">
-              <caret line="141" column="29" selection-start-line="141" selection-start-column="29" selection-end-line="141" selection-end-column="47" />
+            <state vertical-scroll-proportion="-72.32">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
               <folding>
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoard.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.css">
+      <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2222223">
-              <caret line="396" column="15" selection-start-line="396" selection-start-column="15" selection-end-line="396" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.3088553">
+              <caret line="754" column="32" selection-start-line="754" selection-start-column="32" selection-end-line="754" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoardTranslator.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js">
+      <file leaf-file-name="NerdBoard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8965517">
-              <caret line="557" column="0" selection-start-line="557" selection-start-column="0" selection-end-line="557" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="83" column="6" selection-start-line="83" selection-start-column="6" selection-end-line="83" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -59,49 +70,17 @@
         <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardUIHandler.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-              <folding>
-                <element signature="e#19196#19556#0" expanded="false" />
-                <element signature="e#19578#19936#0" expanded="false" />
-              </folding>
+              <caret line="193" column="22" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
+      <file leaf-file-name="NerdBoardTranslator.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="426" column="79" selection-start-line="426" selection-start-column="79" selection-end-line="426" selection-end-column="79" />
-              <folding>
-                <element signature="e#172#297#0" expanded="false" />
-                <element signature="e#2856#5030#0" expanded="false" />
-                <element signature="e#5088#7624#0" expanded="false" />
-                <element signature="e#7682#7842#0" expanded="false" />
-                <element signature="e#10098#12649#0" expanded="false" />
-                <element signature="e#12708#13652#0" expanded="false" />
-                <element signature="e#15448#17547#0" expanded="false" />
-                <element signature="e#21755#24054#0" expanded="false" />
-                <element signature="e#24112#25056#0" expanded="false" />
-                <element signature="e#26308#26649#0" expanded="false" />
-                <element signature="e#26709#27178#0" expanded="false" />
-                <element signature="e#27222#27393#0" expanded="false" />
-                <element signature="e#27427#27693#0" expanded="false" />
-                <element signature="e#27728#27938#0" expanded="false" />
-                <element signature="e#28177#29060#0" expanded="false" />
-                <element signature="e#31062#32043#0" expanded="false" />
-                <element signature="e#32085#33152#0" expanded="false" />
-                <element signature="e#33193#33515#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NerdBoard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+              <caret line="525" column="0" selection-start-line="525" selection-start-column="0" selection-end-line="525" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -115,25 +94,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/GoogleMapsAPI/map.html" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/2dCrossSections.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/4To3U.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/viewMain.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/viewObj.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/4To3Three.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/app.html" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/app.css" />
-        <option value="$PROJECT_DIR$/flotJS/jquery.flot.js" />
-        <option value="$PROJECT_DIR$/2D_Grapher/flotLib.js" />
-        <option value="$PROJECT_DIR$/archTool_1.0/scripts/_2d.js" />
-        <option value="$PROJECT_DIR$/2D_Grapher/2D_Grapher.html" />
-        <option value="$PROJECT_DIR$/MathExtension/MathExtension.js" />
-        <option value="$PROJECT_DIR$/2D_Grapher/2D_Grapher.js" />
-        <option value="$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js" />
-        <option value="$PROJECT_DIR$/JavascriptExtensions/extendString.js" />
-        <option value="$PROJECT_DIR$/NerdBoard/NerdUI.js" />
-        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoard.html" />
-        <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardTools.js" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardNewUI.css" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdUIHandler.js" />
         <option value="$PROJECT_DIR$/NerdBoardNewUI/NerdBoardToolsNewUI.js" />
@@ -160,12 +120,31 @@
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/PAPER/paper.js" />
         <option value="$PROJECT_DIR$/NerdBoard/dynamicStroke.js" />
-        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
-        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.css" />
-        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
+        <option value="$PROJECT_DIR$/SCSU/home.js" />
+        <option value="$PROJECT_DIR$/SCSU/home.css" />
+        <option value="$PROJECT_DIR$/VizLab/viz.css" />
+        <option value="$PROJECT_DIR$/SCSU/home.html" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardUIHandler.js" />
-        <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
+        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.css" />
+        <option value="$PROJECT_DIR$/Multi/LHW1/LHW1.html" />
+        <option value="$PROJECT_DIR$/Multi/LHW1/LHW1.js" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/NerdBoard.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/NerdBoardTools.js" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/main.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/public/HMTLs/NerdBoard.html" />
+        <option value="$PROJECT_DIR$/JavascriptExtensions/extendString.js" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/public/HMTL/signUp.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/index.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/index.js" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/public/HTML/signUp.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/public/NerdBoard/NerdBoard.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/public/HTML/home.html" />
+        <option value="$PROJECT_DIR$/NerdBoardProjects/public/index.html" />
+        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
+        <option value="$PROJECT_DIR$/NerdBoard/NerdBoardSVG.html" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js" />
+        <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.js" />
+        <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
       </list>
     </option>
   </component>
@@ -219,7 +198,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -255,6 +233,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -268,19 +247,22 @@
     <property name="full.screen.before.presentation.mode" value="true" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="recentsLimit" value="5" />
+    <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/quadraticSurfaces" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/QuadricSurfaces/app" />
-      <recent name="$PROJECT_DIR$/SCSU/VideosPage" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/paperOverlay" />
+      <recent name="$PROJECT_DIR$/NerdBoardProjects/public" />
+      <recent name="$PROJECT_DIR$/NerdBoardProjects" />
+      <recent name="$PROJECT_DIR$/NerdBoardProjects/public/scripts" />
+      <recent name="$PROJECT_DIR$/NerdBoardProjects/public/HMTLs" />
+      <recent name="$PROJECT_DIR$/NerdBoardProjects/public/imgs" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.NerdBoardPrjoect">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -319,6 +301,13 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="false" name="NerdBoardPrjoect" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="/usr/local/bin/node" path-to-js-file="index.js" working-dir="$PROJECT_DIR$/NerdBoardProjects">
+      <browser start="true" url="http://localhost:3000/" />
+      <method />
+    </configuration>
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.NerdBoardPrjoect" />
+    </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -361,20 +350,20 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901296" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15672092" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.119349" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25366876" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32845187" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32809225" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -395,185 +384,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/2D_Metaballs/2D_Metaballs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42587066">
-          <caret line="338" column="20" selection-start-line="338" selection-start-column="20" selection-end-line="342" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.32">
-          <caret line="109" column="90" selection-start-line="109" selection-start-column="90" selection-end-line="109" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/MathExtension/MathExtension.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2D_Grapher/2D_Grapher.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="54" selection-start-line="28" selection-start-column="54" selection-end-line="28" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/marchingCubes/marchingCubes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="68" selection-start-line="130" selection-start-column="68" selection-end-line="130" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="8" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GoogleMapsAPI/customControls.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="28" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2D_Grapher/2D_Grapher.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="166" column="34" selection-start-line="166" selection-start-column="34" selection-end-line="166" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="376" column="23" selection-start-line="376" selection-start-column="23" selection-end-line="376" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/Campus_3D/campus_3D.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/homePage/homePage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="91" column="30" selection-start-line="91" selection-start-column="30" selection-end-line="92" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/VideosPage/video.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="186" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GoogleMapsAPI/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="105" column="166" selection-start-line="105" selection-start-column="71" selection-end-line="105" selection-end-column="166" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/JavascriptExtensions/extendString.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="39" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/home.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="494" column="16" selection-start-line="494" selection-start-column="16" selection-end-line="495" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.082706764">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SCSU/home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="43" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sideBar/sideBar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Web-Doodler/Web-Doolder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13822894">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="57" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6987448">
-          <caret line="194" column="1" selection-start-line="194" selection-start-column="1" selection-end-line="197" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bootStrap/bootstrap.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="64.96296">
-          <caret line="4" column="49862" selection-start-line="4" selection-start-column="49849" selection-end-line="4" selection-end-column="49862" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap-slider/bootstrap-slider.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.2780867">
-          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/sliders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.79481643">
-          <caret line="0" column="54" selection-start-line="0" selection-start-column="54" selection-end-line="3" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_2d.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3083799">
           <caret line="281" column="14" selection-start-line="281" selection-start-column="9" selection-end-line="281" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -602,9 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.10367171">
           <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -624,7 +435,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="164" column="36" selection-start-line="164" selection-start-column="36" selection-end-line="164" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,9 +442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4">
           <caret line="10724" column="0" selection-start-line="10724" selection-start-column="0" selection-end-line="10724" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -642,7 +449,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.6">
           <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -650,7 +456,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="111" column="32" selection-start-line="111" selection-start-column="32" selection-end-line="111" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -658,9 +463,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.537037">
           <caret line="476" column="36" selection-start-line="476" selection-start-column="36" selection-end-line="476" selection-end-column="36" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -668,7 +470,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23136818">
           <caret line="13" column="29" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,7 +491,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="102" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,7 +498,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44827586">
           <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,7 +505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14174972">
           <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -714,7 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.64">
           <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="2" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -722,7 +519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32608697">
           <caret line="10722" column="21" selection-start-line="10722" selection-start-column="21" selection-end-line="10722" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -730,6 +526,197 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82491946">
+          <caret line="48" column="60" selection-start-line="48" selection-start-column="60" selection-end-line="48" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15062761">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SCSU/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7656904">
+          <caret line="166" column="27" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="721" column="12" selection-start-line="721" selection-start-column="12" selection-end-line="721" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="72" selection-start-line="26" selection-start-column="72" selection-end-line="27" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/app.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.4">
+          <caret line="199" column="64" selection-start-line="199" selection-start-column="64" selection-end-line="200" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/physicsSimulator/physicsSimulator.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.52">
+          <caret line="18" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="18" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/3To2Three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3329609">
+          <caret line="41" column="33" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/physicsSimulator/physicsSimulator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.033472802">
+          <caret line="53" column="47" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/QuadricSurfaces/app/4To3Three.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70292884">
+          <caret line="56" column="46" selection-start-line="56" selection-start-column="46" selection-end-line="60" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/scripts/NerdBoardTools.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VizLab/viz.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55172414">
+          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="87" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/imgs/blurry.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/scripts/NerdBoard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/NerdBoard.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JavascriptExtensions/extendString.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/node_modules/express/lib/router/route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3322785">
+          <caret line="130" column="12" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/node_modules/express/lib/router/layer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3322785">
+          <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="44" selection-start-line="70" selection-start-column="44" selection-end-line="70" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/NerdBoard/NerdBoard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.64">
+          <caret line="300" column="34" selection-start-line="300" selection-start-column="34" selection-end-line="300" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/HTML/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.8">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.72">
+          <caret line="105" column="41" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/HTML/signUp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.9575114">
+          <caret line="163" column="60" selection-start-line="163" selection-start-column="60" selection-end-line="163" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoardProjects/public/HTML/NerdBoard2Projects.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.6661608">
+          <caret line="178" column="73" selection-start-line="177" selection-start-column="0" selection-end-line="178" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardSVG.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.04">
+          <caret line="9031" column="68" selection-start-line="9031" selection-start-column="68" selection-end-line="9037" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-72.32">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="525" column="0" selection-start-line="525" selection-start-column="0" selection-end-line="525" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -737,28 +724,7 @@
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardUIHandler.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-          <folding>
-            <element signature="e#19196#19556#0" expanded="false" />
-            <element signature="e#19578#19936#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.56">
-          <caret line="141" column="29" selection-start-line="141" selection-start-column="29" selection-end-line="141" selection-end-column="47" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2222223">
-          <caret line="396" column="15" selection-start-line="396" selection-start-column="15" selection-end-line="396" selection-end-column="15" />
+          <caret line="193" column="22" selection-start-line="193" selection-start-column="22" selection-end-line="193" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -766,42 +732,15 @@
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="92" column="0" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
+          <caret line="83" column="6" selection-start-line="83" selection-start-column="6" selection-end-line="83" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="426" column="79" selection-start-line="426" selection-start-column="79" selection-end-line="426" selection-end-column="79" />
-          <folding>
-            <element signature="e#172#297#0" expanded="false" />
-            <element signature="e#2856#5030#0" expanded="false" />
-            <element signature="e#5088#7624#0" expanded="false" />
-            <element signature="e#7682#7842#0" expanded="false" />
-            <element signature="e#10098#12649#0" expanded="false" />
-            <element signature="e#12708#13652#0" expanded="false" />
-            <element signature="e#15448#17547#0" expanded="false" />
-            <element signature="e#21755#24054#0" expanded="false" />
-            <element signature="e#24112#25056#0" expanded="false" />
-            <element signature="e#26308#26649#0" expanded="false" />
-            <element signature="e#26709#27178#0" expanded="false" />
-            <element signature="e#27222#27393#0" expanded="false" />
-            <element signature="e#27427#27693#0" expanded="false" />
-            <element signature="e#27728#27938#0" expanded="false" />
-            <element signature="e#28177#29060#0" expanded="false" />
-            <element signature="e#31062#32043#0" expanded="false" />
-            <element signature="e#32085#33152#0" expanded="false" />
-            <element signature="e#33193#33515#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard/NerdBoardTranslator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8965517">
-          <caret line="557" column="0" selection-start-line="557" selection-start-column="0" selection-end-line="557" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3088553">
+          <caret line="754" column="32" selection-start-line="754" selection-start-column="32" selection-end-line="754" selection-end-column="32" />
           <folding />
         </state>
       </provider>

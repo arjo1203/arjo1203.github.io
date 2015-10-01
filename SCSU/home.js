@@ -164,11 +164,12 @@ function onWindowResize(){
 
 
 function centerLogo(){
+    var top = .5, left = .5;
     var width = window.innerWidth, height = window.innerHeight;
 
-    logoDiv[0].style.left = ((width / 2) - (logoDiv[0].clientWidth / 2)).toString() + 'px';
-    logoDiv[0].style.top = ((height / 2) - (logoDiv[0].clientHeight / 2)).toString() + 'px';
+    logoDiv[0].style.left = ((width * left) - (logoDiv[0].clientWidth * left)).toString() + 'px';
+    logoDiv[0].style.top = ((height * top) - (logoDiv[0].clientHeight * top)).toString() + 'px';
 
-    glowDiv[0].style.left = ((width / 2) - (glowDiv[0].clientWidth / 2)).toString() + 'px';
-    glowDiv[0].style.top = ((height / 2) - (glowDiv[0].clientHeight / 2)).toString() + 'px';
+    glowDiv[0].style.left = ((width * left) - (glowDiv[0].clientWidth * left)).toString() + 'px';
+    glowDiv[0].style.top = ((height * top) - (glowDiv[0].clientHeight * top)).toString() + 'px';
 }

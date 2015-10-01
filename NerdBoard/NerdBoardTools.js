@@ -752,7 +752,7 @@ NerdBoard.Tools = window.onload = (function() {
         new Path.Rectangle({
             center: paper.view.center,
             size: [NerdBoard.width, NerdBoard.height],
-            fillColor: NerdBoard.colors.defaultBg,
+            fillColor: NerdBoard.bgColor,
             data: {
                 name: 'bg'
             }
