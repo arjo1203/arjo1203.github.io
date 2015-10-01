@@ -379,6 +379,38 @@ $('#addTool').bind('mousedown touchstart', function(event) {
 
 
 
+//Checkboxes
+$('#dashed').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var checkBox = $('#dashedCheckbox');
+    var state = checkBox[0].checked;
+
+    if(state) {
+        checkBox.prop('checked', true);
+    }
+    else{
+        checkBox.prop('checked', false);
+    }
+});
+$('#drawAfter').bind('mousedown touchstart', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var checkBox = $('#dashedCheckbox');
+    var state = checkBox[0].checked;
+
+    if(state) {
+        checkBox.prop('checked', true);
+    }
+    else{
+        checkBox.prop('checked', false);
+    }
+});
+
+
+
 
 
 NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.btn.bind('mousedown touchstart', function(event) {
