@@ -236,6 +236,9 @@ NerdBoard.UIHandler = (function() {
             drawUI: {
                 layer: $('#leftDrawUI'),
                 activeInternalUI: '',
+                dashed: {
+                    checkBox: $('#dashedCheckbox')
+                },
                 internalUIS: {
                     colorUI: {
                         btn: $('#leftColorUIBtn'),

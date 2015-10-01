@@ -93,6 +93,13 @@ NerdBoard.Tools = window.onload = (function() {
                 }
             }
         }
+
+
+        var state = $('#dashedCheckbox')[0].checked;
+
+        if(state) {
+            newPath.dashArray = [10, 12];
+        }
     };
     wbTools.tools.draw.onMouseDrag = function(paperEvent) {
         //console.log(paperEvent.event.type);
