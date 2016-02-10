@@ -2,12 +2,16 @@
  * Created by Jose Araujo on 07/22/15.
  */
 
-paper.setup(NerdBoard.views.view1.canvas);
-paper.setup(NerdBoard.views.view1.canvas);
+paper.setup(NerdBoard.canvas[0]);
 
 
 NerdBoard.Tools = window.onload = (function() {
-    paper.project.importSVG($('#SVG'));
+
+    function addPoints(point1, point2) {
+        var afterMath = new paper.Point({x: point1.x + point2.x, y: point1.y + point2.y});
+
+        return afterMath;
+    }
 
     var wbTools = {
         tools: {}
@@ -17,152 +21,798 @@ NerdBoard.Tools = window.onload = (function() {
         segments: true,
         stroke: true,
         fill: true,
-        tolerance: 5
-    }, pathHit, myPath;
+        tolerance: 15
+    };
 
 
+    //Create arrays to store touches and paths
+    var currentTouches = [];
 
+    //Use the HTML5 Canvas API to track the touches
+    //Use paper to draw the paths
 
+    wbTools.tools.draw = new Tool();
+    wbTools.tools.draw.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
+        //$.ajax({
+        //    type: 'POST',
+        //    url: "../saveStudents",
+        //    dataType: 'json',
+        //    data: {data: data},
+        //    success: function() {
+        //        console.log("Saved");
+        //    }
+        //});
 
-    wbTools.tools.draw = new paper.Tool();
-    wbTools.tools.draw.onMouseDown = function() {
-        myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.penColor, // NerdBoardOriginal is the global module from whiteboard.js
-            strokeWidth: NerdBoard.penStroke,
-            strokeCap: 'round',
-            data: {
-                name: NerdBoard.theme.pathName
+        var newPath;
+
+        if(paperEvent.event.type == 'mousedown') {
+            //Capture only the left click when drawing
+            if(paperEvent.event.which == 1) {
+                var x = paperEvent.event.x,
+                    y = paperEvent.event.y;
+
+                newPath = new Path({
+                    strokeColor: NerdBoard.penColor,
+                    strokeWidth: NerdBoard.penStroke,
+                    strokeCap: 'round',
+                    data: {
+                        name: NerdBoard.pathName
+                    }
+                });
+
+                //Track the newly created touch
+                var trackMouse = {
+                    id: 0,
+                    pageX: x,
+                    pageY: y,
+                    itemIndex: newPath._index
+                };
+
+                //Store the trackedTouch
+                currentTouches.push(trackMouse);
             }
-        });
+        }
+
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+                    //Create a new path for the trackedTouch
+                    newPath = new Path({
+                        strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
+                        strokeWidth: NerdBoard.penStroke,
+                        strokeCap: 'round'
+                    });
+
+                    //Track the newly created touch
+                    var trackedTouch = {
+                        id: touch.identifier,
+                        pageX: touch.pageX,
+                        pageY: touch.pageY,
+                        itemIndex: newPath._index
+                    };
+
+                    //Store the trackedTouch
+                    currentTouches.push(trackedTouch);
+                }
+            }
+        }
+
+
+        var state = $('#dashedCheckbox')[0].checked;
+
+        if(state) {
+            newPath.dashArray = [10, 12];
+        }
+
+        //console.log(newPath);
     };
-    wbTools.tools.draw.onMouseDrag = function(event) {
-        myPath.add(event.point);
-        myPath.smooth();
+    wbTools.tools.draw.onMouseDrag = function(paperEvent) {
+        //console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+
+        var currentItem, currentTouch, currentTouchIndex, point;
+
+        if(paperEvent.event.type == 'mousemove') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                var x = paperEvent.event.x,
+                    y = paperEvent.event.y;
+                currentTouch = currentTouches[currentTouchIndex];
+                currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+                //console.log(currentItem);
+
+                //Creates a paper point based on the currentTouch position.
+                point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.add(point);
+
+                // Update the trackedTouch record.
+                currentTouch.pageX = x;
+                currentTouch.pageY = y;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
+            }
+        }
+
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    currentTouch = currentTouches[currentTouchIndex];
+                    currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+                    console.log(currentItem);
+
+                    //Creates a paper point based on the currentTouch position.
+                    point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    currentItem.add(point);
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+        }
     };
-    wbTools.tools.draw.onMouseUp = function() {
-        myPath.simplify();
+    wbTools.tools.draw.onMouseUp = function(paperEvent) {
+        //console.log(paperEvent.event.type);
+        paperEvent.preventDefault();
+
+        var currentItemIndex, currentItem, dot;
+
+        if(paperEvent.event.type == 'mouseup') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                currentTouch = currentTouches[currentTouchIndex];
+                currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+                //console.log(currentItem);
+
+                if(currentItem._segments.length > 0) {
+                    currentItem.smooth();
+                    currentItem.simplify();
+                }
+                else {
+                    currentItem.remove();
+                    dot = new Path.Circle(paperEvent.point, NerdBoard.penStroke / 2);
+                    dot.fillColor = NerdBoard.penColor;
+                    dot.data.name = NerdBoard.pathName + 'dot';
+                }
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1);
+            } else {
+                console.log('Mouse was not found!');
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    //Finds the path associated with the currentTouchIndex
+                    var currentTouch = currentTouches[currentTouchIndex];
+                    currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+                    console.log(currentItem);
+
+                    if(currentItem._segments.length > 0) {
+                        currentItem.smooth();
+                        currentItem.simplify();
+                    }
+                    else {
+                        currentItem.remove();
+                        var point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                        dot = new Path.Circle(point, NerdBoard.penStroke / 2);
+                        dot.fillColor = NerdBoard.penColor;
+                        dot.data.name = NerdBoard.pathName + 'dot';
+                    }
+
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch' + i.toString() + 'was not found!');
+                }
+            }
+        }
     };
-    wbTools.tools.draw.minDistance = 1;
-    wbTools.tools.draw.maxDistance = 3;
+    wbTools.tools.draw.onKeyDown = function(paperEvent) {
+        if(paperEvent.key == 'z') {
+            NerdBoard.undo();
+        }
+        if(paperEvent.key == 'c') {
+            NerdBoard.clear();
+        }
+    };
+    wbTools.tools.draw.minDistance = 0;
+    wbTools.tools.draw.maxDistance = 2;
 
 
     wbTools.tools.erase = new paper.Tool();
-    wbTools.tools.erase.onMouseDown = function() {
-        myPath = new paper.Path({
-            strokeColor: NerdBoard.theme.bg, // NerdBoardOriginal is the global module from whiteboard.js
-            strokeWidth: NerdBoard.eraseStroke,
-            strokeCap: 'round',
-            data: {
-                name: 'erase'
+    wbTools.tools.erase.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mousedown') {
+            var mouseHit = project.hitTest(paperEvent.point, hitOptions);
+            if (mouseHit) {
+                var mouseItem = mouseHit.item;
+                var x = paperEvent.event.x, y = paperEvent.event.y;
+
+                if(mouseItem.data.name !== 'bg') {
+                    mouseItem.remove();
+                }
+
+                //Track the newly created touch
+                var trackMouse = {
+                    id: 0,
+                    pageX: x,
+                    pageY: y
+                };
+                //Store the trackedTouch
+                currentTouches.push(trackMouse);
             }
-        });
+            else {
+                return ;
+            }
+        }
+
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    var touchHit = project.hitTest(point, hitOptions);
+
+                    if (touchHit) {
+                        var touchItem = touchHit.item;
+
+                        if(touchItem.data.name !== 'bg') {
+                            touchItem.remove();
+                        }
+
+                        //Track the newly created touch
+                        var trackedTouch = {
+                            id: touch.identifier,
+                            pageX: touch.pageX,
+                            pageY: touch.pageY
+                        };
+
+                        //Store the trackedTouch
+                        currentTouches.push(trackedTouch);
+                    }
+                    else {
+                        return ;
+                    }
+                }
+            }
+        }
     };
-    wbTools.tools.erase.onMouseDrag = function(event) {
-        myPath.add(event.point);
+    wbTools.tools.erase.onMouseDrag = function(paperEvent) {
+        paperEvent.preventDefault();
+        var point, currentTouch, currentTouchIndex;
+
+        if(paperEvent.event.type == 'mousemove') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                var x = paperEvent.event.x, y = paperEvent.event.y;
+                currentTouch = currentTouches[currentTouchIndex];
+
+                // Update the trackedTouch record.
+                currentTouch.pageX = x;
+                currentTouch.pageY = y;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
+
+                //Creates a paper point based on the currentTouch position.
+                point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+
+                var mouseHit = project.hitTest(point, hitOptions);
+                if (mouseHit) {
+                    var mouseItem = mouseHit.item;
+
+                    if(mouseItem.data.name !== 'bg') {
+                        mouseItem.remove();
+                    }
+                }
+                else {
+                    return ;
+                }
+
+            } else {
+                console.log('Mouse was not found!');
+            }
+        }
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if(currentTouchIndex !== -1) {
+                    console.log('found and moving');
+                    currentTouch = currentTouches[currentTouchIndex];
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+
+                    point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    var touchHit = project.hitTest(point, hitOptions);
+
+                    if (touchHit) {
+                        var touchItem = touchHit.item;
+
+                        if(touchItem.data.name !== 'bg') {
+                            touchItem.remove();
+                        }
+                    }
+                    else {
+                        return ;
+                    }
+                }
+            }
+        }
     };
-    wbTools.tools.erase.onMouseUp = function() {
-        myPath.simplify();
+    wbTools.tools.erase.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1);
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch' + i.toString() + 'was not found!');
+                }
+            }
+        }
     };
-    wbTools.tools.erase.minDistance = 1;
-    wbTools.tools.erase.maxDistance = 3;
+    wbTools.tools.erase.minDistance = 0;
+    wbTools.tools.erase.maxDistance = 2;
 
 
     wbTools.tools.shape = new paper.Tool();
-    wbTools.tools.shape.onMouseDown = function(event) {
-        wbTools.drawShape(event.point, NerdBoard.shape, $('#shapeText')[0].value);
+    wbTools.tools.shape.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        var itemIndex, value = $('#leftTextInputUIInput')[0].value;
+
+        if(paperEvent.event.type == 'mousedown') {
+            itemIndex = wbTools.drawShape(paperEvent.point, NerdBoard.shape, value);
+            var x = paperEvent.event.x, y = paperEvent.event.y;
+
+            //Track the newly created touch
+            var trackMouse = {
+                id: 0,
+                pageX: x,
+                pageY: y,
+                itemIndex: itemIndex
+            };
+            //Store the trackedTouch
+            currentTouches.push(trackMouse);
+        }
+
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    itemIndex = wbTools.drawShape(point, NerdBoard.shape, value, touch.identifier);
+
+                    //Track the newly created touch
+                    var trackedTouch = {
+                        id: touch.identifier,
+                        pageX: touch.pageX,
+                        pageY: touch.pageY,
+                        itemIndex: itemIndex
+                    };
+
+                    //Store the trackedTouch
+                    currentTouches.push(trackedTouch);
+                }
+            }
+        }
     };
-    wbTools.tools.shape.onMouseDrag = function(event) {
-        var last = paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1];
-        last.position = event.point;
+    wbTools.tools.shape.onMouseDrag = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        var currentItem, currentTouch, currentTouchIndex, point;
+
+        if(paperEvent.event.type == 'mousemove') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                var x = paperEvent.event.x,
+                    y = paperEvent.event.y;
+                currentTouch = currentTouches[currentTouchIndex];
+                currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+
+                //Creates a paper point based on the currentTouch position.
+                point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                currentItem.position = point;
+
+                // Update the trackedTouch record.
+                currentTouch.pageX = x;
+                currentTouch.pageY = y;
+
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1, currentTouch);
+            } else {
+                console.log('Mouse was not found!');
+            }
+        }
+
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    currentTouch = currentTouches[currentTouchIndex];
+                    currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+
+                    currentItem.position = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = touch.pageX;
+                    currentTouch.pageY = touch.pageY;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+        }
     };
-    wbTools.tools.shape.minDistance = 1;
-    wbTools.tools.shape.maxDistance = 3;
+    wbTools.tools.shape.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1);
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch' + i.toString() + 'was not found!');
+                }
+            }
+        }
+
+        var state = $('#drawAfterCheckbox')[0].checked;
+
+        if(state) {
+            NerdBoard.activateDrawMode();
+            toolIcon.attr('src', 'icons/pencil.png');
+        }
+    };
+    wbTools.tools.shape.minDistance = 0;
+    wbTools.tools.shape.maxDistance = 2;
 
 
     wbTools.tools.move = new paper.Tool();
-    wbTools.tools.move.onMouseDown = function(event) {
-        var hitResult = project.hitTest(event.point, hitOptions);
-        if (hitResult) {
-            pathHit = hitResult.item;
-            console.log(pathHit);
-        }
-        else {
-            return ;
-        }
-    };
-    wbTools.tools.move.onMouseDrag = function(event) {
-        var firstThree = pathHit.data.name[0] + pathHit.data.name[1]  + pathHit.data.name[2];
-        var last = pathHit.data.name[pathHit.data.name.length - 1], numOfDigits, id;
+    wbTools.tools.move.onMouseDown = function(paperEvent) {
+        paperEvent.preventDefault();
 
-        if (pathHit && pathHit.data.name !== 'bg') {
-            if (firstThree == 'rec' || firstThree == 'tex')  {
-                id = pathHit.data.name.slice(4, pathHit.data.name.length);
-                paper.project.activeLayer.children['group' + id].position = event.point;
-            }
-            else{
-                pathHit.position = event.point;
-            }
-        }
-    };
-    wbTools.tools.move.minDistance = 1;
-    wbTools.tools.move.maxDistance = 3;
+        var itemIndex;
 
+        if(paperEvent.event.type == 'mousedown') {
+            var mouseHit = project.hitTest(paperEvent.point, hitOptions);
+            if (mouseHit) {
+                var mouseItem = mouseHit.item;
+                var mouseParent = mouseItem._parent;
+                var mouseParentName = mouseParent.data.name;
+                var x = paperEvent.event.x, y = paperEvent.event.y;
 
-    wbTools.tools.pan = new paper.Tool();
-    wbTools.tools.pan.onMouseDown = function(event) {
-        paper.project.activeLayer.position = event.point;
-    };
-    wbTools.tools.pan.onMouseDrag = function(event) {
-        paper.project.activeLayer.position = event.point;
-    };
-    wbTools.tools.pan.minDistance = 1;
-    wbTools.tools.pan.maxDistance = 3;
-
-
-
-
-
-    wbTools.drawBackground = function () {
-        //if(paper.project.activeLayer.children['bg']) {
-        //    paper.project.activeLayer.children['bg'].remove();
-        //}
-
-        console.log(paper);
-
-        if(NerdBoard.views.view1.active == true) {
-            var rectangle = new paper.Path.Rectangle({
-                center: paper.view.center,
-                size: [NerdBoard.views.view1.width, NerdBoard.views.view1.height],
-                fillColor: NerdBoard.theme.bg,
-                name: 'bg',
-                data: {
-                    name: 'bg'
+                if(mouseParentName == 'layer1') {
+                    if(mouseItem.data.name !== 'bg') {
+                        itemIndex = mouseItem._index;
+                    }
                 }
-            });
-            paper.projects[0]._view.update();
+                else {
+                    itemIndex = mouseParent._index;
+                }
+
+                //Track the newly created touch
+                var trackMouse = {
+                    id: 0,
+                    pageX: x,
+                    pageY: y,
+                    itemIndex: itemIndex
+                };
+                //Store the trackedTouch
+                currentTouches.push(trackMouse);
+            }
+            else {
+                return ;
+            }
         }
 
-        if(NerdBoard.views.view2.active == true) {
-            var rectangle = new paper.Path.Rectangle({
-                center: paper.view.center,
-                size: [NerdBoard.views.view1.width, NerdBoard.views.view1.height],
-                fillColor: NerdBoard.theme.bg,
-                name: 'bg',
-                data: {
-                    name: 'bg'
+        if(paperEvent.event.type == 'touchstart') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+
+                var currentIndex = findTrackedTouch(touch.identifier);
+                if(currentIndex == -1) {
+                    var point = new Point({x: touch.pageX, y: touch.pageY});
+                    var touchHit = project.hitTest(point, hitOptions);
+
+                    if (touchHit) {
+                        var touchItem = touchHit.item;
+                        var touchParent = touchItem._parent;
+                        var touchParentName = touchParent.data.name;
+
+                        if(touchParentName == 'layer1') {
+                            if(touchItem.data.name !== 'bg') {
+                                itemIndex = touchItem._index;
+                            }
+                        }
+                        else {
+                            itemIndex = touchParent._index;
+                        }
+
+                        //Track the newly created touch
+                        var trackedTouch = {
+                            id: touch.identifier,
+                            pageX: touch.pageX,
+                            pageY: touch.pageY,
+                            itemIndex: itemIndex
+                        };
+
+                        //Store the trackedTouch
+                        currentTouches.push(trackedTouch);
+                    }
+                    else {
+                        return ;
+                    }
                 }
-            });
-            paper.projects[1]._view.update();
+            }
         }
     };
-    wbTools.drawBackground();
+    wbTools.tools.move.onMouseDrag = function(paperEvent) {
+        paperEvent.preventDefault();
 
+        var currentItem, currentTouch, currentTouchIndex, point;
+
+        if(paperEvent.event.type == 'mousemove') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                var x = paperEvent.event.x,
+                    y = paperEvent.event.y;
+                currentTouch = currentTouches[currentTouchIndex];
+
+                if(currentTouch.itemIndex) {
+                    currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+
+                    //Creates a paper point based on the currentTouch position.
+                    point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    currentItem.position = point;
+
+                    // Update the trackedTouch record.
+                    currentTouch.pageX = x;
+                    currentTouch.pageY = y;
+
+                    // Store the record of the trackedTouch.
+                    currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                }
+            } else {
+                console.log('Mouse was not found!');
+            }
+        }
+
+
+        if(paperEvent.event.type == 'touchmove') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    currentTouch = currentTouches[currentTouchIndex];
+
+                    if(currentTouch.itemIndex) {
+                        currentItem = paper.project.activeLayer.children[currentTouch.itemIndex];
+
+                        currentItem.position = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+
+                        // Update the trackedTouch record.
+                        currentTouch.pageX = touch.pageX;
+                        currentTouch.pageY = touch.pageY;
+
+                        // Store the record of the trackedTouch.
+                        currentTouches.splice(currentTouchIndex, 1, currentTouch);
+                    }
+                } else {
+                    console.log('Touch was not found!');
+                }
+
+            }
+        }
+    };
+    wbTools.tools.move.onMouseUp = function(paperEvent) {
+        paperEvent.preventDefault();
+
+        if(paperEvent.event.type == 'mouseup') {
+            currentTouchIndex = findTrackedTouch(0);
+
+            if (currentTouchIndex !== -1) {
+                // Store the record of the trackedTouch.
+                currentTouches.splice(currentTouchIndex, 1);
+            }
+        }
+
+        if(paperEvent.event.type == 'touchend') {
+            var touches = paperEvent.event.changedTouches;
+
+            for (var i = 0; i < touches.length; i++) {
+                var touch = touches[i];
+                var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+                if (currentTouchIndex !== -1) {
+                    // Remove the record of the touch and path record.
+                    currentTouches.splice(currentTouchIndex, 1);
+                } else {
+                    console.log('Touch' + i.toString() + 'was not found!');
+                }
+            }
+        }
+    };
+    wbTools.tools.move.minDistance = 0;
+    wbTools.tools.move.maxDistance = 2;
+
+
+    // Set up an event listener to catch cancelled touches.
+    NerdBoard.canvas[0].addEventListener('touchcancel', function(e) {
+        touchCancelled(e);
+    });
+
+    // Removes cancelled touches from the currentTouches array.
+    function touchCancelled(event) {
+        var touches = event.changedTouches;
+
+        for (var i = 0; i < touches.length; i++) {
+            var touch = touches[i];
+            var currentTouchIndex = findTrackedTouch(touch.identifier);
+
+            if (currentTouchIndex !== -1 && currentItemIndex !== -1 ) {
+                // Remove the touch record and path record.
+                currentTouches.splice(currentTouchIndex, 1);
+            } else {
+                console.log('Touch' + i.toString() + 'was not found!');
+            }
+        }
+    }
+
+    // Finds the array index of a trackedTouch in the currentTouches array.
+    function findTrackedTouch(touchId) {
+        for (var i = 0; i < currentTouches.length; i++) {
+            if (currentTouches[i].id === touchId) {
+                return i;
+            }
+        }
+
+        // Touch not found! Return -1.
+        return -1;
+    }
+
+
+
+
+
+    wbTools.drawBg= function () {
+        new Path.Rectangle({
+            center: paper.view.center,
+            size: [NerdBoard.width, NerdBoard.height],
+            fillColor: NerdBoard.bgColor,
+            data: {
+                name: 'bg'
+            }
+        });
+
+        paper.project.activeLayer.data.name = 'layer1';
+
+        paper.view.update();
+    };
+    wbTools.drawBg();
+
+
+    wbTools.resizeBg = function() {
+        var bg = paper.project.activeLayer.children[0];
+        var SW = bg._segments[0],
+            NW = bg._segments[1],
+            NE = bg._segments[2],
+            SE = bg._segments[3];
+
+        NW._point._x = 0;
+        NW._point._y = 0;
+
+        SW._point._x = 0;
+        SW._point._y = NerdBoard.height;
+
+        NE._point._x = NerdBoard.width;
+        NE._point._y = 0;
+
+        SE._point._x = NerdBoard.width;
+        SE._point._y = NerdBoard.height;
+    };
 
     wbTools.loadRaster = function(image) {
-        new paper.Raster({
+        var raster = new paper.Raster({
             source: image,
             position: paper.view.center
         });
+        raster.fitBounds(paper.view.bounds);
     };
 
 
@@ -185,244 +835,209 @@ NerdBoard.Tools = window.onload = (function() {
     };
 
 
-    wbTools.convertTheme = function() {
-        var paths = paper.project.activeLayer.children;
-
-        for(var i = 0; i < paths.length; i++) {
-            var name = paths[i].data.name;
-
-            if(name == 'black') {
-                paths[i].strokeColor = NerdBoard.theme.black;
-            }
-            if(name == 'green') {
-                paths[i].strokeColor = NerdBoard.theme.green;
-            }
-            if(name == 'blue') {
-                paths[i].strokeColor = NerdBoard.theme.blue;
-            }
-            if(name == 'red') {
-                paths[i].strokeColor = NerdBoard.theme.red;
-            }
-            if(name == 'yellow') {
-                paths[i].strokeColor = NerdBoard.theme.yellow;
-            }
-            if(name == 'plainText') {
-                paths[i].fillColor = NerdBoard.theme.black;
-                paths[i].strokeColor = NerdBoard.theme.black;
-            }
-            if(name == 'erase') {
-                paths[i].strokeColor = NerdBoard.theme.bg;
-            }
-            if(paths[i].name) {
-                if(paths[i].name == 'bg') {
-                    paths[i].fillColor = NerdBoard.theme.bg;
-                }
-                else {
-                    var fillColor, strokeColor, id = paths[i]._children[0].data.identifier;
-
-                    if(id == 'Terminal') {
-                        fillColor = NerdBoard.theme.blue;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-                    if(id == 'Process') {
-                        fillColor = NerdBoard.theme.yellow;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-                    if(id == 'Input') {
-                        fillColor = NerdBoard.theme.red;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-                    if(id == 'Decision') {
-                        fillColor = NerdBoard.theme.green;
-                        strokeColor = NerdBoard.theme.black;
-                    }
-
-                    paths[i]._children[0].fillColor = fillColor;
-                    paths[i]._children[0].strokeColor = strokeColor;
-                }
-            }
-        }
+    wbTools.changeBgColor = function() {
+        var bg = paper.project.activeLayer.children[0];
+        bg.fillColor = NerdBoard.bgColor;
 
         paper.view.draw();
     };
 
 
     wbTools.drawShape = function(location, shape, message) {
+        var shapeItem;
 
         switch(shape) {
             case 'Terminal':
-                var terminal = createTerminal(location, message);
-                terminal.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createTerminal(location, message);
                 break;
             case 'Process':
-                var process = createProcess(location, message);
-                process.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createProcess(location, message);
                 break;
             case 'Decision':
-                var decision = createDecision(location, message);
-                decision.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createDecision(location, message);
                 break;
             case 'Input':
-                var input = createInput(location, message);
-                input.name = 'group' + NerdBoard.numOfShapes.toString();
+                shapeItem = createInput(location, message);
                 break;
             case 'Text':
-                var text = createText(location, message);
-                text.data.name = 'plainText';
+                shapeItem = createText(location, message);
                 break;
         }
 
-
-        function createTerminal(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
-                fillColor: NerdBoard.theme.blue,
-                strokeColor: NerdBoard.theme.black,
-                strokeWidth: 2,
-                radius: NerdBoard.textSize / 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Terminal'
-                }
-            });
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.fitBounds(rect.bounds);
-
-            var group = new Group(rect, text);
-
-            return group;
+        if(shape == 'Text') {
+            shapeItem.data.name = 'plainText';
         }
-
-
-        function createProcess(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
-                fillColor: NerdBoard.theme.yellow,
-                strokeColor: NerdBoard.theme.black,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Process'
-                }
-            });
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.fitBounds(rect.bounds);
-
-
-            var group = new Group(rect, text);
-
-            return group;
-        }
-
-
-        function createDecision(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
-                fillColor: NerdBoard.theme.green,
-                strokeColor: NerdBoard.theme.black,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Decision'
-                }
-            });
-            rect.rotate(45);
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.position = rect.position;
-
-            var group = new Group(rect, text);
-
-            return group;
-        }
-
-
-        function createInput(pos, message) {
-            var rect = new paper.Path.Rectangle({
-                center: pos,
-                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
-                fillColor: NerdBoard.theme.red,
-                strokeColor: NerdBoard.theme.black,
-                strokeWidth: 2,
-                data: {
-                    name: 'rect' + NerdBoard.numOfShapes.toString(),
-                    identifier: 'Input'
-                }
-            });
-
-            rect._segments[0].point._x -= NerdBoard.textSize;
-            rect._segments[2].point._x += NerdBoard.textSize;
-
-            var text = new PointText({
-                content: message,
-                data: {
-                    name: 'text' + NerdBoard.numOfShapes.toString()
-                }
-            });
-            text.style = {
-                fontFamily: 'sans-serif',
-                fontSize: NerdBoard.textSize,
-                justification: 'center'
-            };
-            text.position = rect.position;
-            var group = new Group(rect, text);
-
-            return group;
-        }
-
-
-        function createText(pos, message) {
-            var text = new PointText({
-                point: pos,
-                content: message,
-                justification: 'center',
-                fontSize: NerdBoard.textSize
-            });
-            text.fillColor = NerdBoard.theme.black;
-            text.strokeColor = NerdBoard.theme.black;
-
-            return text;
+        else {
+            shapeItem.data.name = 'group' + NerdBoard.numOfShapes.toString();
         }
 
         NerdBoard.numOfShapes++;
 
-        paper.view.draw();
+        return shapeItem._index;
     };
+
+
+
+    function createTerminal(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 18)), NerdBoard.textSize + 10],
+            fillColor: NerdBoard.colors.defaultBlue,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            radius: NerdBoard.textSize / 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Terminal'
+            }
+        });
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.fitBounds(rect.bounds);
+
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createProcess(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
+            fillColor: NerdBoard.colors.defaultYellow,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Process'
+            }
+        });
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.fitBounds(rect.bounds);
+
+
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createDecision(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 5)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 5))],
+            fillColor: NerdBoard.colors.defaultGreen,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Decision'
+            }
+        });
+        rect.rotate(45);
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.position = rect.position;
+
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createInput(pos, message) {
+        var rect = new paper.Path.Rectangle({
+            center: pos,
+            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 3)), (NerdBoard.textSize * message.length) / ( 1 + (message.length / 3))],
+            fillColor: NerdBoard.colors.defaultRed,
+            strokeColor: NerdBoard.colors.defaultBlack,
+            strokeWidth: 2,
+            data: {
+                name: 'rect' + NerdBoard.numOfShapes.toString(),
+                identifier: 'Input'
+            }
+        });
+
+        rect._segments[0].point._x -= NerdBoard.textSize;
+        rect._segments[2].point._x += NerdBoard.textSize;
+
+        var text = new PointText({
+            content: message,
+            data: {
+                name: 'text' + NerdBoard.numOfShapes.toString()
+            }
+        });
+        text.style = {
+            fontFamily: 'sans-serif',
+            fontSize: NerdBoard.textSize,
+            justification: 'center'
+        };
+        text.position = rect.position;
+        var group = new Group(rect, text);
+
+        return group;
+    }
+
+
+    function createText(pos, message) {
+        var text = new PointText({
+            point: pos,
+            content: message,
+            justification: 'center',
+            fontSize: NerdBoard.textSize
+        });
+        text.fillColor = NerdBoard.colors.defaultBlack;
+        text.strokeColor = NerdBoard.colors.defaultBlack;
+
+        return text;
+    }
 
     return wbTools;
 }());
+
+
+
+//var data = JSON.stringify({projectName: "test"});
+//$.ajax({
+//    type: 'POST',
+//    url: "../../findNerdProject",
+//    dataType: 'json',
+//    data: {data: data},
+//    success: function(data) {
+//        console.log(data.NerdSchema);
+//        paper.project.importJSON(data.NerdSchema.workSpace);
+//        paper.view.draw();
+//    }
+//});

@@ -252,7 +252,7 @@ fieldset[disabled] .btn-custom.active {
     background : rgba(255, 255, 255, 1);
     position : absolute;
     width : 70px;
-    height : 209px;
+    height : 249px;
     border-radius : 0px 10px 0px 0px;
     -moz-border-radius : 0px 10px 10px 0px;
     -webkit-border-radius : 0px 10px 10px 0px;
@@ -955,11 +955,11 @@ fieldset[disabled] .btn-custom.active {
     border-left: 2px solid black;
 }
 /*.slider.slider-horizontal .slider-track {*/
-    /*height: 20px;*/
- /*}*/
+/*height: 20px;*/
+/*}*/
 /*.slider.slider-horizontal .slider-handle {*/
-    /*margin-left: -5px;*/
-    /*margin-top: 0;*/
+/*margin-left: -5px;*/
+/*margin-top: 0;*/
 /*}*/
 #penWidth .slider-selection {
     background: #0077aa;

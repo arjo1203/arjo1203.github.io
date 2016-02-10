@@ -30,18 +30,35 @@ NerdBoard.Tools = window.onload = (function() {
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
+    var startTime, lastTime = 0, deltaTime;
 
     wbTools.tools.draw = new Tool();
     wbTools.tools.draw.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
 
-        var newPath;
+        var newPath, hitItemIndex, hit, hitItem, hitItemParent, hitItemParentName;
 
         if(paperEvent.event.type == 'mousedown') {
             //Capture only the left click when drawing
             if(paperEvent.event.which == 1) {
-                var x = paperEvent.event.x,
-                    y = paperEvent.event.y;
+                hit = project.hitTest(paperEvent.point, hitOptions);
+                if (hit) {
+                    hitItem = hit.item;
+                    hitItemParent = hitItem._parent;
+                    hitItamParentName = hitItemParent.data.name;
+
+                    if(hitItamParentName == 'layer1') {
+                        if(hitItem.data.name !== 'bg') {
+                            hitItemIndex = hitItem._index;
+                        }
+                    }
+                    else {
+                        hitItemIndex = hitItemParent._index;
+                    }
+                }
+                else {
+                    return ;
+                }
 
                 newPath = new Path({
                     strokeColor: NerdBoard.penColor,
@@ -55,9 +72,10 @@ NerdBoard.Tools = window.onload = (function() {
                 //Track the newly created touch
                 var trackMouse = {
                     id: 0,
-                    pageX: x,
-                    pageY: y,
-                    itemIndex: newPath._index
+                    pageX: paperEvent.event.x,
+                    pageY: paperEvent.event.y,
+                    itemIndex: newPath._index,
+                    hitItemIndex: hitItemIndex
                 };
 
                 //Store the trackedTouch
@@ -73,6 +91,25 @@ NerdBoard.Tools = window.onload = (function() {
 
                 var currentIndex = findTrackedTouch(touch.identifier);
                 if(currentIndex == -1) {
+                    var touchPoint = {x: touch.pageX, y: touch.pageY};
+                    hit = project.hitTest(touchPoint, hitOptions);
+                    if (hit) {
+                        hitItem = hit.item;
+                        hitItemParent = hitItem._parent;
+                        hitItamParentName = hitItemParent.data.name;
+
+                        if(hitItamParentName == 'layer1') {
+                            if(hitItem.data.name !== 'bg') {
+                                hitItemIndex = hitItem._index;
+                            }
+                        }
+                        else {
+                            hitItemIndex = hitItemParent._index;
+                        }
+                    }
+                    else {
+                        return ;
+                    }
                     //Create a new path for the trackedTouch
                     newPath = new Path({
                         strokeColor: NerdBoard.penColor, // NerdBoardOriginal is the global module from whiteboard.js
@@ -85,7 +122,8 @@ NerdBoard.Tools = window.onload = (function() {
                         id: touch.identifier,
                         pageX: touch.pageX,
                         pageY: touch.pageY,
-                        itemIndex: newPath._index
+                        itemIndex: newPath._index,
+                        hitItemIndex: hitItemIndex
                     };
 
                     //Store the trackedTouch
@@ -180,6 +218,16 @@ NerdBoard.Tools = window.onload = (function() {
                     dot = new Path.Circle(paperEvent.point, NerdBoard.penStroke / 2);
                     dot.fillColor = NerdBoard.penColor;
                     dot.data.name = NerdBoard.pathName + 'dot';
+
+                    if(currentTouch.hitItemIndex) {
+                        var hitGroup = paper.project.activeLayer.children[currentTouch.hitItemIndex];
+                        hitGroup.addChild(dot);
+                    }
+                }
+
+                if(currentTouch.hitItemIndex) {
+                    var hitGroup = paper.project.activeLayer.children[currentTouch.hitItemIndex];
+                    hitGroup.addChild(currentItem);
                 }
 
                 // Store the record of the trackedTouch.
@@ -220,6 +268,65 @@ NerdBoard.Tools = window.onload = (function() {
                 }
             }
         }
+
+        /*
+         * Handle Double Click
+         * */
+
+        startTime = (new Date()).getTime();
+
+        if(!deltaTime){
+            deltaTime = 800;
+        }
+        else{
+            deltaTime = startTime - lastTime;
+        }
+
+
+        if(deltaTime < 200){//Dbl Click
+            console.log("double clk!!");
+
+            var x = paperEvent.event.x, y = paperEvent.event.y;
+
+            //Creates a paper point based on the currentTouch position.
+            var point = new Point({x: x, y: y});
+
+            var mouseHit = project.hitTest(point, hitOptions);
+            if (mouseHit) {
+                var mouseItem = mouseHit.item;
+                var mouseParent = mouseItem._parent;
+                var mouseParentName = mouseParent.data.name;
+                console.log(mouseItem);
+                console.log(mouseParent);
+
+                if(mouseParentName == 'layer1') {
+                    if(mouseItem.data.name !== 'bg') {
+                        itemIndex = mouseItem._index;
+                    }
+                }
+                else {
+                    itemIndex = mouseParent._index;
+                }
+
+                mouseItem = paper.project.activeLayer.children[itemIndex];
+
+                if(mouseItem.selected) {
+                    mouseItem.selected = false;
+                }
+                else {
+                    mouseItem.selected = true;
+                }
+            }
+            else {
+                return ;
+            }
+        }
+
+        lastTime = startTime;
+
+        /*
+         * Handle Double Click
+         * */
     };
     wbTools.tools.draw.onKeyDown = function(paperEvent) {
         if(paperEvent.key == 'z') {
@@ -564,6 +671,7 @@ NerdBoard.Tools = window.onload = (function() {
                 else {
                     itemIndex = mouseParent._index;
                 }
+                paper.project.activeLayer.children[itemIndex].selected = true;
 
                 //Track the newly created touch
                 var trackMouse = {
@@ -692,7 +800,9 @@ NerdBoard.Tools = window.onload = (function() {
             currentTouchIndex = findTrackedTouch(0);
 
             if (currentTouchIndex !== -1) {
+                var currentTouch = currentTouches[currentTouchIndex];
                 // Store the record of the trackedTouch.
+                paper.project.activeLayer.children[currentTouch.itemIndex].selected = false;
                 currentTouches.splice(currentTouchIndex, 1);
             }
         }
@@ -803,10 +913,28 @@ NerdBoard.Tools = window.onload = (function() {
 
     wbTools.undo = function() {
         var children = paper.project.activeLayer.children;
+        console.log(children);
         var lastIndex = children.length - 1;
 
         if(children.length > 0 && children[lastIndex].data.name !== 'bg'){
-            children[lastIndex].remove();
+            lastItem = children[lastIndex];
+            lastItemClass = children[lastIndex].__proto__._class;
+
+            if(lastItemClass == "Group") {
+                var groupLength = lastItem.children.length;
+
+                if(groupLength == 1) {
+                    lastItem.remove();
+                }
+
+                if(groupLength > 1) {
+                    lastItem.children[groupLength - 1].remove();
+                }
+            }
+
+            if(lastItemClass == "Path") {
+                lastItem.remove();
+            }
         }
         paper.view.draw();
     };
@@ -897,33 +1025,51 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     function createProcess(pos, message) {
-        var rect = new paper.Path.Rectangle({
-            center: pos,
-            size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
-            fillColor: NerdBoard.colors.defaultYellow,
-            strokeColor: NerdBoard.colors.defaultBlack,
-            strokeWidth: 2,
-            data: {
-                name: 'rect' + NerdBoard.numOfShapes.toString(),
-                identifier: 'Process'
-            }
-        });
+        var group;
+        if(message.length > 0) {
+            var rect = new paper.Path.Rectangle({
+                center: pos,
+                size: [(NerdBoard.textSize * message.length) / ( 1 + (message.length / 12)), NerdBoard.textSize + 10],
+                fillColor: NerdBoard.colors.defaultYellow,
+                strokeColor: NerdBoard.colors.defaultBlack,
+                strokeWidth: 2,
+                data: {
+                    name: 'rect' + NerdBoard.numOfShapes.toString(),
+                    identifier: 'Process'
+                }
+            });
 
-        var text = new PointText({
-            content: message,
-            data: {
-                name: 'text' + NerdBoard.numOfShapes.toString()
-            }
-        });
-        text.style = {
-            fontFamily: 'sans-serif',
-            fontSize: NerdBoard.textSize,
-            justification: 'center'
-        };
-        text.fitBounds(rect.bounds);
+            var text = new PointText({
+                content: message,
+                data: {
+                    name: 'text' + NerdBoard.numOfShapes.toString()
+                }
+            });
+            text.style = {
+                fontFamily: 'sans-serif',
+                fontSize: NerdBoard.textSize,
+                justification: 'center'
+            };
+            text.fitBounds(rect.bounds);
 
 
-        var group = new Group(rect, text);
+            group = new Group(rect, text);
+        }
+        else {
+            var rect = new paper.Path.Rectangle({
+                center: pos,
+                size: [250, 300],
+                fillColor: NerdBoard.colors.neonBlue,
+                strokeColor: NerdBoard.colors.neonYellow,
+                strokeWidth: 2,
+                data: {
+                    name: 'rect' + NerdBoard.numOfShapes.toString(),
+                    identifier: 'Process'
+                }
+            });
+
+            group = new Group(rect);
+        }
 
         return group;
     }

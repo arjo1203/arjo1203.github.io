@@ -31,7 +31,7 @@ var NerdBoard = (function(wb) {
     wb.colors = {
         defaultBg: createColor(255, 255, 255),
         defaultBlack: createColor(0, 0, 0),
-        defaultRed: createColor(255, 0, 0),
+        defaultRed: createColor(227, 24, 54),
         defaultGreen: createColor(0, 128, 0),
         defaultBlue: createColor(0, 0, 255),
         defaultYellow: createColor(225, 225, 0),
@@ -79,7 +79,6 @@ var NerdBoard = (function(wb) {
 
     wb.setBg = function(color){
         wb.bgColor = wb.colors[color];
-
         NerdBoard.Tools.changeBgColor();
     };
 
@@ -125,13 +124,13 @@ var NerdBoard = (function(wb) {
 
 
 
-
+    //UI Functions
     wb.undo = function() {
         NerdBoard.Tools.undo();
     };
 
     wb.clear = function() {
-        c = confirm('Are you sure you want to clear the canvas?');
+        var c = confirm('Are you sure you want to clear the canvas?');
         if (c) {
             NerdBoard.Tools.clear();
         }
@@ -139,7 +138,7 @@ var NerdBoard = (function(wb) {
 
 
 
-
+    //Activators
     wb.activateThemeMode = function() {
         wb.activeMode = 'theme';
 

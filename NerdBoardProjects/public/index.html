@@ -107,7 +107,7 @@
                 success: function(data) {
                     if (data.found == true) {
                         if(password == data.user.password) {
-                            window.location.replace("./HTML/home.html");
+                            window.location = "./HTML/NerdBoard.html?q" + userID;
                         }
                         else {
                             window.alert('Invalid Password.');

@@ -357,7 +357,7 @@ NerdBoard.UIHandler = (function() {
                 displayOptions: function(){
                     NerdUIS.leftBar.switchUI('drawUI');
                     NerdUIS.leftBar.leftSideBar.animate({
-                        height: '209px'
+                        height: '249px'
                     }, 100);
                 },
                 styleUI: function() {

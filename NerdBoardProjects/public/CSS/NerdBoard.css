@@ -1,0 +1,982 @@
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+}
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+div {
+    outline: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+a, a:hover{
+    color: black;
+}
+#my-canvas {
+    top: 0;
+    z-index: -10;
+}
+/* custom bootstrap styles */
+.btn-custom-font {
+    color: #eee8d5;
+    text-shadow: 1px 1px 1px #686868;
+}
+.btn-custom-font.badge {
+    color: #eee8d5;
+}
+.btn-custom-font:hover,
+.btn-custom-font:focus,
+.btn-custom-font.focus,
+.btn-custom-font:active,
+.btn-custom-font.active,
+.open > .dropdown-toggle.btn-custom {
+    color: #eee8d5;
+}
+
+.btn-custom {
+    color: #eee8d5;
+    background-color: #404040;
+    border-color: #303030;
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom.focus,
+.btn-custom:active,
+.btn-custom.active,
+.open > .dropdown-toggle.btn-custom {
+    color: #eee8d5;
+    background-color: #2f2f2f;
+    border-color: #222222;
+}
+.btn-custom:active,
+.btn-custom.active,
+.open > .dropdown-toggle.btn-custom {
+    background-image: none;
+}
+.btn-custom.disabled,
+.btn-custom[disabled],
+fieldset[disabled] .btn-custom,
+.btn-custom.disabled:hover,
+.btn-custom[disabled]:hover,
+fieldset[disabled] .btn-custom:hover,
+.btn-custom.disabled:focus,
+.btn-custom[disabled]:focus,
+fieldset[disabled] .btn-custom:focus,
+.btn-custom.disabled.focus,
+.btn-custom[disabled].focus,
+fieldset[disabled] .btn-custom.focus,
+.btn-custom.disabled:active,
+.btn-custom[disabled]:active,
+fieldset[disabled] .btn-custom:active,
+.btn-custom.disabled.active,
+.btn-custom[disabled].active,
+fieldset[disabled] .btn-custom.active {
+    background-color: #eee8d5;
+    border-color: #ccc;
+}
+
+.btn-custom.badge {
+    color: #eee8d5;
+    background-color: #333;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: transparent;
+    cursor: inherit;
+    display: block;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+.navbar-default {
+    background-color: #586e75;
+    border-color: #586e75;
+}
+.navbar-default .navbar-brand {
+    color: #eee8d5;
+}
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: #eee8d5;
+}
+.navbar-default .navbar-text {
+    color: #eee8d5;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #eee8d5;
+}
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: #eee8d5;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #eee8d5;
+    background-color: #657b83;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    color: #eee8d5;
+    background-color: rgba(255, 255, 255, 0);
+}
+.navbar-default .navbar-toggle {
+    border-color: #657b83;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: #657b83;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #eee8d5;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    border-color: #eee8d5;
+}
+.navbar-default .navbar-link {
+    color: #eee8d5;
+}
+.navbar-default .navbar-link:hover {
+    color: #eee8d5;
+}
+@media (max-width: 1360px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 8px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
+
+#shapeBtn {
+    position: relative;
+    padding-left: 3px;
+    width: 280px;
+    height: 32px;
+}
+#moveBtn {
+    margin-left: 3px;
+}
+#dropdown {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    /*float: right;*/
+}
+#createShape {
+    border-radius: 0 5px 5px 0;
+}
+.shapeTextDiv {
+    width: 250px;
+    padding: 0;
+    margin-left: 0;
+    border-radius: 0;
+}
+#shapeText {
+    height: 32px;
+}
+#penDisplay {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#eraseDisplay {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#textDisplay {
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.penYellow {
+    background-color: yellow;
+}
+.padding {
+    margin-left: 3px;
+}
+.saveDiv {
+    width: 32px;
+}
+#loadWorkSpace {
+}
+#loadImg {
+    margin: 0;
+    padding: 0;
+    left: 0;
+}
+.bar {
+    background : #FFFFFF;
+    background : rgba(255, 255, 255, 1);
+    position : absolute;
+    width : 70px;
+    height : 209px;
+    border-radius : 0px 10px 0px 0px;
+    -moz-border-radius : 0px 10px 10px 0px;
+    -webkit-border-radius : 0px 10px 10px 0px;
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+    z-index: 1;
+    background-color: rgb(176, 176, 176);
+}
+.rightBar {
+    background : #FFFFFF;
+    background : rgba(255, 255, 255, 1);
+    position : absolute;
+    top: 40%;
+    right: 0;
+    width : 70px;
+    height : 209px;
+    border-radius : 10px 0px 0px 10px;
+    -moz-border-radius : 10px 0px 0px 10px;
+    -webkit-border-radius : 10px 0px 0px 10px;
+    box-shadow : -3px 4px 2px rgba(0, 0, 0, 0.67);
+    z-index: 1;
+    background-color: rgb(176, 176, 176);
+}
+.dropShadow {
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+}
+.black {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+}
+.red {
+    position: relative;
+    left: 33px;
+    bottom: 30px;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+}
+.green {
+    position: relative;
+    left: 66px;
+    bottom: 60px;
+    width: 30px;
+    height: 30px;
+    background-color: green;
+}
+.blue {
+    position: relative;
+    left: 99px;
+    bottom: 90px;
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+}
+.yellow {
+    position: relative;
+    left: 132px;
+    bottom: 120px;
+    width: 30px;
+    height: 30px;
+    background-color: yellow;
+}
+#toolIconDiv {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+#toolIcon {
+    width: 50px;
+    height: 50px;
+}
+.divider {
+    position: relative;
+    width: 100%;
+    height: 2px;
+    border-top: 2px solid black;
+}
+#drawTool {
+    width: 50px;
+    height: 50px;
+}
+#leftDrawUI {
+    position: relative;
+}
+#leftColorUI {
+    position: relative;
+}
+#leftColorUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    z-index: 1;
+}
+#leftColorUIBtnIcon {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    background-color: black;
+}
+#leftColorUIOptions {
+    position: absolute;
+    width: 265px;
+    height: 175px;
+    left: -265px;
+    z-index: -1;
+}
+#leftWidthUI {
+    text-align: center;
+    position: relative;
+    top: 100px;
+}
+#leftWidthUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    border-radius : 0px 0px 10px 0px;
+    z-index: 1;
+}
+.whiteText {
+    font-size: 20px;
+    /*color: white;*/
+}
+#leftWidthUIOptions {
+    position: absolute;
+    width: 166px;
+    top: 30px;
+    left: -130px;
+    z-index: -1;
+}
+#leftWidthUISlider {
+    position: relative;
+}
+#leftAddUI {
+    position: relative;
+    border-radius : 0px 0px 10px 0px;
+    left: -70px;
+    opacity: 0;
+}
+#drawAfter {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    left: 10px;
+}
+#dashed {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    left: 10px;
+    top: 65px;
+    z-index: 1;
+}
+#leftShapeUI {
+    position: relative;
+    top: 30px;
+}
+#leftShapeUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    z-index: 1;
+}
+#leftShapeUIBtnIcon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+#leftShapeUIOptions {
+    position: absolute;
+    width: 300px;
+    height: 50px;
+    top: 10px;
+    left: -300px;
+    z-index: -1;
+}
+#leftTextInputUI {
+    position: relative;
+    text-align: center;
+    top: 100px;
+}
+#leftTextInputUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+#leftTextInputUIBtnIcon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+#leftTextInputUIOptions {
+    position: absolute;
+    width: 150px;
+    left: -150px;
+    top: 16px;
+    z-index: -1;
+}
+#leftTextInputUIInput {
+    width: 150px;
+}
+#leftTextSizeUI {
+    position: relative;
+    text-align: center;
+    top: 170px;
+}
+#leftTextSizeUIBtn {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius : 0px 0px 10px 0px;
+    z-index: 1;
+}
+#leftTextSizeUIOptions {
+    position: absolute;
+    top: 20px;
+    width: 170px;
+    left: -170px;
+    z-index: -1;
+}
+.slider.slider-horizontal {
+    width: 166px;
+    height: 20px;
+}
+.slider.slider-vertical {
+    height: 150px;
+    width: 20px;
+}
+#activeTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+#drawToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#eraseToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#moveToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#addToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#themeToolIcon {
+    width: 50px;
+    height: 50px;
+}
+#eraseTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 50px;
+    bottom: 50px;
+}
+#moveTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 100px;
+    bottom: 100px
+}
+#addTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 150px;
+    bottom: 150px
+}
+#themeTool {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    left: 200px;
+    bottom: 200px
+}
+.centerIcon {
+    position: relative;
+    left: 10px;
+    top: 10px;
+}
+#eraseWidth {
+    border-radius : 0px 0px 10px 0px;
+}
+#activeShape {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 40px;
+    left: 10px;
+    top: 10px;
+}
+.IconDiv {
+    width: 70px;
+    height: 70px;
+}
+.Icon {
+    width: 50px;
+    height: 50px;
+}
+#Terminal {
+    position: absolute;
+}
+#Process {
+    position: absolute;
+    left: 60px;
+}
+#Input {
+    position: absolute;
+    left: 120px;
+}
+#Decision {
+    position: absolute;
+    left: 180px;
+}
+#Text {
+    position: absolute;
+    left: 240px;
+}
+#currentTextInput {
+    width: 50px;
+    height: 50px;
+}
+.top {
+    position: relative;
+    left: 8px;
+    top: 8px;
+}
+.middle {
+    position: relative;
+    left: 8px;
+    top: 11px;
+}
+.bottom {
+    position: relative;
+    left: 8px;
+    top: 14px;
+}
+.hamburger {
+    width: 26px;
+    height: 5px;
+    border-radius : 5px 5px 5px 5px;
+}
+#menuUI {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius : 0px 0px 0px 10px;
+}
+#menuUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+#menuUIOptions {
+    position: relative;
+    width: 40px;
+    height: 150px;
+    left: -50px;
+    top: 20px;
+    font-size: 20px;
+}
+#saveUI {
+    position: relative;
+}
+#saveUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    z-index: 1;
+
+}
+#saveUIBtnIcon {
+    width: 40px;
+    height: 40px;
+}
+#saveUIOptions {
+    position: absolute;
+    left: -110px;
+    top: 0;
+}
+#loadUI {
+    position: relative;
+    top: 10px;
+}
+#loadUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    z-index: 1;
+
+}
+#loadUIBtnIcon {
+    width: 40px;
+    height: 40px;
+}
+#loadUIOptions {
+    position: absolute;
+    left: -110px;
+    top: 0;
+}
+#bgUI {
+    position: relative;
+    top: 20px;
+}
+#bgUIBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+}
+#bgUIBtnIcon {
+    width: 40px;
+    height: 40px;
+}
+#bgUIOptions {
+    position: absolute;
+    left: -270px;
+    top: 0;
+}
+#leftToolsUI {
+    position: relative;
+}
+#leftToolsUIBtn {
+    width: 70px;
+    height: 70px;
+    border-radius : 0px 10px 0px 0px;
+    background-color: white;
+    z-index: 1;
+}
+#leftToolsUIBtnIcon {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 10px;
+    top: 10px;
+}
+#leftToolsUIOptions {
+    position: absolute;
+    top: 10px;
+    left: -200px;
+    width: 200px;
+    height: 50px;
+    z-index: -1;
+}
+.dropdown-menu {
+    width: 50px!important;
+}
+.white {
+    background-color: white;
+    border: 0;
+}
+.NerdLogo {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+#undoAndClear {
+    left: 82px;
+    bottom: 120px;
+}
+.undoBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 42px;
+    bottom: 80px;
+}
+#undoImg {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    transform: rotate(180deg);
+}
+#clearImg {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+}
+.clearBtn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 84px;
+    bottom: 160px;
+    border-radius : 0px 0px 10px 0px;
+}
+#functions {
+    position: absolute;
+    width: 124px;
+    height: 40px;
+    left: 5px;
+    top: 0;
+    border-radius : 0px 0px 10px 10px;
+    box-shadow : 3px 4px 2px rgba(0, 0, 0, 0.67);
+}
+.functionsLogos {
+    position: relative;
+    left: 13px;
+    top: 12px;
+}
+#leftThemeToolOptions {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    top: -320px;
+    border-radius : 0px 0px 10px 0px;
+    opacity: 0;
+}
+#themes {
+    position: absolute;
+    width: 265px;
+    height: 175px;
+    left: -265px;
+    z-index: -1;
+}
+#themeBtn {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    /*border: 1px solid black;*/
+}
+#themeIcon {
+    width: 50px;
+    height: 50px;
+}
+.row1 {
+    width: 265px;
+    height: 40px;
+}
+.row2 {
+    position: relative;
+    width: 265px;
+    height: 40px;
+    top: 5px;
+}
+.row3 {
+    position: relative;
+    width: 265px;
+    height: 40px;
+    top: 10px;
+}
+.row4 {
+    position: relative;
+    width: 265px;
+    height: 40px;
+    top: 15px;
+}
+.col1 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+.col2 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 45px;
+    bottom: 40px;
+}
+.col3 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 90px;
+    bottom: 80px;
+}
+.col4 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 135px;
+    bottom: 120px;
+}
+.col5 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 180px;
+    bottom: 160px;
+}
+.col6 {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    left: 225px;
+    bottom: 200px;
+}
+.defaultBg {
+    background-color: rgb(255, 255, 255);
+}
+.defaultBlack {
+    background-color: rgb(0, 0, 0);
+}
+.defaultRed {
+    background-color: rgb(255, 0, 0);
+}
+.defaultGreen {
+    background-color: rgb(0, 128, 0);
+}
+.defaultBlue {
+    background-color: rgb(0, 0, 255);
+}
+.defaultYellow {
+    background-color: rgb(225, 225, 0);
+}
+.neonBg {
+    background-color: rgb(30, 30, 30);
+}
+.neonBlack {
+    background-color: rgb(176, 176, 176);
+}
+.neonRed {
+    background-color: rgb(251, 1, 32);
+}
+.neonGreen {
+    background-color: rgb(161, 198, 89);
+}
+.neonBlue {
+    background-color: rgb(111, 179, 216);
+}
+.neonYellow {
+    background-color: rgb(253, 163, 49);
+}
+.nightBg {
+    background-color: rgb(0, 43, 54);
+}
+.nightBlack {
+    background-color: rgb(101, 123, 131);
+}
+.nightRed {
+    background-color: rgb(220, 50, 47);
+}
+.nightGreen {
+    background-color: rgb(72, 139, 60);
+}
+.nightBlue {
+    background-color: rgb(38, 139, 210);
+}
+.nightYellow {
+    background-color: rgb(241, 196, 15);
+}
+.slateBg {
+    background-color: rgb(125, 133, 138);
+}
+.slateBlack {
+    background-color: rgb(62, 68, 76);
+}
+.slateRed {
+    background-color: rgb(237, 88, 84);
+}
+.slateGreen {
+    background-color: rgb(112, 201, 112);
+}
+.slateBlue {
+    background-color: rgb(108, 199, 225);
+}
+.slateYellow {
+    background-color: rgb(241, 186, 15);
+}
+.border {
+    border: 1px solid black;
+}
+.verticalDivider {
+    position: relative;
+    width: 2px;
+    height: 100%;
+    left: 40px;
+    bottom: 40px;
+    border-left: 2px solid black;
+}
+/*.slider.slider-horizontal .slider-track {*/
+    /*height: 20px;*/
+ /*}*/
+/*.slider.slider-horizontal .slider-handle {*/
+    /*margin-left: -5px;*/
+    /*margin-top: 0;*/
+/*}*/
+#penWidth .slider-selection {
+    background: #0077aa;
+}
+.down1 {
+    position: relative;
+    top: 70px;
+}
+.down2 {
+    position: relative;
+    top: 75px;
+}
+.down3 {
+    position: relative;
+    top: 80px;
+}
+.down4 {
+    position: relative;
+    top: 85px;
+}

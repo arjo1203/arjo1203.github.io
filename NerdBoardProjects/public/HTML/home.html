@@ -31,5 +31,30 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
+    var url = window.location.href;
+
+    // function you can use:
+    function getUserID(str) {
+        return str.split('?q')[1];
+    }
+    // use the function:
+    console.log(getUserID(url));
+
+    var userIdObj = {
+        userID: getUserID(url)
+    };
+
+    var userId = JSON.stringify(userIdObj);
+
+    $.ajax({
+        type: 'POST',
+        url: "/findUser",
+        dataType: 'json',
+        data: {data: userId},
+        success: function(data) {
+            console.log(data);
+        }
+    });
+
 </script>
 </html>

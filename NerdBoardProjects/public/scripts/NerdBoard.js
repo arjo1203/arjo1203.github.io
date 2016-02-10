@@ -8,209 +8,118 @@ paper.install(window);
 
 // Main Javascript functions and code.
 var NerdBoard = (function(wb) {
+    wb.logo = $('#NerdLogo');
 
     wb.width = window.innerWidth;
     wb.height = window.innerHeight;
 
-    var halfWidth = Math.round(window.innerWidth * .5),
-        height = window.innerHeight;
-
-    wb.views = {
-        view1: {
-            canvas: $("#my-canvas1")[0],
-            width: halfWidth,
-            height: height,
-            active: false
-        },
-        view2: {
-            canvas: $("#my-canvas2")[0],
-            width: halfWidth,
-            height: height,
-            active: true
-        }
-    };
-    //wb.views.view2.canvas.css();
-
-    wb.views.view1.width = Math.round(wb.width / 2);
-    wb.views.view1.height = wb.height;
-    wb.views.view2.width = Math.round(wb.width / 2);
-    wb.views.view2.height = wb.height;
-
-    //wb.canvas = $("#my-canvas")[0];
-    //wb.canvas.width = wb.width;
-    //wb.canvas.height = wb.height;
+    wb.canvas = $("#my-canvas");
+    wb.canvas[0].width = wb.width;
+    wb.canvas[0].height = wb.height;
 
     wb.penStroke = 3;
     wb.eraseStroke = 30;
     wb.textSize = 40;
 
     wb.activeMode = 'draw';
-
-    wb.shape = 'Text';
+    wb.shape = 'Terminal';
     wb.numOfShapes = 0;
     wb.shapeStrokeColor = '#95B1BD';
     wb.erasing = false;
 
 
-
-
-
-    wb.themes = {
-        default: {
-            name: 'defalut',
-            bg: createColor(255, 255, 255),
-            black: createColor(0, 0, 0),
-            red: createColor(255, 0, 0),
-            green: createColor(0, 128, 0),
-            blue: createColor(0, 0, 255),
-            yellow: createColor(225, 225, 0),
-            penColor: createColor(0, 0, 0),
-            navBg: createColor(88, 110, 117),
-            pathName: 'black'
-        },
-        night: {
-            name: 'night',
-            bg: createColor(0, 43, 54),
-            black: createColor(101, 123, 131),
-            red: createColor(220, 50, 47),
-            green: createColor(72, 139, 60),
-            blue: createColor(38, 139, 210),
-            yellow: createColor(241, 196, 15),
-            penColor: createColor(101, 123, 131),
-            navBg: createColor(88, 110, 117),
-            pathName: 'black'
-        },
-        neon: {
-            name: 'neon',
-            bg: createColor(0, 0, 0),
-            black: createColor(176, 176, 176),
-            red: createColor(251, 1, 32),
-            green: createColor(161, 198, 89),
-            blue: createColor(111, 179, 216),
-            yellow: createColor(253, 163, 49),
-            penColor: createColor(48, 48, 48),
-            navBg: createColor(0, 0, 0),
-            pathName: 'black'
-        },
-        slate: {
-            name: 'slate',
-            bg: createColor(125, 133, 138),
-            black: createColor(62, 68, 76),
-            red: createColor(237, 88, 84),
-            green: createColor(112, 201, 112),
-            blue: createColor(108, 199, 225),
-            yellow: createColor(241, 196, 15),
-            penColor: createColor(62, 68, 76),
-            navBg: createColor(39, 43, 48),
-            pathName: 'black'
-        }
+    wb.colors = {
+        defaultBg: createColor(255, 255, 255),
+        defaultBlack: createColor(0, 0, 0),
+        defaultRed: createColor(255, 0, 0),
+        defaultGreen: createColor(0, 128, 0),
+        defaultBlue: createColor(0, 0, 255),
+        defaultYellow: createColor(225, 225, 0),
+        neonBg: createColor(30, 30, 30),
+        neonBlack: createColor(176, 176, 176),
+        neonRed: createColor(251, 1, 32),
+        neonGreen: createColor(161, 198, 89),
+        neonBlue: createColor(111, 179, 216),
+        neonYellow: createColor(253, 163, 49),
+        nightBg: createColor(0, 43, 54),
+        nightBlack: createColor(101, 123, 131),
+        nightRed: createColor(220, 50, 47),
+        nightGreen: createColor(72, 139, 60),
+        nightBlue: createColor(38, 139, 210),
+        nightYellow: createColor(241, 196, 15),
+        slateBg: createColor(125, 133, 138),
+        slateBlack: createColor(62, 68, 76),
+        slateRed: createColor(237, 88, 84),
+        slateGreen: createColor(112, 201, 112),
+        slateBlue: createColor(108, 199, 225),
+        slateYellow: createColor(241, 196, 15)
     };
-    wb.theme = wb.themes.default;
+    wb.penColor = wb.colors.defaultBg;
+    wb.bgColor = wb.colors.defaultBlack;
+    wb.pathName = 'defaultBg';
 
-    wb.convertBtnTheme = function() {
-        var black = getColorComponents(wb.theme.black);
-        styleEle($('.penBlack'), black);
 
-        var red = getColorComponents(wb.theme.red);
-        styleEle($('.penRed'), red);
+    wb.getColorComponents = function(color) {
+        var components = {
+            r: (Math.round(color._components[0] * 255)).toString(),
+            g: (Math.round(color._components[1] * 255)).toString(),
+            b: (Math.round(color._components[2] * 255)).toString()
+        };
 
-        var green = getColorComponents(wb.theme.green);
-        styleEle($('.penGreen'), green);
-
-        var blue = getColorComponents(wb.theme.blue);
-        styleEle($('.penBlue'), blue);
-
-        var yellow = getColorComponents(wb.theme.yellow);
-        styleEle($('.penYellow'), yellow);
-
-        var nav = getColorComponents(wb.theme.navBg);
-        styleEle($('#navBar'), nav);
+        return components;
     };
-    wb.convertBtnTheme();
 
-    wb.toggleToolBtns = function() {
-        var shapeIndicator = $('#shapeIndicator'), moveIndicator = $('#moveIndicator'), eraseIndicator = $('#eraseIndicator');
-        var indicators = [shapeIndicator, moveIndicator, eraseIndicator];
 
-        if(wb.activeMode == 'draw') {
-            indicators[0][0].className = "glyphicon glyphicon-unchecked";
-            indicators[1][0].className = "glyphicon glyphicon-unchecked";
-            indicators[2][0].className = "glyphicon glyphicon-unchecked";
-        }
-        if(wb.activeMode == 'erase') {
-            indicators[0][0].className = "glyphicon glyphicon-unchecked";
-            indicators[1][0].className = "glyphicon glyphicon-unchecked";
-            indicators[2][0].className = "glyphicon glyphicon-check";
-        }
-        if(wb.activeMode == 'shape') {
-            indicators[0][0].className = "glyphicon glyphicon-check";
-            indicators[1][0].className = "glyphicon glyphicon-unchecked";
-            indicators[2][0].className = "glyphicon glyphicon-unchecked";
-        }
-        if(wb.activeMode == 'move') {
-            indicators[0][0].className = "glyphicon glyphicon-unchecked";
-            indicators[1][0].className = "glyphicon glyphicon-check";
-            indicators[2][0].className = "glyphicon glyphicon-unchecked";
-        }
-
+    wb.styleEle = function(ele, components) {
+        ele.css("background-color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     };
 
 
 
 
+    wb.setBg = function(color){
+        wb.bgColor = wb.colors[color];
 
-    wb.setTheme = function(theme) {
-        $('#theme')[0].innerHTML =  " <span class=\"caret\"></span>" + "Themes: "+ theme.capitalizeFirstLetter();
-
-        var priorColor = wb.theme.pathName;
-        wb.themes[theme].penColor = wb.themes[theme][priorColor];
-        wb.theme = wb.themes[theme];
-
-        NerdBoard.Tools.convertTheme();
-        wb.convertBtnTheme();
+        NerdBoard.Tools.changeBgColor();
     };
 
     wb.setColor = function (color) {
-        wb.theme.penColor = wb.theme[color];
-        wb.theme.pathName = color;
-        wb.activateDrawMode();
-        wb.toggleToolBtns();
+        wb.pathName = color;
+        wb.penColor = wb.colors[color];
+
+        var penColor = wb.getColorComponents(NerdBoard.penColor);
+        NerdBoard.styleEle(NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.btn, penColor);
+        NerdBoard.styleEle(NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.btnIcon, penColor);
+
+        $('#penWidthSlider .slider-selection').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
+        $('#penWidthSlider .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
+
+        NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.close();
     };
 
     wb.setPenWidth = function(width) {
         $('#penDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Pen Width: " + width;
         wb.penStroke = width;
         wb.activateDrawMode();
-        wb.toggleToolBtns();
     };
 
     wb.setEraserWidth = function(width) {
         $('#eraseDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Eraser Width: " + width.toString();
         wb.eraseStroke = width;
         wb.activateEraseMode();
-        wb.toggleToolBtns();
     };
 
     wb.setTextSize = function(size) {
         $('#textDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Text Size: " + size.toString();
         wb.textSize = size;
         wb.activateShapeMode();
-        wb.toggleToolBtns();
     };
 
     wb.setShape = function(shape) {
         wb.shape = shape;
 
-        if(shape == 'Input') {
-            $('#shapeChoice')[0].innerHTML = "<span class=\"caret\"></span> " + shape + " / Output";
-        }
-        else {
-            $('#shapeChoice')[0].innerHTML = "<span class=\"caret\"></span> " + shape;
-        }
-
-        if(wb.activeMode !== 'shape') {
-            wb.toggleShapeMode();
-        }
+        NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.shapeUI.close();
+        NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textInputUI.open();
     };
 
 
@@ -228,80 +137,46 @@ var NerdBoard = (function(wb) {
         }
     };
 
+
+
+
+    wb.activateThemeMode = function() {
+        wb.activeMode = 'theme';
+
+        NerdBoard.UIHandler.leftBar.toolSelected();
+    };
+
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
         NerdBoard.Tools.tools.draw.activate();
-        wb.toggleToolBtns();
+
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateShapeMode = function() {
-        wb.activeMode = 'shape';
+        wb.activeMode = 'add';
         NerdBoard.Tools.tools.shape.activate();
-        wb.toggleToolBtns();
+
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateEraseMode = function() {
         wb.activeMode = 'erase';
         NerdBoard.Tools.tools.erase.activate();
-        wb.toggleToolBtns();
+
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateMoveMode = function() {
         wb.activeMode = 'move';
         NerdBoard.Tools.tools.move.activate();
-        wb.toggleToolBtns();
+
+        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activatePanMode = function() {
         wb.activeMode = 'pan';
         NerdBoard.Tools.tools.pan.activate();
-        wb.toggleToolBtns();
-    };
-
-    wb.activateView1 = function() {
-        var view1 = paper.View._viewsById['my-canvas1'];
-        view1._project.activate();
-        wb.views.view2.active = false;
-        wb.views.view1.active = true;
-    };
-
-    wb.activateView2 = function() {
-        var view2 = paper.View._viewsById['my-canvas2'];
-        view2._project.activate();
-        wb.views.view1.active = false;
-        wb.views.view2.active = true;
-    };
-
-    wb.toggleShapeMode = function() {
-        if (wb.activeMode !== 'shape') {
-            wb.activateShapeMode();
-        } else {
-            wb.activateDrawMode();
-        }
-    };
-
-    wb.toggleMoveMode = function() {
-        if (wb.activeMode !== 'move') {
-            wb.activateMoveMode();
-        } else {
-            wb.activateDrawMode();
-        }
-    };
-
-    wb.togglePanMode = function() {
-        if (wb.activeMode !== 'pan') {
-            wb.activatePanMode();
-        } else {
-            wb.activateDrawMode();
-        }
-    };
-
-    wb.toggleEraseMode = function () {
-        if (wb.activeMode !== 'erase') {
-            wb.activateEraseMode();
-        } else {
-            wb.activateDrawMode();
-        }
     };
 
 
@@ -319,120 +194,74 @@ var NerdBoard = (function(wb) {
         return (year + "-" + month + "-" + day + "_" + hour + ":" + min + ":" + sec);
     };
 
-    $('#saveImg').on('click', function() {
-        this.download = wb.getDate();
-        this.href = wb.canvas.toDataURL('image/png');
-    });
-
-    wb.autoText = function() {
-        var str = OCRAD(NerdBoard.canvas);
-        window.alert('This image says:' + str);
-    };
-
     wb.saveAsWorkSpace = function() {
-        var file = JSON.stringify(paper.project);
+        var projectName = window.prompt("Please name your Project: "),
+            workSpace = JSON.stringify(paper.project),
+            settings = {
+                bgColor: NerdBoard.bgColor,
+                penColor: NerdBoard.penColor
+            };
 
-        var blob = new Blob([file], {type: "application/json"});
-        var url  = URL.createObjectURL(blob);
+        var userIdObj = {
+            userID: USERID,
+            projectName: projectName,
+            settings: settings,
+            workSpace: workSpace
+        };
+        var userIdData = JSON.stringify(userIdObj);
+        console.log(userIdData);
 
-        var link = document.createElement("a");
-        var name = window.prompt("Please name your Project: ");
-        if(name != null){
-            link.href = url;
-            link.download = name;
-            link.click();
 
-            window.alert("Project was saved!");
-        }
-        else{
-            window.alert("Project was NOT saved!!");
-        }
+        //$.ajax({
+        //    type: 'POST',
+        //    url: "/saveNerdProject",
+        //    dataType: 'json',
+        //    data: {data: userIdData},
+        //    success: function(data) {
+        //        console.log(data);
+        //    }
+        //});
     };
 
     wb.loadWorkSpace = function() {
-        var body = document.getElementById('body'),
-            file = document.createElement('input');
+        var file = document.createElement('input');
 
         file.type = 'file';
         file.click();
 
         file.addEventListener('change', function () {
-                var reader = new FileReader();
+            var reader = new FileReader();
 
-                reader.onloadstart = function () {
-                };
-                reader.onprogress = function () {
-                };
-                reader.onloadend = function () {
-                };
-                reader.onload = function (e) {
-                    var inputFile = JSON.parse(e.target.result);
+            reader.onload = function (e) {
+                var inputFile = JSON.parse(e.target.result);
 
-                    if(paper.project.activeLayer) {
-                        paper.project.activeLayer.remove();
-                    }
+                if(paper.project.activeLayer) {
+                    paper.project.activeLayer.remove();
+                }
 
-                    paper.project.importJSON(inputFile[0]);
+                paper.project.importJSON(inputFile[0]);
 
-                    paper.project.activeLayer.position = paper.view.center;
-                    wb.resizeBg();
-                    NerdBoard.Tools.convertTheme();
-                    paper.view.draw();
-                };
-                reader.readAsText(file.files[0]);
-            },
-            false);
-    };
-
-    $('#uploadImg').on('change', function(e) {
-        var file = e.target.files[0];
-        var fileReader = new FileReader();
-
-        fileReader.onload = function(e2) {
-            wb.clear();
-            NerdBoard.Tools.loadRaster(e2.target.result);
-        };
-
-        fileReader.readAsDataURL(file);
-    });
-
-
-
-
-
-    wb.resizeBg = function() {
-        var SW = paper.project.activeLayer.children['bg']._segments[0],
-            NW = paper.project.activeLayer.children['bg']._segments[1],
-            NE = paper.project.activeLayer.children['bg']._segments[2],
-            SE = paper.project.activeLayer.children['bg']._segments[3];
-
-        NW._point._x = 0;
-        NW._point._y = 0;
-
-        SW._point._x = 0;
-        SW._point._y = NerdBoard.views.view1.height;
-
-        NE._point._x = NerdBoard.views.view1.width;
-        NE._point._y = 0;
-
-        SE._point._x = NerdBoard.views.view1.width;
-        SE._point._y = NerdBoard.views.view1.height;
+                paper.project.activeLayer.position = paper.view.center;
+                NerdBoard.Tools.resizeBg();
+                paper.view.draw();
+            };
+            reader.readAsText(file.files[0]);
+        },
+        false);
     };
 
 
     function onWindowResize() {
-        NerdBoard.views.view1.width = Math.round(window.innerWidth *.5);
-        NerdBoard.views.view1.height = window.innerHeight;
+        NerdBoard.width = window.innerWidth;
+        NerdBoard.height = window.innerHeight;
 
-        NerdBoard.resizeBg();
+        centerDiv(NerdBoard.canvas, NerdBoard.UIHandler.leftBar.leftSideBar, 0, .5);
+
+        NerdBoard.Tools.resizeBg();
         paper.view.draw();
     }
 
     window.addEventListener('resize', onWindowResize, false);
-
-    document.addEventListener('touchmove', function(event) {
-        event.preventDefault();
-    }, false);
 
     $(window).bind('beforeunload', function() {
         return "Save your drawing before leaving!!";
@@ -441,23 +270,6 @@ var NerdBoard = (function(wb) {
 
     function createColor(r, g, b) {
         return new Color(r / 255, g / 255, b / 255);
-    }
-
-
-    function getColorComponents(color) {
-        var components = {
-            r: (Math.round(color._components[0] * 255)).toString(),
-            g: (Math.round(color._components[1] * 255)).toString(),
-            b: (Math.round(color._components[2] * 255)).toString()
-        };
-
-        return components;
-    }
-
-
-    function styleEle(ele, components) {
-        ele.css("background-color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
-        ele.css("border", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     }
 
 
