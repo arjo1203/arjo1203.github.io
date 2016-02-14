@@ -107,10 +107,6 @@ LineStyleView.position.y -= 25;
 LineStyleView.data = {
     name: "LineStyleView"
 };
-PencilToolOptionsColors.onMouseUp = function(event) {
-    if(PencilToolIcon.data.optionsOut)
-        PencilToolIcon.data.closeOptions();
-};
 PencilToolOptionsColors.onMouseMove = function(event) {
     if(PencilToolOptions.data.out) {
         NerdBoard.penColor = this.getAverageColor(event.point);
@@ -118,6 +114,12 @@ PencilToolOptionsColors.onMouseMove = function(event) {
         PencilToolOptionsRailMarker.fillColor =  NerdBoard.penColor;
         PencilToolOptionsRail.strokeColor =  NerdBoard.penColor;
     }
+};
+PencilToolOptionsColors.onMouseUp = function(event) {
+    window.setTimeout(function() {
+        if(PencilToolIcon.data.optionsOut)
+            PencilToolIcon.data.closeOptions();
+    }, 10);
 };
 var PencilToolOptions = new Group(PencilToolOptionsColors, LineStyleView);
 //PencilToolOptions.opacity = 0;
@@ -300,6 +302,10 @@ NerdBoardUI.data.scaleIconTo(SaveIcon, mediumIcon);
 NerdBoardUI.data.scaleIconTo(UploadIcon, mediumIcon);
 NerdBoardUI.data.scaleIconTo(UndoIcon, smallMediumIcon);
 NerdBoardUI.data.scaleIconTo(TrashIcon, smallMediumIcon);
+/*
+ *   Positioning and scaling icons
+ * */
+
 
 
 
