@@ -134,29 +134,21 @@ var NerdBoard = (function(wb) {
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
         NerdBoard.Tools.tools.draw.activate();
-
-        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateShapeMode = function() {
         wb.activeMode = 'add';
         NerdBoard.Tools.tools.shape.activate();
-
-        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateEraseMode = function() {
         wb.activeMode = 'erase';
         NerdBoard.Tools.tools.erase.activate();
-
-        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activateMoveMode = function() {
         wb.activeMode = 'move';
         NerdBoard.Tools.tools.move.activate();
-
-        NerdBoard.UIHandler.leftBar.toolSelected();
     };
 
     wb.activatePanMode = function() {

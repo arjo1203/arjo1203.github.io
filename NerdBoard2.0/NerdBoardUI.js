@@ -25,7 +25,7 @@ UICenter.onMouseDrag = function(event) {
     NerdUI.position.x += event.delta.x;
     NerdUI.position.y += event.delta.y;
 };
-UICenter.onDoubleClick = function(event) {
+UICenter.onMouseDown = function(event) {
     event.preventDefault();
     if(!NerdUI.animatingTools) {
         if(!NerdUI.data.out) {
@@ -38,14 +38,14 @@ UICenter.onDoubleClick = function(event) {
 };
 
 
-var toolsScale = .4, colorScale = .1;
+var toolsScale = .4, colorScale = .15;
 
-var PencilIconView = new Raster('PencilIconView');
+var PencilToolIcon = new Raster('PencilIconView');
 var UndoView = new Raster('UndoView');
 var EraserView = new Raster('EraserView');
 var MoveView = new Raster('MoveView');
 var InsertView = new Raster('InsertView');
-var ColorView = new Raster('ColorView');
+var PencilToolOptionsColors = new Raster('ColorView');
 var PreferenceIconView = new Raster('PreferenceIconView');
 var TrashIconView = new Raster('TrashIconView');
 
@@ -58,67 +58,152 @@ TrashIconView.position.x -= 20;
 TrashIconView.position.y += 75;
 
 
+PencilToolOptionsColors.scale(colorScale);
 UndoView.scale(.4);
 TrashIconView.scale(.4);
-EraserView.scale(toolsScale);
-MoveView.scale(toolsScale);
-InsertView.scale(toolsScale);
-PencilIconView.scale(toolsScale);
-ColorView.scale(colorScale);
-PreferenceIconView.scale(.18);
 
-var LineThickDot = new Path.Circle({
-    center: new Point(0,ColorView.bounds.topLeft.y),
+
+
+
+
+
+/*
+* PencilToolOptions UI
+* */
+var PencilToolOptionsRailMarker = new Path.Circle({
+    center: new Point(0,PencilToolOptionsColors.bounds.topLeft.y),
     radius: NerdBoard.penStrokeRange / 20,
     fillColor: NerdBoard.penColor,
     strokeColor: NerdBoard.colors.defaultBg,
     strokeWidth: 2,
     data: {
-        name: "LineThickDot"
+        name: "PencilToolOptionsRailMarker"
     }
 });
-LineThickDot.onMouseDrag = function(event) {
-    var totDis = ColorView.bounds.topRight.x - ColorView.bounds.topLeft.x;
-    var currDis = event.point.x - ColorView.bounds.topLeft.x;
+PencilToolOptionsRailMarker.onMouseDrag = function(event) {
+    var totDis = PencilToolOptionsColors.bounds.topRight.x - PencilToolOptionsColors.bounds.topLeft.x;
+    var currDis = event.point.x - PencilToolOptionsColors.bounds.topLeft.x;
     var disRatio = currDis / totDis;
     console.log(disRatio);
 
     if(disRatio <= 0) {
-        this.position.x = ColorView.bounds.topLeft.x;
+        this.position.x = PencilToolOptionsColors.bounds.topLeft.x;
     }
     else if(disRatio >= 1) {
-        this.position.x = ColorView.bounds.topRight.x;
+        this.position.x = PencilToolOptionsColors.bounds.topRight.x;
     }
     else {
         //console.log(disRatio);
         this.position.x = event.point.x;
         NerdBoard.penStroke = Math.round(NerdBoard.penStrokeRange * disRatio);
         console.log(NerdBoard.penStroke);
-        LineThickRail.strokeWidth = NerdBoard.penStroke;
+        PencilToolOptionsRail.strokeWidth = NerdBoard.penStroke;
     }
 };
-var LineThickRail = new Path({
+var PencilToolOptionsRail = new Path({
     strokeColor: NerdBoard.penColor,
     strokeWidth: NerdBoard.penStroke,
     strokeCap: 'round',
     data: {
-        name: "LineThickRail"
+        name: "PencilToolOptionsRail"
     }
 });
-LineThickRail.add(ColorView.bounds.topLeft, ColorView.bounds.topRight);
-var LineStyleView = new Group(LineThickRail, LineThickDot);
+PencilToolOptionsRail.add(PencilToolOptionsColors.bounds.topLeft, PencilToolOptionsColors.bounds.topRight);
+var LineStyleView = new Group(PencilToolOptionsRail, PencilToolOptionsRailMarker);
 LineStyleView.position.y -= 1;
 LineStyleView.data = {
     name: "LineStyleView"
 };
-var PencilOptionsView = new Group(ColorView, LineStyleView);
-PencilOptionsView.opacity = 0;
-var PencilView = new Group(PencilOptionsView, PencilIconView);
+PencilToolOptionsColors.onMouseMove = function(event) {
+    if(PencilToolOptions.data.out) {
+        UICenter.fillColor = this.getAverageColor(event.point);
+        PencilToolOptionsRailMarker.fillColor = this.getAverageColor(event.point);
+        PencilToolOptionsRail.strokeColor = this.getAverageColor(event.point);
+        NerdBoard.penColor = UICenter.fillColor;
+    }
+};
+
+PencilToolOptionsColors.onMouseUp = function(event) {
+    PencilToolOptions.data.animate = true;
+};
+var PencilToolOptions = new Group(PencilToolOptionsColors, LineStyleView);
+PencilToolOptions.opacity = 0;
+/*
+ * PencilToolOptions UI
+ * */
 
 
 
 
-var NerdUI = new Group(TrashIconView, UndoView, PreferenceIconView, InsertView, MoveView, EraserView, UICenter, PencilView);
+var PencilTool = new Group(PencilToolOptions, PencilToolIcon);
+PencilTool.data = {
+    name: "PencilToolIcon",
+    active: true,
+    animate: false,
+    out: false,
+    Destination: {},
+    delta: 2,
+    reset: function() {
+        this.animate = false;
+    },
+    setDest: function(range, angle) {
+        this.Destination = NerdUI.data.destPoint(range, angle);
+    },
+    scales: [],
+    optionsOut: false,
+    closeOptions: function() {
+        this.optionsOut = false;
+        PencilToolOptions.data.animate = true;
+    },
+    openOptions: function() {
+        this.optionsOut = true;
+        if(!this.out) {
+            if (!PencilToolOptions.data.out)
+                PencilToolOptions.data.setDest();
+            PencilToolOptions.data.animate = true;
+        }
+    },
+    centerIcon: function() {
+        PencilToolIcon.position = UICenter.position;
+    },
+    scaleIconSmall: function() {
+        var xScale = 32 / PencilToolIcon.bounds.width;
+        var yScale = 32 / PencilToolIcon.bounds.height;
+        PencilToolIcon.scale(xScale, yScale);
+    }
+};
+PencilTool.onMouseDown = function(event) {
+    if(this.data.out && NerdUI.children[NerdUI.children.length-1].data.name != "PencilToolIcon") {
+        NerdUI.children[NerdUI.children.length-1].data.active = false;
+        NerdUI.data.animateToolsIn();
+        this.data.active = true;
+    }
+};
+PencilToolIcon.onMouseUp = function(event) {
+    event.preventDefault();
+    PencilTool.data.openOptions();
+};
+PencilToolOptions.data = {
+    name: "PencilToolOptions",
+    animate: false,
+    out: false,
+    Destination: new Point(0, 0),
+    delta: 2,
+    reset: function() {
+        this.animate = false;
+    },
+    setDest: function() {
+        this.Destination = NerdUI.data.destPoint(250, -50);
+    },
+    scales: []
+};
+
+
+
+
+
+
+var NerdUI = new Group(TrashIconView, UndoView, PreferenceIconView, InsertView, MoveView, EraserView, UICenter, PencilTool);
 NerdUI.position = paper.view.center;
 //NerdUI.scale(1.2);
 //NerdUI.selected = true;
@@ -131,6 +216,7 @@ NerdUI.data = {
     toolsStack: [2, 3, 4, 5],
     toolsAnimation: {tool2: 50, tool3: 100, tool4: 150},
     toolsAngle: {angle1: 175,angle2: 145, angle3: 115, angle4: 85},
+    activeTool: "draw",
     animateToolsIn: function() {
         this.animatingTools = true;
         NerdUI.children[NerdUI.data.toolsStack[0]].data.animate = true;
@@ -177,11 +263,24 @@ NerdUI.data = {
         }, this.toolsAnimation.tool4);
     },
     checkToolsOrder: function() {
-        if(!NerdUI.children[NerdUI.children.length-1].data.active) {
+        var lastChild = NerdUI.children[NerdUI.children.length-1];
+        if(!lastChild.data.active) {
+            if(lastChild.data.optionsOut) {
+                lastChild.data.closeOptions();
+                window.setTimeout(function() {
+                    lastChild.data.centerIcon();
+                }, 20);
+                lastChild.data.scaleIconSmall();
+            }
+            else {
+                this.scaleToolTo(lastChild, smallToolDimensions);
+            }
+            lastChild.data.scales = [];
+
+
             UICenter.bringToFront();
-            for(var i = 2; i < NerdUI.children.length; i++) {
+            for(var i = NerdUI.children.length - this.toolsStack.length - 1; i < NerdUI.children.length; i++) {
                 if(NerdUI.children[i].data.active) {
-                    //console.log( NerdUI.children[i].data.name);
                     NerdUI.children[i].bringToFront();
                 }
 
@@ -206,17 +305,13 @@ NerdUI.data = {
         if(-this.vectorThres < vector.x && vector.x < this.vectorThres && -this.vectorThres < vector.y && vector.y < this.vectorThres) {
             icon.data.out = true;
             icon.data.reset();
-            //console.log(" animateOut --> " + icon.data.name + " --> " + icon.data.out);
         }
         icon.position.x += vector.x / delta;
         icon.position.y += vector.y / delta;
 
-        if(icon.data.name == "PencilOptionsView") {
-            this.scaleBig(2, {a: 1, b: 5}, vector, icon);
+        if(icon.data.name == "PencilToolOptions") {
+            this.scaleBig(2, {a: 1, b: 6}, vector, icon);
             icon.opacity = 1;
-        }
-        else {
-            this.scaleSmall(icon);
         }
     },
     animateIn: function(delta, vector, icon) {
@@ -228,14 +323,15 @@ NerdUI.data = {
         icon.position.y += vector.y / delta;
 
 
-        if(icon.data.name == "PencilOptionsView") {
+        if(icon.data.name == "PencilToolOptions") {
             this.scaleSmall(icon);
             window.setTimeout(function(){
                 icon.opacity = 0;
             }, 100);
         }
-        else {
-            this.scaleBig(2, {a:1, b: 3}, vector, icon);
+
+        if(icon.data.active) {
+            this.scaleBig(2, {a: 1, b: 2}, vector, icon);
         }
     },
     scaleBig: function(delta, thres, vector, icon) {
@@ -245,7 +341,6 @@ NerdUI.data = {
             icon.data.scales.push(scale);
             icon.scale(scale);
         }
-        //console.log(icon.data.scales);
     },
     scaleSmall: function(icon) {
         if(icon.data.scales.length > 0) {
@@ -263,53 +358,20 @@ NerdUI.data = {
                 NerdUI.data.animateIn(icon.data.delta, vector, icon);
             }
         }
+    },
+    scaleToolTo: function(icon, dimensions) {
+        var xScale = dimensions.x / icon.bounds.width;
+        var yScale = dimensions.y / icon.bounds.height;
+        icon.scale(xScale, yScale);
     }
 };
 NerdUI.onMouseDown = function(event) {
-    NerdUI.data.beingUsed = true;
+    NerdBoard.Tools.tools.none.activate();
 };
 NerdUI.onMouseDrag = function(event) {
-    NerdUI.data.beingUsed = true;
 };
 NerdUI.onMouseUp = function(event) {
-    window.setTimeout(function() {
-        NerdUI.data.beingUsed = false;
-    }, 50);
-};
-
-
-
-
-PencilView.data = {
-    name: "PencilIconView",
-    active: true,
-    animate: false,
-    out: false,
-    Destination: {},
-    delta: 2,
-    reset: function() {
-        this.animate = false;
-    },
-    setDest: function(range, angle) {
-        this.Destination = NerdUI.data.destPoint(range, angle);
-    },
-    scales: []
-};
-PencilView.onMouseDown = function(event) {
-    if(this.data.out && NerdUI.children[NerdUI.children.length-1].data.name != "PencilIconView") {
-        NerdUI.children[NerdUI.children.length-1].data.active = false;
-        NerdUI.data.animateToolsIn();
-        this.data.active = true;
-    }
-};
-PencilIconView.onMouseUp = function(event) {
-    event.preventDefault();
-
-    if(!PencilView.data.out) {
-        if (!PencilOptionsView.data.out)
-            PencilOptionsView.data.setDest();
-        PencilOptionsView.data.animate = true;
-    }
+    NerdBoard.Tools.tools.draw.activate();
 };
 
 
@@ -418,37 +480,6 @@ PreferenceIconView.onMouseDown = function(event) {
 
 
 
-PencilOptionsView.data = {
-    name: "PencilOptionsView",
-    animate: false,
-    out: false,
-    Destination: new Point(0, 0),
-    delta: 2,
-    reset: function() {
-        this.animate = false;
-    },
-    setDest: function() {
-        this.Destination = NerdUI.data.destPoint(250, -50);
-    },
-    scales: []
-};
-
-ColorView.onMouseMove = function(event) {
-    if(PencilOptionsView.data.out) {
-        UICenter.fillColor = this.getAverageColor(event.point);
-        LineThickDot.fillColor = this.getAverageColor(event.point);
-        LineThickRail.strokeColor = this.getAverageColor(event.point);
-        NerdBoard.penColor = UICenter.fillColor;
-    }
-};
-
-ColorView.onMouseUp = function(event) {
-    PencilOptionsView.data.animate = true;
-};
-
-
-
-
 //UI Functions
 UndoView.onMouseDown = function() {
     NerdBoard.Tools.undo();
@@ -465,11 +496,11 @@ TrashIconView.onMouseUp = function(event) {
 
 
 paper.view.onFrame = function(event) {
-    NerdUI.data.toggleIcon(PencilView);
+    NerdUI.data.toggleIcon(PencilTool);
     NerdUI.data.toggleIcon(EraserView);
     NerdUI.data.toggleIcon(MoveView);
     NerdUI.data.toggleIcon(InsertView);
-    NerdUI.data.toggleIcon(PencilOptionsView);
+    NerdUI.data.toggleIcon(PencilToolOptions);
     NerdUI.data.toggleIcon(PreferenceIconView);
     //console.log(NerdUI.data.beingUsed);
 };
@@ -477,3 +508,12 @@ paper.view.onFrame = function(event) {
 
 console.log(NerdUI);
 console.log(paper);
+
+
+var bigToolDimensions = {x: 64,y: 64};
+var smallToolDimensions = {x: 32,y: 32};
+NerdUI.data.scaleToolTo(PencilToolIcon, bigToolDimensions);
+NerdUI.data.scaleToolTo(EraserView, smallToolDimensions);
+NerdUI.data.scaleToolTo(MoveView, smallToolDimensions);
+NerdUI.data.scaleToolTo(InsertView, smallToolDimensions);
+NerdUI.data.scaleToolTo(PreferenceIconView, smallToolDimensions);
