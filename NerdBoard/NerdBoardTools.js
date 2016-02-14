@@ -33,7 +33,6 @@ NerdBoard.Tools = window.onload = (function() {
     var startTime, lastTime = 0, deltaTime;
 
     wbTools.tools.draw = new Tool();
-    wbTools.tools.draw = new Tool();
     wbTools.tools.draw.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
 
@@ -1158,5 +1157,3 @@ NerdBoard.Tools = window.onload = (function() {
 
     return wbTools;
 }());
-
-console.log(paper);
