@@ -107,7 +107,7 @@ LineStyleView.position.y -= 25;
 LineStyleView.data = {
     name: "LineStyleView"
 };
-PencilToolOptionsColors.onMouseDown = function(event) {
+PencilToolOptionsColors.onMouseUp = function(event) {
     if(PencilToolIcon.data.optionsOut)
         PencilToolIcon.data.closeOptions();
 };
