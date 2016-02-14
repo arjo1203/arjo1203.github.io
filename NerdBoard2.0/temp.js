@@ -674,6 +674,13 @@ paper.view.onFrame = function(event) {
     NerdBoardUI.data.toggleIcon(UploadIcon);
 };
 
-console.log(paper);
+
+/**
+ * Prevents default page scrolling action; fixes iOS 8 drawing bug.
+ */
+document.addEventListener('touchmove', function(event) {
+    event.preventDefault();
+}, false);
+//console.log(paper);
 //console.log(PencilToolOptionsRailMarker);
 //console.log(PencilToolOptionsRailMarker.intersects(NerdBoardUICenter.position));
