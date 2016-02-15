@@ -56,7 +56,7 @@ var NerdBoard = (function(wb) {
         slateYellow: createColor(241, 196, 15)
     };
     wb.penColor = wb.colors.defaultBlack;
-    wb.bgColor = wb.colors.defaultBg;
+    wb.bgColor = wb.colors.nightBlack;
     wb.pathName = 'defaultBg';
 
 

@@ -63,6 +63,100 @@ NerdBoardUICenter.onMouseUp = function(event) {
 /*
  * PencilToolOptions UI
  * */
+var PencilToolOptionsPenColor = new paper.Path.Rectangle({
+    center: new Point(PencilToolOptionsColors.bounds.topLeft.x - 40, PencilToolOptionsColors.bounds.topLeft.y + 15),
+    size: [30, 30],
+    fillColor: NerdBoard.penColor,
+    strokeColor: NerdBoard.colors.defaultBg,
+    strokeWidth: 2,
+    data: {
+        name: "PencilToolOptionsPenColor"
+    }
+});
+PencilToolOptionsPenColor.onMouseUp = function() {
+    PencilToolOptions.data.choosingPenColor = true;
+    PencilToolOptionsBGColor.sendToBack();
+};
+var PencilToolOptionsBGColor = new paper.Path.Rectangle({
+    center: new Point(PencilToolOptionsColors.bounds.topLeft.x - 25, PencilToolOptionsColors.bounds.topLeft.y + 30),
+    size: [30, 30],
+    fillColor: NerdBoard.bgColor,
+    strokeColor: NerdBoard.colors.defaultBg,
+    strokeWidth: 2,
+    data: {
+        name: "PencilToolOptionsBGColor"
+    }
+});
+PencilToolOptionsBGColor.onMouseUp = function() {
+    PencilToolOptions.data.choosingPenColor = false;
+    PencilToolOptionsPenColor.sendToBack();
+};
+var PencilToolOptionsRedBox = new paper.Path.Rectangle({
+    center: new Point(PencilToolOptionsColors.bounds.topLeft.x - 30, PencilToolOptionsColors.bounds.topLeft.y + 75),
+    size: [45, 30],
+    fillColor: NerdBoard.colors.defaultRed,
+    strokeColor: NerdBoard.colors.defaultBg,
+    strokeWidth: 2,
+    data: {
+        name: "PencilToolOptionsRed"
+    }
+});
+var PencilToolOptionsRedText = new PointText({
+    content: "0",
+    fontFamily: 'sans-serif',
+    fontSize: NerdBoard.textSize,
+    justification: 'center',
+    fillColor: NerdBoard.colors.defaultBg,
+    data: {
+        name: "PencilToolOptionsRedText"
+    }
+});
+PencilToolOptionsRedText.fitBounds(PencilToolOptionsRedBox.bounds);
+var PencilToolOptionsRed = new Group(PencilToolOptionsRedBox, PencilToolOptionsRedText);
+var PencilToolOptionsGreenBox = new paper.Path.Rectangle({
+    center: new Point(PencilToolOptionsColors.bounds.topLeft.x - 30, PencilToolOptionsColors.bounds.topLeft.y + 115),
+    size: [45, 30],
+    fillColor: NerdBoard.colors.defaultGreen,
+    strokeColor: NerdBoard.colors.defaultBg,
+    strokeWidth: 2,
+    data: {
+        name: "PencilToolOptionsGreenBox"
+    }
+});
+var PencilToolOptionsGreenText = new PointText({
+    content: "0",
+    fontFamily: 'sans-serif',
+    fontSize: NerdBoard.textSize,
+    justification: 'center',
+    fillColor: NerdBoard.colors.defaultBg,
+    data: {
+        name: "PencilToolOptionsGreenText"
+    }
+});
+PencilToolOptionsGreenText.fitBounds(PencilToolOptionsGreenBox.bounds);
+var PencilToolOptionsGreen = new Group(PencilToolOptionsGreenBox, PencilToolOptionsGreenText);
+var PencilToolOptionsBlueBox = new paper.Path.Rectangle({
+    center: new Point(PencilToolOptionsColors.bounds.topLeft.x - 30, PencilToolOptionsColors.bounds.topLeft.y + 155),
+    size: [45, 30],
+    fillColor: NerdBoard.colors.defaultBlue,
+    strokeColor: NerdBoard.colors.defaultBg,
+    strokeWidth: 2,
+    data: {
+        name: "PencilToolOptionsBlueBox"
+    }
+});
+var PencilToolOptionsBlueText = new PointText({
+    content: "0",
+    fontFamily: 'sans-serif',
+    fontSize: NerdBoard.textSize,
+    justification: 'center',
+    fillColor: NerdBoard.colors.defaultBg,
+    data: {
+        name: "PencilToolOptionsBlueText"
+    }
+});
+PencilToolOptionsBlueText.fitBounds(PencilToolOptionsBlueBox.bounds);
+var PencilToolOptionsBlue = new Group(PencilToolOptionsBlueBox, PencilToolOptionsBlueText);
 var PencilToolOptionsRailMarker = new Path.Circle({
     center: new Point(0,PencilToolOptionsColors.bounds.topLeft.y),
     radius: (NerdBoard.penStrokeRange + 30) / 4,
@@ -75,7 +169,7 @@ var PencilToolOptionsRailMarker = new Path.Circle({
     }
 });
 PencilToolOptionsRailMarker.onMouseDrag = function(event) {
-    var totDis = PencilToolOptionsColors.bounds.topRight.x - PencilToolOptionsColors.bounds.topLeft.x ;
+    var totDis = PencilToolOptionsColors.bounds.topRight.x - PencilToolOptionsColors.bounds.topLeft.x;
     var currDis = event.point.x - PencilToolOptionsColors.bounds.topLeft.x;
     var disRatio = currDis / totDis;
 
@@ -107,22 +201,47 @@ LineStyleView.position.y -= 25;
 LineStyleView.data = {
     name: "LineStyleView"
 };
-PencilToolOptionsColors.onMouseMove = function(event) {
+PencilToolOptionsColors.onMouseDown = function(event) {
+    PencilToolOptionsColors.data.dragging = false;
+};
+PencilToolOptionsColors.onMouseDrag = function(event) {
+    PencilToolOptionsColors.data.dragging = true;
     if(PencilToolOptions.data.out) {
-        NerdBoard.penColor = this.getAverageColor(event.point);
-        NerdBoardUICenter.fillColor =  NerdBoard.penColor;
-        PencilToolOptionsRailMarker.fillColor =  NerdBoard.penColor;
-        PencilToolOptionsRail.strokeColor =  NerdBoard.penColor;
+        var avgColor = this.getAverageColor(event.point);
+        PencilToolOptionsRedBox.fillColor = new Color(avgColor.red * 256, 0, 0);
+        PencilToolOptionsRedText.content = Math.round(avgColor.red * 256);
+        PencilToolOptionsGreenBox.fillColor = new Color(0, avgColor.green * 256, 0);
+        PencilToolOptionsGreenText.content = Math.round(avgColor.green * 256);
+        PencilToolOptionsBlueBox.fillColor = new Color(0, 0, avgColor.blue * 256);
+        PencilToolOptionsBlueText.content = Math.round(avgColor.blue * 256);
+        //console.log(avgColor.red);
+        //console.log(avgColor.green);
+        //console.log(avgColor.blue);
+        //console.log(avgColor);
+        if(PencilToolOptions.data.choosingPenColor) {
+            NerdBoard.penColor = avgColor;
+            NerdBoardUICenter.fillColor = NerdBoard.penColor;
+            PencilToolOptionsRailMarker.fillColor = NerdBoard.penColor;
+            PencilToolOptionsRail.strokeColor = NerdBoard.penColor;
+            PencilToolOptionsPenColor.fillColor = NerdBoard.penColor;
+        }
+        else {
+            NerdBoard.bgColor = avgColor;
+            PencilToolOptionsBGColor.fillColor = avgColor;
+            drawingLayer.children[0].fillColor = avgColor;
+        }
     }
 };
 PencilToolOptionsColors.onMouseUp = function(event) {
-    window.setTimeout(function() {
-        if(PencilToolIcon.data.optionsOut)
-            PencilToolIcon.data.closeOptions();
-    }, 10);
+    if(!PencilToolOptionsColors.data.dragging) {
+        window.setTimeout(function () {
+            if (PencilToolIcon.data.optionsOut)
+                PencilToolIcon.data.closeOptions();
+        }, 10);
+    }
 };
-var PencilToolOptions = new Group(PencilToolOptionsColors, LineStyleView);
-//PencilToolOptions.opacity = 0;
+var PencilToolOptions = new Group(PencilToolOptionsBGColor, PencilToolOptionsPenColor, PencilToolOptionsRed, PencilToolOptionsGreen, PencilToolOptionsBlue, PencilToolOptionsColors, LineStyleView);
+PencilToolOptions.opacity = 0;
 /*
  * PencilToolOptions UI
  * */
@@ -140,6 +259,15 @@ NerdBoardUI.position = paper.view.center;
 NerdBoardUI.data = {
     name: "NerdBoardUI",
     wasDragged: false,
+    animate: false,
+    destination: {},
+    delta: 2,
+    reset: function() {
+        this.animate = false;
+    },
+    setDest: function(range, angle) {
+        this.destination = NerdBoardUI.data.destinationPoint(range, angle);
+    },
     toolsOut: false,
     animatingTools: false,
     toolsStack: [7, 6, 5],
@@ -285,7 +413,7 @@ var mediumIcon = {x: 64,y: 64};
 var largeIcon = {x: 256,y: 288};
 
 var smallToolOptions = {x: 16,y: 16};
-var largeToolOptions = {x: 256,y: 288};
+var largeToolOptions = {x: 288,y: 288};
 
 UndoIcon.position.x -= 60;
 UndoIcon.position.y += 60;
@@ -385,6 +513,8 @@ PencilToolIcon.onMouseUp = function(event) {
  * */
 PencilToolOptions.data = {
     name: "PencilToolOptions",
+    dragging: false,
+    choosingPenColor: true,
     active: true,
     animate: false,
     out: false,
