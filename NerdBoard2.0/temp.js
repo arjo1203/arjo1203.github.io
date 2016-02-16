@@ -516,16 +516,23 @@ function createUI() {
             NerdBoard.activateDrawMode();
         }
     };
+    PencilToolIcon.onMouseDrag = function(event) {
+        event.preventDefault();
+        NerdBoardUI.position.x += event.delta.x;
+        NerdBoardUI.position.y += event.delta.y;
+    };
     PencilToolIcon.onMouseUp = function(event) {
         console.log(event);
-        if(NerdBoardUI.children[NerdBoardUI.children.length-1].data.name != "PencilToolIcon") {
-            NerdBoardUI.children[NerdBoardUI.children.length-1].data.active = false;
-            this.data.active = true;
-            NerdBoardUI.data.animateToolsIn();
-            NerdBoardUI.data.updateTool();
-        }
-        else {
-            PencilToolIcon.data.toggleOptions();
+        if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
+            if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "PencilToolIcon") {
+                NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+                this.data.active = true;
+                NerdBoardUI.data.animateToolsIn();
+                NerdBoardUI.data.updateTool();
+            }
+            else {
+                PencilToolIcon.data.toggleOptions();
+            }
         }
     };
     /*
@@ -593,12 +600,19 @@ function createUI() {
         }
     };
     EraserToolIcon.onMouseUp = function(event) {
-        if(NerdBoardUI.children[NerdBoardUI.children.length-1].data.name != "EraserToolIcon") {
-            NerdBoardUI.children[NerdBoardUI.children.length-1].data.active = false;
-            this.data.active = true;
-            NerdBoardUI.data.animateToolsIn();
-            NerdBoardUI.data.updateTool();
+        if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
+            if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "EraserToolIcon") {
+                NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+                this.data.active = true;
+                NerdBoardUI.data.animateToolsIn();
+                NerdBoardUI.data.updateTool();
+            }
         }
+    };
+    EraserToolIcon.onMouseDrag = function(event) {
+        event.preventDefault();
+        NerdBoardUI.position.x += event.delta.x;
+        NerdBoardUI.position.y += event.delta.y;
     };
     /*
      *   EraserToolIcon
@@ -634,6 +648,14 @@ function createUI() {
             this.data.active = true;
             NerdBoardUI.data.animateToolsIn();
             NerdBoardUI.data.updateTool();
+        }
+    };
+    MoveToolIcon.onMouseDrag = function(event) {
+        event.preventDefault();
+
+        if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
+            NerdBoardUI.position.x += event.delta.x;
+            NerdBoardUI.position.y += event.delta.y;
         }
     };
     /*
@@ -698,16 +720,23 @@ function createUI() {
             }
         }
     };
-    MenuIcon.onMouseDown = function(event) {
-        if(NerdBoardUI.children[NerdBoardUI.children.length-1].data.name != "MenuIcon") {
-            NerdBoardUI.children[NerdBoardUI.children.length-1].data.active = false;
-            this.data.active = true;
-            NerdBoardUI.data.animateToolsIn();
-            NerdBoardUI.data.updateTool();
+    MenuIcon.onMouseUp = function(event) {
+        if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
+            if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "MenuIcon") {
+                NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+                this.data.active = true;
+                NerdBoardUI.data.animateToolsIn();
+                NerdBoardUI.data.updateTool();
+            }
+            else {
+                MenuIcon.data.toggleOptions();
+            }
         }
-        else {
-            MenuIcon.data.toggleOptions();
-        }
+    };
+    MenuIcon.onMouseDrag = function(event) {
+        event.preventDefault();
+        NerdBoardUI.position.x += event.delta.x;
+        NerdBoardUI.position.y += event.delta.y;
     };
     /*
      *   MenuIcon
@@ -763,7 +792,7 @@ function createUI() {
 
 
     /*
-     *   ProjectIcon
+     *   UploadIcon
      * */
     UploadIcon.data = {
         name: "ProjectIcon",
@@ -802,7 +831,7 @@ function createUI() {
             false);
     };
     /*
-     *   ProjectIcon
+     *   UploadIcon
      * */
 
 
