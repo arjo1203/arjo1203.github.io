@@ -15,20 +15,29 @@ var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuI
 
 PencilToolIcon = new Raster('PencilIcon');
 PencilToolIcon.onLoad = function() {
+    UILayer.activate();
     PencilToolOptionsColors = new Raster('ColorIcon');
+    UILayer.activate();
     PencilToolOptionsColors.onLoad = function() {
+        UILayer.activate();
         EraserToolIcon = new Raster('EraserIcon');
         EraserToolIcon.onLoad = function() {
+            UILayer.activate();
             MoveToolIcon = new Raster('MoveIcon');
             MoveToolIcon.onLoad = function() {
+                UILayer.activate();
                 MenuIcon = new Raster('MenuIcon');
                 MenuIcon.onLoad = function() {
+                    UILayer.activate();
                     SaveIcon = new Raster('SaveIcon');
                     SaveIcon.onLoad = function() {
+                        UILayer.activate();
                         UploadIcon = new Raster('UploadIcon');
                         UploadIcon.onLoad = function() {
+                            UILayer.activate();
                             UndoIcon = new Raster('UndoIcon');
                             UndoIcon.onLoad = function() {
+                                UILayer.activate();
                                 TrashIcon = new Raster('TrashIcon');
                                 TrashIcon.onLoad = createUI;
                             };
@@ -271,6 +280,7 @@ function createUI() {
      * */
     var NerdBoardUI = new Group(TrashIcon, UndoIcon, UploadIcon, SaveIcon, PencilToolOptions, MenuIcon, MoveToolIcon, EraserToolIcon, NerdBoardUICenter, PencilToolIcon);
     NerdBoardUI.position = paper.view.center;
+    NerdBoardUI.bringToFront();
 //NerdBoardUI.selected = true;
     NerdBoardUI.data = {
         name: "NerdBoardUI",
@@ -545,6 +555,7 @@ function createUI() {
         }
     };
     PencilToolOptions.onMouseDown = function() {
+        console.log("hit");
         /*
          * NerdBoardUI deactivates the current tool onMouseDown
          * This will reset the active tool to draw after a color is choosen
@@ -828,7 +839,7 @@ function createUI() {
     document.addEventListener('touchmove', function(event) {
         event.preventDefault();
     }, false);
-//console.log(paper);
+console.log(paper);
 //console.log(PencilToolOptionsRailMarker);
 //console.log(PencilToolOptionsRailMarker.intersects(NerdBoardUICenter.position));
 }
