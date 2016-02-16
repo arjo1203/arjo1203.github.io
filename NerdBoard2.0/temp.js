@@ -10,6 +10,7 @@ UILayer.activate();
 
 
 var NerdBoardUI;
+var numOfImg = 9, numOfImgLoaded = 0;
 
 var PencilToolIcon = new Raster('PencilIcon');
 var PencilToolOptionsColors = new Raster('ColorIcon');
@@ -24,7 +25,16 @@ var UploadIcon = new Raster('UploadIcon');
 var UndoIcon = new Raster('UndoIcon');
 var TrashIcon = new Raster('TrashIcon');
 
-TrashIcon.image.onload = createUI;
+PencilToolIcon.image.onload = PencilToolOptionsColors.image.onload = EraserToolIcon.image.onload = MoveToolIcon.image.onload = MenuIcon.image.onload = SaveIcon.image.onload = UploadIcon.image.onload = UndoIcon.image.onload = TrashIcon.image.onload = function() {
+    numOfImgLoaded++;
+    syncImgLoading();
+};
+
+function syncImgLoading() {
+    if(numOfImgLoaded == numOfImg) {
+        createUI();
+    }
+}
 
 function createUI() {/*
  * NerdBoardUICenter is used to keep track of the center of the UI
