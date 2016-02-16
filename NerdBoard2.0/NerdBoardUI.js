@@ -536,6 +536,7 @@ function createUI() {
      *   PencilToolOptionsColors
      * */
     PencilToolOptions.data = makeIcon("PencilToolOptions", false, NerdBoard.Tools.tools.none);
+    PencilToolOptions.data.choosingPenColor = true;
     PencilToolOptions.onMouseDown = function () {
         event.preventDefault();
         /*
