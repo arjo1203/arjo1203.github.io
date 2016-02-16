@@ -662,10 +662,8 @@ function createUI() {
     };
     MoveToolIcon.onMouseDrag = function(event) {
         event.preventDefault();
-        if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
-            NerdBoardUI.position.x += event.delta.x;
-            NerdBoardUI.position.y += event.delta.y;
-        }
+        NerdBoardUI.position.x += event.delta.x;
+        NerdBoardUI.position.y += event.delta.y;
     };
     /*
      *   MoveToolIcon

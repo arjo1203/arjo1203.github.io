@@ -370,7 +370,7 @@ NerdBoard.Tools = window.onload = (function() {
                     if (touchHit) {
                         var touchItem = touchHit.item;
 
-                        if(touchItem.data.name !== 'bg') {
+                        if(touchItem.data.name !== 'BG') {
                             touchItem.remove();
                         }
                     }
@@ -480,14 +480,14 @@ NerdBoard.Tools = window.onload = (function() {
                         var touchParent = touchItem._parent;
                         var touchParentName = touchParent.data.name;
 
-                        if(touchParentName == 'drawingLayer') {
-                            if(touchItem.data.name !== 'BG') {
+                        //if(touchParentName == 'drawingLayer') {
+                        //    if(touchItem.data.name !== 'BG') {
                                 itemIndex = touchItem._index;
-                            }
-                        }
-                        else {
-                            itemIndex = touchParent._index;
-                        }
+                        //    }
+                        //}
+                        //else {
+                        //    itemIndex = touchParent._index;
+                        //}
 
                         //Track the newly created touch
                         var trackedTouch = {
@@ -514,16 +514,6 @@ NerdBoard.Tools = window.onload = (function() {
         var x = paperEvent.event.x,
             y = paperEvent.event.y;
 
-        if(selectingArea.data.selecting) {
-            var SW = selectingArea._segments[0],
-                NE = selectingArea._segments[2],
-                SE = selectingArea._segments[3];
-            SW.point = new Point({x: selectingArea.data.x0, y: y});
-            NE.point = new Point({x: x, y: selectingArea.data.y0});
-            SE.point = new Point({x: x, y: y});
-            showSelecting();
-        }
-
         if(paperEvent.event.type == 'mousemove') {
             currentTouchIndex = findTrackedTouch(0);
 
@@ -547,6 +537,16 @@ NerdBoard.Tools = window.onload = (function() {
                 }
             } else {
                 console.log('Mouse was not found!');
+            }
+
+            if(selectingArea.data.selecting) {
+                var SW = selectingArea._segments[0],
+                    NE = selectingArea._segments[2],
+                    SE = selectingArea._segments[3];
+                SW.point = new Point({x: selectingArea.data.x0, y: y});
+                NE.point = new Point({x: x, y: selectingArea.data.y0});
+                SE.point = new Point({x: x, y: y});
+                showSelecting();
             }
         }
 
