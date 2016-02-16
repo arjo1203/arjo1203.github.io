@@ -517,6 +517,7 @@ function createUI() {
         }
     };
     PencilToolIcon.onMouseUp = function(event) {
+        console.log(event);
         if(NerdBoardUI.children[NerdBoardUI.children.length-1].data.name != "PencilToolIcon") {
             NerdBoardUI.children[NerdBoardUI.children.length-1].data.active = false;
             this.data.active = true;
