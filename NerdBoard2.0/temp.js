@@ -19,7 +19,6 @@ PencilToolIcon.onLoad = function() {
     PencilToolOptionsColors.onLoad = function() {
         EraserToolIcon = new Raster('EraserIcon');
         EraserToolIcon.onLoad = function() {
-            console.log("made it!");
             MoveToolIcon = new Raster('MoveIcon');
             MoveToolIcon.onLoad = function() {
                 MenuIcon = new Raster('MenuIcon');
@@ -404,6 +403,7 @@ function createUI() {
      *   This handles deactivating the current tool when using the NerdBoardUI
      * */
     NerdBoardUI.onMouseDown = function(event) {
+        console.log(event);
         this.data.wasDragged = false;
         NerdBoard.Tools.tools.none.activate();
     };
