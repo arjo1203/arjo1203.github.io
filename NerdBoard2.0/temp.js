@@ -9,20 +9,18 @@ UILayer.activate();
 
 
 
+var PencilToolIcon = new Raster('icons/Pencil-icon.png');
+var PencilToolOptionsColors = new Raster('icons/Color-icon.jpg');
+var EraserToolIcon = new Raster('icons/Eraser-icon.png');
+var MoveToolIcon = new Raster('icons/Move-icon.png');
+var MenuIcon = new Raster('icons/Menu-icon.png');
+var SaveIcon = new Raster('icons/Save-icon.png');
+var UploadIcon = new Raster('icons/Upload-icon.png');
+//var ProjectIcon = new Raster('icons/Project-icon.png');
 
-var PencilToolIcon = new Raster('PencilIcon');
-var PencilToolOptionsColors = new Raster('ColorIcon');
-var EraserToolIcon = new Raster('EraserIcon');
-var MoveToolIcon = new Raster('MoveIcon');
-var MenuIcon = new Raster('MenuIcon');
-var SaveIcon = new Raster('SaveIcon');
-var UploadIcon = new Raster('UploadIcon');
-//var ProjectIcon = new Raster('ProjectIcon');
 
-
-var UndoIcon = new Raster('UndoIcon');
-var TrashIcon = new Raster('TrashIcon');
-
+var UndoIcon = new Raster('icons/Undo-Icon.png');
+var TrashIcon = new Raster('icons/Trash-icon.png');
 
 
 /*
@@ -158,8 +156,8 @@ var PencilToolOptionsBlueText = new PointText({
 PencilToolOptionsBlueText.fitBounds(PencilToolOptionsBlueBox.bounds);
 var PencilToolOptionsBlue = new Group(PencilToolOptionsBlueBox, PencilToolOptionsBlueText);
 var PencilToolOptionsRailMarker = new Path.Circle({
-    center: new Point(0,PencilToolOptionsColors.bounds.topLeft.y),
-    radius: (NerdBoard.penStrokeRange + 30) / 4,
+    center: new Point(0, PencilToolOptionsColors.bounds.topLeft.y),
+    radius: (NerdBoard.penStrokeRange + 15) / 4,
     fillColor: NerdBoard.penColor,
     strokeColor: NerdBoard.colors.defaultBg,
     strokeWidth: 2,
