@@ -413,7 +413,6 @@ function createUI() {
      *   This handles deactivating the current tool when using the NerdBoardUI
      * */
     NerdBoardUI.onMouseDown = function(event) {
-        console.log(event);
         this.data.wasDragged = false;
         NerdBoard.Tools.tools.none.activate();
     };
@@ -421,7 +420,8 @@ function createUI() {
         this.data.wasDragged = true;
     };
     NerdBoardUI.onMouseUp = function(event) {
-        NerdBoardUI.data.updateTool();
+        window.setTimeout(NerdBoardUI.data.updateTool, 10);
+        //NerdBoardUI.data.updateTool();
     };
     /*
      *   NerdBoardUI
@@ -555,7 +555,6 @@ function createUI() {
         }
     };
     PencilToolOptions.onMouseDown = function() {
-        console.log("hit");
         /*
          * NerdBoardUI deactivates the current tool onMouseDown
          * This will reset the active tool to draw after a color is choosen
