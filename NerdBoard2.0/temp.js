@@ -227,9 +227,11 @@ function createUI() {
         name: "LineStyleView"
     };
     PencilToolOptionsColors.onMouseDown = function(event) {
+        event.preventDefault();
         PencilToolOptionsColors.data.dragging = false;
     };
     PencilToolOptionsColors.onMouseDrag = function(event) {
+        event.preventDefault();
         PencilToolOptionsColors.data.dragging = true;
         if(PencilToolOptions.data.out) {
             var avgColor = this.getAverageColor(event.point);
@@ -258,6 +260,7 @@ function createUI() {
         }
     };
     PencilToolOptionsColors.onMouseUp = function(event) {
+        event.preventDefault();
         if(!PencilToolOptionsColors.data.dragging) {
             window.setTimeout(function () {
                 if (PencilToolIcon.data.optionsOut)
@@ -413,13 +416,16 @@ function createUI() {
      *   This handles deactivating the current tool when using the NerdBoardUI
      * */
     NerdBoardUI.onMouseDown = function(event) {
+        event.preventDefault();
         this.data.wasDragged = false;
         NerdBoard.Tools.tools.none.activate();
     };
     NerdBoardUI.onMouseDrag = function(event) {
+        event.preventDefault();
         this.data.wasDragged = true;
     };
     NerdBoardUI.onMouseUp = function(event) {
+        event.preventDefault();
         window.setTimeout(NerdBoardUI.data.updateTool, 10);
         //NerdBoardUI.data.updateTool();
     };
@@ -522,6 +528,7 @@ function createUI() {
         NerdBoardUI.position.y += event.delta.y;
     };
     PencilToolIcon.onMouseUp = function(event) {
+        event.preventDefault();
         console.log(event);
         if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
             if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "PencilToolIcon") {
@@ -563,6 +570,7 @@ function createUI() {
         }
     };
     PencilToolOptions.onMouseDown = function() {
+        event.preventDefault();
         /*
          * NerdBoardUI deactivates the current tool onMouseDown
          * This will reset the active tool to draw after a color is choosen
@@ -600,6 +608,7 @@ function createUI() {
         }
     };
     EraserToolIcon.onMouseUp = function(event) {
+        event.preventDefault();
         if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
             if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "EraserToolIcon") {
                 NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
@@ -643,6 +652,7 @@ function createUI() {
         }
     };
     MoveToolIcon.onMouseUp = function(event) {
+        event.preventDefault();
         if(NerdBoardUI.children[NerdBoardUI.children.length-1].data.name != "MoveToolIcon") {
             NerdBoardUI.children[NerdBoardUI.children.length-1].data.active = false;
             this.data.active = true;
@@ -652,7 +662,6 @@ function createUI() {
     };
     MoveToolIcon.onMouseDrag = function(event) {
         event.preventDefault();
-
         if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
             NerdBoardUI.position.x += event.delta.x;
             NerdBoardUI.position.y += event.delta.y;
@@ -721,6 +730,7 @@ function createUI() {
         }
     };
     MenuIcon.onMouseUp = function(event) {
+        event.preventDefault();
         if(!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
             if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "MenuIcon") {
                 NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
@@ -764,6 +774,7 @@ function createUI() {
         }
     };
     SaveIcon.onMouseDown = function() {
+        event.preventDefault();
         var link = document.createElement("a");
         var name = window.prompt("Please name your Image: ");
         if(name != null) {
@@ -809,6 +820,7 @@ function createUI() {
         }
     };
     UploadIcon.onMouseDown = function() {
+        event.preventDefault();
         var file = document.createElement('input');
 
         file.type = 'file';
@@ -839,9 +851,11 @@ function createUI() {
 
 
     UndoIcon.onMouseDown = function() {
+        event.preventDefault();
         NerdBoard.Tools.undo();
     };
     TrashIcon.onMouseUp = function(event) {
+        event.preventDefault();
         var c = confirm('Are you sure you want to clear the canvas?');
         if (c) {
             NerdBoardUI.data.beingUsed = false;
