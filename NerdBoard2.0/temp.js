@@ -10,33 +10,39 @@ UILayer.activate();
 
 
 var NerdBoardUI;
-var numOfImg = 9, numOfImgLoaded = 0;
 
-var PencilToolIcon = new Raster('PencilIcon');
-var PencilToolOptionsColors = new Raster('ColorIcon');
-var EraserToolIcon = new Raster('EraserIcon');
-var MoveToolIcon = new Raster('MoveIcon');
-var MenuIcon = new Raster('MenuIcon');
-var SaveIcon = new Raster('SaveIcon');
-var UploadIcon = new Raster('UploadIcon');
-//var ProjectIcon = new Raster('ProjectIcon');
+var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuIcon, SaveIcon, UploadIcon, UndoIcon, TrashIcon;
 
-
-var UndoIcon = new Raster('UndoIcon');
-var TrashIcon = new Raster('TrashIcon');
-
-PencilToolIcon.image.onload = PencilToolOptionsColors.image.onload = EraserToolIcon.image.onload = MoveToolIcon.image.onload = MenuIcon.image.onload = SaveIcon.image.onload = UploadIcon.image.onload = UndoIcon.image.onload = TrashIcon.image.onload = function() {
-    numOfImgLoaded++;
-    syncImgLoading();
+PencilToolIcon = new Raster('PencilIcon');
+PencilToolIcon.onLoad = function() {
+    PencilToolOptionsColors = new Raster('ColorIcon');
+    PencilToolOptionsColors.onLoad = function() {
+        EraserToolIcon = new Raster('EraserIcon');
+        EraserToolIcon.onLoad = function() {
+            console.log("made it!");
+            MoveToolIcon = new Raster('MoveIcon');
+            MoveToolIcon.onLoad = function() {
+                MenuIcon = new Raster('MenuIcon');
+                MenuIcon.onLoad = function() {
+                    SaveIcon = new Raster('SaveIcon');
+                    SaveIcon.onLoad = function() {
+                        UploadIcon = new Raster('UploadIcon');
+                        UploadIcon.onLoad = function() {
+                            UndoIcon = new Raster('UndoIcon');
+                            UndoIcon.onLoad = function() {
+                                TrashIcon = new Raster('TrashIcon');
+                                TrashIcon.onLoad = createUI;
+                            };
+                        }
+                    };
+                };
+            }
+        }
+    };
 };
 
-function syncImgLoading() {
-    if(numOfImgLoaded == numOfImg) {
-        createUI();
-    }
-}
-
-function createUI() {/*
+function createUI() {
+/*
  * NerdBoardUICenter is used to keep track of the center of the UI
  * NerdBoardUICenter is also used to toggle tools
  * */
