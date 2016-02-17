@@ -119,30 +119,8 @@ function createUI() {
     var PencilToolOptionsBlue = new Group(PencilToolOptionsBlueBox, PencilToolOptionsBlueText);
 
     var PencilToolOptionsRailMarker = makeCircle({x: 0, y: PencilToolOptionsColors.bounds.topLeft.y}, (NerdBoard.penStrokeRange + 15) / 4, NerdBoard.penColor, NerdBoard.colors.defaultBg, {name: "PencilToolOptionsRailMarker", radiusOffset: 30});
-    PencilToolOptionsRailMarker.onMouseDrag = function (event) {
-        var totDis = PencilToolOptionsColors.bounds.topRight.x - PencilToolOptionsColors.bounds.topLeft.x;
-        console.log(PencilToolOptionsColors.bounds.topRight);
-        console.log(PencilToolOptionsColors.bounds.topLeft);
-        console.log(totDis);
-        var currDis = event.point.x - PencilToolOptionsColors.bounds.topLeft.x;
-        console.log(currDis);
-        var disRatio = currDis / totDis;
-        console.log(disRatio);
-
-        if (disRatio <= .06) {
-            this.position.x = PencilToolOptionsColors.bounds.topLeft.x + (PencilToolOptionsRailMarker.bounds.width / 2);
-        }
-        else if (disRatio >= .9) {
-            this.position.x = PencilToolOptionsColors.bounds.topRight.x - (PencilToolOptionsRailMarker.bounds.width / 2);
-        }
-        else {
-            this.position.x = event.point.x;
-            NerdBoard.penStroke = Math.round(NerdBoard.penStrokeRange * disRatio);
-            PencilToolOptionsRail.strokeWidth = NerdBoard.penStroke;
-            var scaleMarker = (NerdBoard.penStrokeRange + PencilToolOptionsRailMarker.data.radiusOffset) * disRatio;
-            NerdBoardUI.data.scaleIconTo(PencilToolOptionsRailMarker, {x: scaleMarker, y: scaleMarker});
-        }
-    };
+    var PencilToolOptionsRailMarkerText = makeText("25", 20, "center", NerdBoard.colors.defaultBg, {name: "PencilToolOptionsRailMarkerText"});
+    PencilToolOptionsRailMarkerText.fitBounds(PencilToolOptionsRailMarker.bounds);
     var PencilToolOptionsRail = new Path({
         strokeColor: NerdBoard.penColor,
         strokeWidth: NerdBoard.penStroke,
@@ -151,8 +129,31 @@ function createUI() {
             name: "PencilToolOptionsRail"
         }
     });
+    PencilToolOptionsRailMarkerText.onMouseDrag = function (event) {
+        var totDis = PencilToolOptionsColors.bounds.topRight.x - PencilToolOptionsColors.bounds.topLeft.x;
+        var currDis = event.point.x - PencilToolOptionsColors.bounds.topLeft.x;
+        var disRatio = currDis / totDis;
+
+        if (disRatio <= .01) {
+            this.position.x = PencilToolOptionsColors.bounds.topLeft.x + (PencilToolOptionsRailMarker.bounds.width / 2);
+            PencilToolOptionsRailMarker.position.x = PencilToolOptionsColors.bounds.topLeft.x + (PencilToolOptionsRailMarker.bounds.width / 2);
+            NerdBoard.penStroke = 1;
+        }
+        else if (disRatio >= 1) {
+            this.position.x = PencilToolOptionsColors.bounds.topRight.x - (PencilToolOptionsRailMarker.bounds.width / 2);
+            PencilToolOptionsRailMarker.position.x = PencilToolOptionsColors.bounds.topRight.x - (PencilToolOptionsRailMarker.bounds.width / 2);
+            NerdBoard.penStroke = NerdBoard.penStrokeRange;
+        }
+        else {
+            this.position.x = event.point.x;
+            PencilToolOptionsRailMarker.position.x = event.point.x;
+            NerdBoard.penStroke = Math.round(NerdBoard.penStrokeRange * disRatio);
+            PencilToolOptionsRail.strokeWidth = NerdBoard.penStroke;
+        }
+        PencilToolOptionsRailMarkerText.content = NerdBoard.penStroke;
+    };
     PencilToolOptionsRail.add(PencilToolOptionsColors.bounds.topLeft, PencilToolOptionsColors.bounds.topRight);
-    var LineStyleView = new Group(PencilToolOptionsRail, PencilToolOptionsRailMarker);
+    var LineStyleView = new Group(PencilToolOptionsRail, PencilToolOptionsRailMarker, PencilToolOptionsRailMarkerText);
     LineStyleView.position.y -= 25;
     LineStyleView.data = {
         name: "LineStyleView"
@@ -163,17 +164,15 @@ function createUI() {
     //console.log(PencilToolOptionsColors.bounds.topRight);
     //console.log({point1: PencilToolOptionsColors.bounds.topLeft, point2: PencilToolOptionsColors.bounds.topRight});
     //LineStyleView.position.y -= 25;
-    ////LineStyleView.data = {
-    ////    name: "LineStyleView"
-    ////};
+    //LineStyleView.data = {
+    //    name: "LineStyleView"
+    //};
 
     PencilToolOptionsColors.onMouseDown = function (event) {
         event.preventDefault();
-        PencilToolOptionsColors.data.dragging = false;
     };
     PencilToolOptionsColors.onMouseDrag = function (event) {
         event.preventDefault();
-        PencilToolOptionsColors.data.dragging = true;
         if (PencilToolOptions.data.out) {
             var avgColor = this.getAverageColor(event.point);
             PencilToolOptionsRedBox.fillColor = new Color(avgColor.red * 256, 0, 0);
@@ -195,15 +194,6 @@ function createUI() {
                 drawingLayer.children[0].fillColor = avgColor;
             }
         }
-    };
-    PencilToolOptionsColors.onMouseUp = function (event) {
-        event.preventDefault();
-        //if (!PencilToolOptionsColors.data.dragging) {
-        //    window.setTimeout(function () {
-        //        if (PencilToolIcon.data.optionsOut)
-        //            PencilToolIcon.data.closeOptions();
-        //    }, 10);
-        //}
     };
     var PencilToolOptions = new Group(PencilToolOptionsBGColor, PencilToolOptionsPenColor, PencilToolOptionsRed, PencilToolOptionsGreen, PencilToolOptionsBlue, PencilToolOptionsColors, LineStyleView);
     PencilToolOptions.opacity = 0;
@@ -534,7 +524,7 @@ function createUI() {
      * */
     var smallIcon = {x: 32, y: 32};
     var smallMediumIcon = {x: 48, y: 48};
-    var mediumIcon = {x: 64, y: 64};
+    var mediumIcon = {x: 56, y: 56};
     var largeIcon = {x: 256, y: 288};
 
     var smallToolOptions = {x: 16, y: 16};

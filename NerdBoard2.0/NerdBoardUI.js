@@ -64,7 +64,6 @@ function createUI() {
     };
     NerdBoardUICenter.onMouseUp = function (event) {
         event.preventDefault();
-
         if (!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
             if (!NerdBoardUI.animatingTools) {//Prevents interrupting animation during an double clicks
                 NerdBoardUI.data.toggleTools();
@@ -122,8 +121,13 @@ function createUI() {
     var PencilToolOptionsRailMarker = makeCircle({x: 0, y: PencilToolOptionsColors.bounds.topLeft.y}, (NerdBoard.penStrokeRange + 15) / 4, NerdBoard.penColor, NerdBoard.colors.defaultBg, {name: "PencilToolOptionsRailMarker", radiusOffset: 30});
     PencilToolOptionsRailMarker.onMouseDrag = function (event) {
         var totDis = PencilToolOptionsColors.bounds.topRight.x - PencilToolOptionsColors.bounds.topLeft.x;
+        console.log(PencilToolOptionsColors.bounds.topRight);
+        console.log(PencilToolOptionsColors.bounds.topLeft);
+        console.log(totDis);
         var currDis = event.point.x - PencilToolOptionsColors.bounds.topLeft.x;
+        console.log(currDis);
         var disRatio = currDis / totDis;
+        console.log(disRatio);
 
         if (disRatio <= .06) {
             this.position.x = PencilToolOptionsColors.bounds.topLeft.x + (PencilToolOptionsRailMarker.bounds.width / 2);
@@ -153,14 +157,11 @@ function createUI() {
     LineStyleView.data = {
         name: "LineStyleView"
     };
-
     PencilToolOptionsColors.onMouseDown = function (event) {
         event.preventDefault();
-        PencilToolOptionsColors.data.dragging = false;
     };
     PencilToolOptionsColors.onMouseDrag = function (event) {
         event.preventDefault();
-        PencilToolOptionsColors.data.dragging = true;
         if (PencilToolOptions.data.out) {
             var avgColor = this.getAverageColor(event.point);
             PencilToolOptionsRedBox.fillColor = new Color(avgColor.red * 256, 0, 0);
@@ -181,15 +182,6 @@ function createUI() {
                 PencilToolOptionsBGColor.fillColor = avgColor;
                 drawingLayer.children[0].fillColor = avgColor;
             }
-        }
-    };
-    PencilToolOptionsColors.onMouseUp = function (event) {
-        event.preventDefault();
-        if (!PencilToolOptionsColors.data.dragging) {
-            window.setTimeout(function () {
-                if (PencilToolIcon.data.optionsOut)
-                    PencilToolIcon.data.closeOptions();
-            }, 10);
         }
     };
     var PencilToolOptions = new Group(PencilToolOptionsBGColor, PencilToolOptionsPenColor, PencilToolOptionsRed, PencilToolOptionsGreen, PencilToolOptionsBlue, PencilToolOptionsColors, LineStyleView);
@@ -234,7 +226,7 @@ function createUI() {
             NerdBoardUI.children[NerdBoardUI.data.toolsStack[0]].data.animate = true;
             NerdBoardUI.children[NerdBoardUI.data.toolsStack[1]].data.animate = true;
             NerdBoardUI.children[NerdBoardUI.data.toolsStack[2]].data.animate = true;
-            this.checkToolsOrder();
+            this.updateUI();
         },
         animateToolsOut: function () {
             this.animatingTools = false;
@@ -259,13 +251,12 @@ function createUI() {
                 this.animateToolsIn();
             }
         },
-        checkToolsOrder: function () {
+        updateUI: function () {
             var childLength = NerdBoardUI.children.length;
             var lastChild = NerdBoardUI.children[childLength - 1];
+
             if (!lastChild.data.active) {
                 this.scaleIconTo(lastChild, smallIcon);
-                if (lastChild.data.optionsOut)
-                    lastChild.data.closeOptions();
                 NerdBoardUICenter.bringToFront();
                 for (var i = childLength - NerdBoardUI.data.toolsStack.length - 2; i < childLength; i++) {
                     if (NerdBoardUI.children[i].data.active) {
@@ -274,12 +265,14 @@ function createUI() {
                     }
                 }
             }
+
+            if (lastChild.data.optionsOut)
+                lastChild.data.closeOptions();
         },
         updateTool: function () {
             var childLength = NerdBoardUI.children.length;
             for (var i = childLength - NerdBoardUI.data.toolsStack.length - 2; i < childLength; i++) {
                 if (NerdBoardUI.children[i].data.active) {
-                    //console.log(NerdBoardUI.children[i]);
                     NerdBoardUI.children[i].data.activateTool();
                     break;
                 }
@@ -359,8 +352,8 @@ function createUI() {
 
 
     /*
-    *   NerdBoardUI private functions
-    * */
+     *   NerdBoardUI private functions
+     * */
     function makeCircle(center, radius, fillColor, strokeColor, data) {
         return new Path.Circle({
             center: new Point(center.x, center.y),
@@ -462,6 +455,52 @@ function createUI() {
             }
         };
     }
+
+
+    function makeSlider(handleName, trackName, sliderName, sliderSize, sliderRange, trackStrokeWidth, fillColor, strokeColor) {
+        var handle = makeCircle({x: 0, y: sliderSize.point1.y}, (sliderRange.max + 15) / 4, fillColor, strokeColor, {name: handleName, value: sliderRange.max/2, radiusOffset: 30});
+        handle.onMouseDrag = function (event) {
+            var totDis = sliderSize.point2.x - sliderSize.point1.x;
+            console.log(sliderSize.point2);
+            console.log(sliderSize.point1);
+            console.log(totDis);
+            var currDis = event.point.x - sliderSize.point1.x;
+            console.log(currDis);
+            var disRatio = currDis / totDis;
+            console.log(disRatio);
+
+            if (disRatio <= .06) {
+                this.position.x = sliderSize.point1.x + (handle.bounds.width / 2);
+                this.data.value = sliderRange.min;
+            }
+            else if (disRatio >= .9) {
+                this.position.x = sliderSize.point2.x - (handle.bounds.width / 2);
+                this.data.value = sliderRange.max;
+            }
+            else {
+                this.position.x = event.point.x;
+                this.data.value = Math.round(sliderRange.max * disRatio);
+                console.log(this.data.value);
+            }
+        };
+        var track = new Path({
+            strokeColor: fillColor,
+            strokeWidth: trackStrokeWidth,
+            strokeCap: 'round',
+            data: {
+                name: trackName
+            }
+        });
+        console.log(sliderSize.point2);
+        console.log(sliderSize.point1);
+        track.add(sliderSize.point1, sliderSize.point2);
+        var slider = new Group(track, handle);
+        slider.data = {
+            name: sliderName
+        };
+
+        return slider;
+    }
     /*
      *   NerdBoardUI private functions
      * */
@@ -474,7 +513,7 @@ function createUI() {
      * */
     var smallIcon = {x: 32, y: 32};
     var smallMediumIcon = {x: 48, y: 48};
-    var mediumIcon = {x: 56, y: 56};
+    var mediumIcon = {x: 64, y: 64};
     var largeIcon = {x: 256, y: 288};
 
     var smallToolOptions = {x: 16, y: 16};
@@ -631,10 +670,6 @@ function createUI() {
             NerdBoardUI.data.scaleIconTo(SaveIcon, smallToolOptions);
             UploadIcon.data.animate = true;
             NerdBoardUI.data.scaleIconTo(UploadIcon, smallToolOptions);
-            window.setTimeout(function () {
-                SaveIcon.opacity = 0;
-                UploadIcon.opacity = 0;
-            }, 50);//Prevent displaying under other icons
         },
         openOptions: function () {
             this.optionsOut = true;
@@ -645,9 +680,7 @@ function createUI() {
                 UploadIcon.data.animate = true;
                 window.setTimeout(function () {
                     NerdBoardUI.data.scaleIconTo(SaveIcon, mediumIcon);
-                    SaveIcon.opacity = 1;
                     NerdBoardUI.data.scaleIconTo(UploadIcon, mediumIcon);
-                    UploadIcon.opacity = 1;
                 }, 20);//For animation
             }
         },
@@ -803,5 +836,11 @@ function createUI() {
     document.addEventListener('touchmove', function (event) {
         event.preventDefault();
     }, false);
+
+
+    drawingLayer.onMouseDown = function() {
+        event.preventDefault();
+        window.setTimeout(NerdBoardUI.data.updateUI, 10);
+    };
     //console.log(paper);
 }
