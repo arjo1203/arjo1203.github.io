@@ -206,7 +206,7 @@ function createUI() {
      *   NerdBoardUI will interface with NerdBoard
      * */
     var NerdBoardUI = new Group(TrashIcon, UndoIcon, UploadIcon, SaveIcon, PencilToolOptions, MenuIcon, MoveToolIcon, EraserToolIcon, NerdBoardUICenter, PencilToolIcon);
-    NerdBoardUI.position = paper.view.center;
+    NerdBoardUI.position = new Point(NerdBoard.width * .25, NerdBoard.height * .25);
     NerdBoardUI.bringToFront();
     //NerdBoardUI.selected = true;
     NerdBoardUI.data = {
@@ -474,7 +474,7 @@ function createUI() {
      * */
     var smallIcon = {x: 32, y: 32};
     var smallMediumIcon = {x: 48, y: 48};
-    var mediumIcon = {x: 64, y: 64};
+    var mediumIcon = {x: 56, y: 56};
     var largeIcon = {x: 256, y: 288};
 
     var smallToolOptions = {x: 16, y: 16};
