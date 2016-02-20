@@ -1,7 +1,6 @@
 /**
  * Created by Jose Araujo on 07/22/15.
  */
-
 paper.install(window);
 
 
@@ -10,12 +9,22 @@ paper.install(window);
 var NerdBoard = (function(wb) {
     wb.logo = $('#NerdLogo');
 
+    wb.size = {
+        width: window.innerWidth,
+        height: window.innerHeight
+    };
+
     wb.width = window.innerWidth;
     wb.height = window.innerHeight;
 
-    wb.canvas = $("#my-canvas");
-    wb.canvas[0].width = wb.width;
-    wb.canvas[0].height = wb.height;
+    wb.canvas = $("#my-canvas")[0];
+    wb.canvas.width = wb.width;
+    wb.canvas.height = wb.height;
+
+    wb.layers = {
+        drawing: {},
+        UI: {}
+    };
 
     wb.penStrokeRange = 50;
     wb.penStroke = 15;
@@ -60,11 +69,16 @@ var NerdBoard = (function(wb) {
     wb.pathName = 'defaultBg';
 
 
-    wb.getColorComponents = function(color) {
+    function createColor(r, g, b) {
+        return new Color(r / 255, g / 255, b / 255);
+    }
+
+
+    wb.getRGB = function(color) {
         var components = {
-            r: (Math.round(color._components[0] * 255)).toString(),
-            g: (Math.round(color._components[1] * 255)).toString(),
-            b: (Math.round(color._components[2] * 255)).toString()
+            r: (Math.round(color.red * 255)).toString(),
+            g: (Math.round(color.green * 255)).toString(),
+            b: (Math.round(color.blue * 255)).toString()
         };
 
         return components;
@@ -79,22 +93,12 @@ var NerdBoard = (function(wb) {
 
 
     wb.setBg = function(color){
-        wb.bgColor = wb.colors[color];
-        NerdBoard.Tools.changeBgColor();
+        wb.bgColor = color;
+        this.layers.drawing.children[0].fillColor = color;
     };
 
     wb.setColor = function (color) {
-        wb.pathName = color;
-        wb.penColor = wb.colors[color];
-
-        var penColor = wb.getColorComponents(NerdBoard.penColor);
-        NerdBoard.styleEle(NerdBoard.UIHandler.leftBar.internalUIS.toolsUI.btn, penColor);
-        NerdBoard.styleEle(NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.btnIcon, penColor);
-
-        $('#penWidthSlider .slider-selection').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
-        $('#penWidthSlider .slider-handle').css("background", "rgb(" + penColor.r + ',' + penColor.g + ',' + penColor.b + ")");
-
-        NerdBoard.UIHandler.leftBar.internalUIS.drawUI.internalUIS.colorUI.close();
+        wb.penColor = color;
     };
 
     wb.setPenWidth = function(width) {
@@ -129,6 +133,11 @@ var NerdBoard = (function(wb) {
         wb.activeMode = 'theme';
 
         NerdBoard.UIHandler.leftBar.toolSelected();
+    };
+
+    wb.activateNone = function() {
+        wb.activeMode = 'None';
+        NerdBoard.Tools.tools.none.activate();
     };
 
     wb.activateDrawMode = function() {
@@ -169,6 +178,27 @@ var NerdBoard = (function(wb) {
         var min = d.getMinutes();
         var sec = d.getSeconds();
         return (year + "-" + month + "-" + day + "_" + hour + ":" + min + ":" + sec);
+    };
+
+    wb.saveAsImg = function() {
+        var link = document.createElement("a");
+        var name = window.prompt("Please name your Image: ");
+        if (name != null) {
+            NerdBoardUI.opacity = 0;
+            view.draw();
+
+            link.href = NerdBoard.canvas.toDataURL('image/png');
+            link.download = name;
+            link.click();
+
+            NerdBoardUI.opacity = 1;
+            view.draw();
+
+            window.alert("Image was saved!");
+        }
+        else {
+            window.alert("Image was NOT saved!!");
+        }
     };
 
     wb.saveAsWorkSpace = function() {
@@ -218,26 +248,141 @@ var NerdBoard = (function(wb) {
         false);
     };
 
+    wb.setUp = function() {
+        paper.setup(NerdBoard.canvas);
+        this.layers.drawing = new Layer();
+        this.layers.drawing.name = "drawingLayer";
+        this.layers.UI = new Layer();
+        this.layers.UI.name = "UILayer";
+        this.makeBG();
+    };
 
-    function onWindowResize() {
-        NerdBoard.width = window.innerWidth;
-        NerdBoard.height = window.innerHeight;
 
-        NerdBoard.Tools.resizeBg();
+    wb.undo = function() {
+        var children = NerdBoard.layers.drawing.children;
+        //console.log(children);
+        var lastIndex = children.length - 1;
+
+        if(children.length > 2){//Prevents removing BG and BGImg
+            lastItem = children[lastIndex];
+            lastItemClass = children[lastIndex].__proto__._class;
+
+            if(lastItemClass == "Group") {
+                var groupLength = lastItem.children.length;
+
+                if(groupLength == 1) {
+                    lastItem.remove();
+                }
+
+                if(groupLength > 1) {
+                    lastItem.children[groupLength - 1].remove();
+                }
+            }
+
+            if(lastItemClass == "Path") {
+                lastItem.remove();
+            }
+
+            if(lastItemClass == "Raster") {
+                lastItem.remove();
+            }
+        }
         paper.view.draw();
-    }
-
-    window.addEventListener('resize', onWindowResize, false);
-
-    $(window).bind('beforeunload', function() {
-        return "Save your drawing before leaving!!";
-    });
+    };
 
 
-    function createColor(r, g, b) {
-        return new Color(r / 255, g / 255, b / 255);
-    }
+    wb.clear = function() {
+        while(NerdBoard.layers.drawing.children.length > 1){
+            NerdBoard.layers.drawing.children[NerdBoard.layers.drawing.children.length - 1].remove();
+        }
+    };
+
+    wb.makeBG = function() {
+        this.layers.drawing.activate();
+        new Path.Rectangle({
+            center: view.center,
+            size: [this.width, this.height],
+            fillColor: this.bgColor,
+            data: {
+                name: "BG"
+            }
+        });
+        new Raster({
+            data: {
+                name: "BGImg"
+            }
+        });
+    };
+
+    wb.resizeBG = function() {
+        var bg = NerdBoard.layers.drawing.children[0];
+        var SW = bg._segments[0],
+            NW = bg._segments[1],
+            NE = bg._segments[2],
+            SE = bg._segments[3];
+
+        NW._point._x = 0;
+        NW._point._y = 0;
+
+        SW._point._x = 0;
+        SW._point._y = this.size.height;
+
+        NE._point._x = this.size.width;
+        NE._point._y = 0;
+
+        SE._point._x = this.size.width;
+        SE._point._y = this.size.height;
+    };
+
+    wb.setBGImg = function() {
+        var file = document.createElement('input');
+        file.type = 'file';
+        file.click();
+        file.addEventListener('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    wb.layers.drawing.activate();
+                    wb.layers.drawing.children[1].source = e.target.result;
+                    wb.layers.drawing.children[1].position = view.center;
+                    wb.scaleImg(wb.layers.drawing.children[1], wb.size);
+                };
+                reader.readAsDataURL(file.files[0]);
+            },
+            false);
+    };
+
+    wb.scaleImg = function (icon, dimensions) {
+        var xScale = dimensions.width / icon.bounds.width;
+        var yScale = dimensions.height / icon.bounds.height;
+        icon.scale(xScale, yScale);
+    };
+
+
+    wb.onWindowResize = function() {
+        wb.size = {width: Math.round(window.innerWidth), height: Math.round(window.innerHeight)};
+        wb.resizeBG();
+        wb.scaleImg(wb.layers.drawing.children[1], wb.size);
+        wb.layers.drawing.children[1].position = view.center;
+        view.draw();
+    };
 
 
     return wb;
 }(NerdBoard || {}));
+NerdBoard.setUp();
+
+
+
+
+
+
+$(window).bind('beforeunload', function() {
+    return "Save your drawing before leaving!!";
+});
+window.addEventListener('resize', NerdBoard.onWindowResize, false);
+/**
+ * Prevents default page scrolling action; fixes iOS 8 drawing bug.
+ */
+document.addEventListener('touchmove', function (event) {
+    event.preventDefault();
+}, false);
