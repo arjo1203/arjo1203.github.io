@@ -14,9 +14,6 @@ var NerdBoard = (function(wb) {
         height: window.innerHeight
     };
 
-    wb.width = window.innerWidth;
-    wb.height = window.innerHeight;
-
     wb.canvas = $("#my-canvas")[0];
     wb.canvas.width = wb.width;
     wb.canvas.height = wb.height;
@@ -301,7 +298,7 @@ var NerdBoard = (function(wb) {
         this.layers.drawing.activate();
         new Path.Rectangle({
             center: view.center,
-            size: [this.width, this.height],
+            size: [this.size.width, this.size.height],
             fillColor: this.bgColor,
             data: {
                 name: "BG"

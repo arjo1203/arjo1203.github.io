@@ -266,7 +266,8 @@ NerdBoard.Tools = window.onload = (function() {
             var mouseHit = NerdBoard.layers.drawing.hitTest(paperEvent.point, hitOptions);
             if (mouseHit) {
                 var mouseItem = mouseHit.item;
-                if(mouseItem.data.name != "BG" || mouseItem.data.name != "BGImg") {
+                console.log(mouseItem.data.name);
+                if(mouseItem.index > 1) {//Prevent erasing BG and BGImg
                     mouseItem.remove();
                 }
             }
@@ -288,7 +289,7 @@ NerdBoard.Tools = window.onload = (function() {
                     if (touchHit) {
                         var touchItem = touchHit.item;
 
-                        if(mouseItem.data.name != "BG" || mouseItem.data.name != "BGImg") {
+                        if(touchItem.index > 1) {//Prevent erasing BG and BGImg
                             touchItem.remove();
                         }
 
@@ -333,7 +334,7 @@ NerdBoard.Tools = window.onload = (function() {
                 var mouseHit = NerdBoard.layers.drawing.hitTest(point, hitOptions);
                 if (mouseHit) {
                     var mouseItem = mouseHit.item;
-                    if(mouseItem.data.name != "BG" || mouseItem.data.name != "BGImg") {
+                    if(mouseItem.index > 1) {//Prevent erasing BG and BGImg
                         mouseItem.remove();
                     }
                 }
@@ -369,8 +370,7 @@ NerdBoard.Tools = window.onload = (function() {
 
                     if (touchHit) {
                         var touchItem = touchHit.item;
-
-                        if(mouseItem.data.name != "BG" || mouseItem.data.name != "BGImg") {
+                        if(touchItem.index > 1) {//Prevent erasing BG and BGImg
                             touchItem.remove();
                         }
                     }
@@ -432,7 +432,7 @@ NerdBoard.Tools = window.onload = (function() {
             if (mouseHit) {
                 var mouseItem = mouseHit.item;
                 itemIndex = mouseItem.index;
-                if(mouseItem.data.name == "BG" || mouseItem.data.name == "BGImg") {
+                if(mouseItem.index <= 1) {
                     selectingArea = new paper.Path.Rectangle({
                         center: new Point({x: x + 1,y: y + 1}),
                         size: [2, 2],
@@ -525,8 +525,10 @@ NerdBoard.Tools = window.onload = (function() {
                     currentItem = NerdBoard.layers.drawing.children[currentTouch.itemIndex];
 
                     //Creates a paper point based on the currentTouch position.
-                    point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
-                    currentItem.position = point;
+                    //point = new Point({x: currentTouch.pageX, y: currentTouch.pageY});
+                    //currentItem.position= point;
+                    currentItem.position.x += paperEvent.delta.x;
+                    currentItem.position.y += paperEvent.delta.y;
 
                     // Update the trackedTouch record.
                     currentTouch.pageX = x;
@@ -722,12 +724,12 @@ NerdBoard.Tools = window.onload = (function() {
             }
         }
 
-        var state = $('#drawAfterCheckbox')[0].checked;
-
-        if(state) {
-            NerdBoard.activateDrawMode();
-            toolIcon.attr('src', 'icons/pencil.png');
-        }
+        //var state = $('#drawAfterCheckbox')[0].checked;
+        //
+        //if(state) {
+        //    NerdBoard.activateDrawMode();
+        //    toolIcon.attr('src', 'icons/pencil.png');
+        //}
     };
     wbTools.tools.shape.minDistance = 0;
     wbTools.tools.shape.maxDistance = 2;
@@ -773,7 +775,7 @@ NerdBoard.Tools = window.onload = (function() {
     function showSelecting() {
         for(var i = 0; i < NerdBoard.layers.drawing.children.length - 1; i++) {
             //console.log(NerdBoard.layers.drawing.children[i].position.isInside(selectingArea));
-            if(NerdBoard.layers.drawing.children[i].position.isInside(selectingArea)) {
+            if (NerdBoard.layers.drawing.children[i].position.isInside(selectingArea)) {
                 NerdBoard.layers.drawing.children[i].selected = true;
             }
             else {

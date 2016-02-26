@@ -94,6 +94,7 @@ function createUI() {
     };
     var PencilToolOptionsPenBGPicker = new Group(PencilToolOptionsBGColor, PencilToolOptionsPenColor);
 
+
     //RGB values
     var PencilToolOptionsRedBox = makeRect({
         x: PencilToolOptionsColors.bounds.topLeft.x - 30,
@@ -231,7 +232,7 @@ function createUI() {
      *   NerdBoardUI will interface with NerdBoard
      * */
     NerdBoardUI = new Group(TrashIcon, UndoIcon, UploadIcon, SaveIcon, PencilToolOptions, MenuIcon, MoveToolIcon, EraserToolIcon, NerdBoardUICenter, PencilToolIcon);
-    NerdBoardUI.position = new Point(NerdBoard.width * .25, NerdBoard.height * .25);
+    NerdBoardUI.position = new Point(NerdBoard.size.width * .25, NerdBoard.size.height * .25);
     NerdBoardUI.bringToFront();
     //NerdBoardUI.selected = true;
     NerdBoardUI.data = {
@@ -669,7 +670,9 @@ function createUI() {
         event.preventDefault();
         if (PencilToolOptions.data.out) {
             var avgColor = this.getAverageColor(event.point);
-            this.data.updateColorPickingUI(avgColor);
+            if(avgColor) {
+                this.data.updateColorPickingUI(avgColor);
+            }
         }
     };
     PencilToolOptionsColors.onMouseUp = function (event) {
