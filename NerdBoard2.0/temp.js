@@ -31,13 +31,9 @@ PencilToolIcon.onLoad = function() {
                                 NerdBoard.layers.UI.activate();
                                 TrashIcon = new Raster('TrashIcon');
                                 TrashIcon.onLoad = function() {
-                                    BGImg = new Raster('BGImgIcon');
-                                    BGImg.onLoad = function() {
-                                        BGImg.position.x -= 100;
-                                        NerdBoard.layers.UI.activate();
-                                        GridIcon = new Raster('GridIcon');
-                                        GridIcon.onLoad = createUI;
-                                    }
+                                    NerdBoard.layers.UI.activate();
+                                    GridIcon = new Raster('GridIcon');
+                                    GridIcon.onLoad = createUI;
                                 };
                             };
                         }
@@ -854,10 +850,10 @@ function createUI() {
     /*
      *   BGImg
      * */
-    BGImg.onMouseDown = function () {
-        event.preventDefault();
-        NerdBoard.setBGImg();
-    };
+    //BGImg.onMouseDown = function () {
+    //    event.preventDefault();
+    //    NerdBoard.setBGImg();
+    //};
     /*
      *   BGImg
      * */

@@ -631,7 +631,7 @@ NerdBoard.Tools = window.onload = (function() {
                 }
             }
         }
-        
+
         if(selectingArea.data.selecting) {
             selectingArea.remove();
         }
