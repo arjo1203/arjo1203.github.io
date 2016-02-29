@@ -1,5 +1,5 @@
 var NerdBoardUI;
-var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuIcon, SaveIcon, UploadIcon, UndoIcon, TrashIcon, BGImg;
+var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuIcon, SaveIcon, UploadIcon, UndoIcon, TrashIcon, BGImg, GridIcon;
 
 
 
@@ -32,7 +32,11 @@ PencilToolIcon.onLoad = function() {
                                 TrashIcon = new Raster('TrashIcon');
                                 TrashIcon.onLoad = function() {
                                     BGImg = new Raster('BGImgIcon');
-                                    BGImg.onLoad = createUI;
+                                    BGImg.onLoad = function() {
+                                        NerdBoard.layers.UI.activate();
+                                        GridIcon = new Raster('GridIcon');
+                                        GridIcon.onLoad = createUI;
+                                    }
                                 };
                             };
                         }
@@ -80,7 +84,7 @@ function createUI() {
     PencilToolOptionsPenColor.onMouseUp = function () {
         PencilToolOptions.data.choosingPenColor = true;
         PencilToolOptionsBGColor.sendToBack();
-        BGImg.opacity = 0;
+        PencilToolOptionsBGOptions.opacity = 0;
     };
 
     var PencilToolOptionsBGColor = makeRect({
@@ -90,7 +94,7 @@ function createUI() {
     PencilToolOptionsBGColor.onMouseUp = function () {
         PencilToolOptions.data.choosingPenColor = false;
         PencilToolOptionsPenColor.sendToBack();
-        BGImg.opacity = 1;
+        PencilToolOptionsBGOptions.opacity = 1;
     };
     var PencilToolOptionsPenBGPicker = new Group(PencilToolOptionsBGColor, PencilToolOptionsPenColor);
 
@@ -210,6 +214,9 @@ function createUI() {
         name: "PencilToolOptionsPenWidthSlider"
     };
 
+    //var
+    var PencilToolOptionsBGOptions = new Group(BGImg, GridIcon);
+
 
     //var PencilToolOptionsPenWidthSlider = makeSlider("PenStrokeHandle", "PenStrokeTrack", "PenStrokeSlider", {point1: PencilToolOptionsColors.bounds.topLeft, point2: PencilToolOptionsColors.bounds.topRight}, {min:0, max: NerdBoard.penStrokeRange}, NerdBoard.penStrokeRange/2, NerdBoard.penColor, NerdBoard.colors.defaultBg);
     //console.log(PencilToolOptionsColors.bounds.topRight);
@@ -218,7 +225,7 @@ function createUI() {
     //PencilToolOptionsPenWidthSlider.data = {
     //    name: "PencilToolOptionsPenWidthSlider"
     //};
-    var PencilToolOptions = new Group(BGImg, PencilToolOptionsUsedColorsStack, PencilToolOptionsBlack, PencilToolOptionsWhite, PencilToolOptionsPenBGPicker, PencilToolOptionsRGB, PencilToolOptionsColors, PencilToolOptionsPenWidthSlider);
+    var PencilToolOptions = new Group(PencilToolOptionsBGOptions, PencilToolOptionsUsedColorsStack, PencilToolOptionsBlack, PencilToolOptionsWhite, PencilToolOptionsPenBGPicker, PencilToolOptionsRGB, PencilToolOptionsColors, PencilToolOptionsPenWidthSlider);
     PencilToolOptions.opacity = 0;
     /*
      * PencilToolOptions UI
@@ -555,14 +562,15 @@ function createUI() {
     var smallToolOptions = {width: 16, height: 16};
     var largeToolOptions = {width: 460, height: 360};
 
-    BGImg.opacity = 0;
+    PencilToolOptionsBGOptions.opacity = 0;
 
     UndoIcon.position.x -= 60;
     UndoIcon.position.y += 60;
     TrashIcon.position.x -= 20;
     TrashIcon.position.y += 75;
-    BGImg.position.x = PencilToolOptionsColors.bounds.bottomLeft.x + 30;
-    BGImg.position.y = PencilToolOptionsColors.bounds.bottomLeft.y + 30;
+    PencilToolOptionsBGOptions.position.x = PencilToolOptionsColors.bounds.bottomLeft.x + 25;
+    PencilToolOptionsBGOptions.position.y = PencilToolOptionsColors.bounds.bottomLeft.y + 30;
+    GridIcon.position.x += 60;
 
     NerdBoard.scaleImg(PencilToolIcon, mediumIcon);
     NerdBoard.scaleImg(PencilToolOptions, smallIcon);
@@ -574,7 +582,8 @@ function createUI() {
     NerdBoard.scaleImg(UploadIcon, mediumIcon);
     NerdBoard.scaleImg(UndoIcon, smallMediumIcon);
     NerdBoard.scaleImg(TrashIcon, smallMediumIcon);
-    NerdBoard.scaleImg(BGImg, {width: 4, height: 4});
+    NerdBoard.scaleImg(BGImg, {width: 3, height: 3});
+    NerdBoard.scaleImg(GridIcon, {width: 3, height: 3});
     /*
      *   Positioning and scaling icons
      * */
@@ -884,6 +893,23 @@ function createUI() {
     /*
      *   TrashIcon
      * */
+
+
+
+    /*
+    *   GridIcon
+    * */
+    GridIcon.onMouseDown = function() {
+        if(NerdBoard.layers.drawing.children[0].children[1].opacity == 1) {
+            NerdBoard.layers.drawing.children[0].children[1].opacity = 0;
+        }
+        else {
+            NerdBoard.layers.drawing.children[0].children[1].opacity = 1;
+        }
+    };
+    /*
+    *   GridIcon
+    * */
 
 
 

@@ -7,16 +7,19 @@ paper.install(window);
 
 // Main Javascript functions and code.
 var NerdBoard = (function(wb) {
-    wb.logo = $('#NerdLogo');
-
+    console.log(window);
     wb.size = {
-        width: window.innerWidth,
+        width: window.outerWidth,
         height: window.innerHeight
+    };
+    wb.center = {
+        x: Math.round(wb.size.width * .5) ,
+        y: Math.round(wb.size.height * .5)
     };
 
     wb.canvas = $("#my-canvas")[0];
-    wb.canvas.width = wb.width;
-    wb.canvas.height = wb.height;
+    wb.canvas.width = wb.size.width;
+    wb.canvas.height = wb.size.height;
 
     wb.layers = {
         drawing: {},
@@ -61,8 +64,8 @@ var NerdBoard = (function(wb) {
         slateBlue: createColor(108, 199, 225),
         slateYellow: createColor(241, 196, 15)
     };
-    wb.penColor = wb.colors.defaultBlack;
-    wb.bgColor = wb.colors.nightBlack;
+    wb.penColor = wb.colors.defaultBg;
+    wb.bgColor = wb.colors.defaultBlack;
     wb.pathName = 'defaultBg';
 
 
@@ -296,39 +299,73 @@ var NerdBoard = (function(wb) {
 
     wb.makeBG = function() {
         this.layers.drawing.activate();
-        new Path.Rectangle({
-            center: view.center,
-            size: [this.size.width, this.size.height],
+        var bgColor = new Path.Rectangle({
+            center: this.center,
+            size: [NerdBoard.size.width, NerdBoard.size.height],
             fillColor: this.bgColor,
             data: {
-                name: "BG"
+                name: "bgColor"
             }
         });
-        new Raster({
-            data: {
-                name: "BGImg"
-            }
-        });
+        var grid = this.makeGrid({width: 20, height: 20}, "green");
+        grid.data = {
+            name: "bgGrid"
+        };
+        var BG = new Group(bgColor, grid);
+        BG.data = {
+            name: "BG"
+        };
     };
 
-    wb.resizeBG = function() {
-        var bg = NerdBoard.layers.drawing.children[0];
-        var SW = bg._segments[0],
-            NW = bg._segments[1],
-            NE = bg._segments[2],
-            SE = bg._segments[3];
+    wb.makeGrid = function(gridSize, gridColor) {
+        var numOfHozLines = Math.round(NerdBoard.size.width / gridSize.width);//How many grid line there will be vertically
+        var numOfVertLines = Math.round(NerdBoard.size.height / gridSize.height);//How many grid line there will be vertically
 
-        NW._point._x = 0;
-        NW._point._y = 0;
+        //build the frame of the grid
+        var topLeft = new Point(0,0);
+        var bottomLeft = new Point(0, NerdBoard.size.height);
+        var topRight = new Point(NerdBoard.size.width, 0);
+        var bottomRight = new Point(NerdBoard.size.width, NerdBoard.size.height);
 
-        SW._point._x = 0;
-        SW._point._y = this.size.height;
+        //Array to hold all lines
+        var grid = new Group();
 
-        NE._point._x = this.size.width;
-        NE._point._y = 0;
+        //Create the frame of the grid and push them into an array, they will be the first four elements
+        //This allow to change the color of the frame very easy
+        var path = new Path.Line(topRight,topLeft);
+        grid.addChild(path);
+        var path2 = new Path.Line(bottomRight,bottomLeft);
+        grid.addChild(path2);
+        var path3 = new Path.Line(topRight,bottomRight);
+        grid.addChild(path3);
+        var path4 = new Path.Line(topLeft,bottomLeft);
+        grid.addChild(path4);
 
-        SE._point._x = this.size.width;
-        SE._point._y = this.size.height;
+        //Creates the vertical grid lines
+        for(var i = 0; i < numOfHozLines; i++){
+            var top = new Point(gridSize.width + gridSize.width * i, 0);
+            var bottom = new Point(gridSize.width + gridSize.width * i, NerdBoard.size.height);
+            var line = new Path.Line(top,bottom);
+            line.strokeWidth = .8;
+            grid.addChild(line);
+        }
+
+        //Creates the horizontal grid lines
+        for(var i = 0; i < numOfVertLines; i++){
+            var top2 = new Point(0, gridSize.height + gridSize.height * i);
+            var bottom2 = new Point(NerdBoard.size.width, gridSize.height + gridSize.height * i);
+            var line2 = new Path.Line(top2,bottom2);
+            line2.strokeWidth = .8;
+            grid.addChild(line2);
+        }
+        grid.strokeColor = gridColor;
+
+        grid.opacity = 0;
+        return grid;
+    };
+
+    wb.setChildrenColor = function(parent, color) {
+        parent.strokeColor = color;
     };
 
     wb.setBGImg = function() {
@@ -356,10 +393,10 @@ var NerdBoard = (function(wb) {
 
 
     wb.onWindowResize = function() {
-        wb.size = {width: Math.round(window.innerWidth), height: Math.round(window.innerHeight)};
-        wb.resizeBG();
-        wb.scaleImg(wb.layers.drawing.children[1], wb.size);
-        wb.layers.drawing.children[1].position = view.center;
+        //wb.size = {width: Math.round(window.innerWidth), height: Math.round(window.innerHeight)};
+        //wb.resizeBG();
+        //wb.scaleImg(wb.layers.drawing.children[1], wb.size);
+        //wb.layers.drawing.children[1].position = view.center;
         view.draw();
     };
 
@@ -376,7 +413,7 @@ NerdBoard.setUp();
 $(window).bind('beforeunload', function() {
     return "Save your drawing before leaving!!";
 });
-window.addEventListener('resize', NerdBoard.onWindowResize, false);
+//window.addEventListener('resize', NerdBoard.onWindowResize, false);
 /**
  * Prevents default page scrolling action; fixes iOS 8 drawing bug.
  */
