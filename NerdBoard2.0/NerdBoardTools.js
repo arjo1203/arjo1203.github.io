@@ -596,9 +596,9 @@ NerdBoard.Tools = window.onload = (function() {
             var SW = selectingArea._segments[0],
                 NE = selectingArea._segments[2],
                 SE = selectingArea._segments[3];
-            SW.point = new Point({x: selectingArea.data.x0, y: y});
-            NE.point = new Point({x: x, y: selectingArea.data.y0});
-            SE.point = new Point({x: x, y: y});
+            SW.point = new Point({x: selectingArea.data.x0, y: paperEvent.point.y});
+            NE.point = new Point({x: paperEvent.point.x, y: selectingArea.data.y0});
+            SE.point = new Point({x: paperEvent.point.x, y: paperEvent.point.y});
             showSelecting();
         }
     };
