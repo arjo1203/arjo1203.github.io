@@ -305,12 +305,12 @@ var NerdBoard = (function(wb) {
             size: [NerdBoard.size.width, NerdBoard.size.height],
             fillColor: this.bgColor,
             data: {
-                name: "bgColor"
+                name: "BG"
             }
         });
         var grid = this.makeGrid({width: 24, height: 24}, "green");
         grid.data = {
-            name: "bgGrid"
+            name: "BG"
         };
         var BG = new Group(bgColor, grid);
         BG.data = {
@@ -334,8 +334,10 @@ var NerdBoard = (function(wb) {
         //Create the frame of the grid and push them into an array, they will be the first four elements
         //This allow to change the color of the frame very easy
         var path = new Path.Line(topLeft,topRight);
+        path.data.name = "BG";
         grid.addChild(path);
         var path4 = new Path.Line(topLeft,bottomLeft);
+        path4.data.name = "BG";
         grid.addChild(path4);
 
         //Creates the vertical grid lines
@@ -344,6 +346,7 @@ var NerdBoard = (function(wb) {
             var bottom = new Point(gridSize.width + gridSize.width * i, NerdBoard.size.height);
             var line = new Path.Line(top,bottom);
             line.strokeWidth = .8;
+            line.data.name = "BG";
             grid.addChild(line);
         }
 
@@ -353,6 +356,7 @@ var NerdBoard = (function(wb) {
             var bottom2 = new Point(NerdBoard.size.width, gridSize.height + gridSize.height * i);
             var line2 = new Path.Line(top2,bottom2);
             line2.strokeWidth = .8;
+            line2.data.name = "BG";
             grid.addChild(line2);
         }
         grid.strokeColor = gridColor;
