@@ -33,6 +33,7 @@ PencilToolIcon.onLoad = function() {
                                 TrashIcon.onLoad = function() {
                                     BGImg = new Raster('BGImgIcon');
                                     BGImg.onLoad = function() {
+                                        BGImg.position.x -= 100;
                                         NerdBoard.layers.UI.activate();
                                         GridIcon = new Raster('GridIcon');
                                         GridIcon.onLoad = createUI;
@@ -84,7 +85,7 @@ function createUI() {
     PencilToolOptionsPenColor.onMouseUp = function () {
         PencilToolOptions.data.choosingPenColor = true;
         PencilToolOptionsBGColor.sendToBack();
-        PencilToolOptionsBGOptions.opacity = 0;
+        //PencilToolOptionsBGOptions.opacity = 0;
     };
 
     var PencilToolOptionsBGColor = makeRect({
@@ -94,7 +95,7 @@ function createUI() {
     PencilToolOptionsBGColor.onMouseUp = function () {
         PencilToolOptions.data.choosingPenColor = false;
         PencilToolOptionsPenColor.sendToBack();
-        PencilToolOptionsBGOptions.opacity = 1;
+        //PencilToolOptionsBGOptions.opacity = 1;
     };
     var PencilToolOptionsPenBGPicker = new Group(PencilToolOptionsBGColor, PencilToolOptionsPenColor);
 
@@ -215,7 +216,7 @@ function createUI() {
     };
 
     //var
-    var PencilToolOptionsBGOptions = new Group(BGImg, GridIcon);
+    var PencilToolOptionsBGOptions = new Group(GridIcon);
 
 
     //var PencilToolOptionsPenWidthSlider = makeSlider("PenStrokeHandle", "PenStrokeTrack", "PenStrokeSlider", {point1: PencilToolOptionsColors.bounds.topLeft, point2: PencilToolOptionsColors.bounds.topRight}, {min:0, max: NerdBoard.penStrokeRange}, NerdBoard.penStrokeRange/2, NerdBoard.penColor, NerdBoard.colors.defaultBg);
@@ -562,7 +563,7 @@ function createUI() {
     var smallToolOptions = {width: 16, height: 16};
     var largeToolOptions = {width: 460, height: 360};
 
-    PencilToolOptionsBGOptions.opacity = 0;
+    //PencilToolOptionsBGOptions.opacity = 0;
 
     UndoIcon.position.x -= 60;
     UndoIcon.position.y += 60;
@@ -570,7 +571,6 @@ function createUI() {
     TrashIcon.position.y += 75;
     PencilToolOptionsBGOptions.position.x = PencilToolOptionsColors.bounds.bottomLeft.x + 25;
     PencilToolOptionsBGOptions.position.y = PencilToolOptionsColors.bounds.bottomLeft.y + 30;
-    GridIcon.position.x += 60;
 
     NerdBoard.scaleImg(PencilToolIcon, mediumIcon);
     NerdBoard.scaleImg(PencilToolOptions, smallIcon);
@@ -582,7 +582,6 @@ function createUI() {
     NerdBoard.scaleImg(UploadIcon, mediumIcon);
     NerdBoard.scaleImg(UndoIcon, smallMediumIcon);
     NerdBoard.scaleImg(TrashIcon, smallMediumIcon);
-    NerdBoard.scaleImg(BGImg, {width: 3, height: 3});
     NerdBoard.scaleImg(GridIcon, {width: 3, height: 3});
     /*
      *   Positioning and scaling icons

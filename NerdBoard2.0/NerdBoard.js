@@ -9,7 +9,7 @@ paper.install(window);
 var NerdBoard = (function(wb) {
     console.log(window);
     wb.size = {
-        width: window.outerWidth,
+        width: window.innerWidth,
         height: window.innerHeight
     };
     wb.center = {
@@ -62,10 +62,11 @@ var NerdBoard = (function(wb) {
         slateRed: createColor(237, 88, 84),
         slateGreen: createColor(112, 201, 112),
         slateBlue: createColor(108, 199, 225),
-        slateYellow: createColor(241, 196, 15)
+        slateYellow: createColor(241, 196, 15),
+        greenGridBg: createColor(214, 255, 210)
     };
-    wb.penColor = wb.colors.defaultBg;
-    wb.bgColor = wb.colors.defaultBlack;
+    wb.penColor = wb.colors.defaultBlack;
+    wb.bgColor = wb.colors.greenGridBg;
     wb.pathName = 'defaultBg';
 
 
@@ -263,7 +264,7 @@ var NerdBoard = (function(wb) {
         //console.log(children);
         var lastIndex = children.length - 1;
 
-        if(children.length > 2){//Prevents removing BG and BGImg
+        if(children.length > 1){//Prevents removing BG and BGImg
             lastItem = children[lastIndex];
             lastItemClass = children[lastIndex].__proto__._class;
 
@@ -307,7 +308,7 @@ var NerdBoard = (function(wb) {
                 name: "bgColor"
             }
         });
-        var grid = this.makeGrid({width: 20, height: 20}, "green");
+        var grid = this.makeGrid({width: 24, height: 24}, "green");
         grid.data = {
             name: "bgGrid"
         };
@@ -332,12 +333,8 @@ var NerdBoard = (function(wb) {
 
         //Create the frame of the grid and push them into an array, they will be the first four elements
         //This allow to change the color of the frame very easy
-        var path = new Path.Line(topRight,topLeft);
+        var path = new Path.Line(topLeft,topRight);
         grid.addChild(path);
-        var path2 = new Path.Line(bottomRight,bottomLeft);
-        grid.addChild(path2);
-        var path3 = new Path.Line(topRight,bottomRight);
-        grid.addChild(path3);
         var path4 = new Path.Line(topLeft,bottomLeft);
         grid.addChild(path4);
 
@@ -391,12 +388,27 @@ var NerdBoard = (function(wb) {
         icon.scale(xScale, yScale);
     };
 
+    wb.resizeBG = function() {
+        var bg = NerdBoard.layers.drawing.children[0].children[0];
+        var SW = bg._segments[0],
+            NW = bg._segments[1],
+            NE = bg._segments[2],
+            SE = bg._segments[3];
+        NW._point._x = 0;
+        NW._point._y = 0;
+        SW._point._x = 0;
+        SW._point._y = this.size.height;
+        NE._point._x = this.size.width;
+        NE._point._y = 0;
+        SE._point._x = this.size.width;
+        SE._point._y = this.size.height;
+    };
+
 
     wb.onWindowResize = function() {
-        //wb.size = {width: Math.round(window.innerWidth), height: Math.round(window.innerHeight)};
-        //wb.resizeBG();
-        //wb.scaleImg(wb.layers.drawing.children[1], wb.size);
-        //wb.layers.drawing.children[1].position = view.center;
+        wb.size = {width: Math.round(window.innerWidth), height: Math.round(window.innerHeight)};
+        wb.resizeBG();
+        //NerdBoard.layers.drawing.children[0].children[1] = makeGrid({width: 24, height: 24}, "green");
         view.draw();
     };
 
