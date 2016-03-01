@@ -1,5 +1,12 @@
 var NerdBoardUI;
 var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuIcon, SaveIcon, UploadIcon, UndoIcon, TrashIcon, BGImg, GridIcon;
+var smallIcon = {width: 32, height: 32};
+var smallMediumIcon = {width: 48, height: 48};
+var mediumIcon = {width: 56, height: 56};
+var largeIcon = {width: 256, height: 288};
+
+var smallToolOptions = {width: 16, height: 16};
+var largeToolOptions = {width: 460, height: 360};
 
 
 
@@ -551,13 +558,6 @@ function createUI() {
     /*
      *   Positioning and scaling icons
      * */
-    var smallIcon = {width: 32, height: 32};
-    var smallMediumIcon = {width: 48, height: 48};
-    var mediumIcon = {width: 56, height: 56};
-    var largeIcon = {width: 256, height: 288};
-
-    var smallToolOptions = {width: 16, height: 16};
-    var largeToolOptions = {width: 460, height: 360};
 
     //PencilToolOptionsBGOptions.opacity = 0;
 
