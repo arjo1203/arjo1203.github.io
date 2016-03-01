@@ -519,8 +519,8 @@ NerdBoard.Tools = window.onload = (function() {
                         //    itemIndex = touchParent._index;
                         //}
                         if(touchItem.data.name == "BG") {
-                            selectingArea.data.x0 = x;
-                            selectingArea.data.y0 = y;
+                            selectingArea.data.x0 = point.x;
+                            selectingArea.data.y0 = point.y;
                             selectingArea.data.selecting = true;
                         }
                         else {
