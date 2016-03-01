@@ -895,11 +895,11 @@ function createUI() {
     *   GridIcon
     * */
     GridIcon.onMouseDown = function() {
-        if(NerdBoard.layers.drawing.children[0].children[1].opacity == 1) {
+        if(NerdBoard.layers.drawing.children[0].children[1].opacity == .8) {
             NerdBoard.layers.drawing.children[0].children[1].opacity = 0;
         }
         else {
-            NerdBoard.layers.drawing.children[0].children[1].opacity = 1;
+            NerdBoard.layers.drawing.children[0].children[1].opacity = .8;
         }
     };
     /*

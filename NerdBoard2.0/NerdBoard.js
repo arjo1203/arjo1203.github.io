@@ -7,7 +7,6 @@ paper.install(window);
 
 // Main Javascript functions and code.
 var NerdBoard = (function(wb) {
-    console.log(window);
     wb.size = {
         width: window.innerWidth,
         height: window.innerHeight
@@ -35,7 +34,6 @@ var NerdBoard = (function(wb) {
     wb.shape = 'Terminal';
     wb.numOfShapes = 0;
     wb.shapeStrokeColor = '#95B1BD';
-    wb.erasing = false;
 
 
     wb.colors = {
@@ -63,7 +61,7 @@ var NerdBoard = (function(wb) {
         slateGreen: createColor(112, 201, 112),
         slateBlue: createColor(108, 199, 225),
         slateYellow: createColor(241, 196, 15),
-        greenGridBg: createColor(214, 255, 210)
+        greenGridBg: createColor(233, 254, 198)
     };
     wb.penColor = wb.colors.defaultBlack;
     wb.bgColor = wb.colors.greenGridBg;
@@ -122,9 +120,6 @@ var NerdBoard = (function(wb) {
 
     wb.setShape = function(shape) {
         wb.shape = shape;
-
-        NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.shapeUI.close();
-        NerdBoard.UIHandler.leftBar.internalUIS.addUI.internalUIS.textInputUI.open();
     };
 
 
@@ -321,27 +316,20 @@ var NerdBoard = (function(wb) {
     wb.makeGrid = function(gridSize, gridColor) {
         var numOfHozLines = Math.round(NerdBoard.size.width / gridSize.width);//How many grid line there will be vertically
         var numOfVertLines = Math.round(NerdBoard.size.height / gridSize.height);//How many grid line there will be vertically
-
         //build the frame of the grid
         var topLeft = new Point(0,0);
         var bottomLeft = new Point(0, NerdBoard.size.height);
         var topRight = new Point(NerdBoard.size.width, 0);
-        var bottomRight = new Point(NerdBoard.size.width, NerdBoard.size.height);
-
-        //Array to hold all lines
+        //Create grid
         var grid = new Group();
-
-        //Create the frame of the grid and push them into an array, they will be the first four elements
-        //This allow to change the color of the frame very easy
         var path = new Path.Line(topLeft,topRight);
         path.data.name = "BG";
         grid.addChild(path);
         var path4 = new Path.Line(topLeft,bottomLeft);
         path4.data.name = "BG";
         grid.addChild(path4);
-
         //Creates the vertical grid lines
-        for(var i = 0; i < numOfHozLines; i++){
+        for(var i = 0; i < numOfHozLines; i++) {
             var top = new Point(gridSize.width + gridSize.width * i, 0);
             var bottom = new Point(gridSize.width + gridSize.width * i, NerdBoard.size.height);
             var line = new Path.Line(top,bottom);
@@ -349,19 +337,17 @@ var NerdBoard = (function(wb) {
             line.data.name = "BG";
             grid.addChild(line);
         }
-
         //Creates the horizontal grid lines
-        for(var i = 0; i < numOfVertLines; i++){
+        for(var i = 0; i < numOfVertLines; i++) {
             var top2 = new Point(0, gridSize.height + gridSize.height * i);
             var bottom2 = new Point(NerdBoard.size.width, gridSize.height + gridSize.height * i);
             var line2 = new Path.Line(top2,bottom2);
-            line2.strokeWidth = .8;
+            line2.strokeWidth = .6;
             line2.data.name = "BG";
             grid.addChild(line2);
         }
         grid.strokeColor = gridColor;
-
-        grid.opacity = 0;
+        grid.opacity = .8;
         return grid;
     };
 

@@ -29,7 +29,6 @@ NerdBoard.Tools = window.onload = (function() {
 
     //Use the HTML5 Canvas API to track the touches
     //Use paper to draw the paths
-    var startTime, lastTime = 0, deltaTime;
     wbTools.tools.draw = new Tool();
     wbTools.tools.draw.onMouseDown = function(paperEvent) {
         paperEvent.preventDefault();
@@ -417,6 +416,7 @@ NerdBoard.Tools = window.onload = (function() {
     //var path = new Path.Rectangle(rectangle);
     //path.fillColor = '#e9e9ff';
     //path.selected = true;
+    var selections = new Group();
     var selectingArea = {};
     selectingArea.data = {selecting: false};
 
@@ -633,7 +633,11 @@ NerdBoard.Tools = window.onload = (function() {
         }
 
         if(selectingArea.data.selecting) {
-            selectingArea.remove();
+            //selectingArea.remove();
+            console.log(selectingArea);
+            selectingArea.fitBounds(selections.bounds);
+            selections.selected = false;
+            console.log(selections);
         }
     };
     wbTools.tools.move.minDistance = 0;
@@ -794,11 +798,15 @@ NerdBoard.Tools = window.onload = (function() {
 
 
     function showSelecting() {
-        for(var i = 1; i < NerdBoard.layers.drawing.children.length - 1; i++)
-            if (NerdBoard.layers.drawing.children[i].position.isInside(selectingArea))
+        for(var i = 1; i < NerdBoard.layers.drawing.children.length - 1; i++) {
+            if (NerdBoard.layers.drawing.children[i].position.isInside(selectingArea)) {
                 NerdBoard.layers.drawing.children[i].selected = true;
-            else
+                selections.addChild(NerdBoard.layers.drawing.children[i]);
+            }
+            else {
                 NerdBoard.layers.drawing.children[i].selected = false;
+            }
+        }
     }
 
 
