@@ -333,7 +333,6 @@ var NerdBoard = (function(wb) {
             var top = new Point(gridSize.width + gridSize.width * i, 0);
             var bottom = new Point(gridSize.width + gridSize.width * i, NerdBoard.size.height);
             var line = new Path.Line(top,bottom);
-            line.strokeWidth = .8;
             line.data.name = "BG";
             grid.addChild(line);
         }
@@ -342,12 +341,12 @@ var NerdBoard = (function(wb) {
             var top2 = new Point(0, gridSize.height + gridSize.height * i);
             var bottom2 = new Point(NerdBoard.size.width, gridSize.height + gridSize.height * i);
             var line2 = new Path.Line(top2,bottom2);
-            line2.strokeWidth = .6;
             line2.data.name = "BG";
             grid.addChild(line2);
         }
         grid.strokeColor = gridColor;
         grid.opacity = .8;
+        grid.strokeWidth = .3;
         return grid;
     };
 
