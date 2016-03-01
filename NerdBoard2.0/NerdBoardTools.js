@@ -413,15 +413,9 @@ NerdBoard.Tools = window.onload = (function() {
     wbTools.tools.erase.maxDistance = 2;
 
 
-    //var rectangle = new Rectangle(new Point(50, 50), new Point(150, 100));
-    //var path = new Path.Rectangle(rectangle);
-    //path.fillColor = '#e9e9ff';
-    //path.selected = true;
     var selections = new Group();
-    //var selectingArea = {};
-    //selectingArea.data = {selecting: false};
     var selectingArea = new paper.Path.Rectangle({
-        center: new Point({x: 0,y: 0}),
+        center: new Point({x: -2000,y: 0}),
         size: [2, 2],
         fillColor: '#e9e9ff',
         strokeWidth: 2,
