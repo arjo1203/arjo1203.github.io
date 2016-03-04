@@ -267,6 +267,7 @@ function createUI() {
         },
         toolsOut: false,
         animatingTools: false,
+        toolsStackTop: NerdBoardUI.children[NerdBoardUI.children.length - 2],
         toolsStack: [7, 6, 5],
         toolsToAnimate: {tool2: 50, tool3: 100, tool4: 150},
         toolsAngle: {angle1: 175, angle2: 145, angle3: 115, angle4: 85},
@@ -395,7 +396,7 @@ function createUI() {
     NerdBoardUI.onMouseUp = function (event) {
         event.preventDefault();
         window.setTimeout(function() {
-            if(!NerdBoardUI.children[NerdBoardUI.children.length-1].data.optionsOut) {//Reactivates tool when options are closed by user
+            if(!NerdBoardUI.children[NerdBoardUI.children.length - 2].data.optionsOut) {//Reactivates tool when options are closed by user
                 NerdBoardUI.data.updateTool();
             }
         }, 10);
@@ -403,7 +404,6 @@ function createUI() {
     /*
      *   NerdBoardUI
      * */
-
 
 
     /*
