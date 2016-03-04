@@ -4,7 +4,7 @@
 
 
 
-NerdBoard.Tools = window.onload = (function() {
+NerdBoard.Tools = (function() {
 
     function addPoints(point1, point2) {
         var afterMath = new paper.Point({x: point1.x + point2.x, y: point1.y + point2.y});
