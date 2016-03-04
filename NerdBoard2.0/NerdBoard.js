@@ -337,9 +337,9 @@ var NerdBoard = (function(wb) {
             grid.addChild(line);
         }
         //Creates the horizontal grid lines
-        for(var i = 0; i < numOfVertLines; i++) {
-            var top2 = new Point(0, gridSize.height + gridSize.height * i);
-            var bottom2 = new Point(NerdBoard.size.width, gridSize.height + gridSize.height * i);
+        for(var j = 0; j < numOfVertLines; j++) {
+            var top2 = new Point(0, gridSize.height + gridSize.height * j);
+            var bottom2 = new Point(NerdBoard.size.width, gridSize.height + gridSize.height * j);
             var line2 = new Path.Line(top2,bottom2);
             line2.data.name = "BG";
             grid.addChild(line2);

@@ -447,6 +447,17 @@ NerdBoard.Tools = window.onload = (function() {
         }
         selectingCenter.position.x -= 2000;
         selectingCenter.opacity = 0;
+        if(selectingArea.data.selecting) {
+            if(selections.children.length > 0) {
+                selectingArea.fitBounds(selections.bounds);
+                selectingCenter.position = selectingArea.position;
+                selectingCenter.opacity = 1;
+            }
+            else {
+                selectingArea.position.x -= 2000;
+            }
+            selectingArea.data.selecting = false;
+        }
     };
     selectingCenter.onMouseDrag = function(event) {
         this.position = event.point;

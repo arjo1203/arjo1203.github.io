@@ -1,9 +1,8 @@
 var NerdBoardUI;
-var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuIcon, SaveIcon, UploadIcon, UndoIcon, TrashIcon, BGImg, GridIcon;
+var PencilToolIcon, PencilToolOptionsColors, EraserToolIcon, MoveToolIcon, MenuIcon, SaveIcon, UploadIcon, UndoIcon, TrashIcon, BGImg, GridIcon, ToolsIcon;
 var smallIcon = {width: 32, height: 32};
 var smallMediumIcon = {width: 48, height: 48};
-var mediumIcon = {width: 56, height: 56};
-var largeIcon = {width: 256, height: 288};
+var mediumIcon = {width: 52, height: 52};
 
 var smallToolOptions = {width: 16, height: 16};
 var largeToolOptions = {width: 460, height: 360};
@@ -40,7 +39,11 @@ PencilToolIcon.onLoad = function() {
                                 TrashIcon.onLoad = function() {
                                     NerdBoard.layers.UI.activate();
                                     GridIcon = new Raster('GridIcon');
-                                    GridIcon.onLoad = createUI;
+                                    GridIcon.onLoad = function() {
+                                        NerdBoard.layers.UI.activate();
+                                        ToolsIcon = new Raster('ToolsIcon');
+                                        ToolsIcon.onLoad = createUI;
+                                    };
                                 };
                             };
                         }
@@ -59,7 +62,8 @@ function createUI() {
      * NerdBoardUICenter is used to keep track of the center of the UI
      * NerdBoardUICenter is also used to toggle tools
      * */
-    var NerdBoardUICenter = makeCircle({x: 0, y: 0}, 55, NerdBoard.penColor, NerdBoard.colors.defaultBg, "NerdBoardUICenter");
+    var NerdBoardUICenter = makeCircle({x: 0, y: 0}, 55, NerdBoard.penColor, NerdBoard.colors.defaultRed, "NerdBoardUICenter");
+    //NerdBoardUICenter.strokeWidth = 15;
     NerdBoardUICenter.onMouseDrag = function (event) {
         event.preventDefault();
         NerdBoardUI.position.x += event.delta.x;
@@ -76,6 +80,8 @@ function createUI() {
     /*
      *   NerdBoardUICenter
      * */
+    ToolsIcon.onMouseDrag = NerdBoardUICenter.onMouseDrag;
+    ToolsIcon.onClick = NerdBoardUICenter.onMouseUp;
 
 
 
@@ -242,9 +248,10 @@ function createUI() {
      *   NerdBoardUI manages all of the event for the UI
      *   NerdBoardUI will interface with NerdBoard
      * */
-    NerdBoardUI = new Group(TrashIcon, UndoIcon, UploadIcon, SaveIcon, PencilToolOptions, MenuIcon, MoveToolIcon, EraserToolIcon, NerdBoardUICenter, PencilToolIcon);
+    NerdBoardUI = new Group(TrashIcon, UndoIcon, UploadIcon, SaveIcon, PencilToolOptions, MenuIcon, MoveToolIcon, EraserToolIcon, NerdBoardUICenter, PencilToolIcon, ToolsIcon);
     NerdBoardUI.position = new Point(NerdBoard.size.width * .25, NerdBoard.size.height * .25);
     NerdBoardUI.bringToFront();
+    NerdBoardUI.opacity = .7;
     //NerdBoardUI.selected = true;
     NerdBoardUI.data = {
         name: "NerdBoardUI",
@@ -298,14 +305,15 @@ function createUI() {
         },
         updateUI: function () {
             var childLength = NerdBoardUI.children.length;
-            var lastChild = NerdBoardUI.children[childLength - 1];
+            var lastChild = NerdBoardUI.children[childLength - 2];
 
             if (!lastChild.data.active) {
                 NerdBoard.scaleImg(lastChild, smallIcon);
                 NerdBoardUICenter.bringToFront();
-                for (var i = childLength - NerdBoardUI.data.toolsStack.length - 2; i < childLength; i++) {
+                for (var i = childLength - NerdBoardUI.data.toolsStack.length - 3; i < childLength; i++) {
                     if (NerdBoardUI.children[i].data.active) {
                         NerdBoardUI.children[i].bringToFront();
+                        ToolsIcon.bringToFront();
                         break;
                     }
                 }
@@ -565,6 +573,8 @@ function createUI() {
     UndoIcon.position.y += 60;
     TrashIcon.position.x -= 20;
     TrashIcon.position.y += 75;
+    ToolsIcon.position.x -= 28;
+    ToolsIcon.position.y -= 28;
     PencilToolOptionsBGOptions.position.x = PencilToolOptionsColors.bounds.bottomLeft.x + 25;
     PencilToolOptionsBGOptions.position.y = PencilToolOptionsColors.bounds.bottomLeft.y + 30;
 
@@ -573,6 +583,7 @@ function createUI() {
     NerdBoard.scaleImg(EraserToolIcon, smallIcon);
     NerdBoard.scaleImg(MoveToolIcon, smallIcon);
     NerdBoard.scaleImg(MenuIcon, smallIcon);
+    NerdBoard.scaleImg(ToolsIcon, {width: 25, height: 25});
 
     NerdBoard.scaleImg(SaveIcon, mediumIcon);
     NerdBoard.scaleImg(UploadIcon, mediumIcon);
@@ -595,19 +606,21 @@ function createUI() {
         NerdBoardUI.position.x += event.delta.x;
         NerdBoardUI.position.y += event.delta.y;
     };
-    PencilToolIcon.onMouseUp = function (event) {
+    PencilToolIcon.onClick = function (event) {//Starts animation
         event.preventDefault();
         if (!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
-            if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "PencilToolIcon") {
-                NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+            if (NerdBoardUI.children[NerdBoardUI.children.length - 2].data.name != "PencilToolIcon") {//Top of tool stack
+                NerdBoardUI.children[NerdBoardUI.children.length - 2].data.active = false;
                 this.data.active = true;
                 NerdBoardUI.data.animateToolsIn();
-                //NerdBoardUI.data.updateTool();
             }
             else {
                 PencilToolIcon.data.toggleOptions();
             }
         }
+    };
+    PencilToolIcon.onDoubleClick = function(event) {//Ensures nothing happens when animating
+          event.preventDefault();
     };
     /*
      *   PencilToolIcon
@@ -698,8 +711,8 @@ function createUI() {
     EraserToolIcon.onMouseUp = function (event) {
         event.preventDefault();
         if (!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
-            if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "EraserToolIcon") {
-                NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+            if (NerdBoardUI.children[NerdBoardUI.children.length - 2].data.name != "EraserToolIcon") {
+                NerdBoardUI.children[NerdBoardUI.children.length - 2].data.active = false;
                 this.data.active = true;
                 NerdBoardUI.data.animateToolsIn();
                 NerdBoardUI.data.updateTool();
@@ -724,8 +737,8 @@ function createUI() {
     MoveToolIcon.data = makeIcon("MoveToolIcon", false, NerdBoard.activateMoveMode);
     MoveToolIcon.onMouseUp = function (event) {
         event.preventDefault();
-        if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "MoveToolIcon") {
-            NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+        if (NerdBoardUI.children[NerdBoardUI.children.length - 2].data.name != "MoveToolIcon") {
+            NerdBoardUI.children[NerdBoardUI.children.length - 2].data.active = false;
             this.data.active = true;
             NerdBoardUI.data.animateToolsIn();
             NerdBoardUI.data.updateTool();
@@ -794,8 +807,8 @@ function createUI() {
     MenuIcon.onMouseUp = function (event) {
         event.preventDefault();
         if (!NerdBoardUI.data.wasDragged) {//Prevents tools animation after being dragged
-            if (NerdBoardUI.children[NerdBoardUI.children.length - 1].data.name != "MenuIcon") {
-                NerdBoardUI.children[NerdBoardUI.children.length - 1].data.active = false;
+            if (NerdBoardUI.children[NerdBoardUI.children.length - 2].data.name != "MenuIcon") {
+                NerdBoardUI.children[NerdBoardUI.children.length - 2].data.active = false;
                 this.data.active = true;
                 NerdBoardUI.data.animateToolsIn();
                 NerdBoardUI.data.updateTool();
