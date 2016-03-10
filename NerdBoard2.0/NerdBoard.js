@@ -15,7 +15,7 @@ var NerdBoard = (function(wb) {
         x: Math.round(wb.size.width * .5) ,
         y: Math.round(wb.size.height * .5)
     };
-
+    
     wb.canvas = $("#my-canvas")[0];
     wb.canvas.width = wb.size.width;
     wb.canvas.height = wb.size.height;
@@ -24,16 +24,6 @@ var NerdBoard = (function(wb) {
         drawing: {},
         UI: {}
     };
-
-    wb.penStrokeRange = 50;
-    wb.penStroke = 15;
-    wb.eraseStroke = 30;
-    wb.textSize = 40;
-
-    wb.activeMode = 'draw';
-    wb.shape = 'Terminal';
-    wb.numOfShapes = 0;
-    wb.shapeStrokeColor = '#95B1BD';
 
 
     wb.colors = {
@@ -63,9 +53,13 @@ var NerdBoard = (function(wb) {
         slateYellow: createColor(241, 196, 15),
         greenGridBg: createColor(233, 254, 198)
     };
+    
     wb.penColor = wb.colors.defaultBlack;
-    wb.bgColor = wb.colors.greenGridBg;
-    wb.pathName = 'defaultBg';
+    wb.penStrokeRange = 50;
+    wb.penStroke = 4;
+    
+    wb.BGColor = wb.colors.greenGridBg;
+    wb.pathName = 'NerdPath';
 
 
     function createColor(r, g, b) {
@@ -74,63 +68,32 @@ var NerdBoard = (function(wb) {
 
 
     wb.getRGB = function(color) {
-        var components = {
+        return {
             r: (Math.round(color.red * 255)).toString(),
             g: (Math.round(color.green * 255)).toString(),
             b: (Math.round(color.blue * 255)).toString()
         };
-
-        return components;
-    };
-
-
-    wb.styleEle = function(ele, components) {
-        ele.css("background-color", "rgb(" + components.r + ',' + components.g + ',' + components.b + ")");
     };
 
 
 
 
-    wb.setBg = function(color){
-        wb.bgColor = color;
+    wb.setBGColor = function(color){
+        wb.BGColor = color;
         this.layers.drawing.children[0].fillColor = color;
     };
 
-    wb.setColor = function (color) {
+    wb.setPenColor = function (color) {
         wb.penColor = color;
     };
 
     wb.setPenWidth = function(width) {
-        $('#penDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Pen Width: " + width;
         wb.penStroke = width;
-        wb.activateDrawMode();
-    };
-
-    wb.setEraserWidth = function(width) {
-        $('#eraseDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Eraser Width: " + width.toString();
-        wb.eraseStroke = width;
-        wb.activateEraseMode();
-    };
-
-    wb.setTextSize = function(size) {
-        $('#textDisplay')[0].innerHTML = " <span class=\"caret\"></span>" + " Text Size: " + size.toString();
-        wb.textSize = size;
-        wb.activateShapeMode();
-    };
-
-    wb.setShape = function(shape) {
-        wb.shape = shape;
     };
 
 
 
     //Activators
-    wb.activateThemeMode = function() {
-        wb.activeMode = 'theme';
-
-        NerdBoard.UIHandler.leftBar.toolSelected();
-    };
-
     wb.activateNone = function() {
         wb.activeMode = 'None';
         NerdBoard.Tools.tools.none.activate();
@@ -139,11 +102,6 @@ var NerdBoard = (function(wb) {
     wb.activateDrawMode = function() {
         wb.activeMode = 'draw';
         NerdBoard.Tools.tools.draw.activate();
-    };
-
-    wb.activateShapeMode = function() {
-        wb.activeMode = 'add';
-        NerdBoard.Tools.tools.shape.activate();
     };
 
     wb.activateEraseMode = function() {
@@ -156,38 +114,21 @@ var NerdBoard = (function(wb) {
         NerdBoard.Tools.tools.move.activate();
     };
 
-    wb.activatePanMode = function() {
-        wb.activeMode = 'pan';
-        NerdBoard.Tools.tools.pan.activate();
-    };
 
 
-
-
-
-    wb.getDate = function () {
-        var d = new Date();
-        var year = d.getFullYear();
-        var month = d.getMonth() + 1;
-        var day = d.getDate();
-        var hour = d.getHours();
-        var min = d.getMinutes();
-        var sec = d.getSeconds();
-        return (year + "-" + month + "-" + day + "_" + hour + ":" + min + ":" + sec);
-    };
 
     wb.saveAsImg = function() {
         var link = document.createElement("a");
         var name = window.prompt("Please name your Image: ");
         if (name != null) {
-            NerdBoardUI.opacity = 0;
+            NerdBoard.UI.group.opacity = 0;
             view.draw();
 
             link.href = NerdBoard.canvas.toDataURL('image/png');
             link.download = name;
             link.click();
 
-            NerdBoardUI.opacity = 1;
+            NerdBoard.UI.group.opacity = 1;
             view.draw();
 
             window.alert("Image was saved!");
@@ -196,6 +137,9 @@ var NerdBoard = (function(wb) {
             window.alert("Image was NOT saved!!");
         }
     };
+
+
+
 
     wb.saveAsWorkSpace = function() {
         var file = JSON.stringify(paper.project);
@@ -216,6 +160,9 @@ var NerdBoard = (function(wb) {
             window.alert("Project was NOT saved!!");
         }
     };
+
+
+
 
     wb.loadWorkSpace = function() {
         var file = document.createElement('input');
@@ -244,14 +191,7 @@ var NerdBoard = (function(wb) {
         false);
     };
 
-    wb.setUp = function() {
-        paper.setup(NerdBoard.canvas);
-        this.layers.drawing = new Layer();
-        this.layers.drawing.name = "drawingLayer";
-        this.layers.UI = new Layer();
-        this.layers.UI.name = "UILayer";
-        this.makeBG();
-    };
+
 
 
     wb.undo = function() {
@@ -287,18 +227,23 @@ var NerdBoard = (function(wb) {
     };
 
 
+
+
     wb.clear = function() {
         while(NerdBoard.layers.drawing.children.length > 1){
             NerdBoard.layers.drawing.children[NerdBoard.layers.drawing.children.length - 1].remove();
         }
     };
 
+
+
+
     wb.makeBG = function() {
         this.layers.drawing.activate();
-        var bgColor = new Path.Rectangle({
+        var BGColor = new Path.Rectangle({
             center: this.center,
             size: [NerdBoard.size.width, NerdBoard.size.height],
-            fillColor: this.bgColor,
+            fillColor: this.BGColor,
             data: {
                 name: "BG"
             }
@@ -307,11 +252,14 @@ var NerdBoard = (function(wb) {
         grid.data = {
             name: "BG"
         };
-        var BG = new Group(bgColor, grid);
+        var BG = new Group(BGColor, grid);
         BG.data = {
             name: "BG"
         };
     };
+
+
+
 
     wb.makeGrid = function(gridSize, gridColor) {
         var numOfHozLines = Math.round(NerdBoard.size.width / gridSize.width);//How many grid line there will be vertically
@@ -350,32 +298,24 @@ var NerdBoard = (function(wb) {
         return grid;
     };
 
+
+
+
     wb.setChildrenColor = function(parent, color) {
         parent.strokeColor = color;
     };
 
-    wb.setBGImg = function() {
-        var file = document.createElement('input');
-        file.type = 'file';
-        file.click();
-        file.addEventListener('change', function () {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    wb.layers.drawing.activate();
-                    wb.layers.drawing.children[1].source = e.target.result;
-                    wb.layers.drawing.children[1].position = view.center;
-                    wb.scaleImg(wb.layers.drawing.children[1], wb.size);
-                };
-                reader.readAsDataURL(file.files[0]);
-            },
-            false);
-    };
+
+
 
     wb.scaleImg = function (icon, dimensions) {
         var xScale = dimensions.width / icon.bounds.width;
         var yScale = dimensions.height / icon.bounds.height;
         icon.scale(xScale, yScale);
     };
+
+
+
 
     wb.resizeBG = function() {
         var bg = NerdBoard.layers.drawing.children[0].children[0];
@@ -394,6 +334,8 @@ var NerdBoard = (function(wb) {
     };
 
 
+
+
     wb.onWindowResize = function() {
         wb.size = {width: Math.round(window.innerWidth), height: Math.round(window.innerHeight)};
         wb.resizeBG();
@@ -402,22 +344,33 @@ var NerdBoard = (function(wb) {
     };
 
 
+
+
+    wb.setUp = function() {
+        paper.setup(NerdBoard.canvas);
+        this.layers.drawing = new Layer();
+        this.layers.drawing.name = "drawingLayer";
+        this.layers.UI = new Layer();
+        this.layers.UI.name = "UILayer";
+        this.makeBG();
+        NerdBoard.UI.loadIcons();
+    };
+
+
+
+
+
+    $(window).bind('beforeunload', function() {
+        return "Save your drawing before leaving!!";
+    });
+    //window.addEventListener('resize', NerdBoard.onWindowResize, false);
+    /**
+     * Prevents default page scrolling action; fixes iOS 8 drawing bug.
+     */
+    document.addEventListener('touchmove', function (event) {
+        event.preventDefault();
+    }, false);
+
+
     return wb;
 }(NerdBoard || {}));
-NerdBoard.setUp();
-
-
-
-
-
-
-$(window).bind('beforeunload', function() {
-    return "Save your drawing before leaving!!";
-});
-//window.addEventListener('resize', NerdBoard.onWindowResize, false);
-/**
- * Prevents default page scrolling action; fixes iOS 8 drawing bug.
- */
-document.addEventListener('touchmove', function (event) {
-    event.preventDefault();
-}, false);

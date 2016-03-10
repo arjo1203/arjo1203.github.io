@@ -6,12 +6,6 @@
 
 NerdBoard.Tools = (function() {
 
-    function addPoints(point1, point2) {
-        var afterMath = new paper.Point({x: point1.x + point2.x, y: point1.y + point2.y});
-
-        return afterMath;
-    }
-
     var wbTools = {
         tools: {}
     };
@@ -435,7 +429,7 @@ NerdBoard.Tools = (function() {
     var selectingCenter = new Raster('MoveIcon');
     selectingCenter.position.x -= 2000;
     selectingCenter.opacity = 0;
-    NerdBoard.scaleImg(selectingCenter, smallIcon);
+    NerdBoard.scaleImg(selectingCenter, {width: 32, height: 32});
     selectingCenter.onMouseDown =  function() {
         selectingArea.data.selecting = false;
     };
