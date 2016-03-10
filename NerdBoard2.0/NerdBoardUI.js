@@ -3,6 +3,30 @@
  */
 NerdBoard.UI = (function() {
     var UI = {
+        smartMove: false,
+        smartDest: {},
+        setSmartDest: function(event) {
+            if(event.point.y > NerdBoard.size.height - 400 && event.point.x < 200)  //Keeps within view
+                UI.smartDest = event.point.add({x:100, y:-100});
+            else if(event.point.x < 200)  //Keeps within view
+                UI.smartDest = event.point.add({x:100, y:100});
+            else if(event.point.y < 200)
+                UI.smartDest = event.point.add({x:100, y:100});
+            else
+                UI.smartDest = event.point.subtract(100);
+            var smartVec = UI.smartDest.subtract(UI.group.position);
+            if(300 < smartVec.length)
+                UI.smartMove = true;
+        },
+        smartMoving: function() {
+            if(UI.smartMove) {
+                var smartVec = UI.smartDest.subtract(UI.group.position);
+                UI.group.position = UI.group.position.add(smartVec.divide(5));
+                if (smartVec.length < 10) {
+                    UI.smartMove = false;
+                }
+            }
+        },
         wasDragged: false,
         icons: {
             BG: {},
@@ -435,6 +459,19 @@ NerdBoard.UI = (function() {
 
 
         setSwatchesOnMouseUp();
+
+
+        NerdBoard.layers.drawing.onMouseDown = function(event) {
+            event.preventDefault();
+            UI.updateUI();//Too close any open options
+            UI.updateTool();//Ensure the active tool is activated
+        };
+
+
+        NerdBoard.layers.drawing.onMouseUp = function(event) {
+            event.preventDefault();
+            UI.setSmartDest(event);
+        };
     };
 
 
@@ -444,11 +481,6 @@ NerdBoard.UI = (function() {
         UI.makeIcons();
         UI.addListeners();
         UI.onFrame();
-        NerdBoard.layers.drawing.onMouseDown = function(event) {
-            event.preventDefault();
-            UI.updateUI();//Too close any open options
-            UI.updateTool();//Ensure the active tool is activated
-        };
     };
 
 
@@ -467,6 +499,8 @@ NerdBoard.UI = (function() {
                 NerdBoard.setPenWidth(UI.toolOptions.pencil.children[3].children[2].content);//Set penStroke
                 UI.toolOptions.pencil.children[3].children[0].strokeWidth = NerdBoard.penStroke;//Change pencilWidthSlider thickness
             }
+
+            UI.smartMoving();
         };
     };
 

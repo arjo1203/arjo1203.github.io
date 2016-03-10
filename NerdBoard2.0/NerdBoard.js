@@ -117,6 +117,19 @@ var NerdBoard = (function(wb) {
 
 
 
+    wb.loadRaster = function(image) {
+        var raster = new paper.Raster({
+            source: image,
+            position: paper.view.center
+        });
+        raster.fitBounds(paper.view.bounds);
+        raster.sendToBack();
+        NerdBoard.layers.drawing.children[1].sendToBack();
+    };
+
+
+
+
     wb.saveAsImg = function() {
         var link = document.createElement("a");
         var name = window.prompt("Please name your Image: ");
@@ -319,18 +332,29 @@ var NerdBoard = (function(wb) {
 
     wb.resizeBG = function() {
         var bg = NerdBoard.layers.drawing.children[0].children[0];
-        var SW = bg._segments[0],
-            NW = bg._segments[1],
-            NE = bg._segments[2],
-            SE = bg._segments[3];
-        NW._point._x = 0;
-        NW._point._y = 0;
-        SW._point._x = 0;
-        SW._point._y = this.size.height;
-        NE._point._x = this.size.width;
-        NE._point._y = 0;
-        SE._point._x = this.size.width;
-        SE._point._y = this.size.height;
+        this.resizeRect(bg, 0, 0, this.size.width, this.size.height);
+    };
+
+
+
+
+    wb.resizeRect = function(rect, x0, y0, width, height) {
+        var SW = rect._segments[0],
+            NW = rect._segments[1],
+            NE = rect._segments[2],
+            SE = rect._segments[3];
+
+        NW._point._x = x0;
+        NW._point._y = y0;
+
+        SW._point._x = x0;
+        SW._point._y = y0 + height;
+
+        NE._point._x = x0 + width;
+        NE._point._y = y0;
+
+        SE._point._x = x0 + width;
+        SE._point._y = y0 + height;
     };
 
 
@@ -354,6 +378,7 @@ var NerdBoard = (function(wb) {
         this.layers.UI.name = "UILayer";
         this.makeBG();
         NerdBoard.UI.loadIcons();
+        NerdBoard.Tools.createTools();
     };
 
 
