@@ -372,13 +372,15 @@ var NerdBoard = (function(wb) {
 
     wb.setUp = function() {
         paper.setup(NerdBoard.canvas);
-        this.layers.drawing = new Layer();
-        this.layers.drawing.name = "drawingLayer";
-        this.layers.UI = new Layer();
-        this.layers.UI.name = "UILayer";
-        this.makeBG();
-        NerdBoard.UI.loadIcons();
-        NerdBoard.Tools.createTools();
+        window.setTimeout(function() {
+            wb.layers.drawing = new Layer();
+            wb.layers.drawing.name = "drawingLayer";
+            wb.layers.UI = new Layer();
+            wb.layers.UI.name = "UILayer";
+            wb.makeBG();
+            NerdBoard.UI.loadIcons();
+            NerdBoard.Tools.createTools();
+        }, 100);
     };
 
 
