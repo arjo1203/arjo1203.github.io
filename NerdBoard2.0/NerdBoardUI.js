@@ -472,6 +472,13 @@ NerdBoard.UI = (function() {
             event.preventDefault();
             UI.setSmartDest(event);
         };
+
+        UI.toolOptions.pencil.children[3].onMouseDrag = function() {
+            if(UI.toolOptions.pencil.children[3].children[2].content != NerdBoard.penStroke) {
+                NerdBoard.setPenWidth(UI.toolOptions.pencil.children[3].children[2].content);//Set penStroke
+                UI.toolOptions.pencil.children[3].children[0].strokeWidth = NerdBoard.penStroke;//Change pencilWidthSlider thickness
+            }
+        };
     };
 
 
@@ -494,11 +501,6 @@ NerdBoard.UI = (function() {
             UI.animationHandler.toggleIcon(UI.icons.menu);
             UI.animationHandler.toggleIcon(UI.toolOptions.pencil);
             UI.animationHandler.toggleIcon(UI.toolOptions.menu);
-
-            if(UI.toolOptions.pencil.children[3].children[2].content != NerdBoard.penStroke) {
-                NerdBoard.setPenWidth(UI.toolOptions.pencil.children[3].children[2].content);//Set penStroke
-                UI.toolOptions.pencil.children[3].children[0].strokeWidth = NerdBoard.penStroke;//Change pencilWidthSlider thickness
-            }
 
             UI.smartMoving();
         };
