@@ -690,10 +690,10 @@ NerdBoard.Tools = (function() {
             }
         });
     }
-    
-    
-    
-    
+
+
+
+
     function trackTouch(id, point, itemIndex) {
         return {
             id: id,
@@ -711,8 +711,16 @@ NerdBoard.Tools = (function() {
         var item = NerdBoard.layers.drawing.children[touch.itemIndex];
         item.add(point);
 
-        touch.pageX = event.x;
-        touch.pageY = event.y;
+        if(event.x)
+            touch.pageX = event.x;
+        else
+            touch.pageX = event.pageX;
+
+        if(event.y)
+            touch.pageY = event.y;
+        else
+            touch.pageY = event.pageY;
+        
         currentTouches.splice(touchIndex, 1, touch);
     }
 
