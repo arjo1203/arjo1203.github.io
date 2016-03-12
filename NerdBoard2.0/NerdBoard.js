@@ -12,8 +12,8 @@ var NerdBoard = (function(wb) {
         height: window.innerHeight
     };
     wb.center = {
-        x: Math.round(wb.size.width * .5) ,
-        y: Math.round(wb.size.height * .5)
+        x: Math.ceil(wb.size.width * .5),
+        y: Math.ceil(wb.size.height * .5)
     };
     
     wb.canvas = $("#my-canvas")[0];
@@ -24,6 +24,9 @@ var NerdBoard = (function(wb) {
         drawing: {},
         UI: {}
     };
+
+
+    wb.pathCount = 0;
 
 
     wb.colors = {
@@ -59,7 +62,7 @@ var NerdBoard = (function(wb) {
     wb.penStroke = 4;
     
     wb.BGColor = wb.colors.greenGridBg;
-    wb.pathName = 'NerdPath';
+    wb.pathName = 'NerdPath' + wb.pathCount;
 
 
     function createColor(r, g, b) {

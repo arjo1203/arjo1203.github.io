@@ -148,7 +148,6 @@ NerdBoard.UI = (function() {
             4, NerdBoard.penStrokeRange / 3, NerdBoard.penColor, NerdBoard.colors.defaultBg, NerdBoard.colors.defaultBg, NerdBoard.penColor, NerdBoard.penStroke);
         UI.toolOptions.pencil = new Group(UI.icons.colorGradient, PenBGPicker, RGBValues, PencilWidthSlider);
 
-
         UI.toolOptions.menu = new Group(UI.icons.save, UI.icons.upload);
 
         var colorSwatches = makeColorSwatches();
@@ -338,7 +337,7 @@ NerdBoard.UI = (function() {
                 };
             },
             updateBGColor: function() {
-                UI.toolOptions.pencil.children[1].children[0].fillColor = NerdBoard.BGColor;
+                UI.toolOptions.pencil.children[1].children[1].fillColor = NerdBoard.BGColor;
             },
             updatePenColor: function() {
                 UI.toolOptions.pencil.children[1].children[1].fillColor = NerdBoard.penColor;
@@ -656,7 +655,7 @@ NerdBoard.UI = (function() {
 
 
     function makePenBGPicker() {
-        var PenColor = makeRect({x: UI.icons.colorGradient.bounds.topRight.x + 40, y: UI.icons.colorGradient.bounds.topRight.y + 15
+        var PenColor = makeRect({x: UI.icons.colorGradient.bounds.topRight.x + 25, y: UI.icons.colorGradient.bounds.topRight.y + 15
         }, {x: 30, y: 30}, NerdBoard.penColor, NerdBoard.colors.defaultBg, {name: "PenColor"});
         PenColor.onMouseUp = function () {
             UI.toolOptions.pencil.data.choosingPenColor = true;
@@ -665,7 +664,7 @@ NerdBoard.UI = (function() {
         };
 
         var BGColor = makeRect({
-            x: UI.icons.colorGradient.bounds.topRight.x + 25,
+            x: UI.icons.colorGradient.bounds.topRight.x + 40,
             y: UI.icons.colorGradient.bounds.topRight.y + 30
         }, {x: 30, y: 30}, NerdBoard.BGColor, NerdBoard.colors.defaultBg, {name: "PencilToolOptionsBGColor"});
         BGColor.onMouseUp = function () {
