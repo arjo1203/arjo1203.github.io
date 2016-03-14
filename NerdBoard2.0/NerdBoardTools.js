@@ -7,6 +7,11 @@
 NerdBoard.Tools = (function() {
     var wbTools = {
         tools: {},
+        toolsEvents: {
+            draw: {},
+            eraser: {},
+            move: {}
+        },
         selectingArea: {},
         selectedPaths: {},
         moveIcon: {}
@@ -29,6 +34,22 @@ NerdBoard.Tools = (function() {
         makeSelectingGroups();
         makeMoveTool();
         makeNoneTool();
+    };
+
+
+    wbTools.toolsEvents.draw.onMouseDrag = function(touch) {
+        var currentTouchIndex = findTrackedTouch(touch.identifier);
+        if (currentTouchIndex !== -1) {
+            var currentTouch = currentTouches[currentTouchIndex];
+            var segment = {x: currentTouch.pageX, y: currentTouch.pageY};
+            var item = NerdBoard.layers.drawing.children[currentTouch.itemIndex];
+            item.add(segment);
+
+            currentTouch.pageX = touch.pageX;
+            currentTouch.pageY = touch.pageY;
+
+            currentTouches.splice(currentTouchIndex, 1, currentTouch);
+        }
     };
 
 
@@ -67,17 +88,11 @@ NerdBoard.Tools = (function() {
             }
         };
         wbTools.tools.draw.onMouseDrag = function(paperEvent) {
-            //console.log(paperEvent.event.type);
             paperEvent.preventDefault();
 
-            var currentTouch, currentTouchIndex;
-
             if (paperEvent.event.type == 'mousemove') {
-                currentTouchIndex = findTrackedTouch(0);
-                if (currentTouchIndex !== -1) {
-                    currentTouch = currentTouches[currentTouchIndex];
-                    addSegment(paperEvent.event, currentTouch, currentTouchIndex);
-                }
+                paperEvent.event.identifier = 0;
+                wbTools.toolsEvents.draw.onMouseDrag(paperEvent.event);
             }
 
 
@@ -85,11 +100,7 @@ NerdBoard.Tools = (function() {
                 var touches = paperEvent.event.changedTouches;
                 for (var i = 0; i < touches.length; i++) {
                     var touch = touches[i];
-                    currentTouchIndex = findTrackedTouch(touch.identifier);
-                    if (currentTouchIndex !== -1) {
-                        currentTouch = currentTouches[currentTouchIndex];
-                        addSegment(touch, currentTouch, currentTouchIndex);
-                    }
+                    wbTools.toolsEvents.draw.onMouseDrag(touch);
                 }
             }
         };
@@ -701,20 +712,6 @@ NerdBoard.Tools = (function() {
             pageY: point.y,
             itemIndex: itemIndex
         };
-    }
-
-
-
-
-    function addSegment(event, touch, touchIndex) {
-        var point = {x: touch.pageX, y: touch.pageY};
-        var item = NerdBoard.layers.drawing.children[touch.itemIndex];
-        item.add(point);
-
-        touch.pageX = event.pageX;
-        touch.pageY = event.pageY;
-
-        currentTouches.splice(touchIndex, 1, touch);
     }
 
 

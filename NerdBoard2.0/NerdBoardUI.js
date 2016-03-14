@@ -5,15 +5,16 @@ NerdBoard.UI = (function() {
     var UI = {
         smartMove: false,
         smartDest: {},
+        smartOffset: 300,
         setSmartDest: function(event) {
             if(event.point.y > NerdBoard.size.height - 400 && event.point.x < 200)  //Keeps within view
-                UI.smartDest = event.point.add({x:100, y:-100});
+                UI.smartDest = event.point.add({x:400, y:-400});
             else if(event.point.x < 200)  //Keeps within view
-                UI.smartDest = event.point.add({x:100, y:100});
+                UI.smartDest = event.point.add({x:400, y:400});
             else if(event.point.y < 200)
-                UI.smartDest = event.point.add({x:100, y:100});
+                UI.smartDest = event.point.add({x:400, y:400});
             else
-                UI.smartDest = event.point.subtract(100);
+                UI.smartDest = event.point.subtract(400);
             var smartVec = UI.smartDest.subtract(UI.group.position);
             if(300 < smartVec.length)
                 UI.smartMove = true;
@@ -58,7 +59,8 @@ NerdBoard.UI = (function() {
         toolsAngle: [175, 145, 115, 85],
         toolsPeak: function() {
             return UI.group.children[UI.group.children.length - 2];
-        }
+        },
+        keyBoard: {}
     };
 
 
@@ -160,6 +162,7 @@ NerdBoard.UI = (function() {
         UI.setUp();
         UI.positionIcons();
         UI.scaleIcons();
+        //makeGroupA();
     };
 
 
@@ -501,7 +504,7 @@ NerdBoard.UI = (function() {
             UI.animationHandler.toggleIcon(UI.toolOptions.pencil);
             UI.animationHandler.toggleIcon(UI.toolOptions.menu);
 
-            UI.smartMoving();
+            //UI.smartMoving();
         };
     };
 
@@ -555,6 +558,42 @@ NerdBoard.UI = (function() {
             };
         };
     };
+
+
+
+    function makeGroupA() {
+        var a = makeText("a", 60, "center", "black", {name: "a"});
+        a.onMouseUp = function() {
+            console.log("a");
+        };
+
+        var b = makeText("b", 30, "center", "black", {name: "b"});
+        b.position = b.position.add({x: 0, y: -50});
+        b.onMouseUp = function() {
+            console.log("b");
+        };
+
+        var c = makeText("c", 30, "center", "black", {name: "c"});
+        c.position = c.position.add({x: 50, y: 0});
+        c.onMouseUp = function() {
+            console.log("c");
+        };
+
+        var d = makeText("d", 30, "center", "black", {name: "d"});
+        d.position = d.position.add({x: 0, y: 50});
+        d.onMouseUp = function() {
+            console.log("d");
+        };
+
+        var e = makeText("e", 30, "center", "black", {name: "e"});
+        e.position = e.position.add({x: -50, y: 0});
+        e.onMouseUp = function() {
+            console.log("e");
+        };
+
+        var groupA = new Group(a, b, c, d, e);
+        groupA.position = view.center;
+    }
 
 
 
