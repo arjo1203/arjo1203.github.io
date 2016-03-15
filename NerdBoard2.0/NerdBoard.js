@@ -382,7 +382,7 @@ var NerdBoard = (function(wb) {
             wb.layers.UI.name = "UILayer";
             wb.makeBG();
             NerdBoard.UI.loadIcons();
-            NerdBoard.Tools.createTools();
+            NerdBoard.Tools.createPaperTools();
         }, 100);
     };
 
