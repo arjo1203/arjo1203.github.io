@@ -287,8 +287,8 @@ var NerdBoard = (function(wb) {
         grid.data = {
             name: "BG"
         };
-        var BG = new Group(BGColor, grid);
-        BG.data = {
+        wb.BG = new Group(BGColor, grid);
+        wb.BG.data = {
             name: "BG"
         };
     };

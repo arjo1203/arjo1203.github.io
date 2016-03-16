@@ -11,16 +11,18 @@ NerdBoard.UI = (function() {
                 UI.smartDest = event.point.subtract({x:300, y:0});
             else
                 UI.smartDest = event.point.add({x:300, y:0});
-            var smartVec = UI.smartDest.subtract(UI.group.position);
-            if(300 < smartVec.length)
-                UI.smartMove = true;
+            UI.smartMove = true;
         },
         smartMoving: function() {
             if(UI.smartMove) {
                 var smartVec = UI.smartDest.subtract(UI.group.position);
-                UI.group.position = UI.group.position.add(smartVec.divide(5));
-                if (smartVec.length < 10)
+                UI.group.position = UI.group.position.add(smartVec.divide(3));
+                if (smartVec.length < 15) {
                     UI.smartMove = false;
+                    NerdBoard.undo();
+                    NerdBoard.undo();
+                    view.draw();
+                }
             }
         },
         wasDragged: false,
@@ -508,17 +510,35 @@ NerdBoard.UI = (function() {
         setSwatchesOnMouseUp();
 
 
-        NerdBoard.layers.drawing.onMouseDown = function(event) {
-            event.preventDefault();
-            UI.updateUI();//Too close any open options
-            UI.updateTool();//Ensure the active tool is activated
+
+        var startTime, lastTime = 0, deltaTime;
+        NerdBoard.layers.drawing.onClick = function(event) {
+            startTime = (new Date()).getTime();
+            if(!deltaTime)
+                deltaTime = 800;
+            else
+                deltaTime = startTime - lastTime;
+            if(deltaTime < 250) {
+                UI.setSmartDest(event);
+                //NerdBoard.undo();
+                //NerdBoard.undo();
+            }
+
+            lastTime = startTime;
         };
 
 
-        NerdBoard.layers.drawing.onMouseUp = function(event) {
-            event.preventDefault();
-            UI.setSmartDest(event);
-        };
+        //NerdBoard.layers.drawing.onMouseDown = function(event) {
+        //    event.preventDefault();
+        //    UI.updateUI();//Too close any open options
+        //    UI.updateTool();//Ensure the active tool is activated
+        //};
+
+
+        //NerdBoard.layers.drawing.onMouseUp = function(event) {
+        //    event.preventDefault();
+        //    UI.setSmartDest(event);
+        //};
 
         UI.toolOptions.pencil.children[3].onMouseDrag = function() {
             if(UI.toolOptions.pencil.children[3].children[2].content != NerdBoard.penStroke) {
@@ -614,6 +634,7 @@ NerdBoard.UI = (function() {
             };
         };
     };
+
 
 
 
