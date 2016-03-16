@@ -120,19 +120,6 @@ var NerdBoard = (function(wb) {
 
 
 
-    wb.loadRaster = function(image) {
-        var raster = new paper.Raster({
-            source: image,
-            position: paper.view.center
-        });
-        raster.fitBounds(paper.view.bounds);
-        raster.sendToBack();
-        NerdBoard.layers.drawing.children[1].sendToBack();
-    };
-
-
-
-
     wb.saveAsImg = function() {
         var link = document.createElement("a");
         var name = window.prompt("Please name your Image: ");
@@ -180,6 +167,21 @@ var NerdBoard = (function(wb) {
 
 
 
+    wb.loadRaster = function(image) {
+        wb.layers.drawing.activate();
+        var raster = new Raster({
+            source: image,
+            position: paper.view.center,
+            data: {
+                name: "Group"
+            }
+        });
+        raster.scale(.2);
+    };
+
+
+
+
     wb.loadWorkSpace = function() {
         var file = document.createElement('input');
 
@@ -188,7 +190,6 @@ var NerdBoard = (function(wb) {
 
         file.addEventListener('change', function () {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 var inputFile = JSON.parse(e.target.result);
 
@@ -206,6 +207,25 @@ var NerdBoard = (function(wb) {
         },
         false);
     };
+
+
+
+
+    wb.loadImg = function() {
+        var file = document.createElement('input');
+        file.type = 'file';
+        file.click();
+
+        file.addEventListener('change', function () {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    wb.loadRaster(e.target.result);
+                };
+                reader.readAsDataURL(file.files[0]);
+            },
+            false);
+    };
+
 
 
 

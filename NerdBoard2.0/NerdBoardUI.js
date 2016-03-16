@@ -7,14 +7,10 @@ NerdBoard.UI = (function() {
         smartDest: {},
         smartOffset: 300,
         setSmartDest: function(event) {
-            if(event.point.y > NerdBoard.size.height - 400 && event.point.x < 200)  //Keeps within view
-                UI.smartDest = event.point.add({x:400, y:-400});
-            else if(event.point.x < 200)  //Keeps within view
-                UI.smartDest = event.point.add({x:400, y:400});
-            else if(event.point.y < 200)
-                UI.smartDest = event.point.add({x:400, y:400});
+            if(event.point.x > 400)
+                UI.smartDest = event.point.subtract({x:300, y:0});
             else
-                UI.smartDest = event.point.subtract(400);
+                UI.smartDest = event.point.add({x:300, y:0});
             var smartVec = UI.smartDest.subtract(UI.group.position);
             if(300 < smartVec.length)
                 UI.smartMove = true;
@@ -34,6 +30,7 @@ NerdBoard.UI = (function() {
             pencil: {},
             eraser: {},
             move: {},
+            insert: {},
             menu: {},
             colorGradient: {},
             save: {},
@@ -41,7 +38,8 @@ NerdBoard.UI = (function() {
             undo: {},
             clear: {},
             grid: {},
-            tools: {}
+            tools: {},
+            uploadImg: {}
         },
         iconsSizes: {
             s: {width: 32, height: 32},
@@ -53,9 +51,10 @@ NerdBoard.UI = (function() {
         group: {},
         toolOptions: {
             pencil: {},
+            insert: {},
             menu: {}
         },
-        toolsStack: [7, 6, 5],
+        toolsStack: [9, 8, 7, 6],
         toolsAngle: [175, 145, 115, 85],
         toolsPeak: function() {
             return UI.group.children[UI.group.children.length - 2];
@@ -150,11 +149,12 @@ NerdBoard.UI = (function() {
             4, NerdBoard.penStrokeRange / 3, NerdBoard.penColor, NerdBoard.colors.defaultBg, NerdBoard.colors.defaultBg, NerdBoard.penColor, NerdBoard.penStroke);
         UI.toolOptions.pencil = new Group(UI.icons.colorGradient, PenBGPicker, RGBValues, PencilWidthSlider);
 
+        UI.toolOptions.insert = new Group(UI.icons.uploadImg);
         UI.toolOptions.menu = new Group(UI.icons.save, UI.icons.upload);
 
         var colorSwatches = makeColorSwatches();
 
-        UI.group = new Group(colorSwatches, UI.toolOptions.pencil, UI.toolOptions.menu, UI.icons.clear, UI.icons.undo, UI.icons.menu, UI.icons.move, UI.icons.eraser, UI.icons.BG, UI.icons.pencil, UI.icons.tools);
+        UI.group = new Group(colorSwatches, UI.toolOptions.pencil, UI.toolOptions.insert, UI.toolOptions.menu, UI.icons.clear, UI.icons.undo, UI.icons.menu, UI.icons.insert, UI.icons.move, UI.icons.eraser, UI.icons.BG, UI.icons.pencil, UI.icons.tools);
         UI.group.position = new Point(NerdBoard.size.width * .25, NerdBoard.size.height * .25);
         UI.group.bringToFront();
         //UI.group.opacity = .7;
@@ -230,6 +230,7 @@ NerdBoard.UI = (function() {
         NerdBoard.scaleImg(UI.icons.eraser, UI.iconsSizes.s);
         NerdBoard.scaleImg(UI.icons.move, UI.iconsSizes.s);
         NerdBoard.scaleImg(UI.icons.menu, UI.iconsSizes.s);
+        NerdBoard.scaleImg(UI.icons.insert, UI.iconsSizes.s);
         NerdBoard.scaleImg(UI.icons.tools, {width: 25, height: 25});
         NerdBoard.scaleImg(UI.icons.save, UI.iconsSizes.m);
         NerdBoard.scaleImg(UI.icons.upload, UI.iconsSizes.m);
@@ -237,6 +238,7 @@ NerdBoard.UI = (function() {
         NerdBoard.scaleImg(UI.icons.clear, UI.iconsSizes.sm);
         NerdBoard.scaleImg(UI.icons.grid, {width: 3, height: 3});
         NerdBoard.scaleImg(UI.toolOptions.pencil, UI.iconsSizes.s);
+        NerdBoard.scaleImg(UI.toolOptions.insert, UI.iconsSizes.s);
         NerdBoard.scaleImg(UI.toolOptions.menu, UI.iconsSizes.s);
     };
 
@@ -246,6 +248,8 @@ NerdBoard.UI = (function() {
     UI.makeIcons = function() {
         UI.icons.eraser.data = makeIcon("Eraser", false, NerdBoard.activateEraseMode);
         UI.icons.move.data = makeIcon("Move", false, NerdBoard.activateMoveMode);
+
+
 
 
         UI.toolOptions.pencil.data = makeIcon("PencilToolOptions", false, NerdBoard.activateNone);
@@ -293,6 +297,39 @@ NerdBoard.UI = (function() {
         };
 
 
+
+
+        UI.toolOptions.insert.data = makeIcon("InsertOptions", false, NerdBoard.activateNone);
+
+        UI.icons.insert.data = makeIcon("Insert", false, NerdBoard.activateNone);
+        UI.icons.insert.data.closeOptions = function () {
+            this.optionsOut = false;
+            UI.toolOptions.insert.data.animate = true;
+            NerdBoard.scaleImg(UI.toolOptions.insert, UI.iconsSizes.s);
+        };
+        UI.icons.insert.data.openOptions = function () {
+            this.optionsOut = true;
+            if (!this.out) {
+                if (!UI.toolOptions.insert.data.out)
+                    UI.toolOptions.insert.data.setDestination(100, 0);
+                UI.toolOptions.insert.data.animate = true;
+                window.setTimeout(function () {
+                    NerdBoard.scaleImg(UI.toolOptions.insert, UI.iconsSizes.m);
+                }, 20);//For animation
+            }
+        };
+        UI.icons.insert.data.toggleOptions = function () {
+            if (!this.optionsOut) {
+                this.openOptions();
+            }
+            else {
+                this.closeOptions();
+            }
+        };
+
+
+
+
         UI.toolOptions.menu.data = makeIcon("MenuOptions", false, NerdBoard.activateNone);
 
         UI.icons.menu.data = makeIcon("Menu", false, NerdBoard.activateNone);
@@ -320,6 +357,7 @@ NerdBoard.UI = (function() {
                 this.closeOptions();
             }
         };
+
 
 
         UI.icons.colorGradient.data = {
@@ -395,6 +433,9 @@ NerdBoard.UI = (function() {
         UI.icons.move.onMouseDrag = moveUI;
         UI.icons.move.onClick = toolsOnClick;
 
+        UI.icons.insert.onMouseDrag = moveUI;
+        UI.icons.insert.onClick = toolsOnClick;
+
         UI.icons.menu.onMouseDrag = moveUI;
         UI.icons.menu.onClick = toolsOnClick;
 
@@ -438,6 +479,11 @@ NerdBoard.UI = (function() {
             if(!UI.wasDragged) {
                 NerdBoard.saveAsImg();
             }
+        };
+
+
+        UI.icons.uploadImg.onClick = function() {
+            NerdBoard.loadImg();
         };
 
 
@@ -500,11 +546,13 @@ NerdBoard.UI = (function() {
             UI.animationHandler.toggleIcon(UI.icons.pencil);
             UI.animationHandler.toggleIcon(UI.icons.eraser);
             UI.animationHandler.toggleIcon(UI.icons.move);
+            UI.animationHandler.toggleIcon(UI.icons.insert);
             UI.animationHandler.toggleIcon(UI.icons.menu);
             UI.animationHandler.toggleIcon(UI.toolOptions.pencil);
+            UI.animationHandler.toggleIcon(UI.toolOptions.insert);
             UI.animationHandler.toggleIcon(UI.toolOptions.menu);
 
-            //UI.smartMoving();
+            UI.smartMoving();
         };
     };
 
@@ -513,6 +561,7 @@ NerdBoard.UI = (function() {
 
     UI.loadIcons = function() {
         UI.icons.BG = makeCircle({x: 0, y: 0}, 55, NerdBoard.penColor, NerdBoard.colors.defaultRed, "NerdBoardUIBG");
+        var iconsToLoad = ['PencilIcon', 'EraserIcon', 'MoveIcon', 'InsertIcon', 'MenuIcon', 'ColorIcon', 'SaveIcon', 'UploadIcon', 'UndoIcon', 'TrashIcon', 'GridIcon', 'ToolsIcon', 'UploadImgIcon'];
         NerdBoard.layers.UI.activate();
         UI.icons.pencil = new Raster('PencilIcon');
         UI.icons.pencil.onLoad = function() {
@@ -546,7 +595,15 @@ NerdBoard.UI = (function() {
                                             UI.icons.grid.onLoad = function() {
                                                 NerdBoard.layers.UI.activate();
                                                 UI.icons.tools = new Raster('ToolsIcon');
-                                                UI.icons.tools.onLoad = UI.makeUI;
+                                                UI.icons.tools.onLoad = function() {
+                                                    NerdBoard.layers.UI.activate();
+                                                    UI.icons.uploadImg = new Raster('UploadImgIcon');
+                                                    UI.icons.uploadImg.onLoad = function() {
+                                                        NerdBoard.layers.UI.activate();
+                                                        UI.icons.insert = new Raster('InsertIcon');
+                                                        UI.icons.insert.onLoad = UI.makeUI;
+                                                    };
+                                                };
                                             };
                                         };
                                     };
@@ -648,6 +705,36 @@ NerdBoard.UI = (function() {
                 this.destination = UI.animationHandler.destinationPoint(mag, angle);
             },
             activateTool: tool
+        };
+    }
+
+
+
+
+    function addOptions() {
+        UI.icons.insert.data.closeOptions = function () {
+            this.optionsOut = false;
+            UI.toolOptions.insert.data.animate = true;
+            NerdBoard.scaleImg(UI.toolOptions.insert, UI.iconsSizes.s);
+        };
+        UI.icons.insert.data.openOptions = function () {
+            this.optionsOut = true;
+            if (!this.out) {
+                if (!UI.toolOptions.insert.data.out)
+                    UI.toolOptions.insert.data.setDestination(100, 0);
+                UI.toolOptions.insert.data.animate = true;
+                window.setTimeout(function () {
+                    NerdBoard.scaleImg(UI.toolOptions.insert, {width: 52, height: 112});
+                }, 20);//For animation
+            }
+        };
+        UI.icons.insert.data.toggleOptions = function () {
+            if (!this.optionsOut) {
+                this.openOptions();
+            }
+            else {
+                this.closeOptions();
+            }
         };
     }
 

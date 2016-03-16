@@ -328,17 +328,8 @@ NerdBoard.Tools = (function() {
 
                         if (touchHit) {
                             var touchItem = touchHit.item;
-                            var touchParent = touchItem._parent;
-                            var touchParentName = touchParent.data.name;
+                            itemIndex = touchItem._index;
 
-                            //if(touchParentName == 'NerdBoard.layers.drawing') {
-                            //    if(touchItem.data.name !== 'BG') {
-                                    itemIndex = touchItem._index;
-                            //    }
-                            //}
-                            //else {
-                            //    itemIndex = touchParent._index;
-                            //}
                             if(touchItem.data.name == "BG") {
                                 wbTools.selectingArea.data.x0 = point.x;
                                 wbTools.selectingArea.data.y0 = point.y;
