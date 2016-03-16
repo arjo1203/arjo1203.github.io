@@ -19,9 +19,8 @@ NerdBoard.UI = (function() {
             if(UI.smartMove) {
                 var smartVec = UI.smartDest.subtract(UI.group.position);
                 UI.group.position = UI.group.position.add(smartVec.divide(5));
-                if (smartVec.length < 10) {
+                if (smartVec.length < 10)
                     UI.smartMove = false;
-                }
             }
         },
         wasDragged: false,

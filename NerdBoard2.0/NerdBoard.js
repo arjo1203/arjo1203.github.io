@@ -169,14 +169,13 @@ var NerdBoard = (function(wb) {
 
     wb.loadRaster = function(image) {
         wb.layers.drawing.activate();
-        var raster = new Raster({
-            source: image,
-            position: paper.view.center,
-            data: {
-                name: "Group"
-            }
-        });
-        raster.scale(.2);
+        var raster = new Raster(image);
+        var imgGroup = new Group(raster);
+        imgGroup.position = paper.view.center;
+        imgGroup.scale(.2);
+        imgGroup.data = {
+            name: "Group"
+        }
     };
 
 

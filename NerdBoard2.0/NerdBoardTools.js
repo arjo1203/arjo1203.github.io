@@ -32,6 +32,10 @@ NerdBoard.Tools = (function() {
         if(currentTouchIndex == -1) {
             var newPath = makePath();
             var trackedTouch = trackTouch(touch, newPath.index);
+            var touchHit = NerdBoard.layers.drawing.hitTest(trackedTouch.touchPoint, wbTools.hitOptions);
+            if(touchHit.item.parent.data.name !== "BG"){
+                trackedTouch.groupIndex = touchHit.item.parent.index;
+            }
             wbTools.currentTouches.push(trackedTouch);
         }
     };
@@ -40,7 +44,7 @@ NerdBoard.Tools = (function() {
         if (currentTouchIndex !== -1) {
             var currentTouch = wbTools.currentTouches[currentTouchIndex];
             NerdBoard.layers.drawing.children[currentTouch.itemIndex].add(currentTouch.touchPoint);
-            currentTouch = trackTouch(touch, currentTouch.itemIndex);
+            currentTouch = trackTouch(touch, currentTouch.itemIndex, currentTouch.groupIndex);
             wbTools.currentTouches.splice(currentTouchIndex, 1, currentTouch);
         }
     };
@@ -55,9 +59,12 @@ NerdBoard.Tools = (function() {
             }
             else {
                 currentItem.remove();
-                var dot = new Path.Circle(currentTouch.touchPoint, NerdBoard.penStroke / 2);
-                dot.fillColor = NerdBoard.penColor;
-                dot.data.name = NerdBoard.pathName + 'dot';
+                currentItem = new Path.Circle(currentTouch.touchPoint, NerdBoard.penStroke / 2);
+                currentItem.fillColor = NerdBoard.penColor;
+                currentItem.data.name = 'dot';
+            }
+            if(currentTouch.groupIndex) {
+                NerdBoard.layers.drawing.children[currentTouch.groupIndex].addChild(currentItem);
             }
             wbTools.currentTouches.splice(currentTouchIndex, 1);
         }
@@ -294,7 +301,11 @@ NerdBoard.Tools = (function() {
                 var mouseHit = NerdBoard.layers.drawing.hitTest(paperEvent.point, wbTools.hitOptions);
                 if (mouseHit) {
                     var mouseItem = mouseHit.item;
+
                     itemIndex = mouseItem.index;
+                    if(mouseItem.parent.name !== "drawingLayer")
+                        itemIndex = mouseItem.parent.index;
+
                     if(mouseItem.data.name == "BG") {
                         wbTools.selectingArea.data.x0 = x;
                         wbTools.selectingArea.data.y0 = y;
@@ -308,6 +319,7 @@ NerdBoard.Tools = (function() {
                             pageY: y,
                             itemIndex: itemIndex
                         };
+                        NerdBoard.layers.drawing.children[itemIndex].selected = true;
                         //Store the trackedTouch
                         wbTools.currentTouches.push(trackMouse);
                     }
@@ -343,6 +355,7 @@ NerdBoard.Tools = (function() {
                                     pageY: touch.pageY,
                                     itemIndex: itemIndex
                                 };
+                                NerdBoard.layers.drawing.children[itemIndex].selected = true;
 
                                 //Store the trackedTouch
                                 wbTools.currentTouches.push(trackedTouch);
@@ -456,9 +469,8 @@ NerdBoard.Tools = (function() {
 
                     if (currentTouchIndex !== -1) {
                         // Remove the record of the touch and path record.
+                        NerdBoard.layers.drawing.children[currentTouch.itemIndex].selected = false;
                         wbTools.currentTouches.splice(currentTouchIndex, 1);
-                    } else {
-                        console.log('Touch' + i.toString() + 'was not found!');
                     }
                 }
             }
@@ -615,11 +627,12 @@ NerdBoard.Tools = (function() {
 
 
 
-    function trackTouch(touch, itemIndex) {
+    function trackTouch(touch, itemIndex, groupIndex) {
         return {
             id: touch.identifier,
             touchPoint: {x: touch.pageX, y: touch.pageY},
-            itemIndex: itemIndex
+            itemIndex: itemIndex,
+            groupIndex: groupIndex || null
         };
     }
 
