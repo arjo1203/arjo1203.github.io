@@ -341,7 +341,7 @@ NerdBoard.Tools = (function() {
                         if (touchHit) {
                             var touchItem = touchHit.item;
                             itemIndex = touchItem.index;
-                            if(mouseItem.parent.name !== "drawingLayer")
+                            if(touchHit.parent.name !== "drawingLayer")
                                 itemIndex = mouseItem.parent.index;
 
                             if(touchItem.data.name == "BG") {
