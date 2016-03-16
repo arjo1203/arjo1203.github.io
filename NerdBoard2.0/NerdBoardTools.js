@@ -340,7 +340,9 @@ NerdBoard.Tools = (function() {
 
                         if (touchHit) {
                             var touchItem = touchHit.item;
-                            itemIndex = touchItem._index;
+                            itemIndex = touchItem.index;
+                            if(mouseItem.parent.name !== "drawingLayer")
+                                itemIndex = mouseItem.parent.index;
 
                             if(touchItem.data.name == "BG") {
                                 wbTools.selectingArea.data.x0 = point.x;
