@@ -340,7 +340,7 @@ NerdBoard.Tools = (function() {
 
                         if (touchHit) {
                             var touchItem = touchHit.item;
-                            
+
                             itemIndex = touchItem.index;
                             if(touchItem.parent.name !== "drawingLayer")
                                 itemIndex = touchItem.parent.index;
@@ -451,12 +451,13 @@ NerdBoard.Tools = (function() {
         };
         wbTools.tools.move.onMouseUp = function(paperEvent) {
             paperEvent.preventDefault();
+            var currentTouch;
 
             if(paperEvent.event.type == 'mouseup') {
                 currentTouchIndex = findTrackedTouch(0);
 
                 if (currentTouchIndex !== -1) {
-                    var currentTouch = wbTools.currentTouches[currentTouchIndex];
+                    currentTouch = wbTools.currentTouches[currentTouchIndex];
                     // Store the record of the trackedTouch.
                     NerdBoard.layers.drawing.children[currentTouch.itemIndex].selected = false;
                     wbTools.currentTouches.splice(currentTouchIndex, 1);
@@ -471,6 +472,7 @@ NerdBoard.Tools = (function() {
                     var currentTouchIndex = findTrackedTouch(touch.identifier);
 
                     if (currentTouchIndex !== -1) {
+                        currentTouch = wbTools.currentTouches[currentTouchIndex];
                         // Remove the record of the touch and path record.
                         NerdBoard.layers.drawing.children[currentTouch.itemIndex].selected = false;
                         wbTools.currentTouches.splice(currentTouchIndex, 1);
