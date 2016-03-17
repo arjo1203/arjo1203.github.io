@@ -7,6 +7,7 @@ paper.install(window);
 
 // Main Javascript functions and code.
 var NerdBoard = (function(wb) {
+    wb.activeMode = "Pencil";
     wb.size = {
         width: window.innerWidth,
         height: window.innerHeight
@@ -62,7 +63,7 @@ var NerdBoard = (function(wb) {
     wb.penStroke = 4;
     
     wb.BGColor = wb.colors.greenGridBg;
-    wb.pathName = 'NerdPath' + wb.pathCount;
+    wb.pathName = "Path";
 
 
     function createColor(r, g, b) {
@@ -98,22 +99,18 @@ var NerdBoard = (function(wb) {
 
     //Activators
     wb.activateNone = function() {
-        wb.activeMode = 'None';
         NerdBoard.Tools.tools.none.activate();
     };
 
     wb.activateDrawMode = function() {
-        wb.activeMode = 'draw';
         NerdBoard.Tools.tools.draw.activate();
     };
 
     wb.activateEraseMode = function() {
-        wb.activeMode = 'erase';
         NerdBoard.Tools.tools.erase.activate();
     };
 
     wb.activateMoveMode = function() {
-        wb.activeMode = 'move';
         NerdBoard.Tools.tools.move.activate();
     };
 
@@ -169,14 +166,39 @@ var NerdBoard = (function(wb) {
 
     wb.loadRaster = function(image) {
         wb.layers.drawing.activate();
+        //var closeIcon = NerdBoard.Tools.makeCloseIcon();
+        //closeIcon.data.name = "CloseIcon";
         var raster = new Raster(image);
+        raster.data.name = "Raster";
+        //raster.onLoad = function() {
+        //    closeIcon.position = raster.bounds.topRight.add({x: -25, y:25});
+        //};
+        //var imgGroup = new Group(closeIcon, raster);
         var imgGroup = new Group(raster);
         imgGroup.position = paper.view.center;
         imgGroup.scale(.2);
         imgGroup.data = {
-            name: "Group"
-        }
+            name: "Group",
+            closeIconIsBack: true
+        };
+        //imgGroup.onClick = function(event) {
+        //    event.preventDefault();
+        //    if(wb.activeMode == "Eraser" && imgGroup.data.closeIconIsBack) {
+        //        console.log("Eraser && " + imgGroup.data.closeIconIsBack);
+        //        //imgGroup.children[0].bringToFront();
+        //        imgGroup.data.closeIconIsBack = false;
+        //    }
+        //    else {
+        //        //imgGroup.children[imgGroup.children.length-1].sendToBack();
+        //        imgGroup.data.closeIconIsBack = true;
+        //    }
+        //};
+        //closeIcon.onClick = function(event) {
+        //    event.preventDefault();
+        //    imgGroup.remove();
+        //};
     };
+
 
 
 

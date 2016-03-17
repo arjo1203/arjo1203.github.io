@@ -528,11 +528,11 @@ NerdBoard.UI = (function() {
         };
 
 
-        //NerdBoard.layers.drawing.onMouseDown = function(event) {
-        //    event.preventDefault();
-        //    UI.updateUI();//Too close any open options
-        //    UI.updateTool();//Ensure the active tool is activated
-        //};
+        NerdBoard.layers.drawing.onMouseDown = function(event) {
+            event.preventDefault();
+            UI.updateUI();//Too close any open options
+            UI.updateTool();//Ensure the active tool is activated
+        };
 
 
         //NerdBoard.layers.drawing.onMouseUp = function(event) {
@@ -571,7 +571,7 @@ NerdBoard.UI = (function() {
             UI.animationHandler.toggleIcon(UI.toolOptions.insert);
             UI.animationHandler.toggleIcon(UI.toolOptions.menu);
 
-            UI.smartMoving();
+            //UI.smartMoving();
         };
     };
 
@@ -682,6 +682,8 @@ NerdBoard.UI = (function() {
             if (peak.data.name != this.data.name) {
                 peak.data.active = false;
                 this.data.active = true;
+                console.log(this.data.name);
+                NerdBoard.activeMode = this.data.name;
                 UI.animationHandler.animateToolsIn();
                 UI.updateTool();
             }

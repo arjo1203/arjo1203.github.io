@@ -20,7 +20,7 @@ NerdBoard.Tools = (function() {
             segments: true,
             stroke: true,
             fill: true,
-            tolerance: 15
+            tolerance: 3
         }
     };
 
@@ -80,7 +80,7 @@ NerdBoard.Tools = (function() {
             var touchHit = NerdBoard.layers.drawing.hitTest(trackedTouch.touchPoint, wbTools.hitOptions);
             if (touchHit) {
                 var touchItem = touchHit.item;
-                if(touchItem.data.name != "BG") {//Prevent erasing BG and BGImg
+                if(touchItem.data.name == "Path") {//Prevent erasing BG and BGImg
                     touchItem.remove();
                 }
                 trackedTouch.itemIndex = touchItem.index;
@@ -98,7 +98,7 @@ NerdBoard.Tools = (function() {
             var touchHit = NerdBoard.layers.drawing.hitTest(currentTouch.touchPoint, wbTools.hitOptions);
             if (touchHit) {
                 var touchItem = touchHit.item;
-                if(touchItem.data.name != "BG") {//Prevent erasing BG and BGImg
+                if(touchItem.data.name == "Path") {//Prevent erasing BG and BGImg
                     touchItem.remove();
                 }
                 currentTouch = trackTouch(touch, currentTouch.itemIndex);
@@ -111,8 +111,9 @@ NerdBoard.Tools = (function() {
     };
     wbTools.toolsEvents.eraser.onMouseUp = function(touch) {
         var currentTouchIndex = handleTouch(touch);
-        if (currentTouchIndex !== -1)
+        if (currentTouchIndex !== -1) {
             wbTools.currentTouches.splice(currentTouchIndex, 1);
+        }
     };
 
 
@@ -617,17 +618,28 @@ NerdBoard.Tools = (function() {
 
 
 
-    function makePath() {
+    function makePath(strokeColor, strokeWidth, name) {
         NerdBoard.pathCount++;
         return new Path({
-            strokeColor: NerdBoard.penColor,
-            strokeWidth: NerdBoard.penStroke,
+            strokeColor: strokeColor || NerdBoard.penColor,
+            strokeWidth: strokeWidth || NerdBoard.penStroke,
             strokeCap: 'round',
             data: {
-                name: NerdBoard.pathName
+                name: name || NerdBoard.pathName
             }
         });
     }
+
+
+
+    wbTools.makeCloseIcon = function() {
+        var path1 = makePath(NerdBoard.colors.defaultRed, 4, "CloseIconPaths");
+        path1.add({x: 0, y: 0}, {x: 150, y: 0});
+        var path2 = path1.clone();
+        path1.rotate(45);
+        path2.rotate(-45);
+        return new Group(path1, path2);
+    };
 
 
 
