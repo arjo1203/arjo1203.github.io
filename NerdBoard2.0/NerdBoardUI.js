@@ -150,7 +150,12 @@ NerdBoard.UI = (function() {
             4, NerdBoard.penStrokeRange / 3, NerdBoard.penColor, NerdBoard.colors.defaultBg, NerdBoard.colors.defaultBg, NerdBoard.penColor, NerdBoard.penStroke);
         UI.toolOptions.pencil = new Group(UI.icons.colorGradient, PenBGPicker, RGBValues, PencilWidthSlider);
 
-        UI.toolOptions.insert = new Group(UI.icons.uploadImg);
+
+        var resistor = NerdBoard.makeResistor();
+        var voltageSrc = NerdBoard.makeVoltageSrc();
+        UI.toolOptions.insert = new Group(UI.icons.uploadImg, resistor, voltageSrc);
+
+
         UI.toolOptions.menu = new Group(UI.icons.save, UI.icons.upload);
 
         var colorSwatches = makeColorSwatches();
@@ -218,8 +223,14 @@ NerdBoard.UI = (function() {
         UI.icons.tools.position = UI.icons.tools.position.subtract(28);
         UI.icons.save.position = UI.icons.save.position.add({x: -5, y:-30});
         UI.icons.upload.position = UI.icons.upload.position.add({x: -5, y:30});
+
         UI.toolOptions.pencil.children[3].position = UI.toolOptions.pencil.children[3].position.add({x: 0, y:-25});
-        UI.group.children[0].position = UI.icons.BG.position;
+        UI.toolOptions.insert.children[1].position = UI.toolOptions.insert.children[1].position.add({x: 50, y:0});
+        UI.toolOptions.insert.children[2].position = UI.toolOptions.insert.children[2].position.add({x: 180, y:0});
+        //UI.toolOptions.insert.position = UI.toolOptions.insert.position.add({x: 300, y:0});
+        UI.toolOptions.insert.position = UI.icons.BG.position;
+        //console.log(UI.toolOptions.insert);
+
         UI.icons.pencil.data.toggleSwatches();
     };
 
@@ -232,6 +243,7 @@ NerdBoard.UI = (function() {
         NerdBoard.scaleImg(UI.icons.move, UI.iconsSizes.s);
         NerdBoard.scaleImg(UI.icons.menu, UI.iconsSizes.s);
         NerdBoard.scaleImg(UI.icons.insert, UI.iconsSizes.s);
+        NerdBoard.scaleImg(UI.icons.uploadImg, UI.iconsSizes.m);
         NerdBoard.scaleImg(UI.icons.tools, {width: 25, height: 25});
         NerdBoard.scaleImg(UI.icons.save, UI.iconsSizes.m);
         NerdBoard.scaleImg(UI.icons.upload, UI.iconsSizes.m);
@@ -312,10 +324,10 @@ NerdBoard.UI = (function() {
             this.optionsOut = true;
             if (!this.out) {
                 if (!UI.toolOptions.insert.data.out)
-                    UI.toolOptions.insert.data.setDestination(100, 0);
+                    UI.toolOptions.insert.data.setDestination(150, 0);
                 UI.toolOptions.insert.data.animate = true;
                 window.setTimeout(function () {
-                    NerdBoard.scaleImg(UI.toolOptions.insert, UI.iconsSizes.m);
+                    NerdBoard.scaleImg(UI.toolOptions.insert, {width: 150, height: 50});
                 }, 20);//For animation
             }
         };
@@ -579,7 +591,7 @@ NerdBoard.UI = (function() {
 
 
     UI.loadIcons = function() {
-        UI.icons.BG = makeCircle({x: 0, y: 0}, 55, NerdBoard.penColor, NerdBoard.colors.defaultRed, "NerdBoardUIBG");
+        UI.icons.BG = NerdBoard.makeCircle({x: 0, y: 0}, 55, NerdBoard.penColor, NerdBoard.colors.defaultRed, "NerdBoardUIBG");
         var iconsToLoad = ['PencilIcon', 'EraserIcon', 'MoveIcon', 'InsertIcon', 'MenuIcon', 'ColorIcon', 'SaveIcon', 'UploadIcon', 'UndoIcon', 'TrashIcon', 'GridIcon', 'ToolsIcon', 'UploadImgIcon'];
         NerdBoard.layers.UI.activate();
         UI.icons.pencil = new Raster('PencilIcon');
@@ -763,20 +775,6 @@ NerdBoard.UI = (function() {
 
 
 
-    function makeCircle(center, radius, fillColor, strokeColor, data) {
-        return new Path.Circle({
-            center: new Point(center.x, center.y),
-            radius: radius,
-            fillColor: fillColor,
-            strokeColor: strokeColor,
-            strokeWidth: 2,
-            data: data
-        });
-    }
-
-
-
-
     function makeRect(center, size, fillColor, strokeColor, data) {
         return new paper.Path.Rectangle({
             center: new Point(center.x, center.y),
@@ -858,7 +856,7 @@ NerdBoard.UI = (function() {
 
     function makeSlider(referencePoint1, referencePoint2, range, start, handleRadius, handleFillColor, handleStrokeColor, handleTextColor, trackColor, trackWidth) {
         var totDis = referencePoint2.x - referencePoint1.x;
-        var handle = makeCircle({x: referencePoint1.x + (totDis * (start/range.max)), y: referencePoint1.y}, handleRadius, handleFillColor, handleStrokeColor, {name: "handle"});
+        var handle = NerdBoard.makeCircle({x: referencePoint1.x + (totDis * (start/range.max)), y: referencePoint1.y}, handleRadius, handleFillColor, handleStrokeColor, {name: "handle"});
         var handleText = makeText(start.toString(), 20, "center", handleTextColor, {name: "handleText", value: 0});
         handleText.fitBounds(handle.bounds);
         handleText.onMouseDrag = function (event) {

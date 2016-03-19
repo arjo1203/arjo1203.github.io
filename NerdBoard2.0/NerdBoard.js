@@ -176,7 +176,7 @@ var NerdBoard = (function(wb) {
         //var imgGroup = new Group(closeIcon, raster);
         var imgGroup = new Group(raster);
         imgGroup.position = paper.view.center;
-        imgGroup.scale(.2);
+        //imgGroup.scale(.2);
         imgGroup.data = {
             name: "Group",
             closeIconIsBack: true
@@ -353,6 +353,71 @@ var NerdBoard = (function(wb) {
         grid.opacity = .8;
         grid.strokeWidth = .3;
         return grid;
+    };
+
+
+
+    wb.makeResistor = function() {
+        var incre = 10;
+        var path1 = wb.makePath(NerdBoard.colors.defaultRed, 4, "Resistor");
+        path1.add({x: 0, y: 0}, {x: 2 * incre, y: 0}, {x: 2.5 * incre, y: -incre},
+            {x: 3.5 * incre, y: incre}, {x: 4.5 * incre, y: -incre},
+            {x: 5.5 * incre, y: incre}, {x: 6 * incre, y: 0}, {x: 8 * incre, y: 0});
+        //path1.scale(1);
+        return path1;
+    };
+
+
+
+    wb.makeVoltageSrc = function() {
+        var path1 = wb.makePath(NerdBoard.colors.defaultRed, 4, "VoltageSrcPosSignPaths");
+        path1.add({x: -5, y: 0}, {x: 5, y: 0});
+        var path2 = path1.clone();
+        path2.rotate(90);
+        var posSign = new Group(path1, path2);
+        posSign.position = posSign.position.add({x: 0, y: -10});
+        var negSign = path1.clone();
+        negSign.position = negSign.position.add({x: 0, y: 20});
+        var signs = new Group(posSign, negSign);
+        var circle = wb.makePath(NerdBoard.colors.defaultRed, 4, "VoltageSrcCircle");
+        var radius = 20;
+        circle.add({x: -radius, y: radius}, {x: radius, y: radius}, {x: radius, y: -radius}, {x: -radius, y: -radius});
+        circle.closed = true;
+        circle.smooth();
+        var path3 = path2.clone();
+        path3.position = path3.position.add({x: 0, y: 2*radius + 5});
+        var path4 = path2.clone();
+        path4.position = path4.position.add({x: 0, y: -(radius + 5)});
+        return new Group(signs, circle, path3, path4);
+    };
+
+
+
+
+    wb.makePath = function(strokeColor, strokeWidth, name) {
+        NerdBoard.pathCount++;
+        return new Path({
+            strokeColor: strokeColor || NerdBoard.penColor,
+            strokeWidth: strokeWidth || NerdBoard.penStroke,
+            strokeCap: 'round',
+            data: {
+                name: name || NerdBoard.pathName
+            }
+        });
+    };
+
+
+
+
+    wb.makeCircle = function(center, radius, fillColor, strokeColor, data) {
+        return new Path.Circle({
+            center: new Point(center.x, center.y),
+            radius: radius,
+            fillColor: fillColor,
+            strokeColor: strokeColor,
+            strokeWidth: 2,
+            data: data
+        });
     };
 
 

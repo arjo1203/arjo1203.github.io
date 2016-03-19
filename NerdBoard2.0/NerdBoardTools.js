@@ -30,7 +30,7 @@ NerdBoard.Tools = (function() {
     wbTools.toolsEvents.draw.onMouseDown = function(touch) {
         var currentTouchIndex = handleTouch(touch);
         if(currentTouchIndex == -1) {
-            var newPath = makePath();
+            var newPath = NerdBoard.makePath();
             var trackedTouch = trackTouch(touch, newPath.index);
             var touchHit = NerdBoard.layers.drawing.hitTest(trackedTouch.touchPoint, wbTools.hitOptions);
             if(touchHit.item.parent.data.name !== "BG"){
@@ -256,33 +256,6 @@ NerdBoard.Tools = (function() {
 
 
 
-    wbTools.toolsEvents.move.onMouseDown = function(touch) {
-        var currentTouchIndex = handleTouch(touch);
-        if(currentTouchIndex == -1) {
-            var trackedTouch = trackTouch(touch, null);
-            var touchHit = NerdBoard.layers.drawing.hitTest(trackedTouch.touchPoint, wbTools.hitOptions);
-
-            if (touchHit) {
-                var touchItem = touchHit.item;
-                if(touchItem.data.name == "BG") {
-                    wbTools.selectingArea.data.x0 = point.x;
-                    wbTools.selectingArea.data.y0 = point.y;
-                    wbTools.selectingArea.data.selecting = true;
-                }
-                else {
-                    trackedTouch.itemIndex = touchItem.index;
-                    wbTools.currentTouches.push(trackedTouch);
-                }
-            }
-            else {
-                return ;
-            }
-        }
-    };
-
-
-
-
     function makeMoveTool() {
         wbTools.tools.move = new paper.Tool();
         wbTools.tools.move.onMouseDown = function(paperEvent) {
@@ -295,83 +268,46 @@ NerdBoard.Tools = (function() {
                 wbTools.moveIcon.opacity = 0;
             }
 
-            var itemIndex;
-            if(paperEvent.event.type == 'mousedown') {
-                var x = paperEvent.event.x, y = paperEvent.event.y;
 
-                var mouseHit = NerdBoard.layers.drawing.hitTest(paperEvent.point, wbTools.hitOptions);
-                if (mouseHit) {
-                    var mouseItem = mouseHit.item;
-
-                    itemIndex = mouseItem.index;
-                    if(mouseItem.parent.name !== "drawingLayer")
-                        itemIndex = mouseItem.parent.index;
-
-                    if(mouseItem.data.name == "BG") {
-                        wbTools.selectingArea.data.x0 = x;
-                        wbTools.selectingArea.data.y0 = y;
-                        wbTools.selectingArea.data.selecting = true;
-                    }
-                    else {
-                        //Track the newly created touch
-                        var trackMouse = {
-                            id: 0,
-                            pageX: x,
-                            pageY: y,
-                            itemIndex: itemIndex
-                        };
-                        NerdBoard.layers.drawing.children[itemIndex].selected = true;
-                        //Store the trackedTouch
-                        wbTools.currentTouches.push(trackMouse);
-                    }
-                }
-
-            }
+            if(paperEvent.event.type == 'mousedown')
+                wbTools.toolsEvents.move.onMouseDown(paperEvent.event);
 
             if(paperEvent.event.type == 'touchstart') {
                 var touches = paperEvent.event.changedTouches;
-
                 for (var i = 0; i < touches.length; i++) {
                     var touch = touches[i];
-
-                    var currentIndex = findTrackedTouch(touch.identifier);
-                    if(currentIndex == -1) {
-                        var point = new Point({x: touch.pageX, y: touch.pageY});
-                        var touchHit = NerdBoard.layers.drawing.hitTest(point, wbTools.hitOptions);
-
-                        if (touchHit) {
-                            var touchItem = touchHit.item;
-
-                            itemIndex = touchItem.index;
-                            if(touchItem.parent.name !== "drawingLayer")
-                                itemIndex = touchItem.parent.index;
-
-                            if(touchItem.data.name == "BG") {
-                                wbTools.selectingArea.data.x0 = point.x;
-                                wbTools.selectingArea.data.y0 = point.y;
-                                wbTools.selectingArea.data.selecting = true;
-                            }
-                            else {
-                                //Track the newly created touch
-                                var trackedTouch = {
-                                    id: touch.identifier,
-                                    pageX: touch.pageX,
-                                    pageY: touch.pageY,
-                                    itemIndex: itemIndex
-                                };
-                                NerdBoard.layers.drawing.children[itemIndex].selected = true;
-
-                                //Store the trackedTouch
-                                wbTools.currentTouches.push(trackedTouch);
-                            }
-                        }
-                        else {
-                            return ;
-                        }
-                    }
+                    wbTools.toolsEvents.move.onMouseDown(touch);
                 }
             }
         };
+        wbTools.toolsEvents.move.onMouseDown = function(touch) {
+            var currentTouchIndex = handleTouch(touch);
+            if(currentTouchIndex == -1) {
+                var trackedTouch = trackTouch(touch, null);
+                var touchHit = NerdBoard.layers.drawing.hitTest(trackedTouch.touchPoint, wbTools.hitOptions);
+
+                if (touchHit) {
+                    var touchItem = touchHit.item;
+
+                    if(touchItem.data.name == "BG") {
+                        wbTools.selectingArea.data.x0 = trackedTouch.touchPoint.x;
+                        wbTools.selectingArea.data.y0 = trackedTouch.touchPoint.y;
+                        wbTools.selectingArea.data.selecting = true;
+                    }
+                    else {
+                        trackedTouch.itemIndex = touchItem.index;
+                        if(touchItem.parent.name !== "drawingLayer")
+                            trackedTouch.itemIndex = touchItem.parent.index;
+                        wbTools.currentTouches.push(trackedTouch);
+                        NerdBoard.layers.drawing.children[trackedTouch.itemIndex].selected = true;
+                    }
+                }
+                else {
+                    return ;
+                }
+            }
+        };
+
         wbTools.tools.move.onMouseDrag = function(paperEvent) {
             paperEvent.preventDefault();
 
@@ -613,21 +549,6 @@ NerdBoard.Tools = (function() {
         for(var i = 0; i < NerdBoard.layers.drawing.children.length; i++)
             if (NerdBoard.layers.drawing.children[i].selected)
                 wbTools.selectedPaths.addChild(NerdBoard.layers.drawing.children[i]);
-    }
-
-
-
-
-    function makePath(strokeColor, strokeWidth, name) {
-        NerdBoard.pathCount++;
-        return new Path({
-            strokeColor: strokeColor || NerdBoard.penColor,
-            strokeWidth: strokeWidth || NerdBoard.penStroke,
-            strokeCap: 'round',
-            data: {
-                name: name || NerdBoard.pathName
-            }
-        });
     }
 
 
