@@ -56,8 +56,8 @@
       <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5345572">
-              <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.3531318">
+              <caret line="330" column="40" selection-start-line="330" selection-start-column="40" selection-end-line="330" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -709,14 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoardUI.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="230" column="30" selection-start-line="230" selection-start-column="30" selection-end-line="230" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -733,10 +725,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoardUI.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="230" column="30" selection-start-line="230" selection-start-column="30" selection-end-line="230" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5345572">
-          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+        <state vertical-scroll-proportion="-2.3531318">
+          <caret line="330" column="40" selection-start-line="330" selection-start-column="40" selection-end-line="330" selection-end-column="40" />
           <folding />
         </state>
       </provider>
