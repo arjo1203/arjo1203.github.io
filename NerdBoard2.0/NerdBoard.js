@@ -26,6 +26,8 @@ var NerdBoard = (function(wb) {
         UI: {}
     };
 
+    wb.symbols = {};
+
 
     wb.pathCount = 0;
 
@@ -55,7 +57,9 @@ var NerdBoard = (function(wb) {
         slateGreen: createColor(112, 201, 112),
         slateBlue: createColor(108, 199, 225),
         slateYellow: createColor(241, 196, 15),
-        greenGridBg: createColor(233, 254, 198)
+        greenGridBg: createColor(233, 254, 198),
+        selecting: '#e9e9ff',
+        selected: '#009dec'
     };
     
     wb.penColor = wb.colors.defaultBlack;
@@ -176,7 +180,7 @@ var NerdBoard = (function(wb) {
         //var imgGroup = new Group(closeIcon, raster);
         var imgGroup = new Group(raster);
         imgGroup.position = paper.view.center;
-        //imgGroup.scale(.2);
+        imgGroup.scale(.5);
         imgGroup.data = {
             name: "Group",
             closeIconIsBack: true

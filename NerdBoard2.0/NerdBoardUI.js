@@ -694,7 +694,6 @@ NerdBoard.UI = (function() {
             if (peak.data.name != this.data.name) {
                 peak.data.active = false;
                 this.data.active = true;
-                console.log(this.data.name);
                 NerdBoard.activeMode = this.data.name;
                 UI.animationHandler.animateToolsIn();
                 UI.updateTool();
@@ -775,16 +774,16 @@ NerdBoard.UI = (function() {
 
 
 
-    function makeRect(center, size, fillColor, strokeColor, data) {
+    UI.makeRect = function(center, size, fillColor, strokeColor, data) {
         return new paper.Path.Rectangle({
             center: new Point(center.x, center.y),
-            size: [size.x, size.y],
+            size: [size.width, size.height],
             fillColor: fillColor,
             strokeColor: strokeColor,
             strokeWidth: 2,
             data: data
         });
-    }
+    };
 
 
     function makeText(content, size, justification, fillColor, data) {
@@ -801,18 +800,18 @@ NerdBoard.UI = (function() {
 
 
     function makePenBGPicker() {
-        var PenColor = makeRect({x: UI.icons.colorGradient.bounds.topRight.x + 25, y: UI.icons.colorGradient.bounds.topRight.y + 15
-        }, {x: 30, y: 30}, NerdBoard.penColor, NerdBoard.colors.defaultBg, {name: "PenColor"});
+        var PenColor = UI.makeRect({x: UI.icons.colorGradient.bounds.topRight.x + 25, y: UI.icons.colorGradient.bounds.topRight.y + 15
+        }, {width: 30, height: 30}, NerdBoard.penColor, NerdBoard.colors.defaultBg, {name: "PenColor"});
         PenColor.onMouseUp = function () {
             UI.toolOptions.pencil.data.choosingPenColor = true;
             BGColor.sendToBack();
             //PencilToolOptionsBGOptions.opacity = 0;
         };
 
-        var BGColor = makeRect({
+        var BGColor = UI.makeRect({
             x: UI.icons.colorGradient.bounds.topRight.x + 40,
             y: UI.icons.colorGradient.bounds.topRight.y + 30
-        }, {x: 30, y: 30}, NerdBoard.BGColor, NerdBoard.colors.defaultBg, {name: "PencilToolOptionsBGColor"});
+        }, {width: 30, height: 30}, NerdBoard.BGColor, NerdBoard.colors.defaultBg, {name: "PencilToolOptionsBGColor"});
         BGColor.onMouseUp = function () {
             UI.toolOptions.pencil.data.choosingPenColor = false;
             PenColor.sendToBack();
@@ -825,26 +824,26 @@ NerdBoard.UI = (function() {
 
 
     function makeRBGValues(referencePoint, leftShift, verticalShifts) {
-        var RedBox = makeRect({
+        var RedBox = UI.makeRect({
             x: referencePoint.x + leftShift,
             y: referencePoint.y + verticalShifts.a
-        }, {x: 45, y: 30}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBg, {name: "RedBox"});
+        }, {width: 45, height: 30}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBg, {name: "RedBox"});
         var RedText = makeText("0", NerdBoard.textSize, "center", NerdBoard.colors.defaultBg, {name: "RedText"});
         RedText.fitBounds(RedBox.bounds);
         var Red = new Group(RedBox, RedText);
 
-        var GreenBox = makeRect({
+        var GreenBox = UI.makeRect({
             x: referencePoint.x + leftShift,
             y: referencePoint.y + verticalShifts.b
-        }, {x: 45, y: 30}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBg, {name: "GreenBox"});
+        }, {width: 45, height: 30}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBg, {name: "GreenBox"});
         var GreenText = makeText("0", NerdBoard.textSize, "center", NerdBoard.colors.defaultBg, {name: "GreenText"});
         GreenText.fitBounds(GreenBox.bounds);
         var Green = new Group(GreenBox, GreenText);
 
-        var BlueBox = makeRect({
+        var BlueBox = UI.makeRect({
             x: referencePoint.x + leftShift,
             y: referencePoint.y + verticalShifts.c
-        }, {x: 45, y: 30}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBg, {name: "BlueBox"});
+        }, {width: 45, height: 30}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBg, {name: "BlueBox"});
         var BlueText = makeText("0", NerdBoard.textSize, "center", NerdBoard.colors.defaultBg, {name: "BlueText"});
         BlueText.fitBounds(BlueBox.bounds);
         var Blue = new Group(BlueBox, BlueText);
@@ -896,14 +895,14 @@ NerdBoard.UI = (function() {
 
 
     function makeColorSwatches() {
-        var black = makeRect({x:-10, y:0}, {x:20, y:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "BlackSw"});
-        var white = makeRect({x:15, y:0}, {x:20, y:20}, NerdBoard.colors.defaultBg, NerdBoard.colors.defaultBg, {name: "WhiteSw"});
-        var red = makeRect({x:0, y:25}, {x:20, y:20}, NerdBoard.colors.defaultRed, NerdBoard.colors.defaultRed, {name: "RedSw"});
-        var green = makeRect({x:25, y:25}, {x:20, y:20}, NerdBoard.colors.defaultGreen, NerdBoard.colors.defaultGreen, {name: "GreenSw"});
-        var blue = makeRect({x:50, y:25}, {x:20, y:20}, NerdBoard.colors.defaultBlue, NerdBoard.colors.defaultBlue, {name: "BlueSw"});
-        var color1 = makeRect({x:-10, y:50}, {x:20, y:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "Color1Sw"});
-        var color2 = makeRect({x:15, y:50}, {x:20, y:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "Color1Sw"});
-        var color3 = makeRect({x:40, y:50}, {x:20, y:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "Color2Sw"});
+        var black = UI.makeRect({x:-10, y:0}, {width:20, height:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "BlackSw"});
+        var white = UI.makeRect({x:15, y:0}, {width:20, height:20}, NerdBoard.colors.defaultBg, NerdBoard.colors.defaultBg, {name: "WhiteSw"});
+        var red = UI.makeRect({x:0, y:25}, {width:20, height:20}, NerdBoard.colors.defaultRed, NerdBoard.colors.defaultRed, {name: "RedSw"});
+        var green = UI.makeRect({x:25, y:25}, {width:20, height:20}, NerdBoard.colors.defaultGreen, NerdBoard.colors.defaultGreen, {name: "GreenSw"});
+        var blue = UI.makeRect({x:50, y:25}, {width:20, height:20}, NerdBoard.colors.defaultBlue, NerdBoard.colors.defaultBlue, {name: "BlueSw"});
+        var color1 = UI.makeRect({x:-10, y:50}, {width:20, height:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "Color1Sw"});
+        var color2 = UI.makeRect({x:15, y:50}, {width:20, height:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "Color1Sw"});
+        var color3 = UI.makeRect({x:40, y:50}, {width:20, height:20}, NerdBoard.colors.defaultBlack, NerdBoard.colors.defaultBlack, {name: "Color2Sw"});
         var customColors = new Group(color1, color2, color3);
         return new Group(customColors, black, white, red, green, blue);
     }
