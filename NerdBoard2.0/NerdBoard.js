@@ -180,7 +180,7 @@ var NerdBoard = (function(wb) {
         //var imgGroup = new Group(closeIcon, raster);
         var imgGroup = new Group(raster);
         imgGroup.position = paper.view.center;
-        imgGroup.scale(.5);
+        imgGroup.scale(.25);
         imgGroup.data = {
             name: "Group",
             closeIconIsBack: true
@@ -487,9 +487,9 @@ var NerdBoard = (function(wb) {
         paper.setup(NerdBoard.canvas);
         window.setTimeout(function() {
             wb.layers.drawing = new Layer();
-            wb.layers.drawing.name = "drawingLayer";
+            wb.layers.drawing.name = wb.layers.drawing.data.name = "drawingLayer";
             wb.layers.UI = new Layer();
-            wb.layers.UI.name = "UILayer";
+            wb.layers.UI.name = wb.layers.UI.data.name = "UILayer";
             wb.makeBG();
             NerdBoard.UI.loadIcons();
             NerdBoard.Tools.createPaperTools();

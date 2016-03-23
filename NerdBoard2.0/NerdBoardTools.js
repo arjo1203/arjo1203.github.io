@@ -30,7 +30,10 @@ NerdBoard.Tools = (function() {
             var newPath = NerdBoard.makePath();
             var trackedTouch = trackTouch(touch, newPath.index);
             var touchHit = NerdBoard.layers.drawing.hitTest(trackedTouch.point, wbTools.hitOptions);
-            if(touchHit.item.parent.data.name !== "BG"){
+            if(touchHit.item.parent.data.name == "drawingLayer") {
+                trackedTouch.groupIndex = null;
+            }
+            else if(touchHit.item.parent.data.name !== "BG"){
                 trackedTouch.groupIndex = touchHit.item.parent.index;
             }
             wbTools.currentTouches.push(trackedTouch);
@@ -52,12 +55,6 @@ NerdBoard.Tools = (function() {
             var currentItem = NerdBoard.layers.drawing.children[currentTouch.itemIndex];
             if(currentItem.segments.length > 0) {
                 currentItem.simplify();
-                //var rect =  NerdBoard.UI.makeRect(currentItem.position, currentItem.bounds,NerdBoard.colors.selected, NerdBoard.colors.selected, {});
-                //var rect2 = rect.clone();
-                //rect2.position.x += 400;
-                //var union = rect.bounds.unite(rect2.bounds);
-                //var rect3 = new Path.Rectangle(union);
-                //rect3.fillColor = 'red';
             }
             else {
                 currentItem.remove();
@@ -139,15 +136,16 @@ NerdBoard.Tools = (function() {
                     trackedTouch.itemIndex = null;
                 }
                 else {
-                    console.log(touchItem.data.name);
-                    if(touchItem.data.name !== "SelectingAreaCorners") {
-                        trackedTouch.itemIndex = touchItem.index;
-                        if(touchItem.parent.name !== "drawingLayer")
-                            trackedTouch.itemIndex = touchItem.parent.index;
-                        //NerdBoard.layers.drawing.children[trackedTouch.itemIndex].selected = true;
-                    }
-                    else {
-                        trackedTouch.itemIndex = null;
+                    if(touchItem.parent.data.name !== "SelectedPaths") {
+                        if(touchItem.data.name !== "SelectingAreaCorners") {
+                            trackedTouch.itemIndex = touchItem.index;
+                            if (touchItem.parent.data.name !== "drawingLayer")
+                                trackedTouch.itemIndex = touchItem.parent.index;
+                            //NerdBoard.layers.drawing.children[trackedTouch.itemIndex].selected = true;
+                        }
+                        else {
+                            trackedTouch.itemIndex = null;
+                        }
                     }
                 }
 
@@ -398,7 +396,9 @@ NerdBoard.Tools = (function() {
         NerdBoard.layers.drawing.activate();
         wbTools.selectingArea = makeSelectingRect();
         wbTools.selectingArea.position.x = -4000;
+
         wbTools.selectedPaths = new Group();
+        wbTools.selectedPaths.data.name = "SelectedPaths";
 
 
 
