@@ -287,8 +287,8 @@ NerdBoard.Tools = (function() {
                 }
             }
         };
-        wbTools.tools.draw.minDistance = 5;
-        wbTools.tools.draw.maxDistance = 10;
+        wbTools.tools.draw.minDistance = 2;
+        wbTools.tools.draw.maxDistance = 4;
     }
 
 
@@ -337,8 +337,8 @@ NerdBoard.Tools = (function() {
                 }
             }
         };
-        wbTools.tools.erase.minDistance = 5;
-        wbTools.tools.erase.maxDistance = 10;
+        wbTools.tools.erase.minDistance = 2;
+        wbTools.tools.erase.maxDistance = 4;
     }
 
 
@@ -385,8 +385,8 @@ NerdBoard.Tools = (function() {
                 }
             }
         };
-        wbTools.tools.move.minDistance = 5;
-        wbTools.tools.move.maxDistance = 10;
+        wbTools.tools.move.minDistance = 2;
+        wbTools.tools.move.maxDistance = 4;
     }
 
 

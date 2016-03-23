@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e3d99b8c-bfc4-4963-b5bb-560257107010" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard2.0/NerdBoard.js" afterPath="$PROJECT_DIR$/NerdBoard2.0/NerdBoard.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js" afterPath="$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="arjo1203.github.io.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +47,9 @@
       <file leaf-file-name="NerdBoardTools.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6965443">
-              <caret line="142" column="80" selection-start-line="142" selection-start-column="80" selection-end-line="143" selection-end-column="104" />
+            <state vertical-scroll-proportion="-0.08099352">
+              <caret line="387" column="43" selection-start-line="387" selection-start-column="43" selection-end-line="387" selection-end-column="43" />
+              <caret line="388" column="43" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -113,7 +114,6 @@
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoard.html" />
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardSVG.html" />
         <option value="$PROJECT_DIR$/NerdBoard2.0/NerdBoardTranslator.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/PAPER/paper.js" />
         <option value="$PROJECT_DIR$/NerdBoard2.0/temp.js" />
         <option value="$PROJECT_DIR$/NerdBoard2.0/NerdBoard.css" />
@@ -122,6 +122,7 @@
         <option value="$PROJECT_DIR$/NerdBoard/NerdBoardTools.js" />
         <option value="$PROJECT_DIR$/NerdBoard2.0/NerdBoardUI.js" />
         <option value="$PROJECT_DIR$/NerdBoard2.0/NerdBoard.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js" />
       </list>
     </option>
@@ -602,13 +603,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.0">
-          <caret line="96" column="69" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/archTool_1.0/scripts/_3d.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -750,10 +744,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33259425">
+          <caret line="93" column="50" selection-start-line="93" selection-start-column="50" selection-end-line="93" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NerdBoard2.0/NerdBoardTools.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6965443">
-          <caret line="142" column="80" selection-start-line="142" selection-start-column="80" selection-end-line="143" selection-end-column="104" />
+        <state vertical-scroll-proportion="-0.08099352">
+          <caret line="387" column="43" selection-start-line="387" selection-start-column="43" selection-end-line="387" selection-end-column="43" />
+          <caret line="388" column="43" selection-start-line="388" selection-start-column="43" selection-end-line="388" selection-end-column="43" />
           <folding />
         </state>
       </provider>
