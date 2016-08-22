@@ -1,0 +1,66 @@
+#mainView{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#sideBar{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    margin-bottom: 0;
+}
+#videos{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+#container{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 3%;
+    pointer-events: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.border{
+    border: 4px solid #dc0c0c;
+}
+#myCanvas{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    pointer-events: none;
+}
+body{
+     overflow: hidden;
+     margin: 0;
+     padding: 0;
+}
+#logoImg{
+    width: 100%;
+    height: 100%;
+    opacity: .7;
+}
+#logoDiv{
+    position: absolute;
+    width: 250px;
+    height: 250px;
+}
+#myInput{
+    position: relative;
+    height: 5%;
+    width: 100%;
+    top: 0;
+}
+.go{
+    position: absolute;
+    height: 100%;
+}

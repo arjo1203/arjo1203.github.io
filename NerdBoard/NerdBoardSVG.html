@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>NerdBoard</title>
+    </head>
+    <body>
+    <!--<svg id="MenuBtn" height="0" width="0">-->
+    <!--<path id="nonActiveMenuBtn" fill="#263F8C " d="M992.275,577.058h-65.058c-2.75,0-5-2.25-5-5V507c0-2.75,2.25-5,5-5h65.058-->
+        <!--c2.75,0,5,2.25,5,5v65.058C997.275,574.808,995.025,577.058,992.275,577.058z"/>-->
+    <!--</svg>-->
+
+    <svg id="MenuBtn" width="0" height="0">
+        <g display="inline">
+            <title>Layer 2</title>
+            <circle id="svg_2" r="375.60086" cy="494" cx="932" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#000000" fill="#ffffff"/>
+        </g>
+        <g display="inline">
+            <title>Layer 1</title>
+            <path d="m737.40002,691.09998l11.29999,18.09998l185,-72.5c0,0 -32.59998,-10.69995 -6.5,-92.89996l-189.79999,147.29999z" fill="#B79A65"/>
+            <path d="m769.20001,491.70001c0,0 69.20001,-6.10001 81.29999,-21.20001l-129.59998,200.40002l-10.59998,-9.20001l58.89996,-170z" fill="#CEB891"/>
+            <path d="m737.40002,691.09998l190.90002,-147.70001c0,0 -89.80005,26.5 -80,-72.49997l-127.5,199.99997l16.59998,20.20001z" fill="#E5D4B1"/>
+            <path d="m769.20001,491.70001l276.49994,-283.29999l47.6001,18.09999l-248.20007,248.29997c-14,14.60001 -75.89996,16.90002 -75.89996,16.90002z" fill="#DBCF3A"/>
+            <path d="m748.79999,709.29999l-11.29999,-18.09998l-49.10004,37c-0.09998,0 35.00006,-9.79999 60.40002,-18.90002z" fill="#0A0700"/>
+            <polygon points="737.4,691.1 726.2,699.7 688.3,728.2 720.9,670.9 " fill="#9B9B9B"/>
+            <path d="m710.20001,661.70001l10.59998,9.20001l-32.09998,56.20001c0.09998,-0.00006 -2,-3.30005 21.5,-65.40002z" fill="#332E24"/>
+            <path d="m933.79999,636.70001l263.70001,-260.60001l-27.19995,-68l-241.10004,232.39999c0,0 -39.70001,75.09998 4.59998,96.20001z" fill="#87780A"/>
+            <path d="m1093.19995,226.60001l77.09998,81.60001l-234.8999,228.79999c-12.09998,12 -28.59998,21.70001 -45.40002,19.5c-1.09998,-0.09998 -2.09998,-0.29999 -3.19995,-0.5c-42.5,-6.59998 -66.10004,-56.39999 -36,-87l242.3999,-242.39999z" fill="#C9BA31"/>
+        </g>
+    </svg>
+
+        <!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+        <svg id="MenuBtnActive" height="0" width="0">
+    <path id="activeMenuBtn" fill="#263F8C " stroke="#F2695C " stroke-width="2" stroke-miterlimit="10" d="M987.275,577.058h-65.058
+        c-2.75,0-5-2.25-5-5V507c0-2.75,2.25-5,5-5h65.058c2.75,0,5,2.25,5,5v8.667L1002.667,531l-10.392,15.333v25.724
+        C992.275,574.808,990.025,577.058,987.275,577.058z"/>
+    </svg>
+
+
+
+
+    <!--<svg id="svg" width="100" height="100">-->
+            <!--<circle cx="50" cy="50" r="40" stroke="green" stroke-width="4" fill="yellow" />-->
+        <!--</svg>-->
+        <canvas id="myCanvas" width="100%" height="100" resize></canvas>
+        <!-- External scripts -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../PAPER/paper.js"></script>
+        <script>
+            paper.install(window);
+            var canvas = $('#myCanvas'), svg1 = $('#MenuBtn'), svg2 = $('#MenuBtnActive');
+            console.log(svg1);
+            console.log(svg2);
+            paper.setup(canvas[0]);
+
+
+            paper.project.importSVG(svg1[0]);
+//            paper.project.importSVG(svg2[0]);
+            paper.view.draw();
+
+//            paper.project.activeLayer.children[paper.project.activeLayer.children.length - 1].remove();
+
+            var hitOptions = {
+                segments: true,
+                stroke: true,
+                fill: true,
+                tolerance: 3
+            };
+            var pathHit;
+
+            var move = new Tool();
+            move.onMouseDown = function(paperEvent) {
+                paperEvent.preventDefault();
+
+                var mouseHit = project.hitTest(paperEvent.point, hitOptions);
+                console.log(mouseHit);
+                pathHit = mouseHit.item;
+                paper.project.activeLayer.addChild(pathHit);
+                pathHit.position = paperEvent.point;
+                paper.view.draw();
+                console.log(paper.project.activeLayer.children.length);
+            };
+            move.onMouseDrag = function(paperEvent) {
+                paperEvent.preventDefault();
+
+                if(pathHit) {
+                    pathHit.position = paperEvent.point;
+                }
+            };
+        </script>
+    </body>
+</html>

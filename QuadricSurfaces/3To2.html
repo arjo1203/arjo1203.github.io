@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <meta name="viewport" content="minimal-ui">
+        <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+        <link href="app/sliders.css" rel="stylesheet">
+        <link href="./3To2.css" rel="stylesheet">
+        <title>Jose R. Araujo Meza</title>
+    </head>
+    <body>
+        <canvas id="threejs"></canvas>
+
+        <div id="sideBar">
+            <div id="sideBarContext">
+
+                <div id="GUI_Top">
+                    <h1>Conic Sections</h1>
+                </div>
+
+                <div id="sliders">
+
+                    <div class="abs" id="R12Div">
+                        <button id="R12Button" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                                            <span class="params">
+                                                <span class="theta">&theta;</span><span class="sub">12</span> : <span id="R12Val">0</span>&deg;
+
+                                                <input id="R12" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                            </span>
+                        </div>
+                    </div>
+
+                    <div class="abs" id="R13Div">
+                        <button id="R13Button" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                                            <span class="params">
+                                                <span class="theta">&theta;</span><span class="sub">13</span> : <span id="R13Val">0</span>&deg;
+
+                                                <input id="R13" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                            </span>
+                        </div>
+                    </div>
+
+                    <div class="abs" id="R23Div">
+                        <button id="R23Button" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                                            <span class="params">
+                                                <span class="theta">&theta;</span><span class="sub">23</span> : <span id="R23Val">0</span>&deg;
+
+                                                <input id="R23" type="text" data-slider-min="0" data-slider-step="1" data-slider-max="360" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="abs" id="zDiv">
+                        <button id="zButton" class="btn btn-danger buttons">&#9658;</button>
+                        <div>
+                                            <span class="params">
+                                                z:
+                                                <span id="zVal">0</span>
+
+                                            <input id="z" type="text" data-slider-min="-50" data-slider-step=".1" data-slider-max="50" data-slider-value="0" data="value: '0'" value="0" style="display: none;">
+                                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+
+        <script src="../Numeric/numeric-1.2.6.js"></script>
+        <script src="../MapleToJavascript/parser.js"></script>
+        <script src="app/3To2U.js"></script>
+
+        <script src="./3To2Sliders.js"></script>
+
+        <script src="../THREE/three.js"></script>
+        <script src="../THREE/TrackballControls.js"></script>
+        <script src="../THREE/OrbitControls.js"></script>
+        <script src="../THREE/MarchingCubesData.js"></script>
+        <script src="../marchingCubes/marchingCubes.js"></script>
+        <script src="app/3To2Three.js"></script>
+
+        <script src="app/3To2Buttons.js"></script>
+    </body>
+</html>

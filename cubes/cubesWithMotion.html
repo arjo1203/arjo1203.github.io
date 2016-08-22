@@ -1,0 +1,161 @@
+<html>
+    <head>
+    <title>José R. Araújo Meza</title>
+        <meta name="viewport" content="minimal-ui">
+<!--        This style will remove the default slider from html page-->
+        <style>
+            body{
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="../THREE/three.min.js"></script>
+        <script src="../THREE/TrackballControls.js"></script>
+        <script src="../Cannon/cannon.js"></script>
+        <script>
+            //Global variables for THREE environment
+            var camera, scene, renderer, geometry, material, mesh, controls;
+            
+            //Global variables for Cannon environment
+            var world, mass, body, shape, timeStep=1/60;
+            var numOfCubes = 100, gap = 5;
+            var bodies = new Array();
+            var meshes = new Array();
+      
+            
+            
+            //Initial THREE function called
+            initThree();
+            //Initial Cannon function called
+            initCannon();
+            //Animates the environments
+            animate();
+
+            
+            
+            
+            function initCannon(){
+                //Create Cannon environment
+                world = new CANNON.World();
+
+                //Sets Cannon gravity to zero 
+                world.gravity.set(0,0,0);
+                world.broadphase = new CANNON.NaiveBroadphase();
+                world.solver.iterations = 10;
+
+                //Creates invisible box in Cannon environment
+                shape = new CANNON.Box(new CANNON.Vec3(1,1,1));
+                mass = 1;
+
+                //Gives random position/motion to boxes in Cannon enviroment
+                //Add the box to Cannon enviroment and add to bodies array
+                for(var i = 0; i < numOfCubes; i++){
+                    body = new CANNON.Body({
+                        mass: 1
+                    });
+                    body.addShape(shape);
+                    body.position.set((Math.random() - 0.5) * gap, (Math.random() - 0.5)* gap, (Math.random() - 0.5) * gap);
+                    body.angularVelocity.set((Math.random() - 0.5) * 15,(Math.random() - 0.5)  * 15,(Math.random() - 0.5) * 15);
+                    body.angularDamping = 0;
+                    world.add(body);
+                    bodies[i] = body;
+                }
+            }
+            
+            
+            
+
+            function initThree(){
+                //Create Three environment
+                scene = new THREE.Scene();
+
+                //Creates camera for THREE environment
+                camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1 ,100000);
+                camera.position.z = 500;
+                scene.add(camera);
+
+                //Adds mouse/touch controls to the camera
+                controls = new THREE.TrackballControls(camera);
+                controls.addEventListener('change', render);
+
+                //Creates CubeGeometry and MeshNormalMaterial
+                geometry = new THREE.BoxGeometry( 10, 10, 10 );
+                material = new THREE.MeshNormalMaterial();
+
+                //Creates i number of meshes, all meshes in THREE need geometry and material
+                //finally added them to the THREE environment and to meshes array
+                for(var i = 0; i < numOfCubes; i++){
+                    mesh = new THREE.Mesh( geometry, material );
+                    scene.add(mesh);
+                    meshes[i] = mesh;
+                }
+
+                //Creates renderer for THREE environment and appends to html document
+                renderer = new THREE.WebGLRenderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                //Added eventListener for window resize
+                window.addEventListener('resize', onWindowResize, false);
+                
+                //After all component for the THREE environment are created 
+                //render the THREE environment
+                render();
+            }
+
+            
+            
+            
+            function onWindowResize(){
+                //Update camera.aspect to the new window size
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                //Update renderer.setSize to the new window size
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            
+            
+            
+            function animate(){
+                //Called every frame
+                requestAnimationFrame(animate);
+                
+                //Updates the controls for the camera
+                controls.update();
+                
+                //Updates Cannon
+                updatePhysics();
+                
+                //After all updates render the environment
+                render();
+            }
+
+            
+            
+            
+            function updatePhysics() {
+              //Step for Cannon world
+              world.step(timeStep);
+
+              //Copy coordinates from Cannon to THREE
+                for(var i = 0; i < numOfCubes; i++){
+                    meshes[i].position.copy(bodies[i].position);
+                    meshes[i].quaternion.copy(bodies[i].quaternion);
+                }
+            }
+
+            
+            
+            
+            function render(){
+                //Renders the THREE environment
+              renderer.render(scene, camera);
+            }
+        </script>
+   </body>
+</html>

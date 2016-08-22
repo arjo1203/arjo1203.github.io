@@ -1,0 +1,58 @@
+<htmL>
+    <head>
+        <link href="../flipClock/flipclock.css" rel="stylesheet">
+        <link href="../VizLab/viz.css" rel="stylesheet">
+        <link href="./homePage/slideOutToCorners.css" rel="stylesheet">
+    </head>
+    <body class="homeBackGround">
+        <div id="clock"></div>
+
+        <div class="glow">
+            <img class="glow" src="./images/OuterGlow.png">
+        </div>
+
+        <div class="logoContainer">
+            <div>
+                <img id="homeLogo" class="logoContainer" src="./images/noGlow.png">
+            </div>
+
+            <div id="videoPanel">
+                <div class="videoLine"></div>
+                <div class="videoBorder">
+                    <a class="link2" id="videoLabel" href="./VideosPage/video.html">Videos</a>
+                </div>
+            </div>
+
+            <div id="ISELF_Panel">
+                <div class="ISELF_Line"></div>
+                <div class="ISELF_Border">
+                    <a class="link2" id="ISELF_Label" href="./ISELF_Page2.0/ISELF.html">ISELF</a>
+                </div>
+            </div>
+
+            <div id="CampusPanel">
+                <div class="CampusLine"></div>
+                <div class="campusBorder">
+                    <a class="link2" id="CampusLabel" href="./Campus_3D/campus_3D.html">Campus</a>
+                </div>
+            </div>
+
+            <div id="ProjectPanel">
+                <div class="ProjectLine"></div>
+                <div class="projectBorder">
+                    <a class="link2" id="ProjectsLabel" href="#">Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../flipClock/flipclock.min.js"></script>
+        <script src="./home.js"></script>
+        <script>
+            var clock = $('#clock').FlipClock({
+                clockFace: 'TwelveHourClock',
+                showSeconds: false
+            });
+        </script>
+    </body>
+</htmL>

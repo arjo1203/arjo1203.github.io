@@ -1,0 +1,193 @@
+<html>
+<head>
+    <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+</head>
+<body>
+<div>
+    <div>
+        <h2>
+            Find the first number of length "n" digits in the Fibonacci Sequence!
+        </h2>
+        <h3>
+            Input your interested length and click Go!!
+        </h3>
+    </div>
+    <div class="row" id="alert">
+        <div class="col-lg-2">
+            <div class="input-group">
+                <input id="input" type="text" class="form-control" placeholder="Find number with length of...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" onclick="findNumber(input[0].value)">Go!</button>
+              </span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p id="alertMessage"></p>
+    </div>
+    <div id="strings">
+        <p></p>
+    </div>
+</div>
+
+<script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+<script src="../bootStrap/bootstrap.js"></script>
+<script>
+    var numOfExecutions;
+    var message = $('#alertMessage'), div = $('#strings'), input = $('#input');
+
+    function findNumber(lengthOfDigit) {
+        var container = ['1', '1'], start, time;
+        numOfExecutions = 0;
+
+        start = new Date().getTime();
+
+        while (container[0].length != lengthOfDigit) {
+            container = addTwoIndices(container);
+
+            numOfExecutions += 2;//Tracks Fibonacci term
+        }
+
+        time = (new Date().getTime()) - start;
+
+        message[0].innerHTML = 'Number of executions: ' + numOfExecutions + '! Execution time: ' + time / 1000 + ' seconds!';
+        div[0].innerHTML = 'The number is ' + container[0];
+    }
+
+
+    function addTwoIndices(array){
+        var num1, num2, newArray;
+        num1 = addHugeNumbers(array[0], array[1]);
+        num2 = addHugeNumbers(array[1], num1);
+
+        newArray = [num1, num2];
+        return newArray;
+    }
+
+
+    function addHugeNumbers(a, b){
+        var carry = 0, maxNum, minNum, numSum = '';
+
+        var results = findMax(a, b);
+        maxNum = results.max;
+        minNum = results.min;
+
+        maxNum = '0' + maxNum;//Gives an extra place in case of overflow
+        minNum = makeSameLength(maxNum, minNum);//Make the strings the same length
+
+        //Adds strings starting with least significant to most significant
+        for(var i = maxNum.length - 1; i > -1; i--){
+            var x = parseInt(maxNum[i]);
+            var y = parseInt(minNum[i]);
+            var sum = x + y + carry;
+
+            if(sum > 9){
+                carry = 1;
+                sum = sum % 10;
+            }
+            else{
+                carry = 0;
+            }
+
+            var s = sum.toString();
+            numSum = s + numSum;
+        }
+
+        numSum = removeLeadingZeros(numSum);//Removes added zeros if no overflow occurred
+
+        return numSum;
+    }
+
+
+    function findMax(a, b){
+        var number = { }, max, min;
+        if(a.length == b.length){//If lengths of the strings are the same, findMax determines the larger number
+            max = getMax(a, b);
+            if (max == a){//After determining the larger number, use that number to check when is the minNum
+                min = b;
+            }
+            else {
+                min = a;
+            }
+        }
+        else if(a.length >= b.length){//If one string is longer than the other, than that string contains a larger number
+            max = a;
+            min = b;
+        }
+        else if(a.length <= b.length){//If one string is longer than the other, than that string contains a larger number
+            max = b;
+            min = a;
+        }
+
+        number.max = max;
+        number.min = min;
+
+        return number;
+    }
+
+
+    //getMax() assumes the strings are the same length
+    //Checks digit by digit, starting with most significant to least
+    function getMax(string1, string2){
+        var max, found = false, equalityCheck = 0;
+
+        var i = 0;
+        while(!found){
+
+            if(string1[i] > string2[i]){
+                max = string1;
+                found = true;
+            }
+            else if(string1[i] < string2[i]){
+                max = string2;
+                found = true;
+            }
+            else if(string1[i] == string2[i]){
+                equalityCheck++;
+
+                if(equalityCheck == string1.length){//numbers are equal
+                    max = string1;
+                    found = true;
+                }
+            }
+
+            i++;
+        }
+
+        return max;
+    }
+
+
+    //Makes the strings the same length by leading zeros to the smaller number
+    function makeSameLength(max, min){
+        while(max.length != min.length){
+            min = '0' + min;
+        }
+
+        return min;
+    }
+
+
+    //Removes any leading zeros from string
+    function removeLeadingZeros(string){
+        var num, leadingZeros = true, zeros = 0, i = 0;
+
+        while(leadingZeros){
+            if(string[i] == '0'){
+                zeros++;
+            }
+            else{
+                leadingZeros = false
+            }
+
+            i++;
+        }
+
+
+        num = string.slice(zeros);
+
+        return num;
+    }
+</script>
+</body>
+</html>

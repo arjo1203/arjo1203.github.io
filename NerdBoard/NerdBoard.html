@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>NerdBoard</title>
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
+        <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+        <link rel="stylesheet" href="../bootstrap-slider/bootstrap-slider.css">
+        <link rel="stylesheet" href="NerdBoard.css">
+        <link rel="icon" href="./icons/nerdLogoOnly.png">
+        <!--<meta name="viewport" content="width=devicewidth, minimal-ui">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+        <div id="functions">
+            <div id="menuUI" class="defaultRed">
+                <div id="menuUIBtn">
+                    <div class="defaultBlack hamburger top"></div>
+                    <div class="defaultBlack hamburger middle"></div>
+                    <div class="defaultBlack hamburger bottom"></div>
+                </div>
+                <div id="menuUIOptions">
+                    <div id="saveUI">
+                        <div id="saveUIBtn">
+                            <img id="saveUIBtnIcon" src="icons/save.png">
+                        </div>
+                        <div id="saveUIOptions">
+                            <a id="saveImg" href="#">Image</a>
+                            <a id="saveWorkSpace" href="#">WorkSpace</a>
+                        </div>
+                    </div>
+                    <div id="loadUI">
+                        <div id="loadUIBtn">
+                            <img id="loadUIBtnIcon" src="icons/load.png">
+                        </div>
+                        <div id="loadUIOptions">
+                            <a id="uploadImg" href="#">Image</a>
+                            <a id="loadWorkSpace" href="#">WorkSpace</a>
+                        </div>
+                    </div>
+                    <div id="bgUI">
+                        <div id="bgUIBtn">
+                            <img id="bgUIBtnIcon" src="icons/bg.png">
+                        </div>
+                        <div id="bgUIOptions">
+                            <div class="row1">
+                                <div id="themeDefaultBg" class="col1 defaultBg border">
+                                </div>
+                                <div id="themeSlateBlack" class="col2 slateBlack border">
+                                </div>
+                                <div id="themeSlateRed" class="col3 slateRed border">
+                                </div>
+                                <div id="themeNeonGreen" class="col4 neonGreen border">
+                                </div>
+                                <div id="themeSlateBlue" class="col5 slateBlue border">
+                                </div>
+                                <div id="themeDefaultYellow" class="col6 defaultYellow border">
+                                </div>
+                            </div>
+
+                            <div class="row2">
+                                <div id="themeNeonBlack" class="col1 neonBlack border">
+                                </div>
+                                <div id="themeNightBg" class="col2 nightBg border">
+                                </div>
+                                <div id="themeNightRed" class="col3 nightRed border">
+                                </div>
+                                <div id="themeSlateGreen" class="col4 slateGreen border">
+                                </div>
+                                <div id="themeNeonBlue" class="col5 neonBlue border">
+                                </div>
+                                <div id="themeNightYellow" class="col6 nightYellow border">
+                                </div>
+                            </div>
+
+                            <div class="row3">
+                                <div id="themeSlateBg" class="col1 slateBg border">
+                                </div>
+                                <div id="themeNeonBg" class="col2 neonBg border">
+                                </div>
+                                <div id="themeNeonRed" class="col3 neonRed border">
+                                </div>
+                                <div id="themeNightGreen" class="col4 nightGreen border">
+                                </div>
+                                <div id="themeNightBlue" class="col5 nightBlue border">
+                                </div>
+                                <div id="themeSlateYellow" class="col6 slateYellow border">
+                                </div>
+                            </div>
+
+                            <div class="row4">
+                                <div id="themeNightBlack" class="col1 nightBlack border">
+                                </div>
+                                <div id="themeDefaultBlack" class="col2 defaultBlack border">
+                                </div>
+                                <div id="themeDefaultRed" class="col3 defaultRed border">
+                                </div>
+                                <div id="themeDefaultGreen" class="col4 defaultGreen border">
+                                </div>
+                                <div id="themeDefaultBlue" class="col5 defaultBlue border">
+                                </div>
+                                <div id="themeNeonYellow" class="col6 neonYellow border">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="verticalDivider"></div>
+
+            <div class="undoBtn red" id="undo">
+                <img id="undoImg" src="icons/undo.png">
+            </div>
+
+            <div id="undoAndClear" class="verticalDivider"></div>
+
+            <div class="clearBtn red" id="clear">
+                <img id="clearImg" src="icons/clear.png">
+            </div>
+        </div>
+
+        <div id="leftSideBar" class="bar">
+
+            <div id="leftToolsUI">
+                <div id="leftToolsUIBtn">
+                    <img id="leftToolsUIBtnIcon" src="icons/pencil.png">
+                </div>
+                <div id="leftToolsUIOptions">
+                    <div id="drawTool">
+                        <img id="drawToolIcon" src="icons/pencil.png">
+                    </div>
+                    <div id="eraseTool">
+                        <img id="eraseToolIcon" src="icons/eraser.png">
+                    </div>
+                    <div id="moveTool">
+                        <img id="moveToolIcon" src="./icons/move.png">
+                    </div>
+                    <div id="addTool">
+                        <img id="addToolIcon" src="./icons/add.png">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="leftDrawUI">
+
+                <div id="leftColorUI">
+                    <div id="leftColorUIBtn">
+                        <div id="leftColorUIBtnIcon"></div>
+                    </div>
+                    <div id="leftColorUIOptions">
+                        <div class="row1">
+                            <div id="colorDefaultBg" class="col1 defaultBg border">
+                            </div>
+                            <div id="colorSlateBlack" class="col2 slateBlack border">
+                            </div>
+                            <div id="colorSlateRed" class="col3 slateRed border">
+                            </div>
+                            <div id="colorNeonGreen" class="col4 neonGreen border">
+                            </div>
+                            <div id="colorSlateBlue" class="col5 slateBlue border">
+                            </div>
+                            <div id="colorDefaultYellow" class="col6 defaultYellow border">
+                            </div>
+                        </div>
+
+                        <div class="row2">
+                            <div id="colorNeonBlack" class="col1 neonBlack border">
+                            </div>
+                            <div id="colorNightBg" class="col2 nightBg border">
+                            </div>
+                            <div id="colorNightRed" class="col3 nightRed border">
+                            </div>
+                            <div id="colorSlateGreen" class="col4 slateGreen border">
+                            </div>
+                            <div id="colorNeonBlue" class="col5 neonBlue border">
+                            </div>
+                            <div id="colorNightYellow" class="col6 nightYellow border">
+                            </div>
+                        </div>
+
+                        <div class="row3">
+                            <div id="colorSlateBg" class="col1 slateBg border">
+                            </div>
+                            <div id="colorNeonBg" class="col2 neonBg border">
+                            </div>
+                            <div id="colorNeonRed" class="col3 neonRed border">
+                            </div>
+                            <div id="colorNightGreen" class="col4 nightGreen border">
+                            </div>
+                            <div id="colorNightBlue" class="col5 nightBlue border">
+                            </div>
+                            <div id="colorSlateYellow" class="col6 slateYellow border">
+                            </div>
+                        </div>
+
+                        <div class="row4">
+                            <div id="colorNightBlack" class="col1 nightBlack border">
+                            </div>
+                            <div id="colorDefaultBlack" class="col2 defaultBlack border">
+                            </div>
+                            <div id="colorDefaultRed" class="col3 defaultRed border">
+                            </div>
+                            <div id="colorDefaultGreen" class="col4 defaultGreen border">
+                            </div>
+                            <div id="colorDefaultBlue" class="col5 defaultBlue border">
+                            </div>
+                            <div id="colorNeonYellow" class="col6 neonYellow border">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="leftWidthUI">
+                    <div id="leftWidthUIBtn">
+                        <div id="currentWidth" class="whiteText">
+                            <p>Width</p>
+                            <p id="penWidth">5</p>
+                        </div>
+                    </div>
+                    <div id="leftWidthUIOptions">
+                        <input data-slider-id="penWidthSlider" id="leftWidthUISlider"/>
+                    </div>
+                </div>
+
+                <div id="dashed">
+                    <div class="checkbox">
+                        <label>
+                            <input id="dashedCheckbox" type="checkbox">- - - -
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="leftEraseUI">
+            </div>
+
+            <div id="leftMoveUI">
+            </div>
+
+            <div id="leftAddUI">
+
+                <div id="drawAfter">
+                    <div class="checkbox">
+                        <label>
+                            <input id="drawAfterCheckbox" type="checkbox"> Draw
+                        </label>
+                    </div>
+                </div>
+
+                <div id="leftShapeUI">
+
+                    <div id="leftShapeUIBtn">
+                        <img src="icons/roundedRect.png" id="leftShapeUIBtnIcon">
+                    </div>
+                    <div id="leftShapeUIOptions">
+                        <img id="Terminal" class="Icon" src="icons/roundedRect.png">
+                        <img id="Process" class="Icon" src="icons/rect.png">
+                        <img id="Input" class="Icon" src="icons/slantedRect.png">
+                        <img id="Decision" class="Icon" src="icons/diamond.png">
+                        <img id="Text" class="Icon" src="icons/text.png">
+                    </div>
+                </div>
+
+
+                <div id="leftTextInputUI">
+                    <div id="leftTextInputUIBtn">
+                        <img id="leftTextInputUIBtnIcon" src="icons/inputText.png">
+                    </div>
+                    <div id="leftTextInputUIOptions">
+                        <input id="leftTextInputUIInput" class="form-control" placeholder="Input Text!"/>
+                    </div>
+                </div>
+
+
+                <div id="leftTextSizeUI">
+                    <div id="leftTextSizeUIBtn">
+                        <div id="currenttextSize" class="whiteText">
+                            <img class="Icon" src="icons/textSize.png">
+                            <p id="textSizeSliderVal">40</p>
+                        </div>
+                    </div>
+                    <div id="leftTextSizeUIOptions">
+                        <input id="leftTextSizeUISlider"/>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="NerdLogo">
+            <img class="NerdLogo" src="icons/nerdLogo2.png"/>
+        </div>
+
+        <canvas id="my-canvas" resize></canvas>
+
+
+
+        <!-- External scripts -->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+        <script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+        <script src="../PAPER/paper.js"></script>
+        <script src="../bootstrap-slider/bootstrap-slider.js"></script>
+        <!-- Internal scripts -->
+        <script src="../JavascriptExtensions/extendString.js"></script>
+        <script src="NerdBoard.js"></script>
+        <script src="NerdBoardTools.js"></script>
+        <script src="NerdBoardUIHandler.js"></script>
+        <script src="NerdBoardTranslator.js"></script>
+    </body>
+</html>

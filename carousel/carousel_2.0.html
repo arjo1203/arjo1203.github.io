@@ -1,0 +1,105 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../slick-1.5.0/slick/slick-theme.css">
+    <link rel="stylesheet" href="../slick-1.5.0/slick/slick.css">
+    <link rel="stylesheet" href="../prism/prism.css">
+    <link href="../bootStrap/bootstrap.min.css" rel="stylesheet" >
+    <style>
+        .carosuelDivs{
+            width: 150px;
+            height: 150px;
+        }
+        .img{
+            width: 100px;
+            height: 100px;
+        }
+        #logo{
+            width: 250px;
+            height: 250px;
+            left: 0;
+            top: 0;
+        }
+        body {
+            background: #151515; /* Old browsers */
+            background: -moz-linear-gradient(top, #dc0c0c 0%, #ff392d 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #151515), color-stop(100%, #151515)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top, #d30d1a 0%, #fefef8 100%); /* Chrome10+,Safari5.1+  color edit */
+            background: -o-linear-gradient(top, #dc0c0c 0%, #ff392d 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #dc0c0c 0%, #dc0c0c 100%); /* IE10+ */
+            background: linear-gradient(top, #dc0c0c 0%, #dc0c0c 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cccccc', endColorstr='#888888',GradientType=0 ); /* IE6-9 */
+        }
+        #mainContainer{
+            position: absolute;
+            left: 15%;
+            top: 2%;
+        }
+        #carosuel{
+            position: relative;
+            left: 20%;
+        }
+        .border{
+            border-width: thick;
+            border-radius: 10px;
+            border-color: #dc0c0c;
+        }
+    </style>
+</head>
+<body>
+<img id="logo" class="img-circle" src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xfa1/v/t1.0-9/10806324_1801505026741602_3014265343742879711_n.jpg?oh=fd6703f2ab2a0415c34d5bcfe9cb8efa&oe=55B1F0E6&__gda__=1437815661_9f8498548a7309b1ce770dac53c776dc">
+<div id="mainContainer">
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <div id="container">
+        <div id="player"></div>
+    </div>
+    <div id="carosuel" style="width: 600px;" class="slick-slider">
+        <div class="carosuelDivs">
+            <button class="border" id="button0"><img class="img" src="../SCSU/scsuLogo.png"></button>
+        </div>
+        <div class="carosuelDivs">
+            <button id="button1"><img class="img" src="https://i.ytimg.com/vi_webp/scpg3i6fzQo/mqdefault.webp"></button>
+        </div>
+        <div class="carosuelDivs">
+            <button id="button2"><img class="img" src="https://pbs.twimg.com/profile_images/473574408758386689/jcE75fVE.png"></button>
+        </div>
+        <div class="carosuelDivs">
+            <button id="button3"><img class="img" src="http://www.tk20.com/img/products-graphic1.jpg"></button>
+        </div>
+        <div class="carosuelDivs">
+            <button id="button4"><img class="img" src="../SCSU/scsuLogo.png"></button>
+        </div>
+        <div class="carosuelDivs">
+            <button id="button5"><img class="img" src="https://i.ytimg.com/vi_webp/scpg3i6fzQo/mqdefault.webp"></button>
+        </div>
+    </div>
+    <button class="slick-next" type="button"></button>
+</div>
+<!--<div id="mainContainer">-->
+<!--&lt;!&ndash; 1. The <iframe> (and video player) will replace this <div> tag. &ndash;&gt;-->
+<!--<div id="container">-->
+<!--<div id="player"></div>-->
+<!--</div>-->
+<!--<div id="carosuel" style="width: 100%;" class="form-inline">-->
+<!--<button class="border" id="button0"><img class="img" src="../SCSU/scsuLogo.png"></button>-->
+<!--<button id="button1"><img class="img" src="https://i.ytimg.com/vi_webp/scpg3i6fzQo/mqdefault.webp"></button>-->
+<!--<button id="button2"><img class="img" src="https://pbs.twimg.com/profile_images/473574408758386689/jcE75fVE.png"></button>-->
+<!--<button id="button3"><img class="img" src="http://www.tk20.com/img/products-graphic1.jpg"></button>-->
+<!--<button id="button4"><img class="img" src="../SCSU/scsuLogo.png"></button>-->
+<!--<button id="button5"><img class="img" src="https://i.ytimg.com/vi_webp/scpg3i6fzQo/mqdefault.webp"></button>-->
+<!--</div>-->
+<!--</div>-->
+
+<script src="../assets/plugins/jquery-1.11.2.min.js"></script>
+<script src="../bootStrap/bootstrap.js"></script>
+<script src="./carosuel_2.0.js"></script>
+    <script src="../slick-1.5.0/slick/slick.min.js"></script>
+    <script src="../prism/prism.js"></script>
+    <script>
+        $('#carosuel').slick({
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                arrows: false
+        });
+    </script>
+</body>
+</html>
