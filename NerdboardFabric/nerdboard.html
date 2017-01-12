@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Nerdboard">
+<head>
+  <meta charset="utf-8">
+
+  <title>Nerdboard</title>
+
+  <style>
+    pre { margin-left: 15px !important }
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+</head>
+<body>
+  <script src="./lib/jquery.js"></script>
+  <script src="./lib/bootstrap.js"></script>
+  <script src="./lib/fabric.js"></script>
+
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/nerdboard.css">
+
+  <link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>
+
+  
+
+  <div id="wrapper" data-spy="scroll" data-target="#spy" class="">
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper" ng-controller="NerdboardSidebar" class="">
+
+      <div style="margin-top:10px;" id="drawing-mode-wrapper">
+        <button id="drawing-mode" class="btn btn-success" ng-click="setFreeDrawingMode(!getFreeDrawingMode())" ng-class="{'btn-inverse': getFreeDrawingMode()}" style="margin:5px;">
+          {{ getFreeDrawingMode() ? 'Exit drawing mode' : 'Enter drawing mode' }}
+        </button>
+        <div id="drawing-mode-options" ng-show="getFreeDrawingMode()">
+          <label for="drawing-mode-selector">Mode:</label>
+          <select id="drawing-mode-selector" bind-value-to="drawingMode">
+            <option>Pencil</option>
+            <option>Circle</option>
+            <option>Spray</option>
+          </select>
+          <br>
+          <label for="drawing-line-width">Line width:</label>
+          <input type="range" value="30" min="0" max="150" bind-value-to="drawingLineWidth">
+          <br>
+          <label for="drawing-color">Line color:</label>
+          <input type="color" value="#005E7A" bind-value-to="drawingLineColor">
+          <br>
+          <label for="drawing-shadow-width">Line shadow width:</label>
+          <input type="range" value="0" min="0" max="50" bind-value-to="drawingLineShadowWidth">
+        </div>
+      </div> 
+      <!-- drawing-mode-wrapper -->
+
+      <p>
+        <button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
+        <button type="button" class="btn circle" ng-click="addCircle()">Circle</button>
+        <button type="button" class="btn triangle" ng-click="addTriangle()">Triangle</button>
+        <button class="btn" ng-click="addTextbox()">Add textbox</button>
+      </p>
+
+      <p>
+		<button class="btn btn-object-action" id="remove-selected" ng-click="removeSelected()">
+		Remove selected
+		</button>
+		<button class="btn btn-danger clear" ng-click="confirmClear()">Clear canvas</button>
+      </p>
+
+    </div>
+    <!-- Page content -->
+    <div id="page-content-wrapper" class="">        
+      <div style="width:100%;height:100%;" id="Nerdboard-canvas-wrapper">
+        <canvas id="myCanvas"></canvas>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <!-- This is the div that does the trick: -->
+  <!-- <div class="container" style="margin:10px;width:1920px;height:1080px;" id="Nerdboard-wrapper">
+
+    <div style="display:inline-block;width:300px;height:1080px;background: lightgrey;" 
+         id="Nerdboard-sidebar" ng-controller="NerdboardSidebar">
+
+    </div>
+
+    
+
+  </div> -->
+
+
+
+  <script>
+    fitToContainer($('#myCanvas')[0]);
+
+    function fitToContainer(canvas){
+      // Make it visually fill the positioned parent
+      canvas.style.width ='100%';
+      canvas.style.height='100%';
+      // ...then set the internal size to match
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    var canvas = new fabric.Canvas('myCanvas', {
+      isDrawingMode: true
+    });
+  </script>
+
+  <script src="./js/Nerdboard/utils.js"></script>
+  <script src="./js/Nerdboard/app_config.js"></script>
+  <script src="./js/Nerdboard/controller.js"></script>
+
+
+  <script>
+
+    (function() {
+      fabric.util.addListener(fabric.window, 'load', function() {
+        var canvas = this.__canvas || this.canvas,
+        canvases = this.__canvases || this.canvases;
+
+        canvas && canvas.calcOffset && canvas.calcOffset();
+
+        if (canvases && canvases.length) {
+          for (var i = 0, len = canvases.length; i < len; i++) {
+            canvases[i].calcOffset();
+          }
+        }
+      }); 
+    })();
+    // $('#myCanvas')[0].style.width = "1000px";
+    // console.log($('#myCanvas')[0].style.width);
+  </script>
+
+</body>
+</html>
